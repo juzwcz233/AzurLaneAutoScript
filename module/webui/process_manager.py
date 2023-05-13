@@ -167,6 +167,10 @@ class ProcessManager:
                 from module.daemon.game_manager import GameManager
 
                 GameManager(config=config_name, task="GameManager").run()
+            elif func == "DashboardUpdate":
+                from module.daemon.dashboardupdate import DashboardUpdate
+
+                DashboardUpdate(config=config_name, task="DashboardUpdate").run()
             elif func == 'maa':
                 mod = load_mod('maa')
 

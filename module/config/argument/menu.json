@@ -6,20 +6,24 @@
       "Restart"
     ],
     "Farm": [
-      "Main",
-      "Main2",
-      "Main3",
+      "WarArchives",
       "GemsFarming",
       "Sos"
+    ],
+    "Main": [
+      "MainNormal",
+      "MainHard",
+      "Main",
+      "Main2"
     ],
     "Event": [
       "EventGeneral",
       "Event",
       "Event2",
+      "Event3",
       "Raid",
       "Coalition",
-      "MaritimeEscort",
-      "WarArchives"
+      "MaritimeEscort"
     ],
     "EventDaily": [
       "EventA",
@@ -31,13 +35,13 @@
       "CoalitionSp"
     ],
     "Reward": [
+      "Reward",
       "Commission",
-      "Tactical",
       "Research",
+      "Tactical",
       "Dorm",
       "Meowfficer",
-      "Guild",
-      "Reward"
+      "Guild"
     ],
     "DailyMission": [
       "Daily",
@@ -71,7 +75,8 @@
       "OpsiDaemon",
       "Benchmark",
       "AzurLaneUncensored",
-      "GameManager"
+      "GameManager",
+      "DashboardUpdate"
     ]
   }
 }

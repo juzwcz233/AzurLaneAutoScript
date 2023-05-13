@@ -19,6 +19,15 @@ class ExerciseCombat(HpDaemon, OpponentChoose, ExerciseEquipment):
 
     def _combat_preparation(self, skip_first_screenshot=True):
         logger.info('Combat preparation')
+
+        # Power limit check
+        from module.gg_handler.gg_handler import GGHandler
+        from module.config.utils import deep_get
+        gg_enable = deep_get(self.config.data, 'GameManager.GGHandler.Enabled')
+        gg_auto = deep_get(self.config.data, 'GameManager.GGHandler.GGFactorEnable')
+        if (gg_enable == True and gg_auto == True) or gg_enable == True:
+            GGHandler(config=self.config, device=self.device).power_limit('Exercise')
+
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False

@@ -4,7 +4,7 @@ from module.base.timer import Timer
 from module.coalition.assets import FLEET_PREPARATION as COALITION_FLEET_PREPARATION
 from module.combat.assets import GET_ITEMS_1, GET_ITEMS_2, GET_SHIP
 from module.exception import (GameNotRunningError, GamePageUnknownError,
-                              RequestHumanTakeover)
+                              RequestHumanTakeover, GameTooManyClickError)
 from module.exercise.assets import EXERCISE_PREPARATION
 from module.freebies.assets import PURCHASE_POPUP
 from module.handler.assets import (AUTO_SEARCH_MENU_EXIT, BATTLE_PASS_NOTICE,
@@ -233,6 +233,9 @@ class UI(InfoHandler):
         logger.warning('Supported page: Any page with a "HOME" button on the upper-right')
         logger.critical("Please switch to a supported page before starting Alas")
         raise GamePageUnknownError
+        # logger.critical("Task Call Restart")
+        # from module.handler.login import LoginHandler
+        # LoginHandler(config=self.config, device=self.device).app_restart()
 
     def ui_goto(self, destination, offset=(30, 30), confirm_wait=0, skip_first_screenshot=True):
         """
@@ -461,7 +464,7 @@ class UI(InfoHandler):
             logger.critical("Failed to confirm OpSi fleets, too many click on RESET_FLEET_PREPARATION")
             logger.critical("Possible reason #1: You haven't set any fleets in operation siren")
             logger.critical("Possible reason #2: Your fleets haven't satisfied the level restrictions in operation siren")
-            raise RequestHumanTakeover
+            raise GameTooManyClickError
         if self.appear_then_click(RESET_TICKET_POPUP, offset=(30, 30), interval=3):
             return True
         if self.appear_then_click(RESET_FLEET_PREPARATION, offset=(30, 30), interval=3):

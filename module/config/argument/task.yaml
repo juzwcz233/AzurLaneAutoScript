@@ -20,6 +20,52 @@ Restart:
 
 # ==================== Farm ====================
 
+GemsFarming:
+  - Scheduler
+  - GemsFarming
+  - Campaign
+  - StopCondition
+  - Fleet
+WarArchives:
+  - Scheduler
+  - Campaign
+  - StopCondition
+  - Fleet
+  - Submarine
+  - Emotion
+  - HpControl
+  - EnemyPriority
+Sos:
+  - Scheduler
+  - Sos
+  - Campaign
+  - StopCondition
+  - Fleet
+  - Submarine
+  - Emotion
+  - HpControl
+  - EnemyPriority
+
+# ==================== Main ====================
+
+MainNormal:
+  - Scheduler
+  - Campaign
+  - StopCondition
+  - Fleet
+  - Submarine
+  - Emotion
+  - HpControl
+  - EnemyPriority
+MainHard:
+  - Scheduler
+  - Campaign
+  - StopCondition
+  - Fleet
+  - Submarine
+  - Emotion
+  - HpControl
+  - EnemyPriority
 Main:
   - Scheduler
   - Campaign
@@ -40,22 +86,6 @@ Main2:
   - EnemyPriority
 Main3:
   - Scheduler
-  - Campaign
-  - StopCondition
-  - Fleet
-  - Submarine
-  - Emotion
-  - HpControl
-  - EnemyPriority
-GemsFarming:
-  - Scheduler
-  - GemsFarming
-  - Campaign
-  - StopCondition
-  - Fleet
-Sos:
-  - Scheduler
-  - Sos
   - Campaign
   - StopCondition
   - Fleet
@@ -87,6 +117,15 @@ Event2:
   - Emotion
   - HpControl
   - EnemyPriority
+Event3:
+  - Scheduler
+  - Campaign
+  - StopCondition
+  - Fleet
+  - Submarine
+  - Emotion
+  - HpControl
+  - EnemyPriority
 Raid:
   - Scheduler
   - Raid
@@ -102,16 +141,6 @@ Coalition:
 MaritimeEscort:
   - Scheduler
   - MaritimeEscort
-WarArchives:
-  - Scheduler
-  - Campaign
-  - StopCondition
-  - Fleet
-  - Submarine
-  - Emotion
-  - HpControl
-  - EnemyPriority
-
 
 # ==================== EventDaily ====================
 
@@ -179,17 +208,20 @@ CoalitionSp:
 
 # ==================== Reward ====================
 
+Reward:
+  - Scheduler
+  - Reward
 Commission:
   - Scheduler
   - Commission
+Research:
+  - Scheduler
+  - Research
 Tactical:
   - Scheduler
   - Tactical
   - ControlExpOverflow
   - AddNewStudent
-Research:
-  - Scheduler
-  - Research
 Dorm:
   - Scheduler
   - Dorm
@@ -201,9 +233,6 @@ Guild:
   - Scheduler
   - GuildLogistics
   - GuildOperation
-Reward:
-  - Scheduler
-  - Reward
 
 # ==================== DailyMission ====================
 
@@ -213,6 +242,9 @@ Daily:
 Hard:
   - Scheduler
   - Hard
+  - Fleet
+  - Emotion
+  - EnemyPriority
 Exercise:
   - Scheduler
   - Exercise
@@ -306,3 +338,7 @@ AzurLaneUncensored:
   - AzurLaneUncensored
 GameManager:
   - GameManager
+  - GGHandler
+  - PowerLimit
+DashboardUpdate:
+  - DashboardUpdate

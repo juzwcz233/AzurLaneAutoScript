@@ -27,8 +27,8 @@ ARCHIVES_PREFIX = {
     'jp': '檔案 ',
     'tw': '檔案 '
 }
-MAINS = ['Main', 'Main2', 'Main3']
-EVENTS = ['Event', 'Event2', 'EventA', 'EventB', 'EventC', 'EventD', 'EventSp']
+MAINS = ['MainNormal', 'MainHard', 'Main', 'Main2']
+EVENTS = ['Event', 'Event2', 'Event3', 'EventA', 'EventB', 'EventC', 'EventD', 'EventSp']
 GEMS_FARMINGS = ['GemsFarming']
 RAIDS = ['Raid', 'RaidDaily']
 WAR_ARCHIVES = ['WarArchives']
@@ -139,6 +139,15 @@ class ConfigGenerator:
         return read_file(filepath_argument('gui'))
 
     @cached_property
+    def dashboard(self):
+        """
+        <dashboard>
+          - <group>
+        """
+        return read_file(filepath_argument('dashboard'))
+
+
+    @cached_property
     @timer
     def args(self):
         """
@@ -152,7 +161,9 @@ class ConfigGenerator:
         """
         # Construct args
         data = {}
-        for task, groups in self.task.items():
+        # Add dashboard to args
+        dashboard_and_task = {**self.task, **self.dashboard}
+        for task, groups in dashboard_and_task.items():
             # Add storage to all task
             groups.append('Storage')
             for group in groups:
@@ -521,8 +532,8 @@ class ConfigUpdater:
             f'{task}.Emotion.Mode',
             emotion_mode_redirect
         ) for task in [
-            'Main', 'Main2', 'Main3', 'GemsFarming',
-            'Event', 'Event2', 'EventA', 'EventB', 'EventC', 'EventD', 'EventSp', 'Raid', 'RaidDaily',
+            'MainNormal', 'MainHard', 'Main', 'Main2', 'GemsFarming',
+            'Event', 'Event2', 'Event3', 'EventA', 'EventB', 'EventC', 'EventD', 'EventSp', 'Raid', 'RaidDaily',
             'Sos', 'WarArchives',
         ]
     ]
