@@ -113,6 +113,7 @@ class DashboardUpdate(LoginHandler):
         self.device.sleep(0.2)
         self.device.screenshot()
         logger.hr('Get pt')
+        self.device.sleep((1, 2))
         if self.appear(CAMPAIGN_MENU_NO_EVENT, offset=(20, 20)):
             logger.info('Event is already closed')
             pt = 0
