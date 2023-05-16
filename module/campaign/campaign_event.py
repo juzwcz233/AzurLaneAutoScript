@@ -139,23 +139,6 @@ class CampaignEvent(CampaignStatus):
             logger.info('Event available')
             return True
 
-    def is_event_entrance_available(self):
-        """
-        Returns:
-            bool: True if available
-
-        Raises:
-            TaskEnd: If unavailable
-        """
-        if self.appear(CAMPAIGN_MENU_NO_EVENT, offset=(20, 20)):
-            logger.info('Event unavailable, disable task')
-            tasks = EVENTS + COALITIONS + GEMS_FARMINGS
-            self._disable_tasks(tasks)
-            self.config.task_stop()
-        else:
-            logger.info('Event available')
-            return True
-
     def ui_goto_event(self):
         # Already in page_event, skip event_check.
         if self.ui_get_current_page() == page_event:
