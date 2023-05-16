@@ -108,18 +108,9 @@ class DashboardUpdate(LoginHandler):
         UI(self.config, device=self.device).ui_goto_main()
     
     def get_pt(self):
-        self.device.sleep(0.2)
-        self.device.click(MAIN_GOTO_CAMPAIGN)
-        self.device.sleep(0.2)
-        self.device.screenshot()
+        eventtime = deep_get(self.config.data, 'DashboardUpdate.DashboardUpdate.EventTime')
         logger.hr('Get pt')
-        self.device.sleep((1, 2))
-        if self.appear(CAMPAIGN_MENU_NO_EVENT, offset=(20, 20)):
-            logger.info('Event is already closed')
-            pt = 0
-            logger.attr('Event_PT', pt)
-            LogRes(self.config).Pt = pt
-        else:
+        if eventtime == True:
             self.ui_goto_event()
             pt = OCR_PT.ocr(self.device.image)
             res = re.search(r'X(\d+)', pt)
@@ -131,6 +122,11 @@ class DashboardUpdate(LoginHandler):
                 logger.warning(f'Invalid pt result: {pt}')
                 pt = 0
                 LogRes(self.config).Pt = pt
+        elif eventtime == False:
+            logger.warning('Event is already closed')
+            pt = 0
+            logger.attr('Event_PT', pt)
+            LogRes(self.config).Pt = pt
         self.config.update()
     
     def goto_shop(self):

@@ -2522,6 +2522,10 @@
       "help": "DashboardUpdate.Update.help",
       "all": "DashboardUpdate.Update.all",
       "main": "DashboardUpdate.Update.main"
+    },
+    "EventTime": {
+      "name": "活动状态",
+      "help": "是否在活动时间内"
     }
   },
   "Oil": {
