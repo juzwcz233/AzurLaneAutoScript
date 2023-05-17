@@ -43,7 +43,7 @@ OCR_PT = PtOcr(OCR_EVENT_PT)
 
 
 class CampaignStatus(UI):
-    def get_event_pt(self, update=False):
+    def get_event_pt(self):
         """
         Returns:
             int: PT amount, or 0 if unable to parse
@@ -58,11 +58,10 @@ class CampaignStatus(UI):
         else:
             logger.warning(f'Invalid pt result: {pt}')
             pt = 0
-        if update:
-            self.config.update()
+        self.config.update()
         return pt
     
-    def get_oil(self, skip_first_screenshot=True, update=False):
+    def get_oil(self, skip_first_screenshot=True):
         """
         Returns:
             int: Oil amount
@@ -90,12 +89,11 @@ class CampaignStatus(UI):
             if _oil['Value'] >= 100:
                 break
         LogRes(self.config).Oil = _oil
-        if update:
-            self.config.update()
+        self.config.update()
 
         return _oil['Value']
 
-    def get_coin(self, skip_first_screenshot=True, update=False):
+    def get_coin(self, skip_first_screenshot=True):
         """
         Returns:
             int: Coin amount
@@ -119,8 +117,7 @@ class CampaignStatus(UI):
             if _coin['Value'] >= 100:
                 break
         LogRes(self.config).Coin = _coin
-        if update:
-            self.config.update()
+        self.config.update()
 
         return _coin['Value']
 
