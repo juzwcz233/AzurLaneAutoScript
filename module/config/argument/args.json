@@ -10272,10 +10272,6 @@
           "all",
           "main"
         ]
-      },
-      "EventTime": {
-        "type": "checkbox",
-        "value": false
       }
     },
     "Storage": {

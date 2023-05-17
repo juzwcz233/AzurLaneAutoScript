@@ -2131,8 +2131,7 @@
   },
   "DashboardUpdate": {
     "DashboardUpdate": {
-      "Update": "all",
-      "EventTime": false
+      "Update": "all"
     },
     "Storage": {
       "Storage": {}

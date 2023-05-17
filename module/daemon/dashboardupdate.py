@@ -7,7 +7,8 @@ from module.gacha.ui import GachaUI
 from module.shop.ui import ShopUI
 from module.config.utils import deep_get
 from module.handler.login import LoginHandler
-from module.ui.assets import MAIN_GOTO_CAMPAIGN, CAMPAIGN_MENU_NO_EVENT
+from module.ui.page import page_campaign_menu
+from module.ui.assets import CAMPAIGN_MENU_NO_EVENT
 from module.campaign.assets import OCR_EVENT_PT, OCR_COIN, OCR_OIL, OCR_COIN_LIMIT, OCR_OIL_LIMIT
 from module.shop.assets import SHOP_GEMS, SHOP_MEDAL, SHOP_MERIT, SHOP_GUILD_COINS, SHOP_CORE
 from module.gacha.assets import BUILD_CUBE_COUNT
@@ -46,7 +47,7 @@ class PtOcr(Ocr):
 OCR_PT = PtOcr(OCR_EVENT_PT)
 
 
-class DashboardUpdate(LoginHandler):
+class DashboardUpdate(LoginHandler, ShopUI, GachaUI):
     def run(self):
         option = deep_get(self.config.data, 'DashboardUpdate.DashboardUpdate.Update')
         if option=="main":
@@ -60,11 +61,11 @@ class DashboardUpdate(LoginHandler):
             self.get_cube()
             self.goto_shop()
             self.get_pt()
-            UI(self.config, device=self.device).ui_goto_main()
+            self.ui_goto_main()
             logger.info('Update Dashboard Data Finished')
 
     def get_main(self, skip_first_screenshot=True):
-        UI(self.config, device=self.device).ui_goto_main()
+        self.ui_goto_main()
         _oil = {}
         _coin = {}
         while 1:
@@ -94,7 +95,7 @@ class DashboardUpdate(LoginHandler):
 
     def get_cube(self, skip_first_screenshot=True):
         logger.hr('Get Cube')
-        GachaUI(self.config, device=self.device).ui_goto_gacha()
+        self.ui_goto_gacha()
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -105,50 +106,52 @@ class DashboardUpdate(LoginHandler):
                 break
         LogRes(self.config).Cube = cube
         self.config.update()
-        UI(self.config, device=self.device).ui_goto_main()
-    
-    def get_pt(self):
-        eventtime = deep_get(self.config.data, 'DashboardUpdate.DashboardUpdate.EventTime')
-        logger.hr('Get pt')
-        if eventtime == True:
-            self.ui_goto_event()
-            pt = OCR_PT.ocr(self.device.image)
-            res = re.search(r'X(\d+)', pt)
-            if res:
-                pt = int(res.group(1))
-                logger.attr('Event_PT', pt)
-                LogRes(self.config).Pt = pt
-            else:
-                logger.warning(f'Invalid pt result: {pt}')
-                pt = 0
-                LogRes(self.config).Pt = pt
-        elif eventtime == False:
-            logger.warning('Event is already closed')
-            pt = 0
+        self.ui_goto_main()
+
+    def _get_pt(self):
+        pt = OCR_PT.ocr(self.device.image)
+        res = re.search(r'X(\d+)', pt)
+        if res:
+            pt = int(res.group(1))
             logger.attr('Event_PT', pt)
             LogRes(self.config).Pt = pt
+        else:
+            logger.warning(f'Invalid pt result: {pt}')
+            pt = 0
+            LogRes(self.config).Pt = pt
+
+    def get_pt(self):
+        self.ui_goto(page_campaign_menu)
+        self.device.sleep(0.5)
+        self.device.screenshot()
+        if self.appear(button=CAMPAIGN_MENU_NO_EVENT, offset=(50, 50)):
+            logger.warning('Event is already closed')
+            self._get_pt()
+        else:
+            self.ui_goto_event()
+            self._get_pt()
         self.config.update()
     
     def goto_shop(self):
-        ShopUI(self.config, device=self.device).ui_goto_shop()
-        ShopUI(self.config, device=self.device).shop_swipe()
-        if ShopUI(self.config, device=self.device).shop_bottom_navbar_ensure(left=5):
+        self.ui_goto_shop()
+        self.shop_swipe()
+        if self.shop_bottom_navbar_ensure(left=5):
             self.device.sleep((0.4, 0.5))
             logger.hr('Get Merit')
             self.get_merit()
-        if ShopUI(self.config, device=self.device).shop_bottom_navbar_ensure(left=4):
+        if self.shop_bottom_navbar_ensure(left=4):
             self.device.sleep((0.4, 0.5))
             logger.hr('Get Core')
             self.get_core()
-        if ShopUI(self.config, device=self.device).shop_bottom_navbar_ensure(left=2):
+        if self.shop_bottom_navbar_ensure(left=2):
             self.device.sleep((0.4, 0.5))
             logger.hr('Get GuildCoin')
             self.get_guild_coins()
-        if ShopUI(self.config, device=self.device).shop_bottom_navbar_ensure(left=1):
+        if self.shop_bottom_navbar_ensure(left=1):
             self.device.sleep((0.4, 0.5))
             logger.hr('Get Medal')
             self.get_medal()
-        UI(self.config, device=self.device).ui_goto_main()
+        self.ui_goto_main()
     
     def get_medal(self, skip_first_screenshot=True):
         while 1:
