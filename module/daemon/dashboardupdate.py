@@ -2,7 +2,6 @@ from module.log_res.log_res import LogRes
 from module.logger import logger
 from module.ocr.ocr import Ocr, Digit
 from module.base.utils import *
-from module.ui.ui import UI
 from module.gacha.ui import GachaUI
 from module.shop.ui import ShopUI
 from module.config.utils import deep_get
@@ -54,7 +53,6 @@ class DashboardUpdate(LoginHandler, ShopUI, GachaUI):
             self.app_start()
             self.get_main()
             self.get_cube()
-            logger.info('Update Dashboard Data Finished')
         elif option=="all":
             self.app_start()
             self.get_main()
@@ -62,7 +60,7 @@ class DashboardUpdate(LoginHandler, ShopUI, GachaUI):
             self.goto_shop()
             self.get_pt()
             self.ui_goto_main()
-            logger.info('Update Dashboard Data Finished')
+        logger.info('Update Dashboard Data Finished')
 
     def get_main(self, skip_first_screenshot=True):
         self.ui_goto_main()
@@ -119,6 +117,7 @@ class DashboardUpdate(LoginHandler, ShopUI, GachaUI):
             logger.warning(f'Invalid pt result: {pt}')
             pt = 0
             LogRes(self.config).Pt = pt
+        self.config.update()
 
     def get_pt(self):
         self.ui_goto(page_campaign_menu)
@@ -130,7 +129,6 @@ class DashboardUpdate(LoginHandler, ShopUI, GachaUI):
         else:
             self.ui_goto_event()
             self._get_pt()
-        self.config.update()
     
     def goto_shop(self):
         self.ui_goto_shop()
