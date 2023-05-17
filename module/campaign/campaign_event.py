@@ -48,10 +48,8 @@ class CampaignEvent(CampaignStatus):
         tasks = EVENTS + RAIDS + COALITIONS + GEMS_FARMINGS
         command = self.config.Scheduler_Command
         if limit <= 0 or command not in tasks:
-            self.get_event_pt()
             return False
         if command == 'GemsFarming' and self.stage_is_main(self.config.Campaign_Name):
-            self.get_event_pt()
             return False
 
         pt = self.get_event_pt()
