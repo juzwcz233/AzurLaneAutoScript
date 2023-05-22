@@ -86,6 +86,7 @@ class DashboardUpdate(LoginHandler, ShopUI, GachaUI):
             gem = OCR_SHOP_GEMS.ocr(self.device.image)
             if _oil['Value'] > 0:
                 break
+        logger.info(f'[Oil]{_oil} [Coin]{_coin} [Gem]{gem}')
         LogRes(self.config).Oil = _oil
         LogRes(self.config).Coin = _coin
         LogRes(self.config).Gem = gem
@@ -102,6 +103,7 @@ class DashboardUpdate(LoginHandler, ShopUI, GachaUI):
             cube = OCR_BUILD_CUBE_COUNT.ocr(self.device.image)
             if cube > 0:
                 break
+        logger.attr('[Cube]',cube)
         LogRes(self.config).Cube = cube
         self.config.update()
         self.ui_goto_main()
@@ -111,12 +113,11 @@ class DashboardUpdate(LoginHandler, ShopUI, GachaUI):
         res = re.search(r'X(\d+)', pt)
         if res:
             pt = int(res.group(1))
-            logger.attr('Event_PT', pt)
-            LogRes(self.config).Pt = pt
         else:
-            logger.warning(f'Invalid pt result: {pt}')
             pt = 0
-            LogRes(self.config).Pt = pt
+            logger.warning(f'Invalid pt result: {pt}')
+        logger.attr('Event_PT', pt)
+        LogRes(self.config).Pt = pt
         self.config.update()
 
     def get_pt(self):
@@ -150,18 +151,6 @@ class DashboardUpdate(LoginHandler, ShopUI, GachaUI):
             logger.hr('Get Medal')
             self.get_medal()
         self.ui_goto_main()
-    
-    def get_medal(self, skip_first_screenshot=True):
-        while 1:
-            if skip_first_screenshot:
-                skip_first_screenshot = False
-            else:
-                self.device.screenshot()
-            medal = OCR_SHOP_MEDAL.ocr(self.device.image)
-            if medal > 0:
-                break
-        LogRes(self.config).Medal = medal
-        self.config.update()
 
     def get_merit(self, skip_first_screenshot=True):
         while 1:
@@ -172,19 +161,8 @@ class DashboardUpdate(LoginHandler, ShopUI, GachaUI):
             merit = OCR_SHOP_MERIT.ocr(self.device.image)
             if merit > 0:
                 break
+        logger.attr('[Merit]',merit)
         LogRes(self.config).Merit = merit
-        self.config.update()
-
-    def get_guild_coins(self, skip_first_screenshot=True):
-        while 1:
-            if skip_first_screenshot:
-                skip_first_screenshot = False
-            else:
-                self.device.screenshot()
-            guildcoin = OCR_SHOP_GUILD_COINS.ocr(self.device.image)
-            if guildcoin > 0:
-                break
-        LogRes(self.config).GuildCoin = guildcoin
         self.config.update()
 
     def get_core(self, skip_first_screenshot=True):
@@ -196,7 +174,34 @@ class DashboardUpdate(LoginHandler, ShopUI, GachaUI):
             core = OCR_SHOP_CORE.ocr(self.device.image)
             if core > 0:
                 break
+        logger.attr('[Core]',core)
         LogRes(self.config).Core = core
+        self.config.update()
+
+    def get_guild_coins(self, skip_first_screenshot=True):
+        while 1:
+            if skip_first_screenshot:
+                skip_first_screenshot = False
+            else:
+                self.device.screenshot()
+            guildcoin = OCR_SHOP_GUILD_COINS.ocr(self.device.image)
+            if guildcoin > 0:
+                break
+        logger.attr('[GuildCoin]',guildcoin)
+        LogRes(self.config).GuildCoin = guildcoin
+        self.config.update()
+    
+    def get_medal(self, skip_first_screenshot=True):
+        while 1:
+            if skip_first_screenshot:
+                skip_first_screenshot = False
+            else:
+                self.device.screenshot()
+            medal = OCR_SHOP_MEDAL.ocr(self.device.image)
+            if medal > 0:
+                break
+        logger.attr('[Medal]',medal)
+        LogRes(self.config).Medal = medal
         self.config.update()
 
     def app_start(self):
