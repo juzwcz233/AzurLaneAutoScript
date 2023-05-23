@@ -20,6 +20,7 @@ jobs:
           script: |
             core.setOutput('time', new Date(Date.now()).toISOString().replace(/[^0-9]/g, ""));
             core.setOutput('key', `${context.repo.owner}-${context.repo.repo}`);
+            return context.repo.repo;
 
       - name: Cache src repos
         uses: actions/cache@v2.1.3
@@ -28,10 +29,6 @@ jobs:
           path: ${{ github.workspace }}/hub-mirror-cache
           key: ${{ runner.os }}-${{ steps.info.outputs.key }}-list-cache-${{ steps.info.outputs.time }}
           restore-keys: ${{ runner.os }}-${{ steps.info.outputs.key }}-list-
-
-      - name: Generate repo list
-        id: repo
-        uses: yi-Xu-0100/repo-list-generator@v1.0.0
 
       - name: Mirror the Github repos to Gitee.
         # https://github.com/Yikun/hub-mirror-action
