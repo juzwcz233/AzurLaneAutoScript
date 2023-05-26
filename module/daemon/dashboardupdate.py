@@ -133,20 +133,26 @@ class DashboardUpdate(LoginHandler, ShopUI, GachaUI):
     
     def goto_shop(self):
         self.ui_goto_shop()
+        current = self._shop_bottom_navbar.get_active(main=self)
+        logger.info(f'Shop nav actives at left={current}')
+        if current is not None:
+            current += 1
+            if self.shop_bottom_navbar_ensure(left=current - 1):
+                self.device.sleep((0.4, 0.5))
+                logger.hr('Get Merit')
+                self.get_merit()
+            if self.shop_bottom_navbar_ensure(left=current - 2):
+                self.device.sleep((0.4, 0.5))
+                logger.hr('Get Core')
+                self.get_core()
+        else:
+            logger.error('Cannot get the position of general shop, skip merit shop and core shop')
         self.shop_swipe()
-        if self.shop_bottom_navbar_ensure(left=5):
-            self.device.sleep((0.4, 0.5))
-            logger.hr('Get Merit')
-            self.get_merit()
-        if self.shop_bottom_navbar_ensure(left=4):
-            self.device.sleep((0.4, 0.5))
-            logger.hr('Get Core')
-            self.get_core()
-        if self.shop_bottom_navbar_ensure(left=2):
+        if self.shop_bottom_navbar_ensure(left=3):
             self.device.sleep((0.4, 0.5))
             logger.hr('Get GuildCoin')
             self.get_guild_coins()
-        if self.shop_bottom_navbar_ensure(left=1):
+        if self.shop_bottom_navbar_ensure(left=2):
             self.device.sleep((0.4, 0.5))
             logger.hr('Get Medal')
             self.get_medal()
