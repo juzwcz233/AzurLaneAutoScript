@@ -121,7 +121,7 @@ class GGScreenshot(Base):
                 logger.hr('Enter GG')
                 logger.info('Entered GG')
                 break
-            if self.appear(button=MAIN_GOTO_BUILD, offset=(50, 50)) or self.appear(button=REWARD_GOTO_MAIN, offset=(50, 50)) or self.appear(button=DORM_CHECK, offset=(50, 50)) or self.appear(button=GOTO_MAIN, offset=(50, 50)):
+            if self.appear(button=MAIN_GOTO_BUILD, offset=(50, 50)) or self.appear(button=REWARD_GOTO_MAIN, offset=(50, 50)) or self.appear(button=DORM_CHECK, offset=(50, 50)) or self.appear(button=GOTO_MAIN, offset=(50, 50)) or self.appear(button=MEOWFFICER_FORT_ENTER, offset=(50, 50)):
                 self.device.click(BUTTON_GG_ENTER_POS)
                 continue
         skip_first_screenshot = False
