@@ -109,6 +109,13 @@ class GGScreenshot(Base):
             out: any GG
         """
         skip_first_screenshot = False
+        method = [
+            REWARD_GOTO_MAIN,
+            GOTO_MAIN,
+            MAIN_GOTO_BUILD,
+            DORM_CHECK,
+            MEOWFFICER_FORT_ENTER
+        ]
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -121,9 +128,10 @@ class GGScreenshot(Base):
                 logger.hr('Enter GG')
                 logger.info('Entered GG')
                 break
-            if self.appear(button=MAIN_GOTO_BUILD, offset=(50, 50)) or self.appear(button=REWARD_GOTO_MAIN, offset=(50, 50)) or self.appear(button=DORM_CHECK, offset=(50, 50)) or self.appear(button=GOTO_MAIN, offset=(50, 50)) or self.appear(button=MEOWFFICER_FORT_ENTER, offset=(50, 50)):
-                self.device.click(BUTTON_GG_ENTER_POS)
-                continue
+            for i in range(5):
+                if self.appear(button=method[int(i)], offset=(50, 50)):
+                    self.device.click(BUTTON_GG_ENTER_POS)
+                    break
         skip_first_screenshot = False
         while 1:
             if skip_first_screenshot:
