@@ -425,7 +425,7 @@ class GeneratedConfig:
     Benchmark_TestScene = 'screenshot_click'  # screenshot_click, screenshot, click
 
     # Group `AzurLaneUncensored`
-    AzurLaneUncensored_Repository = 'https://e.coding.net/llop18870/alas/AzurLaneUncensored'
+    AzurLaneUncensored_Repository = 'https://gitee.com/MengNianxiaoyao/AzurLaneUncensored.git'
 
     # Group `GameManager`
     GameManager_AutoRestart = True
