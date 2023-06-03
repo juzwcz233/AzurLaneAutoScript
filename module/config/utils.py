@@ -663,7 +663,6 @@ def time_delta(_timedelta):
                  's' : int
         }
     """
-    _time_delta = abs(_timedelta.total_seconds())
     d_base = datetime(2010, 1, 1, 0, 0, 0)
     d = datetime(2010, 1, 1, 0, 0, 0)-_timedelta
     _time_dict = {
@@ -674,17 +673,6 @@ def time_delta(_timedelta):
         'm': d.minute - d_base.minute,
         's': d.second - d_base.second
     }
-    # _sec ={
-    #     'Y': 365*24*60*60,
-    #     'M': 30*24*60*60,
-    #     'D': 24*60*60,
-    #     'h': 60*60,
-    #     'm': 60,
-    #     's': 1
-    # }
-    # for _key in _time_dict:
-    #     _time_dict[_key] = int(_time_delta//_sec[_key])
-    #     _time_delta = _time_delta%_sec[_key]
     return _time_dict
 
 

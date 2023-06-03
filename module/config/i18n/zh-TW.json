@@ -2822,6 +2822,12 @@
     },
     "Overview": {
       "Scheduler": "調度器",
+      "Dashboard": "儀表盤",
+      "Log": "日誌",
+      "Running": "執行中",
+      "Pending": "佇列中",
+      "Waiting": "等待中",
+      "NoTask": "無任務",
       "SecondsAgo": "秒前",
       "MinutesAgo": "分鐘前",
       "HoursAgo": "小時前",
@@ -2840,12 +2846,7 @@
       "Merit": "功勳",
       "Medal": "勳章",
       "Core": "覈心數據",
-      "GuildCoin": "艦隊幣",
-      "Log": "日誌",
-      "Running": "執行中",
-      "Pending": "佇列中",
-      "Waiting": "等待中",
-      "NoTask": "無任務"
+      "GuildCoin": "艦隊幣"
     },
     "AddAlas": {
       "PopupTitle": "添加新的設定",
