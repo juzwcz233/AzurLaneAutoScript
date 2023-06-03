@@ -2822,7 +2822,12 @@
     },
     "Overview": {
       "Scheduler": "Scheduler",
-      "Dashboard": "Gui.Overview.Dashboard",
+      "Dashboard": "Dashboard",
+      "Log": "Log",
+      "Running": "Running",
+      "Pending": "Pending",
+      "Waiting": "Waiting",
+      "NoTask": "No Task",
       "SecondsAgo": "Seconds ago",
       "MinutesAgo": "Minutes ago",
       "HoursAgo": "Hours ago",
@@ -2841,12 +2846,7 @@
       "Merit": "Merit",
       "Medal": "Medal",
       "Core": "Core Data",
-      "GuildCoin": "Guild Coin",
-      "Log": "Log",
-      "Running": "Running",
-      "Pending": "Pending",
-      "Waiting": "Waiting",
-      "NoTask": "No Task"
+      "GuildCoin": "Guild Coin"
     },
     "AddAlas": {
       "PopupTitle": "Add new config",

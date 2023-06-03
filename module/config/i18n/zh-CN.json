@@ -2823,6 +2823,11 @@
     "Overview": {
       "Scheduler": "调度器",
       "Dashboard": "仪表盘",
+      "Log": "日志",
+      "Running": "运行中",
+      "Pending": "队列中",
+      "Waiting": "等待中",
+      "NoTask": "无任务",
       "SecondsAgo": "秒前",
       "MinutesAgo": "分钟前",
       "HoursAgo": "小时前",
@@ -2841,12 +2846,7 @@
       "Merit": "功勋",
       "Medal": "勋章",
       "Core": "核心数据",
-      "GuildCoin": "舰队币",
-      "Log": "日志",
-      "Running": "运行中",
-      "Pending": "队列中",
-      "Waiting": "等待中",
-      "NoTask": "无任务"
+      "GuildCoin": "舰队币"
     },
     "AddAlas": {
       "PopupTitle": "添加新配置",
