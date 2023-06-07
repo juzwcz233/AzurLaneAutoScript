@@ -2422,7 +2422,7 @@
     },
     "Repository": {
       "name": "反和諧倉庫",
-      "help": "一般不需要修改\n倉庫 https://github.com/LmeSzinc/AzurLaneUncensored\n國內鏡像(預設) https://gitee.com/MengNianxiaoyao/AzurLaneUncensored.git\n國內鏡像 https://e.coding.net/llop18870/alas/AzurLaneUncensored.git"
+      "help": "一般不需要修改\n倉庫(預設) https://github.com/LmeSzinc/AzurLaneUncensored"
     }
   },
   "GameManager": {

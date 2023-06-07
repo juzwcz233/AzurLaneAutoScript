@@ -10157,7 +10157,7 @@
     "AzurLaneUncensored": {
       "Repository": {
         "type": "input",
-        "value": "https://gitee.com/MengNianxiaoyao/AzurLaneUncensored.git"
+        "value": "https://github.com/LmeSzinc/AzurLaneUncensored"
       }
     },
     "Storage": {
