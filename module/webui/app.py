@@ -1191,16 +1191,18 @@ class AlasGUI(Frame):
             ).style("text-align: center")
 
             # show something
-            put_scope(
-                "wiki",
-                put_html('<a href="https://iceynano.github.io/zh/" target="_blank"><p style="font-size:20px;font-weight:600">AzurLaneAutoScript Wiki</p></a>')
-                ).style("text-align: center")
             put_markdown(
                 """
             Alas is a free open source software, if you paid for Alas from any channel, please refund.
             Alas 是一款免费开源软件，如果你在任何渠道付费购买了Alas，请退款。
             Project repository 项目地址：`https://github.com/LmeSzinc/AzurLaneAutoScript`
             """
+            ).style("text-align: center")
+            put_scope(
+                "wiki",
+                put_html(
+                    '<a href="https://iceynano.github.io/zh/" target="_blank"><p style="font-size:20px;font-weight:600">AzurLaneAutoScript Wiki</p></a><p style="font-size:20px;font-weight:600;color:red">本项目的任何修改与Alas无关！！！禁止将本项目使用于商业相关！！！</p>'
+                )
             ).style("text-align: center")
 
         if lang.TRANSLATE_MODE:
