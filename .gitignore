@@ -20,7 +20,6 @@ config/reloadflag
 config/reloadalas
 test.py
 test/
-dev_tools/AzurLaneLuaScripts/*
 
 # Created by .ignore support plugin (hsz.mobi)
 
@@ -251,3 +250,4 @@ adb_port.ini
 *.zip
 console.bat
 .vscode/*
+dev_tools/AzurLaneLuaScripts
