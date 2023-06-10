@@ -261,6 +261,7 @@ class GGScreenshot(Base):
                     for i in str(self._factor):
                         self.appear_then_click(button=method[int(i)], offset=(50, 50))
                         self.device.sleep(0.5)
+                    self.device.sleep(0.5)
         else:
             for i in range(3):
                 logger.error('Factor illegal')
