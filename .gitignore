@@ -20,6 +20,7 @@ config/reloadflag
 config/reloadalas
 test.py
 test/
+dev_tools/AzurLaneLuaScripts/*
 
 # Created by .ignore support plugin (hsz.mobi)
 
