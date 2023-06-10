@@ -3,6 +3,8 @@ from module.ui.assets import BACK_ARROW
 from module.config.utils import deep_get
 from module.logger import logger
 from module.gg_handler.assets import *
+from module.ui.assets import *
+from module.meowfficer.assets import *
 from module.ocr.ocr import Digit
 from module.base.base import ModuleBase as Base
 from module.gg_handler.gg_data import GGData
