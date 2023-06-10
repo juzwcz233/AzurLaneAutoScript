@@ -1,5 +1,6 @@
 from module.base.timer import timeout, Timer
 from module.config.utils import deep_get, deep_set
+from module.config.config import AzurLaneConfig
 from module.gg_handler.gg_data import GGData
 from module.gg_handler.gg_screenshot import GGScreenshot
 # from module.gg_handler.gg_u2 import GGU2
@@ -15,11 +16,11 @@ class GGHandler:
     """
     A module to handle needs of cheaters
     Args:
-        config: AzurlaneConfig
+        config: AzurLaneConfig
         device: Device
     """
 
-    def __init__(self, config=None, device=None):
+    def __init__(self, config=AzurLaneConfig, device=None):
         self.config = config
         self.device = device
         self.factor = deep_get(self.config.data, 'GameManager.GGHandler.GGMultiplyingFactor', default=200)
@@ -34,7 +35,7 @@ class GGHandler:
             try:
                 # if _crashed:
                 #     timeout(self.handle_u2_restart, timeout_sec=60)
-                if not timeout(LoginHandler(config=self.config, device=self.device).app_restart, timeout_sec=600):
+                if not timeout(LoginHandler(self.config, self.device).app_restart, timeout_sec=600):
                     break
                 raise RuntimeError
             except GameStuckError as e:
@@ -205,8 +206,7 @@ class GGHandler:
             deep_set(self.config.data, 'GameManager.GGHandler.Enabled', value=True)
             deep_set(self.config.data, 'GameManager.GGHandler.GGFactorEnable', value=True)
             self.config.task_delay(minute=0.5)
-            self.config.task_stop()
-            self.config.task_call('Restart')
+            self.restart()
 
     def handle_restart_before_tasks(self) -> bool:
         """
