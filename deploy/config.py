@@ -1,4 +1,5 @@
 import copy
+import locale
 from typing import Optional, Union
 
 from deploy.logger import logger
@@ -79,6 +80,9 @@ class DeployConfig(ConfigModel):
             'https://git.saarcenter.com/LmeSzinc/AzurLaneAutoScript.git',
         ]:
             self.Repository = 'git://git.lyoko.io/AzurLaneAutoScript'
+        self.Language = re.sub("_","-",locale.getdefaultlocale()[0])
+        if self.Language not in ['zh-CN','en-US','ja-JP','zh-TW']:
+            self.Language = 'en-US'
         self.write()
         self.show_config()
 
