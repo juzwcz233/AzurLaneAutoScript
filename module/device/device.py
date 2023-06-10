@@ -200,8 +200,8 @@ class Device(Screenshot, Control, AppControl, EmulatorManager):
             self.click_record_clear()
             handle_notify(
                 self.config.Error_OnePushConfig,
-                title=f"Alas <{self.config_name}> crashed(崩溃了)",
-                content=f"<{self.config_name}> Too many click between 2 buttons: {count[0][0]}, {count[1][0]}",
+                title=f"Alas <{self.config.config_name}> crashed(崩溃了)",
+                content=f"<{self.config.config_name}> Too many click between 2 buttons: {count[0][0]}, {count[1][0]}",
             )
             raise GameTooManyClickError(f'Too many click between 2 buttons: {count[0][0]}, {count[1][0]}')
 
