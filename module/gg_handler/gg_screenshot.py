@@ -244,19 +244,24 @@ class GGScreenshot(Base):
                 self.device.sleep(0.5)
             logger.info('Input success')
             logger.hr('Factor Check')
+            count=0
             while 1:
                 self.device.screenshot()
                 FOLD_CHECK = OCR_GG_FOLD_CHECK.ocr(self.device.image)
                 if self._factor == FOLD_CHECK:
                     logger.info('Check success')
-                    logger.hr('GG Exit')
                     break
                 else:
-                    logger.warning('Check error')
+                    count+=1
+                    logger.warning('Check error')  
                     logger.info('Factor delete')
-                    for i in range(5):
-                        self.appear_then_click(button=BUTTON_GG_SCRIPT_PANEL_DEL, offset=(50, 50))
-                        self.device.sleep(0.5)
+                    self.device.long_click(button=BUTTON_GG_SCRIPT_PANEL_DEL, duration=(1, 1))
+                    if count>=3:
+                        logger.error('Check more failed,Try default factor will be run')
+                        for i in str(200):
+                            self.appear_then_click(button=method[int(i)], offset=(50, 50))
+                            self.device.sleep(0.5)
+                        break
                     logger.info('Input again')
                     for i in str(self._factor):
                         self.appear_then_click(button=method[int(i)], offset=(50, 50))
@@ -274,6 +279,7 @@ class GGScreenshot(Base):
             for i in str(200):
                 self.appear_then_click(button=method[int(i)], offset=(50, 50))
                 self.device.sleep(0.5)
+        logger.hr('GG Exit')
 
     def _gg_script_run(self):
         """
