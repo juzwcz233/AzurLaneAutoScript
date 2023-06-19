@@ -1,9 +1,5 @@
 {
   "Menu": {
-    "Task": {
-      "name": "",
-      "help": ""
-    },
     "Alas": {
       "name": "Alas",
       "help": ""
@@ -70,10 +66,6 @@
       "name": "メイン海域-2",
       "help": ""
     },
-    "WarArchives": {
-      "name": "作戦履歴",
-      "help": ""
-    },
     "GemsFarming": {
       "name": "Commission Farming",
       "help": ""
@@ -104,6 +96,10 @@
     },
     "MaritimeEscort": {
       "name": "Maritime Escort",
+      "help": ""
+    },
+    "WarArchives": {
+      "name": "作戦履歴",
       "help": ""
     },
     "EventA": {

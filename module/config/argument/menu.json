@@ -1,30 +1,42 @@
 {
-  "Task": {
-    "Alas": [
+  "Alas": {
+    "menu": "collapse",
+    "page": "setting",
+    "tasks": [
       "Alas",
       "General",
       "Restart"
-    ],
-    "Farm": [
-      "WarArchives",
-      "GemsFarming"
-    ],
-    "Main": [
+    ]
+  },
+  "Farm": {
+    "menu": "collapse",
+    "page": "setting",
+    "tasks": [
       "MainNormal",
       "MainHard",
       "Main",
-      "Main2"
-    ],
-    "Event": [
+      "Main2",
+      "GemsFarming"
+    ]
+  },
+  "Event": {
+    "menu": "collapse",
+    "page": "setting",
+    "tasks": [
       "EventGeneral",
       "Event",
       "Event2",
       "Event3",
       "Raid",
       "Coalition",
-      "MaritimeEscort"
-    ],
-    "EventDaily": [
+      "MaritimeEscort",
+      "WarArchives"
+    ]
+  },
+  "EventDaily": {
+    "menu": "collapse",
+    "page": "setting",
+    "tasks": [
       "EventA",
       "EventB",
       "EventC",
@@ -32,17 +44,25 @@
       "EventSp",
       "RaidDaily",
       "CoalitionSp"
-    ],
-    "Reward": [
-      "Reward",
+    ]
+  },
+  "Reward": {
+    "menu": "collapse",
+    "page": "setting",
+    "tasks": [
       "Commission",
       "Research",
       "Tactical",
       "Dorm",
       "Meowfficer",
-      "Guild"
-    ],
-    "DailyMission": [
+      "Guild",
+      "Reward"
+    ]
+  },
+  "DailyMission": {
+    "menu": "collapse",
+    "page": "setting",
+    "tasks": [
       "Daily",
       "Hard",
       "Exercise",
@@ -51,8 +71,12 @@
       "Shipyard",
       "Gacha",
       "Freebies"
-    ],
-    "Opsi": [
+    ]
+  },
+  "Opsi": {
+    "menu": "collapse",
+    "page": "setting",
+    "tasks": [
       "OpsiGeneral",
       "OpsiAshBeacon",
       "OpsiAshAssist",
@@ -68,8 +92,12 @@
       "OpsiMeowfficerFarming",
       "OpsiHazard1Leveling",
       "OpsiCrossMonth"
-    ],
-    "Tool": [
+    ]
+  },
+  "Tool": {
+    "menu": "collapse",
+    "page": "tool",
+    "tasks": [
       "Daemon",
       "OpsiDaemon",
       "Benchmark",
