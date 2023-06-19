@@ -86,6 +86,7 @@ class DashboardUpdate(LoginHandler, ShopUI, GachaUI):
             gem = OCR_SHOP_GEMS.ocr(self.device.image)
             if _oil['Value'] > 0:
                 break
+        logger.hr('Oil Coin Gem')
         logger.info(f'[Oil]{_oil} [Coin]{_coin} [Gem]{gem}')
         LogRes(self.config).Oil = _oil
         LogRes(self.config).Coin = _coin
