@@ -346,6 +346,8 @@ Tool:
     GameManager:
       - GameManager
 
+# ==================== Dashboard ====================
+
 Dashboard:
   - Oil
   - Coin
