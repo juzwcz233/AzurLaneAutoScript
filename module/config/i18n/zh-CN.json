@@ -190,6 +190,10 @@
       "name": "白嫖奖励",
       "help": ""
     },
+    "DashboardUpdate": {
+      "name": "更新仪表盘",
+      "help": ""
+    },
     "OpsiGeneral": {
       "name": "通用设置",
       "help": ""
@@ -268,10 +272,6 @@
     },
     "GameManager": {
       "name": "游戏管理器(未完成)",
-      "help": ""
-    },
-    "DashboardUpdate": {
-      "name": "更新仪表盘",
       "help": ""
     }
   },
@@ -2029,6 +2029,18 @@
       "6": "6"
     }
   },
+  "DashboardUpdate": {
+    "_info": {
+      "name": "更新仪表盘",
+      "help": "大世界相关数据不支持更新"
+    },
+    "Update": {
+      "name": "更新选项",
+      "help": "选择需要更新的仪表盘数据",
+      "all": "更新全部",
+      "main": "仅石油、物资、钻石、魔方"
+    }
+  },
   "Hard": {
     "_info": {
       "name": "困难图",
@@ -2504,18 +2516,6 @@
     "Ash": {
       "name": "余烬信标",
       "help": ""
-    }
-  },
-  "DashboardUpdate": {
-    "_info": {
-      "name": "更新仪表盘",
-      "help": "大世界相关数据不支持更新"
-    },
-    "Update": {
-      "name": "更新选项",
-      "help": "选择需要更新的仪表盘数据",
-      "all": "更新全部",
-      "main": "仅石油、物资、钻石、魔方"
     }
   },
   "Oil": {

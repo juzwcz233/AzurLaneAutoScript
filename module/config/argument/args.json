@@ -8748,6 +8748,58 @@
       }
     }
   },
+  "DashboardUpdate": {
+    "Scheduler": {
+      "Enable": {
+        "type": "lock",
+        "value": true,
+        "display": "disabled"
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2023-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "DashboardUpdate",
+        "display": "hide"
+      },
+      "SuccessInterval": {
+        "type": "input",
+        "value": 30,
+        "display": "hide"
+      },
+      "FailureInterval": {
+        "type": "input",
+        "value": 30,
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "00:00",
+        "display": "hide"
+      }
+    },
+    "DashboardUpdate": {
+      "Update": {
+        "type": "select",
+        "value": "all",
+        "option": [
+          "all",
+          "main"
+        ]
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
   "OpsiGeneral": {
     "OpsiGeneral": {
       "UseLogger": {
@@ -9850,26 +9902,6 @@
       "Ash": {
         "type": "input",
         "value": 16500
-      }
-    },
-    "Storage": {
-      "Storage": {
-        "type": "storage",
-        "value": {},
-        "valuetype": "ignore",
-        "display": "disabled"
-      }
-    }
-  },
-  "DashboardUpdate": {
-    "DashboardUpdate": {
-      "Update": {
-        "type": "select",
-        "value": "all",
-        "option": [
-          "all",
-          "main"
-        ]
       }
     },
     "Storage": {

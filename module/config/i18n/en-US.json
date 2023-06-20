@@ -190,6 +190,10 @@
       "name": "Freebies",
       "help": ""
     },
+    "DashboardUpdate": {
+      "name": "Dashboard Update",
+      "help": ""
+    },
     "OpsiGeneral": {
       "name": "OpSi General",
       "help": ""
@@ -268,10 +272,6 @@
     },
     "GameManager": {
       "name": "Game Manager(WIP)",
-      "help": ""
-    },
-    "DashboardUpdate": {
-      "name": "Dashboard Update",
       "help": ""
     }
   },
@@ -2029,6 +2029,18 @@
       "6": "6"
     }
   },
+  "DashboardUpdate": {
+    "_info": {
+      "name": "DashboardUpdate._info.name",
+      "help": "DashboardUpdate._info.help"
+    },
+    "Update": {
+      "name": "DashboardUpdate.Update.name",
+      "help": "DashboardUpdate.Update.help",
+      "all": "DashboardUpdate.Update.all",
+      "main": "DashboardUpdate.Update.main"
+    }
+  },
   "Hard": {
     "_info": {
       "name": "Hard Settings",
@@ -2526,18 +2538,6 @@
     "Record": {
       "name": "Oil.Record.name",
       "help": "Oil.Record.help"
-    }
-  },
-  "DashboardUpdate": {
-    "_info": {
-      "name": "DashboardUpdate._info.name",
-      "help": "DashboardUpdate._info.help"
-    },
-    "Update": {
-      "name": "DashboardUpdate.Update.name",
-      "help": "DashboardUpdate.Update.help",
-      "all": "DashboardUpdate.Update.all",
-      "main": "DashboardUpdate.Update.main"
     }
   },
   "Coin": {

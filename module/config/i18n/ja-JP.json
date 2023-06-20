@@ -190,6 +190,10 @@
       "name": "他ギフト",
       "help": ""
     },
+    "DashboardUpdate": {
+      "name": "Dashboard Update",
+      "help": ""
+    },
     "OpsiGeneral": {
       "name": "一般設定",
       "help": ""
@@ -268,10 +272,6 @@
     },
     "GameManager": {
       "name": "Game Manager(WIP)",
-      "help": ""
-    },
-    "DashboardUpdate": {
-      "name": "Dashboard Update",
       "help": ""
     }
   },
@@ -2029,6 +2029,18 @@
       "6": "6"
     }
   },
+  "DashboardUpdate": {
+    "_info": {
+      "name": "DashboardUpdate._info.name",
+      "help": "DashboardUpdate._info.help"
+    },
+    "Update": {
+      "name": "DashboardUpdate.Update.name",
+      "help": "DashboardUpdate.Update.help",
+      "all": "DashboardUpdate.Update.all",
+      "main": "DashboardUpdate.Update.main"
+    }
+  },
   "Hard": {
     "_info": {
       "name": "Hard._info.name",
@@ -2504,18 +2516,6 @@
     "Ash": {
       "name": "PowerLimit.Ash.name",
       "help": "PowerLimit.Ash.help"
-    }
-  },
-  "DashboardUpdate": {
-    "_info": {
-      "name": "DashboardUpdate._info.name",
-      "help": "DashboardUpdate._info.help"
-    },
-    "Update": {
-      "name": "DashboardUpdate.Update.name",
-      "help": "DashboardUpdate.Update.help",
-      "all": "DashboardUpdate.Update.all",
-      "main": "DashboardUpdate.Update.main"
     }
   },
   "Oil": {
