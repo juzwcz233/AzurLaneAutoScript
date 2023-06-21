@@ -590,6 +590,11 @@ Exercise:
   OpponentRefreshValue: 0
   OpponentRefreshRecord: 2023-01-01 00:00:00
 
+DashboardUpdate:
+  Update: 
+    value: all
+    option: [ all, main ]
+
 # ==================== Opsi ====================
 
 OpsiAshAssist:
@@ -711,11 +716,6 @@ PowerLimit:
   Exercise: 16500
   Raid: 16500
   Ash: 16500
-
-DashboardUpdate:
-  Update: 
-    value: all
-    option: [ all, main ]
 
 # ==================== Dashboard ====================
 Oil:

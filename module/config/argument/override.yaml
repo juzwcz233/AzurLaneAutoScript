@@ -52,8 +52,8 @@ MainNormal:
 MainHard:
   Campaign:
     Event: campaign_main
-    StopCondition:
-      RunCount: 3
+  StopCondition:
+    RunCount: 3
 Main:
   Campaign:
     Event: campaign_main
@@ -368,6 +368,11 @@ Exercise:
     SuccessInterval: 30
     FailureInterval: 30
     ServerUpdate: 00:00, 12:00, 18:00
+DashboardUpdate:
+  Scheduler:
+    SuccessInterval: 30
+    FailureInterval: 30
+    ServerUpdate: 00:00
 
 # ==================== Opsi ====================
 
@@ -434,7 +439,7 @@ OpsiHazard1Leveling:
   OpsiFleet:
     Submarine: false
 
-# ==================== Dashboard ====================
+# ==================== Tools ====================
 
 GameManager:
   GGHandler:
@@ -455,6 +460,7 @@ GameManager:
     Ash: 16500
 
 # ==================== Dashboard ====================
+
 Dashboard:
   Oil:
     Color: ^000000

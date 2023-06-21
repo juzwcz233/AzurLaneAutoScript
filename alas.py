@@ -240,6 +240,10 @@ class AzurLaneAutoScript:
         from module.daily.daily import Daily
         Daily(config=self.config, device=self.device).run()
 
+    def dashboard_update(self):
+        from module.dashboard.dashboard import DashboardUpdate
+        DashboardUpdate(config=self.config, device=self.device).run()
+
     def hard(self):
         from module.hard.hard import CampaignHard
         CampaignHard(config=self.config, device=self.device).run()

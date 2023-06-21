@@ -5,7 +5,6 @@ from module.base.utils import *
 from module.gacha.ui import GachaUI
 from module.shop.ui import ShopUI
 from module.config.utils import deep_get
-from module.handler.login import LoginHandler
 from module.ui.page import page_campaign_menu
 from module.ui.assets import CAMPAIGN_MENU_NO_EVENT
 from module.campaign.assets import OCR_EVENT_PT, OCR_COIN, OCR_OIL, OCR_COIN_LIMIT, OCR_OIL_LIMIT
@@ -46,15 +45,13 @@ class PtOcr(Ocr):
 OCR_PT = PtOcr(OCR_EVENT_PT)
 
 
-class DashboardUpdate(LoginHandler, ShopUI, GachaUI):
-    def run(self):
+class DashboardUpdate(ShopUI, GachaUI):
+    def dashboard_run(self):
         option = deep_get(self.config.data, 'DashboardUpdate.DashboardUpdate.Update')
         if option=="main":
-            self.app_start()
             self.get_main()
             self.get_cube()
         elif option=="all":
-            self.app_start()
             self.get_main()
             self.get_cube()
             self.goto_shop()
@@ -214,12 +211,6 @@ class DashboardUpdate(LoginHandler, ShopUI, GachaUI):
         LogRes(self.config).Medal = medal
         self.config.update()
 
-    def app_start(self):
-        if self.device.app_is_running():
-            logger.info('Game is already running, goto main page')
-        else:
-            logger.info('Game is not running, start game and goto main page')
-            LoginHandler(self.config, device=self.device).app_start()
-
-if __name__ == '__main__':
-    DashboardUpdate('alas', task='DashboardUpdate').run()
+    def run(self):
+        self.dashboard_run()
+        self.config.task_delay(server_update=True)

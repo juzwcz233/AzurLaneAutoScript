@@ -70,7 +70,8 @@
       "ShopOnce",
       "Shipyard",
       "Gacha",
-      "Freebies"
+      "Freebies",
+      "DashboardUpdate"
     ]
   },
   "Opsi": {
@@ -102,8 +103,7 @@
       "OpsiDaemon",
       "Benchmark",
       "AzurLaneUncensored",
-      "GameManager",
-      "DashboardUpdate"
+      "GameManager"
     ]
   }
 }

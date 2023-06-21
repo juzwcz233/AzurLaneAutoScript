@@ -1710,6 +1710,22 @@
       "Storage": {}
     }
   },
+  "DashboardUpdate": {
+    "Scheduler": {
+      "Enable": true,
+      "NextRun": "2023-01-01 00:00:00",
+      "Command": "DashboardUpdate",
+      "SuccessInterval": 30,
+      "FailureInterval": 30,
+      "ServerUpdate": "00:00"
+    },
+    "DashboardUpdate": {
+      "Update": "all"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
   "OpsiGeneral": {
     "OpsiGeneral": {
       "UseLogger": true,
@@ -2047,14 +2063,6 @@
       "Exercise": 16500,
       "Raid": 16500,
       "Ash": 16500
-    },
-    "Storage": {
-      "Storage": {}
-    }
-  },
-  "DashboardUpdate": {
-    "DashboardUpdate": {
-      "Update": "all"
     },
     "Storage": {
       "Storage": {}

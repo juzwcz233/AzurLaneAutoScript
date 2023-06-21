@@ -2034,9 +2034,9 @@
           "event_20200227_cn"
         ],
         "display": "hide",
-        "cn": "event_20230525_cn",
-        "en": "event_20230525_cn",
-        "jp": "event_20230525_cn",
+        "cn": "event_20210527_cn",
+        "en": "event_20210527_cn",
+        "jp": "event_20210527_cn",
         "tw": "event_20220526_cn"
       },
       "Mode": {
@@ -2354,9 +2354,9 @@
           "event_20200227_cn"
         ],
         "display": "disabled",
-        "cn": "event_20230525_cn",
-        "en": "event_20230525_cn",
-        "jp": "event_20230525_cn",
+        "cn": "event_20210527_cn",
+        "en": "event_20210527_cn",
+        "jp": "event_20210527_cn",
         "tw": "event_20220526_cn"
       },
       "Mode": {
@@ -2788,9 +2788,9 @@
           "event_20200227_cn"
         ],
         "display": "disabled",
-        "cn": "event_20230525_cn",
-        "en": "event_20230525_cn",
-        "jp": "event_20230525_cn",
+        "cn": "event_20210527_cn",
+        "en": "event_20210527_cn",
+        "jp": "event_20210527_cn",
         "tw": "event_20220526_cn"
       },
       "Mode": {
@@ -3222,9 +3222,9 @@
           "event_20200227_cn"
         ],
         "display": "disabled",
-        "cn": "event_20230525_cn",
-        "en": "event_20230525_cn",
-        "jp": "event_20230525_cn",
+        "cn": "event_20210527_cn",
+        "en": "event_20210527_cn",
+        "jp": "event_20210527_cn",
         "tw": "event_20201126_cn"
       },
       "Mode": {
@@ -4566,9 +4566,9 @@
           "event_20200227_cn"
         ],
         "display": "disabled",
-        "cn": "event_20230525_cn",
-        "en": "event_20230525_cn",
-        "jp": "event_20230525_cn",
+        "cn": "event_20210527_cn",
+        "en": "event_20210527_cn",
+        "jp": "event_20210527_cn",
         "tw": "event_20220526_cn"
       },
       "Mode": {
@@ -5017,9 +5017,9 @@
           "event_20200227_cn"
         ],
         "display": "disabled",
-        "cn": "event_20230525_cn",
-        "en": "event_20230525_cn",
-        "jp": "event_20230525_cn",
+        "cn": "event_20210527_cn",
+        "en": "event_20210527_cn",
+        "jp": "event_20210527_cn",
         "tw": "event_20220526_cn"
       },
       "Mode": {
@@ -5468,9 +5468,9 @@
           "event_20200227_cn"
         ],
         "display": "disabled",
-        "cn": "event_20230525_cn",
-        "en": "event_20230525_cn",
-        "jp": "event_20230525_cn",
+        "cn": "event_20210527_cn",
+        "en": "event_20210527_cn",
+        "jp": "event_20210527_cn",
         "tw": "event_20220526_cn"
       },
       "Mode": {
@@ -5919,9 +5919,9 @@
           "event_20200227_cn"
         ],
         "display": "disabled",
-        "cn": "event_20230525_cn",
-        "en": "event_20230525_cn",
-        "jp": "event_20230525_cn",
+        "cn": "event_20210527_cn",
+        "en": "event_20210527_cn",
+        "jp": "event_20210527_cn",
         "tw": "event_20220526_cn"
       },
       "Mode": {
@@ -6360,9 +6360,9 @@
           "event_20200227_cn"
         ],
         "display": "disabled",
-        "cn": "event_20230525_cn",
-        "en": "event_20230525_cn",
-        "jp": "event_20230525_cn",
+        "cn": "event_20210527_cn",
+        "en": "event_20210527_cn",
+        "jp": "event_20210527_cn",
         "tw": "event_20220526_cn"
       },
       "Mode": {
@@ -8748,6 +8748,58 @@
       }
     }
   },
+  "DashboardUpdate": {
+    "Scheduler": {
+      "Enable": {
+        "type": "lock",
+        "value": true,
+        "display": "disabled"
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2023-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "DashboardUpdate",
+        "display": "hide"
+      },
+      "SuccessInterval": {
+        "type": "input",
+        "value": 30,
+        "display": "hide"
+      },
+      "FailureInterval": {
+        "type": "input",
+        "value": 30,
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "00:00",
+        "display": "hide"
+      }
+    },
+    "DashboardUpdate": {
+      "Update": {
+        "type": "select",
+        "value": "all",
+        "option": [
+          "all",
+          "main"
+        ]
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
   "OpsiGeneral": {
     "OpsiGeneral": {
       "UseLogger": {
@@ -9850,26 +9902,6 @@
       "Ash": {
         "type": "input",
         "value": 16500
-      }
-    },
-    "Storage": {
-      "Storage": {
-        "type": "storage",
-        "value": {},
-        "valuetype": "ignore",
-        "display": "disabled"
-      }
-    }
-  },
-  "DashboardUpdate": {
-    "DashboardUpdate": {
-      "Update": {
-        "type": "select",
-        "value": "all",
-        "option": [
-          "all",
-          "main"
-        ]
       }
     },
     "Storage": {
