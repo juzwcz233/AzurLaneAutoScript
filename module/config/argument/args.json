@@ -3164,7 +3164,9 @@
         "type": "select",
         "value": "campaign_main",
         "option": [
+          "event_20210527_cn",
           "event_20230525_cn",
+          "event_20220526_cn",
           "event_20201126_cn",
           "event_20210819_cn",
           "event_20211111_cn",
@@ -3192,8 +3194,6 @@
           "event_20201029_cn",
           "event_20200820_cn",
           "event_20201012_cn",
-          "event_20210527_cn",
-          "event_20220526_cn",
           "event_20220428_cn",
           "event_20220414_cn",
           "event_20220407_tw",
