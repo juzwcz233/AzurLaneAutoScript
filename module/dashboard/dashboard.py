@@ -74,17 +74,18 @@ class DashboardUpdate(ShopUI, GachaUI):
                 'Value': OCR_OIL.ocr(self.device.image),
                 'Limit': OCR_OIL_LIMIT.ocr(self.device.image)
             }
+            oil = _oil['Value']
             logger.hr('Get Coin')
             _coin = {
                 'Value': OCR_COIN.ocr(self.device.image),
                 'Limit': OCR_COIN_LIMIT.ocr(self.device.image)
             }
+            coin = _coin['Value']
             logger.hr('Get Gem')
             gem = OCR_SHOP_GEMS.ocr(self.device.image)
             if _oil['Value'] > 0:
                 break
-        logger.hr('Oil Coin Gem')
-        logger.info(f'[Oil]{_oil} [Coin]{_coin} [Gem]{gem}')
+        logger.info(f'[Oil]{oil} [Coin]{coin} [Gem]{gem}')
         LogRes(self.config).Oil = _oil
         LogRes(self.config).Coin = _coin
         LogRes(self.config).Gem = gem
