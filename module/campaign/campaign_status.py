@@ -8,7 +8,7 @@ from module.campaign.assets import OCR_EVENT_PT, OCR_COIN, OCR_OIL, OCR_OIL_CHEC
 from module.logger import logger
 from module.ocr.ocr import Ocr, Digit
 from module.ui.ui import UI
-from module.log_res.log_res import LogRes
+from module.log_res import LogRes
 from module.hard.assets import OCR_HARD_REMAIN
 
 OCR_HARD_REMAIN = Digit(OCR_HARD_REMAIN, letter=(123, 227, 66), threshold=128, alphabet='0123')
