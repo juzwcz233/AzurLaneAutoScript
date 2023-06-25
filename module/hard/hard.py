@@ -20,6 +20,7 @@ class CampaignHard(CampaignRun):
         name = f'campaign_{chapter}_{stage}'
         self.config.override(
             Campaign_Mode='hard',
+            Campaign_UseClearMode=True,
             Campaign_UseFleetLock=True,
             Campaign_UseAutoSearch=True,
         )
