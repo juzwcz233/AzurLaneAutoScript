@@ -162,7 +162,9 @@ class ConfigGenerator:
         """
         # Construct args
         data = {}
-        for path, groups in deep_iter(self.task, depth=3):
+        # Add dashboard to args
+        dashboard_and_task = {**self.task, **self.dashboard}
+        for path, groups in deep_iter(dashboard_and_task, depth=3):
             if 'tasks' not in path:
                 continue
             task = path[2]
@@ -345,17 +347,18 @@ class ConfigGenerator:
         """
         data = {}
         for task_group in self.task.keys():
-            value = deep_get(self.task, keys=[task_group, 'menu'])
-            if value not in ['collapse', 'list']:
-                value = 'collapse'
-            deep_set(data, keys=[task_group, 'menu'], value=value)
-            value = deep_get(self.task, keys=[task_group, 'page'])
-            if value not in ['setting', 'tool']:
-                value = 'setting'
-            deep_set(data, keys=[task_group, 'page'], value=value)
-            tasks = deep_get(self.task, keys=[task_group, 'tasks'], default={})
-            tasks = list(tasks.keys())
-            deep_set(data, keys=[task_group, 'tasks'], value=tasks)
+            if task_group != 'Dashboard':
+                value = deep_get(self.task, keys=[task_group, 'menu'])
+                if value not in ['collapse', 'list']:
+                    value = 'collapse'
+                deep_set(data, keys=[task_group, 'menu'], value=value)
+                value = deep_get(self.task, keys=[task_group, 'page'])
+                if value not in ['setting', 'tool']:
+                    value = 'setting'
+                deep_set(data, keys=[task_group, 'page'], value=value)
+                tasks = deep_get(self.task, keys=[task_group, 'tasks'], default={})
+                tasks = list(tasks.keys())
+                deep_set(data, keys=[task_group, 'tasks'], value=tasks)
 
         return data
 

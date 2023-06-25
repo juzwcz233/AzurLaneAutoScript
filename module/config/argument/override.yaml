@@ -49,9 +49,15 @@ GemsFarming:
 MainNormal:
   Campaign:
     Event: campaign_main
+    Mode:
+      value: normal
+      display: disabled
 MainHard:
   Campaign:
     Event: campaign_main
+    Mode:
+      value: hard
+      display: disabled
   StopCondition:
     RunCount: 3
 Main:
@@ -370,6 +376,9 @@ Exercise:
     ServerUpdate: 00:00, 12:00, 18:00
 DashboardUpdate:
   Scheduler:
+    Enable:
+      value: true
+      type: lock
     SuccessInterval: 30
     FailureInterval: 30
     ServerUpdate: 00:00
@@ -443,21 +452,15 @@ OpsiHazard1Leveling:
 
 GameManager:
   GGHandler:
-    Enabled: false
-    GGFactorEnable: false
-    GGMethod: screenshot
-    GGAction: auto
-    GGLuapathRecord: false
-    GGPackageName: com.
-    GGPanelConfirmTime: 5
-    GGMultiplyingFactor: 200
-    DisabledTask: disable_guild_and_dangerous
-    RestartEverytime: true
-    RestartATX: false
-  PowerLimit:
-    Exercise: 16500
-    Raid: 16500
-    Ash: 16500
+    GGMethod:
+      value: screenshot
+      display: disabled
+    RestartEverytime:
+      value: true
+      display: hide
+    RestartATX:
+      value: false
+      display: hide
 
 # ==================== Dashboard ====================
 
