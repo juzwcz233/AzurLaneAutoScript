@@ -26,7 +26,10 @@ class ExerciseCombat(HpDaemon, OpponentChoose, ExerciseEquipment):
         gg_enable = deep_get(self.config.data, 'GameManager.GGHandler.Enabled')
         gg_auto = deep_get(self.config.data, 'GameManager.GGHandler.GGFactorEnable')
         if (gg_enable == True and gg_auto == True) or gg_enable == True:
-            GGHandler(config=self.config, device=self.device).power_limit('Exercise')
+            if GGHandler(config=self.config, device=self.device).power_limit('Exercise') == True:
+                self.config.task_delay(minute=0.5)
+                self.config.task_call('Restart')
+                self.config.task_stop()
 
         while 1:
             if skip_first_screenshot:
