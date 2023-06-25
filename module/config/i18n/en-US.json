@@ -31,10 +31,6 @@
     "Tool": {
       "name": "Tools",
       "help": ""
-    },
-    "Dashboard": {
-      "name": "Menu.Dashboard.name",
-      "help": "Menu.Dashboard.help"
     }
   },
   "Task": {
@@ -273,10 +269,6 @@
     "GameManager": {
       "name": "Game Manager(WIP)",
       "help": ""
-    },
-    "Dashboard": {
-      "name": "Task.Dashboard.name",
-      "help": "Task.Dashboard.help"
     }
   },
   "Scheduler": {

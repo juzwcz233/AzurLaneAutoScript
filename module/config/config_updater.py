@@ -282,8 +282,9 @@ class ConfigGenerator:
             if 'tasks' not in path:
                 continue
             task_group, _, task = path
-            deep_load(['Menu', task_group])
-            deep_load(['Task', task])
+            if task_group != 'Dashboard':
+                deep_load(['Menu', task_group])
+                deep_load(['Task', task])
         # Arguments
         visited_group = set()
         for path, data in deep_iter(self.argument, depth=2):
