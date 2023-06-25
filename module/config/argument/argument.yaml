@@ -151,7 +151,7 @@ StopCondition:
   OilLimit: 1000
   MapAchievement:
     value: non_stop
-    option: [ non_stop, 100_percent_clear, map_3_stars, threat_safe_without_3_stars, threat_safe ]
+    option: [ non_stop, 100_percent_clear, threat_safe_without_3_stars, map_3_stars, threat_safe ]
   StageIncrease: false
   GetNewShip: false
   ReachLevel: 0
@@ -696,7 +696,10 @@ GGHandler:
   GGAction: 
     value: auto
     option: [ auto, manual ]
-  GGLuapath: 
+  GGLuapath:
+    type: textarea
+    mode: yaml
+    value:
   GGLuapathRecord: false
   GGPackageName: com.
   GGPanelConfirmTime: 5
