@@ -286,7 +286,7 @@ class Raid(MapOperation, RaidCombat, CampaignEvent):
         Pages:
             in: page_raid
         """
-        from module.log_res.log_res import LogRes
+        from module.log_res import LogRes
         skip_first_screenshot = True
         timeout = Timer(1.5, count=5).start()
         ocr = pt_ocr(self.config.Campaign_Event)

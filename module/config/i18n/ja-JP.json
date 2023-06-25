@@ -8,10 +8,6 @@
       "name": "出撃",
       "help": ""
     },
-    "Main": {
-      "name": "メイン",
-      "help": ""
-    },
     "Event": {
       "name": "イベント",
       "help": ""
@@ -645,6 +641,71 @@
       "retire_10": "retire_10"
     }
   },
+  "GemsFarming": {
+    "_info": {
+      "name": "GemsFarming._info.name",
+      "help": "GemsFarming._info.help"
+    },
+    "ChangeFlagship": {
+      "name": "GemsFarming.ChangeFlagship.name",
+      "help": "GemsFarming.ChangeFlagship.help",
+      "ship": "ship",
+      "ship_equip": "ship_equip"
+    },
+    "ChangeVanguard": {
+      "name": "GemsFarming.ChangeVanguard.name",
+      "help": "GemsFarming.ChangeVanguard.help",
+      "disabled": "disabled",
+      "ship": "ship",
+      "ship_equip": "ship_equip"
+    },
+    "ALLowLowVanguardLevel": {
+      "name": "ALLow Low Vanguard Level",
+      "help": "Destroyers over level 10 will now be used, 49 for Event CD"
+    },
+    "FleetNumberInHardMode": {
+      "name": "Fleet number used in hard mode",
+      "help": "Fleet number used in hard mode like Event C/D",
+      "0": "Not a hard mode",
+      "1": "Fleet 1",
+      "2": "Fleet 2"
+    },
+    "StopIFAutoNotEnsured": {
+      "name": "GemsFarming.StopIFAutoNotEnsured.name",
+      "help": "GemsFarming.StopIFAutoNotEnsured.help"
+    },
+    "CommonCV": {
+      "name": "GemsFarming.CommonCV.name",
+      "help": "GemsFarming.CommonCV.help",
+      "any": "any",
+      "langley": "langley",
+      "bogue": "bogue",
+      "ranger": "ranger",
+      "hermes": "hermes"
+    },
+    "CommissionLimit": {
+      "name": "GemsFarming.CommissionLimit.name",
+      "help": "GemsFarming.CommissionLimit.help"
+    }
+  },
+  "Sos": {
+    "_info": {
+      "name": "Sos._info.name",
+      "help": "Sos._info.help"
+    },
+    "Chapter": {
+      "name": "Sos.Chapter.name",
+      "help": "Sos.Chapter.help",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "10"
+    }
+  },
   "Campaign": {
     "_info": {
       "name": "Campaign._info.name",
@@ -658,6 +719,8 @@
       "name": "Campaign.Event.name",
       "help": "Campaign.Event.help",
       "campaign_main": "campaign_main",
+      "event_20200603_cn": "峡湾間の反撃（復刻）",
+      "event_20210527_cn": "照らす螺旋の鏡海（復刻）",
       "event_20230525_cn": "覆天せし万象の塵",
       "event_20220526_cn": "诚閃の剣 搖光の城",
       "event_20201126_cn": "バケーションレーン",
@@ -693,13 +756,11 @@
       "raid_20210708": "交錯する新たな波 (復刻)",
       "event_20200820_cn": "黒鉄の楽章 誓いの海（復刻）",
       "event_20201012_cn": "奔る彩帆の青（復刻）",
-      "event_20210527_cn": "照らす螺旋の鏡海（復刻）",
       "raid_20200624": "特別演習超空強襲波（復刻）",
       "event_20220428_cn": "吟ずる瑠璃の楽章",
       "event_20220414_cn": "極夜照らす幻光（復刻）",
       "event_20220407_tw": "蒼紅的迴響(復刻)",
       "event_20220310_tw": "復刻斯圖爾特的硝煙",
-      "event_20200603_cn": "峡湾間の反撃（復刻）",
       "event_20220210_cn": "凍絶の北海（復刻）",
       "event_20211125_cn": "弧光は交わる世界にて",
       "event_20211028_tw": "復刻光與影的鳶尾之華",
@@ -790,8 +851,8 @@
       "non_stop": "non_stop",
       "100_percent_clear": "100_percent_clear",
       "map_3_stars": "map_3_stars",
-      "threat_safe": "threat_safe",
-      "threat_safe_without_3_stars": "threat_safe_without_3_stars"
+      "threat_safe_without_3_stars": "threat_safe_without_3_stars",
+      "threat_safe": "threat_safe"
     },
     "StageIncrease": {
       "name": "StopCondition.StageIncrease.name",
@@ -1103,53 +1164,6 @@
       "5": "5"
     }
   },
-  "GemsFarming": {
-    "_info": {
-      "name": "GemsFarming._info.name",
-      "help": "GemsFarming._info.help"
-    },
-    "ChangeFlagship": {
-      "name": "GemsFarming.ChangeFlagship.name",
-      "help": "GemsFarming.ChangeFlagship.help",
-      "ship": "ship",
-      "ship_equip": "ship_equip"
-    },
-    "ChangeVanguard": {
-      "name": "GemsFarming.ChangeVanguard.name",
-      "help": "GemsFarming.ChangeVanguard.help",
-      "disabled": "disabled",
-      "ship": "ship",
-      "ship_equip": "ship_equip"
-    },
-    "ALLowLowVanguardLevel": {
-      "name": "ALLow Low Vanguard Level",
-      "help": "Destroyers over level 10 will now be used, 49 for Event CD"
-    },
-    "FleetNumberInHardMode": {
-      "name": "Fleet number used in hard mode",
-      "help": "Fleet number used in hard mode like Event C/D",
-      "0": "Not a hard mode",
-      "1": "Fleet 1",
-      "2": "Fleet 2"
-    },
-    "StopIFAutoNotEnsured": {
-      "name": "GemsFarming.StopIFAutoNotEnsured.name",
-      "help": "GemsFarming.StopIFAutoNotEnsured.help"
-    },
-    "CommonCV": {
-      "name": "GemsFarming.CommonCV.name",
-      "help": "GemsFarming.CommonCV.help",
-      "any": "any",
-      "langley": "langley",
-      "bogue": "bogue",
-      "ranger": "ranger",
-      "hermes": "hermes"
-    },
-    "CommissionLimit": {
-      "name": "GemsFarming.CommissionLimit.name",
-      "help": "GemsFarming.CommissionLimit.help"
-    }
-  },
   "EventGeneral": {
     "_info": {
       "name": "EventGeneral._info.name",
@@ -1180,10 +1194,10 @@
     "TaskCall": {
       "name": "TaskBalancer.TaskCall.name",
       "help": "TaskBalancer.TaskCall.help",
+      "MainNormal": "MainNormal",
+      "MainHard": "MainHard",
       "Main": "Main",
-      "Main2": "Main2",
-      "Main3": "Main3",
-      "Main4": "Main4"
+      "Main2": "Main2"
     }
   },
   "EventDaily": {
@@ -2029,18 +2043,6 @@
       "6": "6"
     }
   },
-  "DashboardUpdate": {
-    "_info": {
-      "name": "DashboardUpdate._info.name",
-      "help": "DashboardUpdate._info.help"
-    },
-    "Update": {
-      "name": "DashboardUpdate.Update.name",
-      "help": "DashboardUpdate.Update.help",
-      "all": "DashboardUpdate.Update.all",
-      "main": "DashboardUpdate.Update.main"
-    }
-  },
   "Hard": {
     "_info": {
       "name": "Hard._info.name",
@@ -2049,12 +2051,6 @@
     "HardStage": {
       "name": "Hard.HardStage.name",
       "help": "Hard.HardStage.help"
-    },
-    "HardFleet": {
-      "name": "Hard.HardFleet.name",
-      "help": "Hard.HardFleet.help",
-      "1": "1",
-      "2": "2"
     }
   },
   "Exercise": {
@@ -2103,22 +2099,16 @@
       "help": "Exercise.OpponentRefreshRecord.help"
     }
   },
-  "Sos": {
+  "DashboardUpdate": {
     "_info": {
-      "name": "Sos._info.name",
-      "help": "Sos._info.help"
+      "name": "DashboardUpdate._info.name",
+      "help": "DashboardUpdate._info.help"
     },
-    "Chapter": {
-      "name": "Sos.Chapter.name",
-      "help": "Sos.Chapter.help",
-      "3": "3",
-      "4": "4",
-      "5": "5",
-      "6": "6",
-      "7": "7",
-      "8": "8",
-      "9": "9",
-      "10": "10"
+    "Update": {
+      "name": "DashboardUpdate.Update.name",
+      "help": "DashboardUpdate.Update.help",
+      "all": "DashboardUpdate.Update.all",
+      "main": "DashboardUpdate.Update.main"
     }
   },
   "OpsiAshAssist": {
@@ -2518,234 +2508,6 @@
       "help": "PowerLimit.Ash.help"
     }
   },
-  "Oil": {
-    "_info": {
-      "name": "Oil._info.name",
-      "help": "Oil._info.help"
-    },
-    "Value": {
-      "name": "Oil.Value.name",
-      "help": "Oil.Value.help"
-    },
-    "Limit": {
-      "name": "Oil.Limit.name",
-      "help": "Oil.Limit.help"
-    },
-    "Color": {
-      "name": "Oil.Color.name",
-      "help": "Oil.Color.help"
-    },
-    "Record": {
-      "name": "Oil.Record.name",
-      "help": "Oil.Record.help"
-    }
-  },
-  "Coin": {
-    "_info": {
-      "name": "Coin._info.name",
-      "help": "Coin._info.help"
-    },
-    "Value": {
-      "name": "Coin.Value.name",
-      "help": "Coin.Value.help"
-    },
-    "Limit": {
-      "name": "Coin.Limit.name",
-      "help": "Coin.Limit.help"
-    },
-    "Color": {
-      "name": "Coin.Color.name",
-      "help": "Coin.Color.help"
-    },
-    "Record": {
-      "name": "Coin.Record.name",
-      "help": "Coin.Record.help"
-    }
-  },
-  "Gem": {
-    "_info": {
-      "name": "Gem._info.name",
-      "help": "Gem._info.help"
-    },
-    "Value": {
-      "name": "Gem.Value.name",
-      "help": "Gem.Value.help"
-    },
-    "Color": {
-      "name": "Gem.Color.name",
-      "help": "Gem.Color.help"
-    },
-    "Record": {
-      "name": "Gem.Record.name",
-      "help": "Gem.Record.help"
-    }
-  },
-  "Pt": {
-    "_info": {
-      "name": "Pt._info.name",
-      "help": "Pt._info.help"
-    },
-    "Value": {
-      "name": "Pt.Value.name",
-      "help": "Pt.Value.help"
-    },
-    "Color": {
-      "name": "Pt.Color.name",
-      "help": "Pt.Color.help"
-    },
-    "Record": {
-      "name": "Pt.Record.name",
-      "help": "Pt.Record.help"
-    }
-  },
-  "YellowCoin": {
-    "_info": {
-      "name": "YellowCoin._info.name",
-      "help": "YellowCoin._info.help"
-    },
-    "Value": {
-      "name": "YellowCoin.Value.name",
-      "help": "YellowCoin.Value.help"
-    },
-    "Color": {
-      "name": "YellowCoin.Color.name",
-      "help": "YellowCoin.Color.help"
-    },
-    "Record": {
-      "name": "YellowCoin.Record.name",
-      "help": "YellowCoin.Record.help"
-    }
-  },
-  "PurpleCoin": {
-    "_info": {
-      "name": "PurpleCoin._info.name",
-      "help": "PurpleCoin._info.help"
-    },
-    "Value": {
-      "name": "PurpleCoin.Value.name",
-      "help": "PurpleCoin.Value.help"
-    },
-    "Color": {
-      "name": "PurpleCoin.Color.name",
-      "help": "PurpleCoin.Color.help"
-    },
-    "Record": {
-      "name": "PurpleCoin.Record.name",
-      "help": "PurpleCoin.Record.help"
-    }
-  },
-  "ActionPoint": {
-    "_info": {
-      "name": "ActionPoint._info.name",
-      "help": "ActionPoint._info.help"
-    },
-    "Value": {
-      "name": "ActionPoint.Value.name",
-      "help": "ActionPoint.Value.help"
-    },
-    "Total": {
-      "name": "ActionPoint.Total.name",
-      "help": "ActionPoint.Total.help"
-    },
-    "Color": {
-      "name": "ActionPoint.Color.name",
-      "help": "ActionPoint.Color.help"
-    },
-    "Record": {
-      "name": "ActionPoint.Record.name",
-      "help": "ActionPoint.Record.help"
-    }
-  },
-  "Merit": {
-    "_info": {
-      "name": "Merit._info.name",
-      "help": "Merit._info.help"
-    },
-    "Value": {
-      "name": "Merit.Value.name",
-      "help": "Merit.Value.help"
-    },
-    "Color": {
-      "name": "Merit.Color.name",
-      "help": "Merit.Color.help"
-    },
-    "Record": {
-      "name": "Merit.Record.name",
-      "help": "Merit.Record.help"
-    }
-  },
-  "Cube": {
-    "_info": {
-      "name": "Cube._info.name",
-      "help": "Cube._info.help"
-    },
-    "Value": {
-      "name": "Cube.Value.name",
-      "help": "Cube.Value.help"
-    },
-    "Color": {
-      "name": "Cube.Color.name",
-      "help": "Cube.Color.help"
-    },
-    "Record": {
-      "name": "Cube.Record.name",
-      "help": "Cube.Record.help"
-    }
-  },
-  "Core": {
-    "_info": {
-      "name": "Core._info.name",
-      "help": "Core._info.help"
-    },
-    "Value": {
-      "name": "Core.Value.name",
-      "help": "Core.Value.help"
-    },
-    "Color": {
-      "name": "Core.Color.name",
-      "help": "Core.Color.help"
-    },
-    "Record": {
-      "name": "Core.Record.name",
-      "help": "Core.Record.help"
-    }
-  },
-  "Medal": {
-    "_info": {
-      "name": "Medal._info.name",
-      "help": "Medal._info.help"
-    },
-    "Value": {
-      "name": "Medal.Value.name",
-      "help": "Medal.Value.help"
-    },
-    "Color": {
-      "name": "Medal.Color.name",
-      "help": "Medal.Color.help"
-    },
-    "Record": {
-      "name": "Medal.Record.name",
-      "help": "Medal.Record.help"
-    }
-  },
-  "GuildCoin": {
-    "_info": {
-      "name": "GuildCoin._info.name",
-      "help": "GuildCoin._info.help"
-    },
-    "Value": {
-      "name": "GuildCoin.Value.name",
-      "help": "GuildCoin.Value.help"
-    },
-    "Color": {
-      "name": "GuildCoin.Color.name",
-      "help": "GuildCoin.Color.help"
-    },
-    "Record": {
-      "name": "GuildCoin.Record.name",
-      "help": "GuildCoin.Record.help"
-    }
-  },
   "Storage": {
     "_info": {
       "name": "Storage._info.name",
@@ -2774,6 +2536,8 @@
       "Stop": "中止",
       "ScrollON": "自動スクロール ON",
       "ScrollOFF": "自動スクロール OFF",
+      "DashboardON": "Fold",
+      "DashboardOFF": "Unfold",
       "ClearLog": "ログクリーニング",
       "Setting": "設定",
       "CheckUpdate": "アップデータチェック",

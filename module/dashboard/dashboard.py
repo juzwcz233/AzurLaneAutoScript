@@ -1,4 +1,4 @@
-from module.log_res.log_res import LogRes
+from module.log_res import LogRes
 from module.logger import logger
 from module.ocr.ocr import Ocr, Digit
 from module.base.utils import *

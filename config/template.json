@@ -597,7 +597,7 @@
       "ServerUpdate": "00:00"
     },
     "Campaign": {
-      "Name": "12-4",
+      "Name": "D3",
       "Event": "campaign_main",
       "Mode": "normal",
       "UseClearMode": true,
@@ -782,7 +782,7 @@
       "ServerUpdate": "00:00"
     },
     "Campaign": {
-      "Name": "12-4",
+      "Name": "D3",
       "Event": "war_archives_20220414_cn",
       "Mode": "normal",
       "UseClearMode": true,
@@ -1279,26 +1279,6 @@
       "Storage": {}
     }
   },
-  "Reward": {
-    "Scheduler": {
-      "Enable": true,
-      "NextRun": "2023-01-01 00:00:00",
-      "Command": "Reward",
-      "SuccessInterval": "120-240",
-      "FailureInterval": "120-240",
-      "ServerUpdate": "00:00"
-    },
-    "Reward": {
-      "CollectOil": true,
-      "CollectCoin": true,
-      "CollectExp": true,
-      "CollectMission": true,
-      "CollectWeeklyMission": true
-    },
-    "Storage": {
-      "Storage": {}
-    }
-  },
   "CoalitionSp": {
     "Scheduler": {
       "Enable": false,
@@ -1364,27 +1344,6 @@
       "Storage": {}
     }
   },
-  "Research": {
-    "Scheduler": {
-      "Enable": true,
-      "NextRun": "2023-01-01 00:00:00",
-      "Command": "Research",
-      "SuccessInterval": "30-60",
-      "FailureInterval": "30-60",
-      "ServerUpdate": "00:00"
-    },
-    "Research": {
-      "UseCube": "only_05_hour",
-      "UseCoin": "always_use",
-      "UsePart": "always_use",
-      "AllowDelay": true,
-      "PresetFilter": "series_5_blueprint_152",
-      "CustomFilter": "S5-DR0.5 > S5-PRY0.5 > S5-H0.5 > S5-Q0.5 > S5-DR2.5 > 0.5 > S5-G1.5\n> S5-Q1 > S5-DR5 > S5-DR8 > S5-G4 > S5-PRY2.5 > 1 > S5-Q2 > reset\n> S5-G2.5 > S5-PRY5 > S5-PRY8 > 1.5 > 2 > S5-Q4 > 2.5 > 3\n> Q4 > G4 > 4 > 5 > S5-C6 > C6 > 6 > S5-C8 > 8\n> S5-C12 > 12"
-    },
-    "Storage": {
-      "Storage": {}
-    }
-  },
   "Tactical": {
     "Scheduler": {
       "Enable": true,
@@ -1408,6 +1367,27 @@
     "AddNewStudent": {
       "Enable": false,
       "Favorite": true
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "Research": {
+    "Scheduler": {
+      "Enable": true,
+      "NextRun": "2023-01-01 00:00:00",
+      "Command": "Research",
+      "SuccessInterval": "30-60",
+      "FailureInterval": "30-60",
+      "ServerUpdate": "00:00"
+    },
+    "Research": {
+      "UseCube": "only_05_hour",
+      "UseCoin": "always_use",
+      "UsePart": "always_use",
+      "AllowDelay": true,
+      "PresetFilter": "series_5_blueprint_152",
+      "CustomFilter": "S5-DR0.5 > S5-PRY0.5 > S5-H0.5 > S5-Q0.5 > S5-DR2.5 > 0.5 > S5-G1.5\n> S5-Q1 > S5-DR5 > S5-DR8 > S5-G4 > S5-PRY2.5 > 1 > S5-Q2 > reset\n> S5-G2.5 > S5-PRY5 > S5-PRY8 > 1.5 > 2 > S5-Q4 > 2.5 > 3\n> Q4 > G4 > 4 > 5 > S5-C6 > C6 > 6 > S5-C8 > 8\n> S5-C12 > 12"
     },
     "Storage": {
       "Storage": {}
@@ -1481,6 +1461,26 @@
       "Storage": {}
     }
   },
+  "Reward": {
+    "Scheduler": {
+      "Enable": true,
+      "NextRun": "2023-01-01 00:00:00",
+      "Command": "Reward",
+      "SuccessInterval": "120-240",
+      "FailureInterval": "120-240",
+      "ServerUpdate": "00:00"
+    },
+    "Reward": {
+      "CollectOil": true,
+      "CollectCoin": true,
+      "CollectExp": true,
+      "CollectMission": true,
+      "CollectWeeklyMission": true
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
   "Daily": {
     "Scheduler": {
       "Enable": false,
@@ -1526,9 +1526,11 @@
       "Fleet1": 1,
       "Fleet1Formation": "double_line",
       "Fleet1Mode": "combat_auto",
+      "Fleet1Step": 3,
       "Fleet2": 2,
       "Fleet2Formation": "double_line",
       "Fleet2Mode": "combat_auto",
+      "Fleet2Step": 2,
       "FleetOrder": "fleet1_mob_fleet2_boss"
     },
     "Emotion": {
@@ -2035,7 +2037,7 @@
   },
   "AzurLaneUncensored": {
     "AzurLaneUncensored": {
-      "Repository": "https://github.com/LmeSzinc/AzurLaneUncensored"
+      "Repository": "https://gitee.com/LmeSzinc/AzurLaneUncensored"
     },
     "Storage": {
       "Storage": {}
@@ -2051,7 +2053,7 @@
       "GGMultiplyingFactor": 200,
       "GGMethod": "screenshot",
       "GGAction": "auto",
-      "GGLuapath": "",
+      "GGLuapath": null,
       "GGLuapathRecord": false,
       "GGPackageName": "com.",
       "GGPanelConfirmTime": 5,
@@ -2086,14 +2088,14 @@
       "Color": "^FF3333",
       "Record": "2023-01-01 00:00:00"
     },
-    "Cube": {
-      "Value": 0,
-      "Color": "^33FFFF",
-      "Record": "2023-01-01 00:00:00"
-    },
     "Pt": {
       "Value": 0,
       "Color": "^00BFFF",
+      "Record": "2023-01-01 00:00:00"
+    },
+    "Cube": {
+      "Value": 0,
+      "Color": "^33FFFF",
       "Record": "2023-01-01 00:00:00"
     },
     "ActionPoint": {

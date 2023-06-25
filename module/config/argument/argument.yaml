@@ -574,9 +574,9 @@ Daily:
     option: [ 1, 2, 3, 4, 5, 6 ]
 Hard:
   HardStage: 11-4
-  HardFleet:
-    value: 1
-    option: [ 1, 2 ]
+  # HardFleet:
+  #   value: 1
+  #   option: [ 1, 2 ]
 Exercise:
   OpponentChooseMode:
     value: max_exp
@@ -686,7 +686,6 @@ AzurLaneUncensored:
   Repository: https://gitee.com/LmeSzinc/AzurLaneUncensored
 GameManager:
   AutoRestart: true
-
 GGHandler:
   Enabled: false
   GGFactorEnable: false
@@ -697,19 +696,13 @@ GGHandler:
   GGAction: 
     value: auto
     option: [ auto, manual ]
-  GGLuapathRecord:
-    value: false
+  GGLuapath: 
+  GGLuapathRecord: false
   GGPackageName: com.
   GGPanelConfirmTime: 5
   DisabledTask:
     value: disable_all_dangerous_task
-    option: [
-      disable_guild_and_dangerous,
-      disable_all_dangerous_task,
-      disable_meta_and_exercise,
-      disable_exercise,
-      enable_all,
-    ]
+    option: [ disable_guild_and_dangerous, disable_all_dangerous_task, disable_meta_and_exercise, disable_exercise, enable_all ]
   RestartEverytime: true
   RestartATX: false
 PowerLimit:
@@ -718,6 +711,7 @@ PowerLimit:
   Ash: 16500
 
 # ==================== Dashboard ====================
+
 Oil:
   Value: 0
   Limit: 0

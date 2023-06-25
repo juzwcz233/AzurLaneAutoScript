@@ -8,10 +8,6 @@
       "name": "出击",
       "help": ""
     },
-    "Main": {
-      "name": "主线",
-      "help": ""
-    },
     "Event": {
       "name": "活动",
       "help": ""
@@ -645,6 +641,71 @@
       "retire_10": "退役10个"
     }
   },
+  "GemsFarming": {
+    "_info": {
+      "name": "刷紧急委托",
+      "help": "警告: 这个功能可以让玩家获取少量的钻石，但不是一个能高效获取钻石的方法\n玩碧蓝航线不久的玩家, 很容易迷信零破和低耗等, 而忽视了角色养成\n运行这个功能只会让你自己感觉很充实, 而你的帐号实际零提升\n这个功能的主要用途，是让阵容成型的玩家获取额外的魔方，请理性地把钻石当作副产物\n\n这个功能将在旗舰32级之后, 将旗舰更换为1级白皮零破航母\n关于紧急委托刷新机制, 可阅读 https://bbs.nga.cn/read.php?tid=27134956\n委托油耗比: A3 > A1 > 2-4 > 2-1, 有活动图时建议选活动图, 2-1会拣问号有更多物资\n一队会完成所有的战斗, 前排应当为百级零破驱逐带输出装, 后排应该为35级以下白皮零破航母\n二队会提供跨队支援, 应该有新泽西和信浓"
+    },
+    "ChangeFlagship": {
+      "name": "更换旗舰",
+      "help": "当旗舰等级>=33或红脸时更换旗舰\n寻找等级在1-32之间的白皮航母，同时会在退役时选择更换下来的旗舰。所有等级大于1级的白皮航母均会被视为退役目标，请务必锁定不是目标的船。换船时更换旗舰装备，这通过记录之前的装备完成。\n\n换装备只会更换正在装备中的栏位，即使是白装也会更换。如果指定了旗舰，则会更换全部5个装备，未指定旗舰只会更换设备。",
+      "ship": "更换舰船",
+      "ship_equip": "更换舰船 + 装备"
+    },
+    "ChangeVanguard": {
+      "name": "更换前排",
+      "help": "当前排红脸时更换前排\n换前排通过找一艘心情不低于10、等级100的白鹰白皮驱逐完成，所以尽量保证有足够多的驱逐。国服以外则为等级70的白鹰白船驱逐。\n\n换装备只会更换正在装备中的栏位，即使是白装也会更换。如果指定了旗舰，则会更换全部5个装备，未指定旗舰只会更换设备。",
+      "disabled": "不更换",
+      "ship": "更换舰船",
+      "ship_equip": "更换舰船 + 装备"
+    },
+    "ALLowLowVanguardLevel": {
+      "name": "可更换低等级前排",
+      "help": "倍率打开时，前排等级限制改为10以上即可。若为困难模式（如CD图）改为49级。"
+    },
+    "FleetNumberInHardMode": {
+      "name": "困难模式舰队编号",
+      "help": "困难模式（如活动图CD等）下需要更换的舰队编号。\n使用时请保证另一个舰队为6个125级，否则可能会有等级限制出错",
+      "0": "非困难模式",
+      "1": "第一舰队",
+      "2": "第二舰队"
+    },
+    "StopIFAutoNotEnsured": {
+      "name": "无法设置职能时停止任务",
+      "help": "无法设置舰队职能时，用以下方式停止任务以免跨队队伍出击，石油被大量消耗：\n若设置了错误推送则推送任务停止的消息并停止该任务。\n若没有设置错误推送，则直接停止Alas。"
+    },
+    "CommonCV": {
+      "name": "指定旗舰航母",
+      "help": "",
+      "any": "任意",
+      "langley": "兰利",
+      "bogue": "博格",
+      "ranger": "突击者",
+      "hermes": "竞技神"
+    },
+    "CommissionLimit": {
+      "name": "防止紧急委托数量过多",
+      "help": "在7x24运行时防止紧急委托数量过多做不完每日委托，建议在委托过滤器仅选择短时长高收益委托"
+    }
+  },
+  "Sos": {
+    "_info": {
+      "name": "潜艇图",
+      "help": ""
+    },
+    "Chapter": {
+      "name": "潜艇图出击章节",
+      "help": "",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "10"
+    }
+  },
   "Campaign": {
     "_info": {
       "name": "关卡设置",
@@ -658,6 +719,8 @@
       "name": "活动名称",
       "help": "自动选择至最新的活动",
       "campaign_main": "主线图",
+      "event_20200603_cn": "复刻峡湾间的反击",
+      "event_20210527_cn": "复刻镜位螺旋",
       "event_20230525_cn": "空相交汇点",
       "event_20220526_cn": "泠誓光庭",
       "event_20201126_cn": "假日航线",
@@ -693,13 +756,11 @@
       "raid_20210708": "复刻穿越彼方的水线",
       "event_20200820_cn": "复刻铁血音符誓言",
       "event_20201012_cn": "复刻划破海空之翼",
-      "event_20210527_cn": "复刻镜位螺旋",
       "raid_20200624": "复刻特别演习埃塞克斯级",
       "event_20220428_cn": "虹彩的终幕曲",
       "event_20220414_cn": "复刻永夜幻光",
       "event_20220407_tw": "蒼紅的迴響(復刻)",
       "event_20220310_tw": "復刻斯圖爾特的硝煙",
-      "event_20200603_cn": "复刻峡湾间的反击",
       "event_20220210_cn": "复刻北境序曲",
       "event_20211125_cn": "交汇世界的弧光",
       "event_20211028_tw": "復刻光與影的鳶尾之華",
@@ -1101,53 +1162,6 @@
       "3": "3",
       "4": "4",
       "5": "5"
-    }
-  },
-  "GemsFarming": {
-    "_info": {
-      "name": "刷紧急委托",
-      "help": "警告: 这个功能可以让玩家获取少量的钻石，但不是一个能高效获取钻石的方法\n玩碧蓝航线不久的玩家, 很容易迷信零破和低耗等, 而忽视了角色养成\n运行这个功能只会让你自己感觉很充实, 而你的帐号实际零提升\n这个功能的主要用途，是让阵容成型的玩家获取额外的魔方，请理性地把钻石当作副产物\n\n这个功能将在旗舰32级之后, 将旗舰更换为1级白皮零破航母\n关于紧急委托刷新机制, 可阅读 https://bbs.nga.cn/read.php?tid=27134956\n委托油耗比: A3 > A1 > 2-4 > 2-1, 有活动图时建议选活动图, 2-1会拣问号有更多物资\n一队会完成所有的战斗, 前排应当为百级零破驱逐带输出装, 后排应该为35级以下白皮零破航母\n二队会提供跨队支援, 应该有新泽西和信浓"
-    },
-    "ChangeFlagship": {
-      "name": "更换旗舰",
-      "help": "当旗舰等级>=33或红脸时更换旗舰\n寻找等级在1-32之间的白皮航母，同时会在退役时选择更换下来的旗舰。所有等级大于1级的白皮航母均会被视为退役目标，请务必锁定不是目标的船。换船时更换旗舰装备，这通过记录之前的装备完成。\n\n换装备只会更换正在装备中的栏位，即使是白装也会更换。如果指定了旗舰，则会更换全部5个装备，未指定旗舰只会更换设备。",
-      "ship": "更换舰船",
-      "ship_equip": "更换舰船 + 装备"
-    },
-    "ChangeVanguard": {
-      "name": "更换前排",
-      "help": "当前排红脸时更换前排\n换前排通过找一艘心情不低于10、等级100的白鹰白皮驱逐完成，所以尽量保证有足够多的驱逐。国服以外则为等级70的白鹰白船驱逐。\n\n换装备只会更换正在装备中的栏位，即使是白装也会更换。如果指定了旗舰，则会更换全部5个装备，未指定旗舰只会更换设备。",
-      "disabled": "不更换",
-      "ship": "更换舰船",
-      "ship_equip": "更换舰船 + 装备"
-    },
-    "ALLowLowVanguardLevel": {
-      "name": "可更换低等级前排",
-      "help": "倍率打开时，前排等级限制改为10以上即可。若为困难模式（如CD图）改为49级。"
-    },
-    "FleetNumberInHardMode": {
-      "name": "困难模式舰队编号",
-      "help": "困难模式（如活动图CD等）下需要更换的舰队编号。\n使用时请保证另一个舰队为6个125级，否则可能会有等级限制出错",
-      "0": "非困难模式",
-      "1": "第一舰队",
-      "2": "第二舰队"
-    },
-    "StopIFAutoNotEnsured": {
-      "name": "无法设置职能时停止任务",
-      "help": "无法设置舰队职能时，用以下方式停止任务以免跨队队伍出击，石油被大量消耗：\n若设置了错误推送则推送任务停止的消息并停止该任务。\n若没有设置错误推送，则直接停止Alas。"
-    },
-    "CommonCV": {
-      "name": "指定旗舰航母",
-      "help": "",
-      "any": "任意",
-      "langley": "兰利",
-      "bogue": "博格",
-      "ranger": "突击者",
-      "hermes": "竞技神"
-    },
-    "CommissionLimit": {
-      "name": "防止紧急委托数量过多",
-      "help": "在7x24运行时防止紧急委托数量过多做不完每日委托，建议在委托过滤器仅选择短时长高收益委托"
     }
   },
   "EventGeneral": {
@@ -2029,18 +2043,6 @@
       "6": "6"
     }
   },
-  "DashboardUpdate": {
-    "_info": {
-      "name": "更新仪表盘",
-      "help": "大世界相关数据不支持更新"
-    },
-    "Update": {
-      "name": "更新选项",
-      "help": "选择需要更新的仪表盘数据",
-      "all": "更新全部",
-      "main": "仅石油、物资、钻石、魔方"
-    }
-  },
   "Hard": {
     "_info": {
       "name": "困难图",
@@ -2049,12 +2051,6 @@
     "HardStage": {
       "name": "困难关卡",
       "help": "例如 11-2, 12-2, 12-4"
-    },
-    "HardFleet": {
-      "name": "出击舰队",
-      "help": "",
-      "1": "1",
-      "2": "2"
     }
   },
   "Exercise": {
@@ -2103,22 +2099,16 @@
       "help": ""
     }
   },
-  "Sos": {
+  "DashboardUpdate": {
     "_info": {
-      "name": "潜艇图",
-      "help": ""
+      "name": "更新仪表盘",
+      "help": "大世界相关数据不支持更新"
     },
-    "Chapter": {
-      "name": "潜艇图出击章节",
-      "help": "",
-      "3": "3",
-      "4": "4",
-      "5": "5",
-      "6": "6",
-      "7": "7",
-      "8": "8",
-      "9": "9",
-      "10": "10"
+    "Update": {
+      "name": "更新选项",
+      "help": "选择需要更新的仪表盘数据",
+      "all": "更新全部",
+      "main": "仅石油、物资、钻石、魔方"
     }
   },
   "OpsiAshAssist": {
@@ -2516,234 +2506,6 @@
     "Ash": {
       "name": "余烬信标",
       "help": ""
-    }
-  },
-  "Oil": {
-    "_info": {
-      "name": "Oil._info.name",
-      "help": "Oil._info.help"
-    },
-    "Value": {
-      "name": "Oil.Value.name",
-      "help": "Oil.Value.help"
-    },
-    "Limit": {
-      "name": "Oil.Limit.name",
-      "help": "Oil.Limit.help"
-    },
-    "Color": {
-      "name": "Oil.Color.name",
-      "help": "Oil.Color.help"
-    },
-    "Record": {
-      "name": "Oil.Record.name",
-      "help": "Oil.Record.help"
-    }
-  },
-  "Coin": {
-    "_info": {
-      "name": "Coin._info.name",
-      "help": "Coin._info.help"
-    },
-    "Value": {
-      "name": "Coin.Value.name",
-      "help": "Coin.Value.help"
-    },
-    "Limit": {
-      "name": "Coin.Limit.name",
-      "help": "Coin.Limit.help"
-    },
-    "Color": {
-      "name": "Coin.Color.name",
-      "help": "Coin.Color.help"
-    },
-    "Record": {
-      "name": "Coin.Record.name",
-      "help": "Coin.Record.help"
-    }
-  },
-  "Gem": {
-    "_info": {
-      "name": "Gem._info.name",
-      "help": "Gem._info.help"
-    },
-    "Value": {
-      "name": "Gem.Value.name",
-      "help": "Gem.Value.help"
-    },
-    "Color": {
-      "name": "Gem.Color.name",
-      "help": "Gem.Color.help"
-    },
-    "Record": {
-      "name": "Gem.Record.name",
-      "help": "Gem.Record.help"
-    }
-  },
-  "Pt": {
-    "_info": {
-      "name": "Pt._info.name",
-      "help": "Pt._info.help"
-    },
-    "Value": {
-      "name": "Pt.Value.name",
-      "help": "Pt.Value.help"
-    },
-    "Color": {
-      "name": "Pt.Color.name",
-      "help": "Pt.Color.help"
-    },
-    "Record": {
-      "name": "Pt.Record.name",
-      "help": "Pt.Record.help"
-    }
-  },
-  "YellowCoin": {
-    "_info": {
-      "name": "YellowCoin._info.name",
-      "help": "YellowCoin._info.help"
-    },
-    "Value": {
-      "name": "YellowCoin.Value.name",
-      "help": "YellowCoin.Value.help"
-    },
-    "Color": {
-      "name": "YellowCoin.Color.name",
-      "help": "YellowCoin.Color.help"
-    },
-    "Record": {
-      "name": "YellowCoin.Record.name",
-      "help": "YellowCoin.Record.help"
-    }
-  },
-  "PurpleCoin": {
-    "_info": {
-      "name": "PurpleCoin._info.name",
-      "help": "PurpleCoin._info.help"
-    },
-    "Value": {
-      "name": "PurpleCoin.Value.name",
-      "help": "PurpleCoin.Value.help"
-    },
-    "Color": {
-      "name": "PurpleCoin.Color.name",
-      "help": "PurpleCoin.Color.help"
-    },
-    "Record": {
-      "name": "PurpleCoin.Record.name",
-      "help": "PurpleCoin.Record.help"
-    }
-  },
-  "ActionPoint": {
-    "_info": {
-      "name": "ActionPoint._info.name",
-      "help": "ActionPoint._info.help"
-    },
-    "Value": {
-      "name": "ActionPoint.Value.name",
-      "help": "ActionPoint.Value.help"
-    },
-    "Total": {
-      "name": "ActionPoint.Total.name",
-      "help": "ActionPoint.Total.help"
-    },
-    "Color": {
-      "name": "ActionPoint.Color.name",
-      "help": "ActionPoint.Color.help"
-    },
-    "Record": {
-      "name": "ActionPoint.Record.name",
-      "help": "ActionPoint.Record.help"
-    }
-  },
-  "Merit": {
-    "_info": {
-      "name": "Merit._info.name",
-      "help": "Merit._info.help"
-    },
-    "Value": {
-      "name": "Merit.Value.name",
-      "help": "Merit.Value.help"
-    },
-    "Color": {
-      "name": "Merit.Color.name",
-      "help": "Merit.Color.help"
-    },
-    "Record": {
-      "name": "Merit.Record.name",
-      "help": "Merit.Record.help"
-    }
-  },
-  "Cube": {
-    "_info": {
-      "name": "Cube._info.name",
-      "help": "Cube._info.help"
-    },
-    "Value": {
-      "name": "Cube.Value.name",
-      "help": "Cube.Value.help"
-    },
-    "Color": {
-      "name": "Cube.Color.name",
-      "help": "Cube.Color.help"
-    },
-    "Record": {
-      "name": "Cube.Record.name",
-      "help": "Cube.Record.help"
-    }
-  },
-  "Core": {
-    "_info": {
-      "name": "Core._info.name",
-      "help": "Core._info.help"
-    },
-    "Value": {
-      "name": "Core.Value.name",
-      "help": "Core.Value.help"
-    },
-    "Color": {
-      "name": "Core.Color.name",
-      "help": "Core.Color.help"
-    },
-    "Record": {
-      "name": "Core.Record.name",
-      "help": "Core.Record.help"
-    }
-  },
-  "Medal": {
-    "_info": {
-      "name": "Medal._info.name",
-      "help": "Medal._info.help"
-    },
-    "Value": {
-      "name": "Medal.Value.name",
-      "help": "Medal.Value.help"
-    },
-    "Color": {
-      "name": "Medal.Color.name",
-      "help": "Medal.Color.help"
-    },
-    "Record": {
-      "name": "Medal.Record.name",
-      "help": "Medal.Record.help"
-    }
-  },
-  "GuildCoin": {
-    "_info": {
-      "name": "GuildCoin._info.name",
-      "help": "GuildCoin._info.help"
-    },
-    "Value": {
-      "name": "GuildCoin.Value.name",
-      "help": "GuildCoin.Value.help"
-    },
-    "Color": {
-      "name": "GuildCoin.Color.name",
-      "help": "GuildCoin.Color.help"
-    },
-    "Record": {
-      "name": "GuildCoin.Record.name",
-      "help": "GuildCoin.Record.help"
     }
   },
   "Storage": {

@@ -73,6 +73,18 @@ class GeneratedConfig:
     OldRetire_SSR = False
     OldRetire_RetireAmount = 'retire_all'  # retire_all, retire_10
 
+    # Group `GemsFarming`
+    GemsFarming_ChangeFlagship = 'ship'  # ship, ship_equip
+    GemsFarming_ChangeVanguard = 'ship'  # disabled, ship, ship_equip
+    GemsFarming_ALLowLowVanguardLevel = True
+    GemsFarming_FleetNumberInHardMode = 0  # 0, 1, 2
+    GemsFarming_StopIFAutoNotEnsured = True
+    GemsFarming_CommonCV = 'any'  # any, langley, bogue, ranger, hermes
+    GemsFarming_CommissionLimit = True
+
+    # Group `Sos`
+    Sos_Chapter = 3  # 3, 4, 5, 6, 7, 8, 9, 10
+
     # Group `Campaign`
     Campaign_Name = '12-4'
     Campaign_Event = 'campaign_main'  # campaign_main
@@ -86,7 +98,7 @@ class GeneratedConfig:
     # Group `StopCondition`
     StopCondition_RunCount = 0
     StopCondition_OilLimit = 1000
-    StopCondition_MapAchievement = 'non_stop'  # non_stop, 100_percent_clear, map_3_stars, threat_safe, threat_safe_without_3_stars
+    StopCondition_MapAchievement = 'non_stop'  # non_stop, 100_percent_clear, map_3_stars, threat_safe_without_3_stars, threat_safe
     StopCondition_StageIncrease = False
     StopCondition_GetNewShip = False
     StopCondition_ReachLevel = 0
@@ -148,15 +160,6 @@ class GeneratedConfig:
     C124LargeLeveling_NonLargeRetreatTolerance = 1  # 0, 1, 2, 10
     C124LargeLeveling_PickupAmmo = 3  # 3, 4, 5
 
-    # Group `GemsFarming`
-    GemsFarming_ChangeFlagship = 'ship'  # ship, ship_equip
-    GemsFarming_ChangeVanguard = 'ship'  # disabled, ship, ship_equip
-    GemsFarming_ALLowLowVanguardLevel = True
-    GemsFarming_FleetNumberInHardMode = 0  # 0, 1, 2
-    GemsFarming_StopIFAutoNotEnsured = True
-    GemsFarming_CommonCV = 'any'  # any, langley, bogue, ranger, hermes
-    GemsFarming_CommissionLimit = True
-
     # Group `EventGeneral`
     EventGeneral_PtLimit = 0
     EventGeneral_TimeLimit = datetime.datetime(2023, 1, 1, 0, 0)
@@ -164,7 +167,7 @@ class GeneratedConfig:
     # Group `TaskBalancer`
     TaskBalancer_Enable = False
     TaskBalancer_CoinLimit = 10000
-    TaskBalancer_TaskCall = 'Main'  # MainNoral, MainHard, Main, Main2
+    TaskBalancer_TaskCall = 'Main'  # MainNormal, MainHard, Main, Main2
 
     # Group `EventDaily`
     EventDaily_StageFilter = 'A1 > A2 > A3'
@@ -347,8 +350,8 @@ class GeneratedConfig:
     Exercise_OpponentRefreshValue = 0
     Exercise_OpponentRefreshRecord = datetime.datetime(2023, 1, 1, 0, 0)
 
-    # Group `Sos`
-    Sos_Chapter = 3  # 3, 4, 5, 6, 7, 8, 9, 10
+    # Group `DashboardUpdate`
+    DashboardUpdate_Update = 'all'  # all, main
 
     # Group `OpsiAshAssist`
     OpsiAshAssist_Tier = 15
@@ -425,17 +428,18 @@ class GeneratedConfig:
     Benchmark_TestScene = 'screenshot_click'  # screenshot_click, screenshot, click
 
     # Group `AzurLaneUncensored`
-    AzurLaneUncensored_Repository = 'https://github.com/LmeSzinc/AzurLaneUncensored'
+    AzurLaneUncensored_Repository = 'https://gitee.com/LmeSzinc/AzurLaneUncensored'
 
     # Group `GameManager`
     GameManager_AutoRestart = True
 
     # Group `GGHandler`
     GGHandler_Enabled = False
-    GGHandler_Factor = False
+    GGHandler_GGFactorEnable = False
     GGHandler_GGMultiplyingFactor = 200
     GGHandler_GGMethod = 'screenshot'  # screenshot, u2
-    GGHandler_GGAction = 'auto' # auto, manual
+    GGHandler_GGAction = 'auto'  # auto, manual
+    GGHandler_GGLuapath = None
     GGHandler_GGLuapathRecord = False
     GGHandler_GGPackageName = 'com.'
     GGHandler_GGPanelConfirmTime = 5
@@ -447,9 +451,6 @@ class GeneratedConfig:
     PowerLimit_Exercise = 16500
     PowerLimit_Raid = 16500
     PowerLimit_Ash = 16500
-
-    # Group `DashboardUpdate`
-    DashboardUpdate_Update = 'all' # all, main
 
     # Group `Oil`
     Oil_Value = 0
