@@ -205,8 +205,7 @@ class GGHandler:
             GGData(self.config).set_data(target='gg_enable', value=True)
             deep_set(self.config.data, 'GameManager.GGHandler.Enabled', value=True)
             deep_set(self.config.data, 'GameManager.GGHandler.GGFactorEnable', value=True)
-            self.config.task_delay(minute=0.5)
-            self.restart()
+            return True
 
     def handle_restart_before_tasks(self) -> bool:
         """

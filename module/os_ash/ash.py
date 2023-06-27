@@ -59,7 +59,10 @@ class AshCombat(Combat):
             gg_enable = deep_get(self.config.data, 'GameManager.GGHandler.Enabled', default=True)
             gg_auto = deep_get(self.config.data, 'GameManager.GGHandler.GGFactorEnable', default=True)
             if (gg_enable == True and gg_auto == True) or gg_enable == True:
-                GGHandler(config=self.config, device=self.device).power_limit('Ash')
+                if GGHandler(config=self.config, device=self.device).power_limit('Ash') == True:
+                    self.config.task_delay(minute=0.5)
+                    self.config.task_call('Restart')
+                    self.config.task_stop()
             return True
 
         if self.handle_get_items():

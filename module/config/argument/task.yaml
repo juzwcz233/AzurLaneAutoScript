@@ -357,6 +357,7 @@ Tool:
 # ==================== Dashboard ====================
 
 Dashboard:
+  page: 'dashboard'
   tasks:
     Dashboard:
       - Oil

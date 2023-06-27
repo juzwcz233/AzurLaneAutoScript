@@ -490,8 +490,8 @@
         "option": [
           "non_stop",
           "100_percent_clear",
-          "map_3_stars",
           "threat_safe_without_3_stars",
+          "map_3_stars",
           "threat_safe"
         ]
       },
@@ -865,8 +865,8 @@
         "option": [
           "non_stop",
           "100_percent_clear",
-          "map_3_stars",
           "threat_safe_without_3_stars",
+          "map_3_stars",
           "threat_safe"
         ]
       },
@@ -1238,8 +1238,8 @@
         "option": [
           "non_stop",
           "100_percent_clear",
-          "map_3_stars",
           "threat_safe_without_3_stars",
+          "map_3_stars",
           "threat_safe"
         ]
       },
@@ -1611,8 +1611,8 @@
         "option": [
           "non_stop",
           "100_percent_clear",
-          "map_3_stars",
           "threat_safe_without_3_stars",
+          "map_3_stars",
           "threat_safe"
         ]
       },
@@ -2100,8 +2100,8 @@
         "option": [
           "non_stop",
           "100_percent_clear",
-          "map_3_stars",
           "threat_safe_without_3_stars",
+          "map_3_stars",
           "threat_safe"
         ],
         "display": "hide"
@@ -2416,8 +2416,8 @@
         "option": [
           "non_stop",
           "100_percent_clear",
-          "map_3_stars",
           "threat_safe_without_3_stars",
+          "map_3_stars",
           "threat_safe"
         ]
       },
@@ -2850,8 +2850,8 @@
         "option": [
           "non_stop",
           "100_percent_clear",
-          "map_3_stars",
           "threat_safe_without_3_stars",
+          "map_3_stars",
           "threat_safe"
         ]
       },
@@ -3284,8 +3284,8 @@
         "option": [
           "non_stop",
           "100_percent_clear",
-          "map_3_stars",
           "threat_safe_without_3_stars",
+          "map_3_stars",
           "threat_safe"
         ]
       },
@@ -3689,8 +3689,8 @@
         "option": [
           "non_stop",
           "100_percent_clear",
-          "map_3_stars",
           "threat_safe_without_3_stars",
+          "map_3_stars",
           "threat_safe"
         ],
         "display": "hide"
@@ -3909,8 +3909,8 @@
         "option": [
           "non_stop",
           "100_percent_clear",
-          "map_3_stars",
           "threat_safe_without_3_stars",
+          "map_3_stars",
           "threat_safe"
         ],
         "display": "hide"
@@ -4183,8 +4183,8 @@
         "option": [
           "non_stop",
           "100_percent_clear",
-          "map_3_stars",
           "threat_safe_without_3_stars",
+          "map_3_stars",
           "threat_safe"
         ]
       },
@@ -4630,8 +4630,8 @@
         "option": [
           "non_stop",
           "100_percent_clear",
-          "map_3_stars",
           "threat_safe_without_3_stars",
+          "map_3_stars",
           "threat_safe"
         ],
         "display": "hide"
@@ -5081,8 +5081,8 @@
         "option": [
           "non_stop",
           "100_percent_clear",
-          "map_3_stars",
           "threat_safe_without_3_stars",
+          "map_3_stars",
           "threat_safe"
         ],
         "display": "hide"
@@ -5532,8 +5532,8 @@
         "option": [
           "non_stop",
           "100_percent_clear",
-          "map_3_stars",
           "threat_safe_without_3_stars",
+          "map_3_stars",
           "threat_safe"
         ],
         "display": "hide"
@@ -5983,8 +5983,8 @@
         "option": [
           "non_stop",
           "100_percent_clear",
-          "map_3_stars",
           "threat_safe_without_3_stars",
+          "map_3_stars",
           "threat_safe"
         ],
         "display": "hide"
@@ -6424,8 +6424,8 @@
         "option": [
           "non_stop",
           "100_percent_clear",
-          "map_3_stars",
           "threat_safe_without_3_stars",
+          "map_3_stars",
           "threat_safe"
         ],
         "display": "hide"
@@ -6825,8 +6825,8 @@
         "option": [
           "non_stop",
           "100_percent_clear",
-          "map_3_stars",
           "threat_safe_without_3_stars",
+          "map_3_stars",
           "threat_safe"
         ],
         "display": "hide"
@@ -7046,8 +7046,8 @@
         "option": [
           "non_stop",
           "100_percent_clear",
-          "map_3_stars",
           "threat_safe_without_3_stars",
+          "map_3_stars",
           "threat_safe"
         ],
         "display": "hide"
@@ -9892,8 +9892,9 @@
         ]
       },
       "GGLuapath": {
-        "type": "input",
-        "value": null
+        "type": "textarea",
+        "value": null,
+        "mode": "yaml"
       },
       "GGLuapathRecord": {
         "type": "checkbox",

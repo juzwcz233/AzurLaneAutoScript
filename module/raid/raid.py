@@ -146,7 +146,10 @@ class Raid(MapOperation, RaidCombat, CampaignEvent):
         gg_enable = deep_get(d=self.config.data, keys='GameManager.GGHandler.Enabled')
         gg_auto = deep_get(d=self.config.data, keys='GameManager.GGHandler.GGFactorEnable')
         if (gg_enable == True and gg_auto == True) or gg_enable == True:
-            GGHandler(config=self.config, device=self.device).power_limit('Raid')
+            if GGHandler(config=self.config, device=self.device).power_limit('Raid') == True:
+                self.config.task_delay(minute=0.5)
+                self.config.task_call('Restart')
+                self.config.task_stop()
 
         skip_first_screenshot = True
         # No need, already waited in `raid_execute_once()`

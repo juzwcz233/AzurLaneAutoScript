@@ -850,8 +850,8 @@
       "help": "StopCondition.MapAchievement.help",
       "non_stop": "non_stop",
       "100_percent_clear": "100_percent_clear",
-      "map_3_stars": "map_3_stars",
       "threat_safe_without_3_stars": "threat_safe_without_3_stars",
+      "map_3_stars": "map_3_stars",
       "threat_safe": "threat_safe"
     },
     "StageIncrease": {
