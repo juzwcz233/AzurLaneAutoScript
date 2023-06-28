@@ -359,7 +359,7 @@ Tool:
 Dashboard:
   page: 'dashboard'
   tasks:
-    Dashboard:
+    Resource:
       - Oil
       - Coin
       - Gem
