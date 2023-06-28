@@ -9953,7 +9953,7 @@
       }
     }
   },
-  "Dashboard": {
+  "Resource": {
     "Oil": {
       "Value": {
         "type": "input",

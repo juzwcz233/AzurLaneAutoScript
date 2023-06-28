@@ -464,7 +464,7 @@ GameManager:
 
 # ==================== Dashboard ====================
 
-Dashboard:
+Resource:
   Oil:
     Color: ^000000
   Coin:
