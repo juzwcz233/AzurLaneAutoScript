@@ -351,6 +351,7 @@ class GeneratedConfig:
     Exercise_OpponentRefreshRecord = datetime.datetime(2023, 1, 1, 0, 0)
 
     # Group `DashboardUpdate`
+    DashboardUpdate_Raid = False
     DashboardUpdate_Update = 'all'  # all, main
 
     # Group `OpsiAshAssist`

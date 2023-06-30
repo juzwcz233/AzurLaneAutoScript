@@ -591,6 +591,7 @@ Exercise:
   OpponentRefreshRecord: 2023-01-01 00:00:00
 
 DashboardUpdate:
+  Raid: false
   Update: 
     value: all
     option: [ all, main ]
@@ -683,7 +684,9 @@ Benchmark:
     value: screenshot_click
     option: [ screenshot_click, screenshot, click ]
 AzurLaneUncensored:
-  Repository: https://gitee.com/LmeSzinc/AzurLaneUncensored
+  Repository:
+    value: https://gitee.com/LmeSzinc/AzurLaneUncensored
+    display: disabled
 GameManager:
   AutoRestart: true
 GGHandler:
