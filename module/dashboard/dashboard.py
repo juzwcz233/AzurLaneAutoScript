@@ -48,6 +48,7 @@ OCR_PT = PtOcr(OCR_EVENT_PT)
 class DashboardUpdate(ShopUI, GachaUI):
     def dashboard_run(self):
         option = deep_get(self.config.data, 'DashboardUpdate.DashboardUpdate.Update')
+        raid = deep_get(self.config.data, 'DashboardUpdate.DashboardUpdate.Raid')
         if option=="main":
             self.get_main()
             self.get_cube()
@@ -55,8 +56,9 @@ class DashboardUpdate(ShopUI, GachaUI):
             self.get_main()
             self.get_cube()
             self.goto_shop()
-            self.get_pt()
-            self.ui_goto_main()
+            if raid == False:
+                self.get_pt()
+                self.ui_goto_main()
         logger.info('Update Dashboard Data Finished')
 
     def get_main(self, skip_first_screenshot=True):

@@ -2105,6 +2105,10 @@
       "name": "DashboardUpdate._info.name",
       "help": "DashboardUpdate._info.help"
     },
+    "Raid": {
+      "name": "DashboardUpdate.Raid.name",
+      "help": "DashboardUpdate.Raid.help"
+    },
     "Update": {
       "name": "DashboardUpdate.Update.name",
       "help": "DashboardUpdate.Update.help",
