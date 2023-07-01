@@ -8823,10 +8823,6 @@
       }
     },
     "DashboardUpdate": {
-      "Raid": {
-        "type": "checkbox",
-        "value": false
-      },
       "Update": {
         "type": "select",
         "value": "all",

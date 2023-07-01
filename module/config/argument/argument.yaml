@@ -591,7 +591,6 @@ Exercise:
   OpponentRefreshRecord: 2023-01-01 00:00:00
 
 DashboardUpdate:
-  Raid: false
   Update: 
     value: all
     option: [ all, main ]
