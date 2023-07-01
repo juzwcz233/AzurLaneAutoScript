@@ -8823,6 +8823,14 @@
       }
     },
     "DashboardUpdate": {
+      "Event": {
+        "type": "select",
+        "value": "event",
+        "option": [
+          "event",
+          "raid"
+        ]
+      },
       "Update": {
         "type": "select",
         "value": "all",

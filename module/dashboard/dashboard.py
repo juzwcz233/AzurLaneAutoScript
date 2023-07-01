@@ -1,15 +1,17 @@
 from module.log_res import LogRes
 from module.logger import logger
 from module.ocr.ocr import Ocr, Digit
+from module.base.timer import Timer
 from module.base.utils import *
 from module.gacha.ui import GachaUI
 from module.shop.ui import ShopUI
 from module.config.utils import deep_get
-from module.ui.page import page_campaign_menu
-from module.ui.assets import CAMPAIGN_MENU_NO_EVENT, EVENT_CHECK, RAID_CHECK
+from module.ui.page import page_campaign_menu, page_raid
+from module.ui.assets import CAMPAIGN_MENU_NO_EVENT
 from module.campaign.assets import OCR_EVENT_PT, OCR_COIN, OCR_OIL, OCR_COIN_LIMIT, OCR_OIL_LIMIT
 from module.shop.assets import SHOP_GEMS, SHOP_MEDAL, SHOP_MERIT, SHOP_GUILD_COINS, SHOP_CORE
 from module.gacha.assets import BUILD_CUBE_COUNT
+from module.raid.raid import pt_ocr
 
 OCR_OIL = Digit(OCR_OIL, name='OCR_OIL', letter=(247, 247, 247), threshold=128)
 OCR_COIN = Digit(OCR_COIN, name='OCR_COIN', letter=(239, 239, 239), threshold=128)
@@ -125,19 +127,53 @@ class DashboardUpdate(ShopUI, GachaUI):
         self.device.screenshot()
         if self.appear(button=CAMPAIGN_MENU_NO_EVENT, offset=(50, 50)):
             logger.warning('Event is already closed')
-            self._get_pt()
+            pt = 0
+            logger.attr('Event_PT', pt)
+            LogRes(self.config).Pt = pt
         else:
+            event = deep_get(self.config.data, 'DashboardUpdate.DashboardUpdate.Event')
+            if event == 'event':
+                self.ui_goto_event()
+                self._get_pt()
+            elif event == 'raid':
+                self.ui_ensure(page_raid)
+                self.get_event_pt()
+
+    def get_event_pt(self):
+        """
+        Returns:
+            int: Raid PT, 0 if raid event is not supported
+
+        Pages:
+            in: page_raid
+        """
+        from module.log_res import LogRes
+        skip_first_screenshot = True
+        timeout = Timer(1.5, count=5).start()
+        event = deep_get(self.config.data, 'Raid.Campaign.Event')
+        ocr = pt_ocr(event)
+        if ocr is not None:
+            # 70000 seems to be a default value, wait
             while 1:
-                if not self.appear(button=EVENT_CHECK, offset=(50, 50)) or not self.appear(button=RAID_CHECK, offset=(50, 50)):
-                    self.device.click(CAMPAIGN_MENU_NO_EVENT)
+                if skip_first_screenshot:
+                    skip_first_screenshot = False
+                else:
+                    self.device.screenshot()
+
+                pt = ocr.ocr(self.device.image)
+                if timeout.reached():
+                    logger.warning('Wait PT timeout, assume it is')
+                    LogRes(self.config).Pt = pt
+                    return pt
+                if pt in [70000, 70001]:
                     continue
-                if self.appear(button=RAID_CHECK, offset=(50, 50)):
-                    logger.warning('Raid data is not supported for update')
-                    break
-                if self.appear(button=EVENT_CHECK, offset=(50, 50)):
-                    self._get_pt()
-                    break
-    
+                else:
+                    LogRes(self.config).Pt = pt
+                    return pt
+        else:
+            logger.info(f'Raid {self.config.Campaign_Event} does not support PT ocr, skip')
+            return 0
+
     def goto_shop(self):
         self.ui_goto_shop()
         current = self._shop_bottom_navbar.get_active(main=self)
