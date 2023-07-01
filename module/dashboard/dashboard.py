@@ -6,7 +6,7 @@ from module.gacha.ui import GachaUI
 from module.shop.ui import ShopUI
 from module.config.utils import deep_get
 from module.ui.page import page_campaign_menu
-from module.ui.assets import CAMPAIGN_MENU_NO_EVENT
+from module.ui.assets import CAMPAIGN_MENU_NO_EVENT, EVENT_CHECK, RAID_CHECK
 from module.campaign.assets import OCR_EVENT_PT, OCR_COIN, OCR_OIL, OCR_COIN_LIMIT, OCR_OIL_LIMIT
 from module.shop.assets import SHOP_GEMS, SHOP_MEDAL, SHOP_MERIT, SHOP_GUILD_COINS, SHOP_CORE
 from module.gacha.assets import BUILD_CUBE_COUNT
@@ -48,7 +48,6 @@ OCR_PT = PtOcr(OCR_EVENT_PT)
 class DashboardUpdate(ShopUI, GachaUI):
     def dashboard_run(self):
         option = deep_get(self.config.data, 'DashboardUpdate.DashboardUpdate.Update')
-        raid = deep_get(self.config.data, 'DashboardUpdate.DashboardUpdate.Raid')
         if option=="main":
             self.get_main()
             self.get_cube()
@@ -56,9 +55,8 @@ class DashboardUpdate(ShopUI, GachaUI):
             self.get_main()
             self.get_cube()
             self.goto_shop()
-            if raid == False:
-                self.get_pt()
-                self.ui_goto_main()
+            self.get_pt()
+            self.ui_goto_main()
         logger.info('Update Dashboard Data Finished')
 
     def get_main(self, skip_first_screenshot=True):
@@ -104,7 +102,7 @@ class DashboardUpdate(ShopUI, GachaUI):
             cube = OCR_BUILD_CUBE_COUNT.ocr(self.device.image)
             if cube > 0:
                 break
-        logger.attr('[Cube]',cube)
+        logger.attr('Cube',cube)
         LogRes(self.config).Cube = cube
         self.config.update()
         self.ui_goto_main()
@@ -129,8 +127,16 @@ class DashboardUpdate(ShopUI, GachaUI):
             logger.warning('Event is already closed')
             self._get_pt()
         else:
-            self.ui_goto_event()
-            self._get_pt()
+            while 1:
+                if not self.appear(button=EVENT_CHECK, offset=(50, 50)) or not self.appear(button=RAID_CHECK, offset=(50, 50)):
+                    self.device.click(CAMPAIGN_MENU_NO_EVENT)
+                    continue
+                if self.appear(button=RAID_CHECK, offset=(50, 50)):
+                    logger.warning('Raid data is not supported for update')
+                    break
+                if self.appear(button=EVENT_CHECK, offset=(50, 50)):
+                    self._get_pt()
+                    break
     
     def goto_shop(self):
         self.ui_goto_shop()
@@ -171,7 +177,7 @@ class DashboardUpdate(ShopUI, GachaUI):
             merit = OCR_SHOP_MERIT.ocr(self.device.image)
             if merit > 0:
                 break
-        logger.attr('[Merit]',merit)
+        logger.attr('Merit',merit)
         LogRes(self.config).Merit = merit
         self.config.update()
 
@@ -184,7 +190,7 @@ class DashboardUpdate(ShopUI, GachaUI):
             core = OCR_SHOP_CORE.ocr(self.device.image)
             if core > 0:
                 break
-        logger.attr('[Core]',core)
+        logger.attr('Core',core)
         LogRes(self.config).Core = core
         self.config.update()
 
@@ -197,7 +203,7 @@ class DashboardUpdate(ShopUI, GachaUI):
             guildcoin = OCR_SHOP_GUILD_COINS.ocr(self.device.image)
             if guildcoin > 0:
                 break
-        logger.attr('[GuildCoin]',guildcoin)
+        logger.attr('GuildCoin',guildcoin)
         LogRes(self.config).GuildCoin = guildcoin
         self.config.update()
     
@@ -210,7 +216,7 @@ class DashboardUpdate(ShopUI, GachaUI):
             medal = OCR_SHOP_MEDAL.ocr(self.device.image)
             if medal > 0:
                 break
-        logger.attr('[Medal]',medal)
+        logger.attr('Medal',medal)
         LogRes(self.config).Medal = medal
         self.config.update()
 

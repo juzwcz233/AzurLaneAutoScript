@@ -632,9 +632,8 @@ class AlasGUI(Frame):
                     for _key in time:
                         if time[_key]:
                             time_name = _key.replace('s','SecondsAgo').replace('Y','YearsAgo').replace('h','HoursAgo').replace('M','MonthsAgo').replace('D','DaysAgo').replace('m','MinutesAgo')
-                            time = time[_key]
                             break
-                delta = str(time) + t(f'Gui.Overview.{time_name}')
+                delta = str(time[_key]) + t(f'Gui.Overview.{time_name}')
             if group_name not in self._log.last_display_time.keys():
                 self._log.last_display_time[group_name] = ''
             if self._log.last_display_time[group_name] == delta and not self._log.first_display:

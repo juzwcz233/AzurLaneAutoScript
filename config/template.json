@@ -1722,7 +1722,6 @@
       "ServerUpdate": "00:00"
     },
     "DashboardUpdate": {
-      "Raid": false,
       "Update": "all"
     },
     "Storage": {
