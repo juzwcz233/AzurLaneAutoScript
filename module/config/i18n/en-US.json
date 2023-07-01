@@ -2105,6 +2105,12 @@
       "name": "DashboardUpdate._info.name",
       "help": "DashboardUpdate._info.help"
     },
+    "Event": {
+      "name": "DashboardUpdate.Event.name",
+      "help": "DashboardUpdate.Event.help",
+      "event": "event",
+      "raid": "raid"
+    },
     "Update": {
       "name": "DashboardUpdate.Update.name",
       "help": "DashboardUpdate.Update.help",
