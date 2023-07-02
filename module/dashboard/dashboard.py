@@ -131,7 +131,12 @@ class DashboardUpdate(ShopUI, GachaUI):
             logger.attr('Event_PT', pt)
             LogRes(self.config).Pt = pt
         else:
-            self.device.click(button=CAMPAIGN_MENU_NO_EVENT)
+            while 1:
+                self.device.click(button=CAMPAIGN_MENU_NO_EVENT)
+                self.device.sleep(0.5)
+                self.device.screenshot()
+                if self.appear(button=EVENT_CHECK, offset=(50, 50)) or self.appear(button=RAID_CHECK, offset=(50, 50)):
+                    break
             skip_first_screenshot = False
             while 1:
                 if skip_first_screenshot:
