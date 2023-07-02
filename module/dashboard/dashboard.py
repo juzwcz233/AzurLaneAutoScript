@@ -6,8 +6,8 @@ from module.base.utils import *
 from module.gacha.ui import GachaUI
 from module.shop.ui import ShopUI
 from module.config.utils import deep_get
-from module.ui.page import page_campaign_menu, page_raid
-from module.ui.assets import CAMPAIGN_MENU_NO_EVENT
+from module.ui.page import page_campaign_menu
+from module.ui.assets import CAMPAIGN_MENU_NO_EVENT, EVENT_CHECK, RAID_CHECK
 from module.campaign.assets import OCR_EVENT_PT, OCR_COIN, OCR_OIL, OCR_COIN_LIMIT, OCR_OIL_LIMIT
 from module.shop.assets import SHOP_GEMS, SHOP_MEDAL, SHOP_MERIT, SHOP_GUILD_COINS, SHOP_CORE
 from module.gacha.assets import BUILD_CUBE_COUNT
@@ -131,13 +131,25 @@ class DashboardUpdate(ShopUI, GachaUI):
             logger.attr('Event_PT', pt)
             LogRes(self.config).Pt = pt
         else:
-            event = deep_get(self.config.data, 'DashboardUpdate.DashboardUpdate.Event')
-            if event == 'event':
-                self.ui_goto_event()
-                self._get_pt()
-            elif event == 'raid':
-                self.ui_ensure(page_raid)
-                self.get_event_pt()
+            while 1:
+                self.device.click(button=CAMPAIGN_MENU_NO_EVENT)
+                self.device.sleep(0.5)
+                self.device.screenshot()
+                if self.appear(button=EVENT_CHECK, offset=(50, 50)) or self.appear(button=RAID_CHECK, offset=(50, 50)):
+                    break
+            skip_first_screenshot = False
+            while 1:
+                if skip_first_screenshot:
+                    skip_first_screenshot = False
+                else:
+                    self.device.sleep(0.5)
+                    self.device.screenshot()
+                if self.appear(button=EVENT_CHECK, offset=(50, 50)):
+                    self._get_pt()
+                    break
+                if self.appear(button=RAID_CHECK, offset=(50, 50)):
+                    self.get_event_pt()
+                    break
 
     def get_event_pt(self):
         """

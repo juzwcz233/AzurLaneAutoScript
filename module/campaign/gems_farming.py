@@ -1,3 +1,4 @@
+import inflection
 from module.campaign.campaign_base import CampaignBase
 from module.campaign.run import CampaignRun
 from module.combat.assets import BATTLE_PREPARATION
@@ -12,9 +13,8 @@ from module.map.assets import (FLEET_PREPARATION, MAP_PREPARATION, FLEET_ENTER_F
 from module.retire.assets import DOCK_CHECK, TEMPLATE_BOGUE, TEMPLATE_HERMES, TEMPLATE_LANGLEY, TEMPLATE_RANGER
 from module.retire.dock import Dock
 from module.retire.scanner import ShipScanner
-from module.ui.page import page_fleet, page_event
-from module.ui.ui import BACK_ARROW
-import inflection
+from module.ui.page import page_fleet
+from module.ui.assets import BACK_ARROW
 
 SIM_VALUE = 0.95
 
