@@ -130,7 +130,7 @@ class GGScreenshot(Base):
                 logger.hr('Enter GG')
                 logger.info('Entered GG')
                 break
-            for i in len(method):
+            for i in range(len(method)):
                 if self.appear(button=method[int(i)], offset=(50, 50)):
                     self.device.click(BUTTON_GG_ENTER_POS)
                     break
