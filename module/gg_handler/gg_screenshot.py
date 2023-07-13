@@ -382,9 +382,9 @@ class GGScreenshot(Base):
         else:
             logger.hr('Skip push lua file')
 
-        self._gg_start()
         self._mode = mode
         self._factor = factor
+        self._gg_start()
         self._enter_gg()
         self._gg_enter_script()
         self._gg_mode()
