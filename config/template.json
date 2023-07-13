@@ -1722,7 +1722,6 @@
       "ServerUpdate": "00:00"
     },
     "DashboardUpdate": {
-      "Event": "event",
       "Update": "all"
     },
     "Storage": {
