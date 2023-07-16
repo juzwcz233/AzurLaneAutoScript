@@ -377,7 +377,7 @@ class GGScreenshot(Base):
     def gg_set(self, mode=True, factor=200):
         if self.oldpath == False:
             logger.hr('Push lua file')
-            self.device.adb_push('bin/lua/Multiplier.lua', '/sdcard/Alarms/Multiplier.lua')
+            self.device.adb_push('bin/lua/Multiplier.lua', f"{self.luapath}")
             logger.info('Push success')
         else:
             logger.hr('Skip push lua file')

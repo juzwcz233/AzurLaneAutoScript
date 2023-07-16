@@ -13,8 +13,13 @@ class GGU2(Base):
         self.config = config
         self.device = device
         self.d = u2.connect(self.device.serial)
-        self.gg_package_name = deep_get(self.config.data, 'GameManager.GGHandler.GGPackageName')
         self.d.wait_timeout = 10.0
+        self.gg_panel_confirm_time = deep_get(self.config.data, 'GameManager.GGHandler.GGPanelConfirmTime')
+        self.gg_package_name = deep_get(self.config.data, 'GameManager.GGHandler.GGPackageName')
+        self.gg_action = deep_get(self.config.data, 'GameManager.GGHandler.GGAction')
+        self.path = deep_get(self.config.data, 'GameManager.GGHandler.GGLuapath')
+        self.oldpath = deep_get(self.config.data, 'GameManager.GGHandler.GGLuapathRecord')
+        self.luapath = "/sdcard/Alarms/Multiplier.lua"
 
     def exit(self):
         self.d.app_stop(f'{self.gg_package_name}')
@@ -124,17 +129,26 @@ class GGU2(Base):
                 pass
 
     def _run(self):
-        _run = False
         _set = False
         _confirmed = False
-        logger.hr('Push lua file')
-        self.device.adb_push('bin/lua/Multiplier.lua', '/sdcard/Alarms/Multiplier.lua')
-        logger.info('Push success')
+        if self.oldpath == False:
+            logger.hr('Push lua file')
+            self.device.adb_push('bin/lua/Multiplier.lua', f"{self.luapath}")
+            logger.info('Push success')
+        else:
+            logger.hr('Skip push lua file')
         while 1:
             self.device.sleep(1)
-            if self.d(resourceId=f"{self.gg_package_name}:id/file").exists:
-                self.d(resourceId=f"{self.gg_package_name}:id/file").send_keys("/sdcard/Alarms/Multiplier.lua")
-                logger.info('Lua path set')
+            if self.path != "" and self.gg_action == 'manual' and self.gg_package_name != 'com.':
+                self.luapath = self.path
+            if self.oldpath == False:
+                logger.hr('Lua path set')
+                if self.d(resourceId=f"{self.gg_package_name}:id/file").exists:
+                    self.d(resourceId=f"{self.gg_package_name}:id/file").send_keys(f"{self.luapath}")
+                    logger.info('Lua path set success')
+                    self.config.cross_set('GameManager.GGHandler.GGLuapathRecord', value=True)
+            else:
+                logger.hr('Skip lua path set')
             if self.d.xpath('//*[@text="执行"]').exists:
                 self.d.xpath('//*[@text="执行"]').click()
                 logger.info('Click Run')
