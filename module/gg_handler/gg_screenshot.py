@@ -331,10 +331,11 @@ class GGScreenshot(Base):
                     continue
                 if self.appear_then_click(button=BUTTON_GG_START, offset=(50, 50)):
                     self.device.sleep(1)
-                    if self.d.xpath('//*[@text="开始"]').exists:
-                        self.d.xpath('//*[@text="开始"]').click()
-                        logger.info("GG start")
+                    self.device.screenshot()
+                    if self.appear(button=BUTTON_GG_START, offset=(50, 50)):
+                        self.device.click(BUTTON_GG_START)
                         self.device.sleep(1)
+                        self.device.screenshot()
                         if not self.appear(button=BUTTON_GG_START, offset=(50, 50)):
                             break
                         else:
