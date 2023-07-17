@@ -329,14 +329,18 @@ class GGScreenshot(Base):
                     logger.info("Click ignore")
                     self.device.sleep(1)
                     continue
-                if self.d.xpath('//*[@text="开始"]').exists:
-                    self.d.xpath('//*[@text="开始"]').click()
-                    logger.info("GG start")
+                if self.appear_then_click(button=BUTTON_GG_START, offset=(50, 50)):
                     self.device.sleep(1)
-                    if not self.appear(button=BUTTON_GG_START, offset=(50, 50)):
-                        break
+                    if self.d.xpath('//*[@text="开始"]').exists:
+                        self.d.xpath('//*[@text="开始"]').click()
+                        logger.info("GG start")
+                        self.device.sleep(1)
+                        if not self.appear(button=BUTTON_GG_START, offset=(50, 50)):
+                            break
+                        else:
+                            self.device.click(BUTTON_GG_START)
+                            break
                     else:
-                        self.device.click(BUTTON_GG_START)
                         break
             self.device.sleep(self.gg_panel_confirm_time)
 
