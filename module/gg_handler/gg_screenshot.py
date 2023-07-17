@@ -324,9 +324,10 @@ class GGScreenshot(Base):
                 else:
                     self.device.sleep(0.5)
                     self.device.screenshot()
-                if self.d.xpath('//*[@text="忽略"]').exists:
-                    self.d.xpath('//*[@text="忽略"]').click()
-                    logger.info("Click ignore")
+                if self.appear_then_click(button=BUTTON_GG_SKIP0, offset=(50, 50)):
+                    self.device.sleep(1)
+                    continue
+                if self.appear_then_click(button=BUTTON_GG_SKIP1, offset=(50, 50)):
                     self.device.sleep(1)
                     continue
                 if self.appear_then_click(button=BUTTON_GG_START, offset=(50, 50)):
