@@ -9910,7 +9910,7 @@
         "type": "input",
         "value": "com."
       },
-      "GGPanelConfirmTime": {
+      "GGWaitTime": {
         "type": "input",
         "value": 5
       },

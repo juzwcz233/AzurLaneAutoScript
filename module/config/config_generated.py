@@ -442,7 +442,7 @@ class GeneratedConfig:
     GGHandler_GGLuapath = None
     GGHandler_GGLuapathRecord = False
     GGHandler_GGPackageName = 'com.'
-    GGHandler_GGPanelConfirmTime = 5
+    GGHandler_GGWaitTime = 5
     GGHandler_DisabledTask = 'disable_all_dangerous_task'  # disable_guild_and_dangerous, disable_all_dangerous_task, disable_meta_and_exercise, disable_exercise, enable_all
     GGHandler_RestartEverytime = True
     GGHandler_RestartATX = False

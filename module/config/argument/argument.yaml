@@ -707,7 +707,7 @@ GGHandler:
     value:
   GGLuapathRecord: false
   GGPackageName: com.
-  GGPanelConfirmTime: 5
+  GGWaitTime: 5
   DisabledTask:
     value: disable_all_dangerous_task
     option: [ disable_guild_and_dangerous, disable_all_dangerous_task, disable_meta_and_exercise, disable_exercise, enable_all ]

@@ -58,7 +58,7 @@ class GGHandler:
         """
         logger.hr('Enabling GG', level=2)
         if mode:
-            GGScreenshot(config=self.config, device=self.device).gg_set(mode=True, factor=self.factor)
+            GGScreenshot(config=self.config, device=self.device).run(mode=True, factor=self.factor)
             # if self.method == 'screenshot' or self.gg_package_name == 'com.':
             #     GGScreenshot(config=self.config, device=self.device).gg_set(mode=True, factor=self.factor)
             # elif self.method == 'u2':

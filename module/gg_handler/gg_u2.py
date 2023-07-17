@@ -14,7 +14,7 @@ class GGU2(Base):
         self.device = device
         self.d = u2.connect(self.device.serial)
         self.d.wait_timeout = 10.0
-        self.gg_panel_confirm_time = deep_get(self.config.data, 'GameManager.GGHandler.GGPanelConfirmTime')
+        self.gg_panel_confirm_time = deep_get(self.config.data, 'GameManager.GGHandler.GGWaitTime')
         self.gg_package_name = deep_get(self.config.data, 'GameManager.GGHandler.GGPackageName')
         self.gg_action = deep_get(self.config.data, 'GameManager.GGHandler.GGAction')
         self.path = deep_get(self.config.data, 'GameManager.GGHandler.GGLuapath')
