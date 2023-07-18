@@ -49,7 +49,7 @@ class CampaignEvent(CampaignStatus):
         command = self.config.Scheduler_Command
         if command in tasks:
             pt = self.get_event_pt()
-        if limit <= 0 or command not in tasks:
+        else:
             return False
         if command == 'GemsFarming' and self.stage_is_main(self.config.Campaign_Name):
             return False
@@ -62,6 +62,8 @@ class CampaignEvent(CampaignStatus):
                 return True
             else:
                 return False
+        else:
+            return False
 
     def event_time_limit_triggered(self):
         """
