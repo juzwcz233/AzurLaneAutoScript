@@ -45,9 +45,9 @@ from module.config.utils import (
     filepath_args,
     filepath_config,
     read_file,
+    filepath_argument
 )
 from module.config.utils import time_delta
-from module.log_res import LogRes
 from module.logger import logger
 from module.ocr.rpc import start_ocr_server_process, stop_ocr_server_process
 from module.submodule.submodule import load_config
@@ -376,7 +376,7 @@ class AlasGUI(Frame):
 
         log = RichLog("log")
         self._log = log
-        self._log.dashboard_arg_group = LogRes(self.alas_config).groups
+        self._log.dashboard_arg_group = deep_get(read_file(filepath_argument("task")), 'Dashboard.tasks.Resource')
 
         with use_scope("logs"):
             if 'Maa' in self.ALAS_ARGS:
@@ -597,7 +597,7 @@ class AlasGUI(Frame):
         _arg_group = self._log.dashboard_arg_group if groups_to_display is None else groups_to_display
         time_now = datetime.now().replace(microsecond=0)
         for group_name in _arg_group:
-            group = LogRes(self.alas_config).group(group_name)
+            group = self.alas_config.cross_get(f'Resource.{group_name}')
             if group is None:
                 continue
 

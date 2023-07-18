@@ -1,8 +1,6 @@
-from cached_property import cached_property
 from module.logger import logger
 from module.base.base import ModuleBase as Base
 from module.config.utils import deep_get
-from module.config.utils import read_file, filepath_argument
 from datetime import datetime
 
 def now():
@@ -38,10 +36,3 @@ class LogRes(Base):
         else:
             logger.info('No such resource on dashboard')
             super().__setattr__(key, value)
-
-    def group(self, name):
-        return deep_get(self.config.data, f'Resource.{name}')
-
-    @cached_property
-    def groups(self) -> dict:
-        return deep_get(read_file(filepath_argument("task")), 'Dashboard.tasks.Resource')
