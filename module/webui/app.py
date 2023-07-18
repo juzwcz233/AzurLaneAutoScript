@@ -597,7 +597,7 @@ class AlasGUI(Frame):
         _arg_group = self._log.dashboard_arg_group if groups_to_display is None else groups_to_display
         time_now = datetime.now().replace(microsecond=0)
         for group_name in _arg_group:
-            group = deep_get(d=self.alas_config.data, keys=f'Resource.{group_name}')
+            group = LogRes(self.alas_config).group(group_name)
             if group is None:
                 continue
 

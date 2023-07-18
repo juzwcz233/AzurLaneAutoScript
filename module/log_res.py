@@ -39,6 +39,9 @@ class LogRes(Base):
             logger.info('No such resource on dashboard')
             super().__setattr__(key, value)
 
+    def group(self, name):
+        return deep_get(self.config.data, f'Resource.{name}')
+
     @cached_property
     def groups(self) -> dict:
         return deep_get(read_file(filepath_argument("task")), 'Dashboard.tasks.Resource')
