@@ -1,6 +1,5 @@
 from module.base.timer import timeout, Timer
-from module.config.utils import deep_get, deep_set
-from module.config.config import AzurLaneConfig
+from module.base.base import ModuleBase as Base
 from module.gg_handler.gg_data import GGData
 from module.gg_handler.gg_screenshot import GGScreenshot
 # from module.gg_handler.gg_u2 import GGU2
@@ -12,7 +11,7 @@ from module.gg_handler.gg_task import *
 
 OCR_CHECK = Digit(OCR_PRE_BATTLE_CHECK, name='OCR_PRE_BATTLE_CHECK', letter=(255, 255, 255), threshold=255)
 
-class GGHandler:
+class GGHandler(Base):
     """
     A module to handle needs of cheaters
     Args:
@@ -20,12 +19,12 @@ class GGHandler:
         device: Device
     """
 
-    def __init__(self, config=AzurLaneConfig, device=None):
+    def __init__(self, config, device):
         self.config = config
         self.device = device
-        self.factor = deep_get(self.config.data, 'GameManager.GGHandler.GGMultiplyingFactor', default=200)
-        self.method = deep_get(self.config.data, 'GameManager.GGHandler.GGMethod', default='screenshot')
-        # self.gg_package_name = deep_get(self.config.data, 'GameManager.GGHandler.GGPackageName')
+        self.factor = self.config.cross_get('GameManager.GGHandler.GGMultiplyingFactor', default=200)
+        self.method = self.config.cross_get('GameManager.GGHandler.GGMethod', default='screenshot')
+        # self.gg_package_name = self.config.cross_get('GameManager.GGHandler.GGPackageName')
 
     def restart(self, crashed=False):
         from module.handler.login import LoginHandler
@@ -58,7 +57,7 @@ class GGHandler:
         """
         logger.hr('Enabling GG', level=2)
         if mode:
-            GGScreenshot(config=self.config, device=self.device).gg_set(mode=True, factor=self.factor)
+            GGScreenshot(config=self.config, device=self.device).run(mode=True, factor=self.factor)
             # if self.method == 'screenshot' or self.gg_package_name == 'com.':
             #     GGScreenshot(config=self.config, device=self.device).gg_set(mode=True, factor=self.factor)
             # elif self.method == 'u2':
@@ -92,8 +91,8 @@ class GGHandler:
                         'gg_auto' : bool = Whether to start GG before tasks,
                         'gg_on' : bool = Whether multiplier is on now}
         """
-        gg_enable = deep_get(self.config.data, 'GameManager.GGHandler.Enabled', default=False)
-        gg_auto = deep_get(self.config.data, 'GameManager.GGHandler.GGFactorEnable', default=False)
+        gg_enable = self.config.cross_get('GameManager.GGHandler.Enabled', default=False)
+        gg_auto = self.config.cross_get('GameManager.GGHandler.GGFactorEnable', default=False)
         GGData(self.config).set_data(target='gg_enable', value=gg_enable)
         GGData(self.config).set_data(target='gg_auto', value=gg_auto)
         gg_data = GGData(self.config).get_data()
@@ -104,7 +103,7 @@ class GGHandler:
         return gg_data
 
     # def handle_u2_restart(self):
-    #     _need_restart_atx = deep_get(self.config.data, 'GameManager.GGHandler.RestartATX')
+    #     _need_restart_atx = self.config.cross_get('GameManager.GGHandler.RestartATX')
     #     if self.method == 'u2' and _need_restart_atx:
     #         try:
     #             timeout(self.device.restart_atx, 60)
@@ -158,7 +157,7 @@ class GGHandler:
         """
         gg_data = GGData(self.config).get_data()
         if gg_data['gg_enable']:
-            gg_auto = mode if deep_get(self.config.data, 'GameManager.GGHandler.GGFactorEnable', default=False) else False
+            gg_auto = mode if self.config.cross_get('GameManager.GGHandler.GGFactorEnable', default=False) else False
             logger.hr('Check GG status')
             logger.info(f'Check GG status:')
             logger.info(
@@ -176,9 +175,9 @@ class GGHandler:
         Args:
             task: str = What task it is to limit power, default limit is 16500 for front ships.
         """
-        limit = deep_get(self.config.data, f'GameManager.PowerLimit.{task}', default=16500)
+        limit = self.config.cross_get(f'GameManager.PowerLimit.{task}', default=16500)
         logger.attr('Power Limit', limit)
-        skip_first_screenshot = False
+        skip_first_screenshot = True
         timeout = Timer(1, count=15).start()
         while 1:
             if skip_first_screenshot:
@@ -186,15 +185,16 @@ class GGHandler:
             else:
                 self.device.sleep((1.5, 2))
                 self.device.screenshot()
-                if timeout.reached():
-                    logger.error('Get ScoutCE timeout')
-                    handle_notify(self.config.Error_OnePushConfig,
-                              title=f"Alas <{self.config.config_name}> 超时",
-                              content=f"<{self.config.config_name}> 识别战力超时，模拟器卡死或者网络掉线")
-                    exit(1)
-                ocr = OCR_CHECK.ocr(self.device.image)
-                if ocr > 1000:
-                    break
+
+            if timeout.reached():
+                logger.error('Get ScoutCE timeout')
+                handle_notify(self.config.Error_OnePushConfig,
+                            title=f"Alas <{self.config.config_name}> 超时",
+                            content=f"<{self.config.config_name}> 识别战力超时，模拟器卡死或者网络掉线")
+                exit(1)
+            ocr = OCR_CHECK.ocr(self.device.image)
+            if ocr > 1000:
+                break
         if ocr >= limit:
             for i in range(3):
                 logger.critical('There\'s high chance that GG is on, restart to disable it')
@@ -203,8 +203,8 @@ class GGHandler:
                               content=f"<{self.config.config_name}> 识别到使用超模战力进行不被允许的任务，紧急重启规避检查")
             GGData(self.config).set_data(target='gg_on', value=False)
             GGData(self.config).set_data(target='gg_enable', value=True)
-            deep_set(self.config.data, 'GameManager.GGHandler.Enabled', value=True)
-            deep_set(self.config.data, 'GameManager.GGHandler.GGFactorEnable', value=True)
+            self.config.cross_set('GameManager.GGHandler.Enabled', value=True)
+            self.config.cross_set('GameManager.GGHandler.GGFactorEnable', value=True)
             return True
 
     def handle_restart_before_tasks(self) -> bool:
@@ -214,7 +214,7 @@ class GGHandler:
             bool: If it needs restart first
         """
         gg_data = GGData(self.config).get_data()
-        if (deep_get(self.config.data, 'GameManager.GGHandler.RestartEverytime', default=True) and gg_data['gg_enable']):
+        if (self.config.cross_get('GameManager.GGHandler.RestartEverytime', default=True) and gg_data['gg_enable']):
             logger.info('Restart to reset GG status.')
             self.restart()
             return True
@@ -227,7 +227,7 @@ class GGHandler:
         Args:
             task : str = the next task to run
         """
-        _disabled_task = deep_get(self.config.data, 'GameManager.GGHandler.DisabledTask')
+        _disabled_task = self.config.cross_get('GameManager.GGHandler.DisabledTask')
         """
             'disable_guild_and_dangerous'
             'disable_all_dangerous_task'

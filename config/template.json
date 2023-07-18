@@ -2056,7 +2056,7 @@
       "GGLuapath": null,
       "GGLuapathRecord": false,
       "GGPackageName": "com.",
-      "GGPanelConfirmTime": 5,
+      "GGWaitTime": 5,
       "DisabledTask": "disable_all_dangerous_task",
       "RestartEverytime": true,
       "RestartATX": false

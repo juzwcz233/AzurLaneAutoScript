@@ -1,6 +1,6 @@
 import uiautomator2 as u2
+from module.base.timer import Timer
 from module.ui.assets import BACK_ARROW
-from module.config.utils import deep_get
 from module.logger import logger
 from module.gg_handler.assets import *
 from module.ui.assets import *
@@ -19,11 +19,11 @@ class GGScreenshot(Base):
         self.device = device
         self.config = config
         self.d = u2.connect(self.device.serial)
-        self.gg_panel_confirm_time = deep_get(self.config.data, 'GameManager.GGHandler.GGPanelConfirmTime')
-        self.gg_package_name = deep_get(self.config.data, 'GameManager.GGHandler.GGPackageName')
-        self.gg_action = deep_get(self.config.data, 'GameManager.GGHandler.GGAction')
-        self.path = deep_get(self.config.data, 'GameManager.GGHandler.GGLuapath')
-        self.oldpath = deep_get(self.config.data, 'GameManager.GGHandler.GGLuapathRecord')
+        self.gg_wait_time = self.config.cross_get('GameManager.GGHandler.GGWaitTime')
+        self.gg_package_name = self.config.cross_get('GameManager.GGHandler.GGPackageName')
+        self.gg_action = self.config.cross_get('GameManager.GGHandler.GGAction')
+        self.path = self.config.cross_get('GameManager.GGHandler.GGLuapath')
+        self.oldpath = self.config.cross_get('GameManager.GGHandler.GGLuapathRecord')
         self.luapath = "/sdcard/Alarms/Multiplier.lua"
 
     def skip_error(self):
@@ -32,17 +32,15 @@ class GGScreenshot(Base):
             in: Game down error
             out: restart
         """
-        skip_first_screenshot = False
         count = 0
-        logger.attr('Confirm Time', f'{self.gg_panel_confirm_time}s')
-        times = self.gg_panel_confirm_time * 2
-        for i in range(times):
-            skipped = 0
-            if skip_first_screenshot:
-                skip_first_screenshot = False
-            else:
-                self.device.sleep(0.5)
-                self.device.screenshot()
+        skipped = 0
+        logger.attr('Confirm Time', f'{self.gg_wait_time}s')
+        timeout = Timer(0.5, count=self.gg_wait_time).start()
+        while 1:
+            self.device.sleep(0.5)
+            self.device.screenshot()
+            if timeout.reached():
+                break
             if self.appear_then_click(button=BUTTON_GG_RESTART_ERROR, offset=(50, 50)):
                 logger.hr('Game died with GG panel')
                 logger.info('Close GG restart error')
@@ -50,7 +48,8 @@ class GGScreenshot(Base):
                 count += 1
                 if count >= 2:
                     break
-        skip_first_screenshot = False
+
+        skip_first_screenshot = True
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -110,7 +109,7 @@ class GGScreenshot(Base):
             in: any
             out: any GG
         """
-        skip_first_screenshot = False
+        skip_first_screenshot = True
         method = [
             REWARD_GOTO_MAIN,
             GOTO_MAIN,
@@ -134,7 +133,8 @@ class GGScreenshot(Base):
                 if self.appear(button=method[int(i)], offset=(50, 50)):
                     self.device.click(BUTTON_GG_ENTER_POS)
                     break
-        skip_first_screenshot = False
+
+        skip_first_screenshot = True
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -155,7 +155,7 @@ class GGScreenshot(Base):
             in: any GG
             out: GG ready to start script
         """
-        skip_first_screenshot = False
+        skip_first_screenshot = True
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -178,7 +178,8 @@ class GGScreenshot(Base):
             else:
                 self.device.click(BUTTON_GG_TAB_SEARCH_POS)
                 logger.info('Enter search mode')
-        skip_first_screenshot = False
+
+        skip_first_screenshot = True
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -194,7 +195,7 @@ class GGScreenshot(Base):
             in: GG Script Menu
             out: GG GG input panel
         """
-        skip_first_screenshot = False
+        skip_first_screenshot = True
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -288,7 +289,7 @@ class GGScreenshot(Base):
             out: GG Menu
         """
         logger.hr('Execute')
-        skip_first_screenshot = False
+        skip_first_screenshot = True
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -296,9 +297,16 @@ class GGScreenshot(Base):
                 self.device.sleep(0.5)
                 self.device.screenshot()
             if self.appear_then_click(button=BUTTON_GG_SCRIPT_START_PROCESS, offset=(50, 50), threshold=0.9):
-                break
+                self.device.sleep(0.5)
+                self.device.screenshot()
+                if not self.appear(button=BUTTON_GG_SCRIPT_START_PROCESS, offset=(50, 50), threshold=0.9):
+                    break
+                else:
+                    self.device.click(BUTTON_GG_SCRIPT_START_PROCESS)
+                    break
         logger.info('Waiting for end')
-        skip_first_screenshot = False
+
+        skip_first_screenshot = True
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -317,28 +325,33 @@ class GGScreenshot(Base):
         if (self.gg_action == 'auto' and self.gg_package_name != 'com.') or (self.gg_action == 'manual' and self.gg_package_name != 'com.'):
             self.d.app_start(f'{self.gg_package_name}')
             logger.hr('GG start')
-            skip_first_screenshot = False
+            skip_first_screenshot = True
             while 1:
                 if skip_first_screenshot:
                     skip_first_screenshot = False
                 else:
                     self.device.sleep(0.5)
                     self.device.screenshot()
-                if self.d.xpath('//*[@text="忽略"]').exists:
-                    self.d.xpath('//*[@text="忽略"]').click()
-                    logger.info("Click ignore")
+                if self.appear_then_click(button=BUTTON_GG_SKIP0, offset=(50, 50)):
                     self.device.sleep(1)
                     continue
-                if self.d.xpath('//*[@text="开始"]').exists:
-                    self.d.xpath('//*[@text="开始"]').click()
-                    logger.info("GG start")
+                if self.appear_then_click(button=BUTTON_GG_SKIP1, offset=(50, 50)):
                     self.device.sleep(1)
-                    if not self.appear(button=BUTTON_GG_START, offset=(50, 50)):
-                        break
+                    continue
+                if self.appear_then_click(button=BUTTON_GG_START, offset=(50, 50)):
+                    self.device.sleep(1)
+                    self.device.screenshot()
+                    if self.appear_then_click(button=BUTTON_GG_START, offset=(50, 50)):
+                        self.device.sleep(1)
+                        self.device.screenshot()
+                        if not self.appear(button=BUTTON_GG_START, offset=(50, 50)):
+                            break
+                        else:
+                            self.device.click(BUTTON_GG_START)
+                            break
                     else:
-                        self.device.click(BUTTON_GG_START)
                         break
-            self.device.sleep(self.gg_panel_confirm_time)
+            self.device.sleep(self.gg_wait_time)
 
     def _gg_lua(self):
         if self.path != "" and self.gg_action == 'manual' and self.gg_package_name != 'com.':
@@ -351,7 +364,7 @@ class GGScreenshot(Base):
         else:
             logger.hr('Skip lua path set')
         if self.gg_action == 'auto' and self.gg_package_name != 'com.':
-            self.device.sleep(self.gg_panel_confirm_time)
+            self.device.sleep(self.gg_wait_time)
             self.device.screenshot()
             if not self.appear(button=OCR_GG_LUAPATH, offset=(50, 50)):
                 logger.warning("Lua path error")
@@ -360,7 +373,7 @@ class GGScreenshot(Base):
                 for i in range(2):
                     self.device.sleep(0.5)
                     self.device.click(BUTTON_GG_BACK)
-                skip_first_screenshot = False
+                skip_first_screenshot = True
                 while 1:
                     if skip_first_screenshot:
                         skip_first_screenshot = False
@@ -374,14 +387,15 @@ class GGScreenshot(Base):
                     if self.appear_then_click(button=BUTTON_GG_LUA, offset=(50, 50)):
                         return 1
 
-    def gg_set(self, mode=True, factor=200):
+    def gg_push(self):
         if self.oldpath == False:
             logger.hr('Push lua file')
-            self.device.adb_push('bin/lua/Multiplier.lua', '/sdcard/Alarms/Multiplier.lua')
+            self.device.adb_push('bin/lua/Multiplier.lua', f"{self.luapath}")
             logger.info('Push success')
         else:
             logger.hr('Skip push lua file')
 
+    def run(self, mode=True, factor=200):
         self._mode = mode
         self._factor = factor
         self._gg_start()

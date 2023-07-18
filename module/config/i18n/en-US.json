@@ -2472,7 +2472,7 @@
       "name": "GG包名",
       "help": "GG安装后请自行前往/Android/data文件夹查看包名，应是com.一串乱码"
     },
-    "GGPanelConfirmTime": {
+    "GGWaitTime": {
       "name": "确认GG面板出现的时间",
       "help": "设备越卡，重启游戏时GG面板出现的越晚，此时需要设置更长的阈值，单位秒。默认为5秒"
     },
