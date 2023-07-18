@@ -22,19 +22,18 @@ class LogRes(Base):
     def __setattr__(self, key, value):
         if key in self.groups:
             _key_group = f'Resource.{key}'
+            _key_time = _key_group + f'.Record'
             original = deep_get(self.config.data, keys=_key_group)
             if isinstance(value, int):
                 if value != original['Value']:
                     _key = _key_group + '.Value'
                     self.config.modified[_key] = value
-                    _key_time = _key_group + f'.Record'
                     self.config.modified[_key_time] = now()
             elif isinstance(value, dict):
                 for value_name, value in value.items():
                     if value != original[value_name]:
                         _key = _key_group + f'.{value_name}'
                         self.config.modified[_key] = value
-                        _key_time = _key_group + f'.Record'
                         self.config.modified[_key_time] = now()
         else:
             logger.info('No such resource on dashboard')
