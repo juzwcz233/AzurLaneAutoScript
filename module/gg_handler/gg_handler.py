@@ -1,6 +1,6 @@
 from module.base.timer import timeout, Timer
 from module.config.utils import deep_get, deep_set
-from module.config.config import AzurLaneConfig
+from module.base.base import ModuleBase as Base
 from module.gg_handler.gg_data import GGData
 from module.gg_handler.gg_screenshot import GGScreenshot
 # from module.gg_handler.gg_u2 import GGU2
@@ -12,7 +12,7 @@ from module.gg_handler.gg_task import *
 
 OCR_CHECK = Digit(OCR_PRE_BATTLE_CHECK, name='OCR_PRE_BATTLE_CHECK', letter=(255, 255, 255), threshold=255)
 
-class GGHandler:
+class GGHandler(Base):
     """
     A module to handle needs of cheaters
     Args:
@@ -20,7 +20,7 @@ class GGHandler:
         device: Device
     """
 
-    def __init__(self, config=AzurLaneConfig, device=None):
+    def __init__(self, config, device):
         self.config = config
         self.device = device
         self.factor = deep_get(self.config.data, 'GameManager.GGHandler.GGMultiplyingFactor', default=200)

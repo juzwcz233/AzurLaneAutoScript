@@ -32,17 +32,13 @@ class GGScreenshot(Base):
             in: Game down error
             out: restart
         """
-        skip_first_screenshot = True
         count = 0
         skipped = 0
         logger.attr('Confirm Time', f'{self.gg_wait_time}s')
         timeout = Timer(0.5, count=self.gg_wait_time).start()
         while 1:
-            if skip_first_screenshot:
-                skip_first_screenshot = False
-            else:
-                self.device.sleep(0.5)
-                self.device.screenshot()
+            self.device.sleep(0.5)
+            self.device.screenshot()
             if timeout.reached():
                 break
             if self.appear_then_click(button=BUTTON_GG_RESTART_ERROR, offset=(50, 50)):
