@@ -2,6 +2,8 @@ from module.logger import logger
 from module.base.base import ModuleBase as Base
 from module.config.utils import deep_get
 from datetime import datetime
+from cached_property import cached_property
+from module.config.utils import read_file, filepath_argument
 
 def now():
     return datetime.now().replace(microsecond=0)
@@ -10,7 +12,7 @@ class LogRes(Base):
     """
     set attr--->
     Logres(AzurLaneConfig).<res_name>=resource_value:int
-    OR  ={'Value:int, 'Limit/Total':int}:dict
+    OCR  ={'Value:int, 'Limit/Total':int}:dict
     """
     YellowCoin: list
 
@@ -36,3 +38,10 @@ class LogRes(Base):
         else:
             logger.info('No such resource on dashboard')
             super().__setattr__(key, value)
+
+    def group(self, name):
+        return deep_get(self.config.data, f'Resource.{name}')
+
+    @cached_property
+    def groups(self) -> dict:
+        return deep_get(read_file(filepath_argument("task")), 'Dashboard.tasks.Resource')
