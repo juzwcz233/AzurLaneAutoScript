@@ -32,7 +32,7 @@ class GGScreenshot(Base):
             in: Game down error
             out: restart
         """
-        skip_first_screenshot = False
+        skip_first_screenshot = True
         count = 0
         skipped = 0
         logger.attr('Confirm Time', f'{self.gg_wait_time}s')
@@ -52,7 +52,8 @@ class GGScreenshot(Base):
                 count += 1
                 if count >= 2:
                     break
-        skip_first_screenshot = False
+
+        skip_first_screenshot = True
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -112,7 +113,7 @@ class GGScreenshot(Base):
             in: any
             out: any GG
         """
-        skip_first_screenshot = False
+        skip_first_screenshot = True
         method = [
             REWARD_GOTO_MAIN,
             GOTO_MAIN,
@@ -136,7 +137,8 @@ class GGScreenshot(Base):
                 if self.appear(button=method[int(i)], offset=(50, 50)):
                     self.device.click(BUTTON_GG_ENTER_POS)
                     break
-        skip_first_screenshot = False
+
+        skip_first_screenshot = True
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -157,7 +159,7 @@ class GGScreenshot(Base):
             in: any GG
             out: GG ready to start script
         """
-        skip_first_screenshot = False
+        skip_first_screenshot = True
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -180,7 +182,8 @@ class GGScreenshot(Base):
             else:
                 self.device.click(BUTTON_GG_TAB_SEARCH_POS)
                 logger.info('Enter search mode')
-        skip_first_screenshot = False
+
+        skip_first_screenshot = True
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -196,7 +199,7 @@ class GGScreenshot(Base):
             in: GG Script Menu
             out: GG GG input panel
         """
-        skip_first_screenshot = False
+        skip_first_screenshot = True
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -290,7 +293,7 @@ class GGScreenshot(Base):
             out: GG Menu
         """
         logger.hr('Execute')
-        skip_first_screenshot = False
+        skip_first_screenshot = True
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -306,7 +309,8 @@ class GGScreenshot(Base):
                     self.device.click(BUTTON_GG_SCRIPT_START_PROCESS)
                     break
         logger.info('Waiting for end')
-        skip_first_screenshot = False
+
+        skip_first_screenshot = True
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -325,7 +329,7 @@ class GGScreenshot(Base):
         if (self.gg_action == 'auto' and self.gg_package_name != 'com.') or (self.gg_action == 'manual' and self.gg_package_name != 'com.'):
             self.d.app_start(f'{self.gg_package_name}')
             logger.hr('GG start')
-            skip_first_screenshot = False
+            skip_first_screenshot = True
             while 1:
                 if skip_first_screenshot:
                     skip_first_screenshot = False
@@ -373,7 +377,7 @@ class GGScreenshot(Base):
                 for i in range(2):
                     self.device.sleep(0.5)
                     self.device.click(BUTTON_GG_BACK)
-                skip_first_screenshot = False
+                skip_first_screenshot = True
                 while 1:
                     if skip_first_screenshot:
                         skip_first_screenshot = False

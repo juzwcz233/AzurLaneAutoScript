@@ -1,6 +1,6 @@
 from module.base.timer import timeout, Timer
+from module.base.base import ModuleBase as Base
 from module.config.utils import deep_get, deep_set
-from module.config.config import AzurLaneConfig
 from module.gg_handler.gg_data import GGData
 from module.gg_handler.gg_screenshot import GGScreenshot
 # from module.gg_handler.gg_u2 import GGU2
@@ -12,7 +12,7 @@ from module.gg_handler.gg_task import *
 
 OCR_CHECK = Digit(OCR_PRE_BATTLE_CHECK, name='OCR_PRE_BATTLE_CHECK', letter=(255, 255, 255), threshold=255)
 
-class GGHandler:
+class GGHandler(Base):
     """
     A module to handle needs of cheaters
     Args:
@@ -20,9 +20,7 @@ class GGHandler:
         device: Device
     """
 
-    def __init__(self, config=AzurLaneConfig, device=None):
-        self.config = config
-        self.device = device
+    def __init__(self):
         self.factor = deep_get(self.config.data, 'GameManager.GGHandler.GGMultiplyingFactor', default=200)
         self.method = deep_get(self.config.data, 'GameManager.GGHandler.GGMethod', default='screenshot')
         # self.gg_package_name = deep_get(self.config.data, 'GameManager.GGHandler.GGPackageName')
@@ -178,7 +176,7 @@ class GGHandler:
         """
         limit = deep_get(self.config.data, f'GameManager.PowerLimit.{task}', default=16500)
         logger.attr('Power Limit', limit)
-        skip_first_screenshot = False
+        skip_first_screenshot = True
         timeout = Timer(1, count=15).start()
         while 1:
             if skip_first_screenshot:
@@ -186,15 +184,16 @@ class GGHandler:
             else:
                 self.device.sleep((1.5, 2))
                 self.device.screenshot()
-                if timeout.reached():
-                    logger.error('Get ScoutCE timeout')
-                    handle_notify(self.config.Error_OnePushConfig,
-                              title=f"Alas <{self.config.config_name}> 超时",
-                              content=f"<{self.config.config_name}> 识别战力超时，模拟器卡死或者网络掉线")
-                    exit(1)
-                ocr = OCR_CHECK.ocr(self.device.image)
-                if ocr > 1000:
-                    break
+
+            if timeout.reached():
+                logger.error('Get ScoutCE timeout')
+                handle_notify(self.config.Error_OnePushConfig,
+                            title=f"Alas <{self.config.config_name}> 超时",
+                            content=f"<{self.config.config_name}> 识别战力超时，模拟器卡死或者网络掉线")
+                exit(1)
+            ocr = OCR_CHECK.ocr(self.device.image)
+            if ocr > 1000:
+                break
         if ocr >= limit:
             for i in range(3):
                 logger.critical('There\'s high chance that GG is on, restart to disable it')
