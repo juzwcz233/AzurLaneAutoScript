@@ -1,5 +1,4 @@
 from module.base.timer import timeout, Timer
-from module.config.utils import deep_get, deep_set
 from module.base.base import ModuleBase as Base
 from module.gg_handler.gg_data import GGData
 from module.gg_handler.gg_screenshot import GGScreenshot
@@ -23,9 +22,9 @@ class GGHandler(Base):
     def __init__(self, config, device):
         self.config = config
         self.device = device
-        self.factor = deep_get(self.config.data, 'GameManager.GGHandler.GGMultiplyingFactor', default=200)
-        self.method = deep_get(self.config.data, 'GameManager.GGHandler.GGMethod', default='screenshot')
-        # self.gg_package_name = deep_get(self.config.data, 'GameManager.GGHandler.GGPackageName')
+        self.factor = self.config.cross_get('GameManager.GGHandler.GGMultiplyingFactor', default=200)
+        self.method = self.config.cross_get('GameManager.GGHandler.GGMethod', default='screenshot')
+        # self.gg_package_name = self.config.cross_get('GameManager.GGHandler.GGPackageName')
 
     def restart(self, crashed=False):
         from module.handler.login import LoginHandler
@@ -92,8 +91,8 @@ class GGHandler(Base):
                         'gg_auto' : bool = Whether to start GG before tasks,
                         'gg_on' : bool = Whether multiplier is on now}
         """
-        gg_enable = deep_get(self.config.data, 'GameManager.GGHandler.Enabled', default=False)
-        gg_auto = deep_get(self.config.data, 'GameManager.GGHandler.GGFactorEnable', default=False)
+        gg_enable = self.config.cross_get('GameManager.GGHandler.Enabled', default=False)
+        gg_auto = self.config.cross_get('GameManager.GGHandler.GGFactorEnable', default=False)
         GGData(self.config).set_data(target='gg_enable', value=gg_enable)
         GGData(self.config).set_data(target='gg_auto', value=gg_auto)
         gg_data = GGData(self.config).get_data()
@@ -104,7 +103,7 @@ class GGHandler(Base):
         return gg_data
 
     # def handle_u2_restart(self):
-    #     _need_restart_atx = deep_get(self.config.data, 'GameManager.GGHandler.RestartATX')
+    #     _need_restart_atx = self.config.cross_get('GameManager.GGHandler.RestartATX')
     #     if self.method == 'u2' and _need_restart_atx:
     #         try:
     #             timeout(self.device.restart_atx, 60)
@@ -158,7 +157,7 @@ class GGHandler(Base):
         """
         gg_data = GGData(self.config).get_data()
         if gg_data['gg_enable']:
-            gg_auto = mode if deep_get(self.config.data, 'GameManager.GGHandler.GGFactorEnable', default=False) else False
+            gg_auto = mode if self.config.cross_get('GameManager.GGHandler.GGFactorEnable', default=False) else False
             logger.hr('Check GG status')
             logger.info(f'Check GG status:')
             logger.info(
@@ -176,7 +175,7 @@ class GGHandler(Base):
         Args:
             task: str = What task it is to limit power, default limit is 16500 for front ships.
         """
-        limit = deep_get(self.config.data, f'GameManager.PowerLimit.{task}', default=16500)
+        limit = self.config.cross_get(f'GameManager.PowerLimit.{task}', default=16500)
         logger.attr('Power Limit', limit)
         skip_first_screenshot = True
         timeout = Timer(1, count=15).start()
@@ -204,8 +203,8 @@ class GGHandler(Base):
                               content=f"<{self.config.config_name}> 识别到使用超模战力进行不被允许的任务，紧急重启规避检查")
             GGData(self.config).set_data(target='gg_on', value=False)
             GGData(self.config).set_data(target='gg_enable', value=True)
-            deep_set(self.config.data, 'GameManager.GGHandler.Enabled', value=True)
-            deep_set(self.config.data, 'GameManager.GGHandler.GGFactorEnable', value=True)
+            self.config.cross_set('GameManager.GGHandler.Enabled', value=True)
+            self.config.cross_set('GameManager.GGHandler.GGFactorEnable', value=True)
             return True
 
     def handle_restart_before_tasks(self) -> bool:
@@ -215,7 +214,7 @@ class GGHandler(Base):
             bool: If it needs restart first
         """
         gg_data = GGData(self.config).get_data()
-        if (deep_get(self.config.data, 'GameManager.GGHandler.RestartEverytime', default=True) and gg_data['gg_enable']):
+        if (self.config.cross_get('GameManager.GGHandler.RestartEverytime', default=True) and gg_data['gg_enable']):
             logger.info('Restart to reset GG status.')
             self.restart()
             return True
@@ -228,7 +227,7 @@ class GGHandler(Base):
         Args:
             task : str = the next task to run
         """
-        _disabled_task = deep_get(self.config.data, 'GameManager.GGHandler.DisabledTask')
+        _disabled_task = self.config.cross_get('GameManager.GGHandler.DisabledTask')
         """
             'disable_guild_and_dangerous'
             'disable_all_dangerous_task'

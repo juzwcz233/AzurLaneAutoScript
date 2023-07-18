@@ -23,7 +23,7 @@ class LogRes(Base):
         if key in self.groups:
             _key_group = f'Resource.{key}'
             _key_time = _key_group + f'.Record'
-            original = deep_get(self.config.data, keys=_key_group)
+            original = deep_get(self.config.data, _key_group)
             if isinstance(value, int):
                 if value != original['Value']:
                     _key = _key_group + '.Value'
