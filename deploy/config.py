@@ -80,7 +80,7 @@ class DeployConfig(ConfigModel):
             'https://git.saarcenter.com/LmeSzinc/AzurLaneAutoScript.git',
         ]:
             self.Repository = 'git://git.lyoko.io/AzurLaneAutoScript'
-        Language = re.sub("_","-",locale.getdefaultlocale()[0])
+        Language = Language = locale.getdefaultlocale()[0].replace("_","-")
         if self.Language != Language:
             if Language not in ['zh-CN','en-US','ja-JP','zh-TW']:
                 self.Language = 'en-US'
