@@ -24,9 +24,9 @@ MAP.weight_data = """
     50 50 50 50 50 50 50 50
     50 50 50 50 50 50 50 50
     50 50 50 50 50 50 50 50
-    50 50 50 50 50 50 50 50
-    50 50 50 50 50 50 50 50
-    50 50 50 50 50 50 50 50
+    90 90 90 50 50 50 50 50
+    90 90 90 50 50 50 50 50
+    90 90 90 90 50 50 50 50
 """
 MAP.spawn_data = [
     {'battle': 0, 'enemy': 3, 'siren': 2},
@@ -49,7 +49,7 @@ A8, B8, C8, D8, E8, F8, G8, H8, \
 
 class Config(ConfigBase):
     # ===== Start of generated config =====
-    MAP_SIREN_TEMPLATE = ['qingxun_gulite', 'zhongxun_gulite']
+    MAP_SIREN_TEMPLATE = ['GridmanCL', 'GridmanCA']
     MOVABLE_ENEMY_TURN = (2,)
     MAP_HAS_SIREN = True
     MAP_HAS_MOVABLE_ENEMY = True
