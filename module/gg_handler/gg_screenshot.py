@@ -155,13 +155,9 @@ class GGScreenshot(Base):
             in: any GG
             out: GG ready to start script
         """
-        skip_first_screenshot = True
         while 1:
-            if skip_first_screenshot:
-                skip_first_screenshot = False
-            else:
-                self.device.sleep(0.5)
-                self.device.screenshot()
+            self.device.sleep(0.5)
+            self.device.screenshot()
             if self.appear(button=BUTTON_GG_SCRIPT_ENTER_CONFIRM, offset=(50, 50)):
                 logger.hr('Lua execute')
                 break
