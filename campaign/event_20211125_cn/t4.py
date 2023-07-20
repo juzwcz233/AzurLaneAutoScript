@@ -29,7 +29,7 @@ MAP.weight_data = """
 MAP.fortress_data = [('C2', 'C6', 'I2', 'I6'), 'F3']
 MAP.map_covered = ['F2', 'I1']
 MAP.spawn_data = [
-    {'battle': 0, 'siren': 1},
+    {'battle': 0, 'enemy': 4, 'siren': 1},
     {'battle': 1, 'enemy': 1, 'siren': 1},
     {'battle': 2, 'enemy': 2},
     {'battle': 3, 'enemy': 1},
