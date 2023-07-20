@@ -186,8 +186,11 @@ class GGScreenshot(Base):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear_then_click(button=BUTTON_GG_SCRIPT_START, offset=(50, 50)):
-                return 1
+            if self.appear(button=BUTTON_GG_SCRIPT_START, offset=(50, 50)):
+                self.device.click(BUTTON_GG_SCRIPT_START)
+                continue
+            else:
+                break
 
     def _gg_mode(self):
         """
@@ -205,6 +208,8 @@ class GGScreenshot(Base):
             if self.appear(button=BUTTON_GG_SCRIPT_MENU_A, offset=(50, 50), threshold=0.8):
                 method = [BUTTON_GG_SCRIPT_MENU_B, BUTTON_GG_SCRIPT_MENU_A]
                 self.device.click(method[int(self._mode)])
+                continue
+            else:
                 break
 
     def _gg_handle_factor(self):
