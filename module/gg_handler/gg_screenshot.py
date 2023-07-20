@@ -155,14 +155,11 @@ class GGScreenshot(Base):
             in: any GG
             out: GG ready to start script
         """
-        skip_first_screenshot = True
         while 1:
-            if skip_first_screenshot:
-                skip_first_screenshot = False
-            else:
-                self.device.sleep(0.5)
-                self.device.screenshot()
+            self.device.sleep(0.5)
+            self.device.screenshot()
             if self.appear(button=BUTTON_GG_SCRIPT_ENTER_CONFIRM, offset=(50, 50)):
+                self._gg_lua()
                 logger.hr('Lua execute')
                 break
             elif self.appear_then_click(button=BUTTON_GG_SCRIPT_END, offset=(50, 50)):
@@ -174,7 +171,6 @@ class GGScreenshot(Base):
             elif self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.95):
                 self.device.click(BUTTON_GG_SCRIPT_ENTER_POS)
                 logger.info('Enter script choose')
-                self._gg_lua()
             else:
                 self.device.click(BUTTON_GG_TAB_SEARCH_POS)
                 logger.info('Enter search mode')
@@ -186,8 +182,11 @@ class GGScreenshot(Base):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear_then_click(button=BUTTON_GG_SCRIPT_START, offset=(50, 50)):
-                return 1
+            if self.appear(button=BUTTON_GG_SCRIPT_START, offset=(50, 50)):
+                self.device.click(BUTTON_GG_SCRIPT_START)
+                continue
+            else:
+                break
 
     def _gg_mode(self):
         """
@@ -205,6 +204,8 @@ class GGScreenshot(Base):
             if self.appear(button=BUTTON_GG_SCRIPT_MENU_A, offset=(50, 50), threshold=0.8):
                 method = [BUTTON_GG_SCRIPT_MENU_B, BUTTON_GG_SCRIPT_MENU_A]
                 self.device.click(method[int(self._mode)])
+                continue
+            else:
                 break
 
     def _gg_handle_factor(self):
