@@ -1,8 +1,7 @@
-from module.logger import logger
-from module.map.map_base import CampaignMap
-from module.map.map_grids import RoadGrids, SelectedGrids
-
 from .campaign_base import CampaignBase
+from module.map.map_base import CampaignMap
+from module.map.map_grids import SelectedGrids, RoadGrids
+from module.logger import logger
 from .t1 import Config as ConfigBase
 
 MAP = CampaignMap('T3')
@@ -50,7 +49,7 @@ A8, B8, C8, D8, E8, F8, G8, H8, \
 
 class Config(ConfigBase):
     # ===== Start of generated config =====
-    MAP_SIREN_TEMPLATE = ['GridmanCL', 'GridmanCA']
+    MAP_SIREN_TEMPLATE = ['qingxun_gulite', 'zhongxun_gulite']
     MOVABLE_ENEMY_TURN = (2,)
     MAP_HAS_SIREN = True
     MAP_HAS_MOVABLE_ENEMY = True
