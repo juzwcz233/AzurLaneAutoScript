@@ -1,8 +1,7 @@
-from module.logger import logger
-from module.map.map_base import CampaignMap
-from module.map.map_grids import RoadGrids, SelectedGrids
-
 from .campaign_base import CampaignBase
+from module.map.map_base import CampaignMap
+from module.map.map_grids import SelectedGrids, RoadGrids
+from module.logger import logger
 from .t1 import Config as ConfigBase
 
 MAP = CampaignMap('T3')
@@ -25,9 +24,9 @@ MAP.weight_data = """
     50 50 50 50 50 50 50 50
     50 50 50 50 50 50 50 50
     50 50 50 50 50 50 50 50
-    90 90 90 50 50 50 50 50
-    90 90 90 50 50 50 50 50
-    90 90 90 90 50 50 50 50
+    50 50 50 50 50 50 50 50
+    50 50 50 50 50 50 50 50
+    50 50 50 50 50 50 50 50
 """
 MAP.spawn_data = [
     {'battle': 0, 'enemy': 3, 'siren': 2},
