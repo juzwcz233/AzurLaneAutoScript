@@ -635,11 +635,11 @@ Arguments:
     IS_WAR_ARCHIVES: True if retrieved map is to be
                      adapted for war_archives usage
 """
-FILE = './AzurLaneLuaScripts'
+FILE = 'D:\Alas开发\AzurLaneLuaScripts'
 FOLDER = './campaign/event_20211125_cn'
 KEYWORD = '1590003'
 SELECT = True
-OVERWRITE = True
+OVERWRITE = False
 IS_WAR_ARCHIVES = False
 ENEMY_FILTER = '1L > 1M > 1E > 1C > 2L > 2M > 2E > 2C > 3L > 3M > 3E > 3C'
 
