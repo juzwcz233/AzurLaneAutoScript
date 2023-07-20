@@ -159,6 +159,7 @@ class GGScreenshot(Base):
             self.device.sleep(0.5)
             self.device.screenshot()
             if self.appear(button=BUTTON_GG_SCRIPT_ENTER_CONFIRM, offset=(50, 50)):
+                self._gg_lua()
                 logger.hr('Lua execute')
                 break
             elif self.appear_then_click(button=BUTTON_GG_SCRIPT_END, offset=(50, 50)):
@@ -170,7 +171,6 @@ class GGScreenshot(Base):
             elif self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.95):
                 self.device.click(BUTTON_GG_SCRIPT_ENTER_POS)
                 logger.info('Enter script choose')
-                self._gg_lua()
             else:
                 self.device.click(BUTTON_GG_TAB_SEARCH_POS)
                 logger.info('Enter search mode')

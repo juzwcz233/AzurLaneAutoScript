@@ -226,9 +226,8 @@ class CampaignRun(CampaignEvent, ShopStatus):
         }
         if folder in [
             'event_20200917_cn',
-            'event_20211125_cn',
             'event_20221124_cn',
-            'event_20230525_cn'
+            'event_20230525_cn',
         ]:
             name = convert.get(name, name)
         else:
