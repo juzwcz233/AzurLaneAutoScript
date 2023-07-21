@@ -99,11 +99,11 @@ class GGScreenshot(Base):
                     self.device.app_start()
                 else:
                     logger.info('Game is already running')
-                self._gg_exit()
+                self.gg_exit()
                 break
         return skipped
 
-    def _enter_gg(self):
+    def enter_gg(self):
         """
         Page:
             in: any
@@ -154,7 +154,7 @@ class GGScreenshot(Base):
                 logger.info('Actually APP choosing button')
                 continue
 
-    def _gg_enter_script(self):
+    def gg_enter_script(self):
         """
         Page:
             in: any GG
@@ -193,7 +193,7 @@ class GGScreenshot(Base):
             if self.appear(button=BUTTON_GG_SCRIPT_MENU_A, offset=(50, 50), threshold=0.8):
                 break
 
-    def _gg_mode(self):
+    def gg_mode(self):
         """
         Page:
             in: GG Script Menu
@@ -206,14 +206,12 @@ class GGScreenshot(Base):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear(button=BUTTON_GG_SCRIPT_MENU_A, offset=(50, 50), threshold=0.8):
-                method = [BUTTON_GG_SCRIPT_MENU_B, BUTTON_GG_SCRIPT_MENU_A]
-                self.device.click(method[int(self._mode)])
+            if self.appear_then_click(button=BUTTON_GG_SCRIPT_MENU_A, offset=(50, 50), threshold=0.8):
                 continue
             if self.appear(button=BUTTON_GG_SCRIPT_START_PROCESS, offset=(50, 50)):
                 break
 
-    def _gg_handle_factor(self):
+    def gg_handle_factor(self):
         """
         Page:
             in: GG input panel
@@ -288,7 +286,7 @@ class GGScreenshot(Base):
                 self.device.sleep(0.5)
         logger.hr('GG Exit')
 
-    def _gg_script_run(self):
+    def gg_script_run(self):
         """
         Page:
             in: GG factor set
@@ -322,12 +320,12 @@ class GGScreenshot(Base):
             if self.appear_then_click(button=BUTTON_GG_SCRIPT_END, offset=(50, 50), threshold=0.9):
                 return 1
     
-    def _gg_exit(self):
+    def gg_exit(self):
         if (self.gg_action == 'auto' and self.gg_package_name != 'com.') or (self.gg_action == 'manual' and self.gg_package_name != 'com.'):
             self.d.app_stop(f'{self.gg_package_name}')
             logger.info('GG kill')
 
-    def _gg_start(self):
+    def gg_start(self):
         if (self.gg_action == 'auto' and self.gg_package_name != 'com.') or (self.gg_action == 'manual' and self.gg_package_name != 'com.'):
             self.d.app_start(f'{self.gg_package_name}')
             logger.hr('GG start')
@@ -415,17 +413,17 @@ class GGScreenshot(Base):
         else:
             logger.hr('Skip push lua file')
 
-    def run(self, mode=True, factor=200):
-        self._mode = mode
+    def run(self, factor=200):
         self._factor = factor
-        self._gg_start()
-        self._enter_gg()
-        self._gg_enter_script()
-        self._gg_mode()
-        self._gg_handle_factor()
-        self._gg_script_run()
-        GGData(self.config).set_data(target='gg_on', value=self._mode)
+        self.gg_push()
+        self.gg_start()
+        self.enter_gg()
+        self.gg_enter_script()
+        self.gg_mode()
+        self.gg_handle_factor()
+        self.gg_script_run()
+        GGData(self.config).set_data(target='gg_on', value=True)
         self.skip_error()
         logger.attr('GG', 'Enabled')
         logger.hr('GG panel closed')
-        self._gg_exit()
+        self.gg_exit()
