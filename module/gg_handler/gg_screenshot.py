@@ -141,13 +141,17 @@ class GGScreenshot(Base):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
+            if self.appear(button=BUTTON_GG_APP_ENTER, offset=(150, 500)):
+                logger.info('APP Enter')
+                break
+            if self.appear(button=BUTTON_GG_APP_CHOOSE, offset=(150, 500)):
+                self.device.click(BUTTON_GG_APP_CHOOSE)
+                logger.info('APP Choose')
+                continue
             if not self.appear(button=BUTTON_GG_APP_CHOOSE, offset=(150, 500)):
                 self.device.click(BACK_ARROW)
                 logger.info('Actually APP choosing button')
-            else:
-                self.appear_then_click(button=BUTTON_GG_APP_CHOOSE, offset=(150, 500))
-                logger.info('APP Choose')
-                break
+                continue
 
     def _gg_enter_script(self):
         """
@@ -185,7 +189,7 @@ class GGScreenshot(Base):
             if self.appear(button=BUTTON_GG_SCRIPT_START, offset=(50, 50)):
                 self.device.click(BUTTON_GG_SCRIPT_START)
                 continue
-            else:
+            if self.appear(button=BUTTON_GG_SCRIPT_MENU_A, offset=(50, 50), threshold=0.8):
                 break
 
     def _gg_mode(self):
@@ -205,7 +209,7 @@ class GGScreenshot(Base):
                 method = [BUTTON_GG_SCRIPT_MENU_B, BUTTON_GG_SCRIPT_MENU_A]
                 self.device.click(method[int(self._mode)])
                 continue
-            else:
+            if self.appear(button=BUTTON_GG_SCRIPT_START_PROCESS, offset=(50, 50)):
                 break
 
     def _gg_handle_factor(self):
@@ -300,10 +304,10 @@ class GGScreenshot(Base):
             if self.appear_then_click(button=BUTTON_GG_SCRIPT_START_PROCESS, offset=(50, 50), threshold=0.9):
                 self.device.sleep(0.5)
                 self.device.screenshot()
-                if not self.appear(button=BUTTON_GG_SCRIPT_START_PROCESS, offset=(50, 50), threshold=0.9):
+                if self.appear(button=BUTTON_GG_SCRIPT_START_PROCESS, offset=(50, 50), threshold=0.9):
+                    self.device.click(BUTTON_GG_SCRIPT_START_PROCESS)
                     break
                 else:
-                    self.device.click(BUTTON_GG_SCRIPT_START_PROCESS)
                     break
         logger.info('Waiting for end')
 
@@ -345,10 +349,10 @@ class GGScreenshot(Base):
                     if self.appear_then_click(button=BUTTON_GG_START, offset=(50, 50)):
                         self.device.sleep(1)
                         self.device.screenshot()
-                        if not self.appear(button=BUTTON_GG_START, offset=(50, 50)):
+                        if self.appear(button=BUTTON_GG_START, offset=(50, 50)):
+                            self.device.click(BUTTON_GG_START)
                             break
                         else:
-                            self.device.click(BUTTON_GG_START)
                             break
                     else:
                         break
