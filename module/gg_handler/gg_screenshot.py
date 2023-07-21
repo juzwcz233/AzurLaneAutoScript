@@ -99,11 +99,11 @@ class GGScreenshot(Base):
                     self.device.app_start()
                 else:
                     logger.info('Game is already running')
-                self._gg_exit()
+                self.gg_exit()
                 break
         return skipped
 
-    def _enter_gg(self):
+    def enter_gg(self):
         """
         Page:
             in: any
@@ -135,21 +135,26 @@ class GGScreenshot(Base):
                     break
 
         skip_first_screenshot = True
+        logger.hr('Enter APP')
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
+            if self.appear(button=BUTTON_GG_APP_ENTER, offset=(150, 500)):
+                logger.info('APP Enter')
+                break
+            if self.appear(button=BUTTON_GG_APP_CHOOSE, offset=(150, 500)):
+                self.device.click(BUTTON_GG_APP_CHOOSE)
+                logger.info('APP Choose')
+                continue
             if not self.appear(button=BUTTON_GG_APP_CHOOSE, offset=(150, 500)):
                 self.device.click(BACK_ARROW)
                 logger.info('Actually APP choosing button')
-            else:
-                self.appear_then_click(button=BUTTON_GG_APP_CHOOSE, offset=(150, 500))
-                logger.info('APP Choose')
-                break
+                continue
 
-    def _gg_enter_script(self):
+    def gg_enter_script(self):
         """
         Page:
             in: any GG
@@ -185,10 +190,10 @@ class GGScreenshot(Base):
             if self.appear(button=BUTTON_GG_SCRIPT_START, offset=(50, 50)):
                 self.device.click(BUTTON_GG_SCRIPT_START)
                 continue
-            else:
+            if self.appear(button=BUTTON_GG_SCRIPT_MENU_A, offset=(50, 50), threshold=0.8):
                 break
 
-    def _gg_mode(self):
+    def gg_mode(self):
         """
         Page:
             in: GG Script Menu
@@ -201,14 +206,12 @@ class GGScreenshot(Base):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear(button=BUTTON_GG_SCRIPT_MENU_A, offset=(50, 50), threshold=0.8):
-                method = [BUTTON_GG_SCRIPT_MENU_B, BUTTON_GG_SCRIPT_MENU_A]
-                self.device.click(method[int(self._mode)])
+            if self.appear_then_click(button=BUTTON_GG_SCRIPT_MENU_A, offset=(50, 50), threshold=0.8):
                 continue
-            else:
+            if self.appear(button=BUTTON_GG_SCRIPT_START_PROCESS, offset=(50, 50)):
                 break
 
-    def _gg_handle_factor(self):
+    def gg_handle_factor(self):
         """
         Page:
             in: GG input panel
@@ -283,7 +286,7 @@ class GGScreenshot(Base):
                 self.device.sleep(0.5)
         logger.hr('GG Exit')
 
-    def _gg_script_run(self):
+    def gg_script_run(self):
         """
         Page:
             in: GG factor set
@@ -300,10 +303,10 @@ class GGScreenshot(Base):
             if self.appear_then_click(button=BUTTON_GG_SCRIPT_START_PROCESS, offset=(50, 50), threshold=0.9):
                 self.device.sleep(0.5)
                 self.device.screenshot()
-                if not self.appear(button=BUTTON_GG_SCRIPT_START_PROCESS, offset=(50, 50), threshold=0.9):
+                if self.appear(button=BUTTON_GG_SCRIPT_START_PROCESS, offset=(50, 50), threshold=0.9):
+                    self.device.click(BUTTON_GG_SCRIPT_START_PROCESS)
                     break
                 else:
-                    self.device.click(BUTTON_GG_SCRIPT_START_PROCESS)
                     break
         logger.info('Waiting for end')
 
@@ -317,12 +320,12 @@ class GGScreenshot(Base):
             if self.appear_then_click(button=BUTTON_GG_SCRIPT_END, offset=(50, 50), threshold=0.9):
                 return 1
     
-    def _gg_exit(self):
+    def gg_exit(self):
         if (self.gg_action == 'auto' and self.gg_package_name != 'com.') or (self.gg_action == 'manual' and self.gg_package_name != 'com.'):
             self.d.app_stop(f'{self.gg_package_name}')
             logger.info('GG kill')
 
-    def _gg_start(self):
+    def gg_start(self):
         if (self.gg_action == 'auto' and self.gg_package_name != 'com.') or (self.gg_action == 'manual' and self.gg_package_name != 'com.'):
             self.d.app_start(f'{self.gg_package_name}')
             logger.hr('GG start')
@@ -345,14 +348,13 @@ class GGScreenshot(Base):
                     if self.appear_then_click(button=BUTTON_GG_START, offset=(50, 50)):
                         self.device.sleep(1)
                         self.device.screenshot()
-                        if not self.appear(button=BUTTON_GG_START, offset=(50, 50)):
+                        if self.appear(button=BUTTON_GG_START, offset=(50, 50)):
+                            self.device.click(BUTTON_GG_START)
                             break
                         else:
-                            self.device.click(BUTTON_GG_START)
                             break
                     else:
                         break
-            self.device.sleep(self.gg_wait_time)
 
     def _gg_lua(self):
         if self.path != "" and self.gg_action == 'manual' and self.gg_package_name != 'com.':
@@ -365,28 +367,43 @@ class GGScreenshot(Base):
         else:
             logger.hr('Skip lua path set')
         if self.gg_action == 'auto' and self.gg_package_name != 'com.':
-            self.device.sleep(self.gg_wait_time)
-            self.device.screenshot()
-            if not self.appear(button=OCR_GG_LUAPATH, offset=(50, 50)):
-                logger.warning("Lua path error")
-                self.device.click(button=BUTTON_GG_LUACHOOSE)
-                self.device.sleep(1)
-                for i in range(2):
-                    self.device.sleep(0.5)
+            while 1:
+                self.device.sleep(0.5)
+                self.device.screenshot()
+                if not self.appear(button=OCR_GG_LUAPATH, offset=(50, 50)) and self.appear(button=BUTTON_GG_LUACHOOSE, offset=(50, 50)):
+                    break
+                if self.appear(button=OCR_GG_LUAPATH, offset=(50, 50)):
+                    return 1
+            logger.warning("Lua path error")
+            self.device.click(BUTTON_GG_LUACHOOSE)
+            while 1:
+                self.device.sleep(0.5)
+                self.device.screenshot()
+                if self.appear(button=BUTTON_GG_SCRIPT_START_PROCESS, offset=(50, 50)):
+                    self.device.click(BUTTON_GG_LUACHOOSE)
+                    continue
+                if not self.appear(button=BUTTON_GG_ENTER_PATH0, offset=(50, 50)) and self.appear(button=BUTTON_GG_BACK, offset=(50, 50)):
                     self.device.click(BUTTON_GG_BACK)
-                skip_first_screenshot = True
-                while 1:
-                    if skip_first_screenshot:
-                        skip_first_screenshot = False
-                    else:
-                        self.device.sleep(0.5)
-                        self.device.screenshot()
-                    if self.appear_then_click(button=BUTTON_GG_PATH0, offset=(50, 50)):
-                        continue
-                    if self.appear_then_click(button=BUTTON_GG_PATH1, offset=(50, 50)):
-                        continue
-                    if self.appear_then_click(button=BUTTON_GG_LUA, offset=(50, 50)):
-                        return 1
+                    continue
+                if self.appear(button=BUTTON_GG_ENTER_PATH0, offset=(50, 50)):
+                    self.device.click(BUTTON_GG_BACK)
+                    continue
+                if self.appear(button=BUTTON_GG_ENTER_PATH1, offset=(50, 50)):
+                    break
+
+            skip_first_screenshot = True
+            while 1:
+                if skip_first_screenshot:
+                    skip_first_screenshot = False
+                else:
+                    self.device.sleep(0.5)
+                    self.device.screenshot()
+                if self.appear_then_click(button=BUTTON_GG_PATH0, offset=(50, 50)):
+                    continue
+                if self.appear_then_click(button=BUTTON_GG_PATH1, offset=(50, 50)):
+                    continue
+                if self.appear_then_click(button=BUTTON_GG_LUA, offset=(50, 50)):
+                    return 1
 
     def gg_push(self):
         if self.oldpath == False:
@@ -396,17 +413,17 @@ class GGScreenshot(Base):
         else:
             logger.hr('Skip push lua file')
 
-    def run(self, mode=True, factor=200):
-        self._mode = mode
+    def run(self, factor=200):
         self._factor = factor
-        self._gg_start()
-        self._enter_gg()
-        self._gg_enter_script()
-        self._gg_mode()
-        self._gg_handle_factor()
-        self._gg_script_run()
-        GGData(self.config).set_data(target='gg_on', value=self._mode)
+        self.gg_push()
+        self.gg_start()
+        self.enter_gg()
+        self.gg_enter_script()
+        self.gg_mode()
+        self.gg_handle_factor()
+        self.gg_script_run()
+        GGData(self.config).set_data(target='gg_on', value=True)
         self.skip_error()
         logger.attr('GG', 'Enabled')
         logger.hr('GG panel closed')
-        self._gg_exit()
+        self.gg_exit()
