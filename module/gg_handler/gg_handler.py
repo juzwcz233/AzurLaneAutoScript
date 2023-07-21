@@ -22,6 +22,11 @@ class GGHandler(Base):
     def __init__(self, config, device):
         self.config = config
         self.device = device
+        self.gg_data = GGData(self.config).get_data()
+        self.gg_enable = GGData(self.config).get_data()['gg_enable']
+        self.gg_auto = GGData(self.config).get_data()['gg_auto']
+        self.gg_on = GGData(self.config).get_data()['gg_on']
+        self.RestartEverytime = self.config.cross_get('GameManager.GGHandler.RestartEverytime', default=True)
         self.factor = self.config.cross_get('GameManager.GGHandler.GGMultiplyingFactor', default=200)
         self.method = self.config.cross_get('GameManager.GGHandler.GGMethod', default='screenshot')
         # self.gg_package_name = self.config.cross_get('GameManager.GGHandler.GGPackageName')
@@ -57,7 +62,7 @@ class GGHandler(Base):
         """
         logger.hr('Enabling GG', level=2)
         if mode:
-            GGScreenshot(config=self.config, device=self.device).run(mode=True, factor=self.factor)
+            GGScreenshot(config=self.config, device=self.device).run(factor=self.factor)
             # if self.method == 'screenshot' or self.gg_package_name == 'com.':
             #     GGScreenshot(config=self.config, device=self.device).gg_set(mode=True, factor=self.factor)
             # elif self.method == 'u2':
@@ -95,12 +100,11 @@ class GGHandler(Base):
         gg_auto = self.config.cross_get('GameManager.GGHandler.GGFactorEnable', default=False)
         GGData(self.config).set_data(target='gg_enable', value=gg_enable)
         GGData(self.config).set_data(target='gg_auto', value=gg_auto)
-        gg_data = GGData(self.config).get_data()
         logger.hr('Check GG config')
         logger.info(f'GG config:')
         logger.info(
-            f'[Enabled={gg_data["gg_enable"]}] [AutoRestart={gg_data["gg_auto"]}] [CurrentStage={gg_data["gg_on"]}]')
-        return gg_data
+            f'[Enabled={self.gg_enable}] [AutoRestart={self.gg_auto}] [CurrentStage={self.gg_on}]')
+        return self.gg_data
 
     # def handle_u2_restart(self):
     #     _need_restart_atx = self.config.cross_get('GameManager.GGHandler.RestartATX')
@@ -124,18 +128,28 @@ class GGHandler(Base):
     #                           content=f"<{self.config.config_name}> 需要手动介入，也许你的模拟器卡死")
     #             exit(1)
 
+    def handle_restart_before_tasks(self) -> bool:
+        """
+        Check if user need to restart everytime alas starts before tasks, and handle it.
+        Returns:
+            bool: If it needs restart first
+        """
+        if self.RestartEverytime and self.gg_enable:
+            logger.info('Restart to reset GG status.')
+            self.restart()
+            return True
+        return False
+
     def handle_restart(self):
         """
         Handle the restart errors of GG.
         """
-        gg_data = GGData(config=self.config).get_data()
-        gg_enable = gg_data['gg_enable']
-        if gg_enable:
+        if self.gg_enable:
             GGData(config=self.config).set_data(target='gg_on', value=False)
             logger.hr('Loading GG config')
             logger.info(f'GG config:')
             logger.info(
-                f'[Enabled={gg_data["gg_enable"]}] [AutoRestart={gg_data["gg_auto"]}] [CurrentStage={gg_data["gg_on"]}]')
+                f'[Enabled={self.gg_enable}] [AutoRestart={self.gg_auto}] [CurrentStage={self.gg_on}]')
             if not self.skip_error():
                 logger.hr('Assume game died without GG panel')
 
@@ -143,8 +157,7 @@ class GGHandler(Base):
         """
         Force restart the game to reset GG status to False
         """
-        gg_data = GGData(self.config).get_data()
-        if gg_data['gg_enable'] and gg_data['gg_on']:
+        if self.gg_enable and self.gg_on:
             logger.hr('Disabling GG', level=2)
             self.restart()
             logger.attr('GG', 'Disabled')
@@ -155,17 +168,16 @@ class GGHandler(Base):
         Args:
             mode: The multiplier status when finish the check.
         """
-        gg_data = GGData(self.config).get_data()
-        if gg_data['gg_enable']:
+        if self.gg_enable:
             gg_auto = mode if self.config.cross_get('GameManager.GGHandler.GGFactorEnable', default=False) else False
             logger.hr('Check GG status')
             logger.info(f'Check GG status:')
             logger.info(
-                f'[Enabled={gg_data["gg_enable"]}] [AutoRestart={gg_data["gg_auto"]}] [CurrentStage={gg_data["gg_on"]}]')
+                f'[Enabled={self.gg_enable}] [AutoRestart={self.gg_auto}] [CurrentStage={self.gg_on}]')
             if gg_auto:
-                if not gg_data['gg_on']:
+                if not self.gg_on:
                     self.set(True)
-            elif gg_data['gg_on']:
+            elif self.gg_on:
                 self.gg_reset()
 
     def power_limit(self, task=''):
@@ -206,19 +218,6 @@ class GGHandler(Base):
             self.config.cross_set('GameManager.GGHandler.Enabled', value=True)
             self.config.cross_set('GameManager.GGHandler.GGFactorEnable', value=True)
             return True
-
-    def handle_restart_before_tasks(self) -> bool:
-        """
-        Check if user need to restart everytime alas starts before tasks, and handle it.
-        Returns:
-            bool: If it needs restart first
-        """
-        gg_data = GGData(self.config).get_data()
-        if (self.config.cross_get('GameManager.GGHandler.RestartEverytime', default=True) and gg_data['gg_enable']):
-            logger.info('Restart to reset GG status.')
-            self.restart()
-            return True
-        return False
 
     def check_then_set_gg_status(self, task=''):
         """

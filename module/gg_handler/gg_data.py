@@ -1,6 +1,7 @@
 import os
 from module.config.config import deep_get
 from module.base.base import ModuleBase
+from module.config.config import AzurLaneConfig
 
 
 class GGData(ModuleBase):
@@ -9,7 +10,7 @@ class GGData(ModuleBase):
     gg_auto = False
     ggdata = {}
 
-    def __init__(self, config=None):
+    def __init__(self, config=AzurLaneConfig):
         self.config = config
         if not os.path.exists('./gg_config'):
             os.mkdir('./gg_config')
