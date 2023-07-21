@@ -357,7 +357,6 @@ class GGScreenshot(Base):
                             break
                     else:
                         break
-            self.device.sleep(self.gg_wait_time)
 
     def _gg_lua(self):
         if self.path != "" and self.gg_action == 'manual' and self.gg_package_name != 'com.':
@@ -370,28 +369,43 @@ class GGScreenshot(Base):
         else:
             logger.hr('Skip lua path set')
         if self.gg_action == 'auto' and self.gg_package_name != 'com.':
-            self.device.sleep(self.gg_wait_time)
-            self.device.screenshot()
-            if not self.appear(button=OCR_GG_LUAPATH, offset=(50, 50)):
-                logger.warning("Lua path error")
-                self.device.click(button=BUTTON_GG_LUACHOOSE)
-                self.device.sleep(1)
-                for i in range(2):
-                    self.device.sleep(0.5)
+            while 1:
+                self.device.sleep(0.5)
+                self.device.screenshot()
+                if not self.appear(button=OCR_GG_LUAPATH, offset=(50, 50)) and self.appear(button=BUTTON_GG_LUACHOOSE, offset=(50, 50)):
+                    break
+                if self.appear(button=OCR_GG_LUAPATH, offset=(50, 50)):
+                    return 1
+            logger.warning("Lua path error")
+            self.device.click(BUTTON_GG_LUACHOOSE)
+            while 1:
+                self.device.sleep(0.5)
+                self.device.screenshot()
+                if self.appear(button=BUTTON_GG_SCRIPT_START_PROCESS, offset=(50, 50)):
+                    self.device.click(BUTTON_GG_LUACHOOSE)
+                    continue
+                if not self.appear(button=BUTTON_GG_ENTER_PATH0, offset=(50, 50)) and self.appear(button=BUTTON_GG_BACK, offset=(50, 50)):
                     self.device.click(BUTTON_GG_BACK)
-                skip_first_screenshot = True
-                while 1:
-                    if skip_first_screenshot:
-                        skip_first_screenshot = False
-                    else:
-                        self.device.sleep(0.5)
-                        self.device.screenshot()
-                    if self.appear_then_click(button=BUTTON_GG_PATH0, offset=(50, 50)):
-                        continue
-                    if self.appear_then_click(button=BUTTON_GG_PATH1, offset=(50, 50)):
-                        continue
-                    if self.appear_then_click(button=BUTTON_GG_LUA, offset=(50, 50)):
-                        return 1
+                    continue
+                if self.appear(button=BUTTON_GG_ENTER_PATH0, offset=(50, 50)):
+                    self.device.click(BUTTON_GG_BACK)
+                    continue
+                if self.appear(button=BUTTON_GG_ENTER_PATH1, offset=(50, 50)):
+                    break
+
+            skip_first_screenshot = True
+            while 1:
+                if skip_first_screenshot:
+                    skip_first_screenshot = False
+                else:
+                    self.device.sleep(0.5)
+                    self.device.screenshot()
+                if self.appear_then_click(button=BUTTON_GG_PATH0, offset=(50, 50)):
+                    continue
+                if self.appear_then_click(button=BUTTON_GG_PATH1, offset=(50, 50)):
+                    continue
+                if self.appear_then_click(button=BUTTON_GG_LUA, offset=(50, 50)):
+                    return 1
 
     def gg_push(self):
         if self.oldpath == False:
