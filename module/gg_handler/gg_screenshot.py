@@ -135,6 +135,7 @@ class GGScreenshot(Base):
                     break
 
         skip_first_screenshot = True
+        logger.hr('Enter APP')
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
