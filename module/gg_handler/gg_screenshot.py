@@ -135,23 +135,22 @@ class GGScreenshot(Base):
                     break
 
         skip_first_screenshot = True
-        logger.hr('Enter APP')
+        logger.hr('Enter APP State')
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
+            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE, offset=(150, 500)):
+                logger.info('APP Choose')
+                continue
             if self.appear(button=BUTTON_GG_APP_ENTER, offset=(150, 500)):
                 logger.info('APP Enter')
                 break
-            if self.appear(button=BUTTON_GG_APP_CHOOSE, offset=(150, 500)):
-                self.device.click(BUTTON_GG_APP_CHOOSE)
-                logger.info('APP Choose')
-                continue
-            if not self.appear(button=BUTTON_GG_APP_CHOOSE, offset=(150, 500)):
-                self.device.click(BACK_ARROW)
+            if not self.appear(button=BUTTON_GG_APP_ENTER, offset=(150, 500)):
                 logger.info('Actually APP choosing button')
+                self.device.click(BACK_ARROW)
                 continue
 
     def gg_enter_script(self):
@@ -160,6 +159,8 @@ class GGScreenshot(Base):
             in: any GG
             out: GG ready to start script
         """
+        count = 0
+        logger.hr('Select Script')
         while 1:
             self.device.sleep(0.5)
             self.device.screenshot()
@@ -167,18 +168,27 @@ class GGScreenshot(Base):
                 self._gg_lua()
                 logger.hr('Lua execute')
                 break
-            elif self.appear_then_click(button=BUTTON_GG_SCRIPT_END, offset=(50, 50)):
+            if self.appear_then_click(button=BUTTON_GG_SCRIPT_END, offset=(50, 50)):
                 logger.info('Close previous script')
-            elif self.appear_then_click(button=BUTTON_GG_SCRIPT_FATAL, offset=(50, 50)):
+                count += 1
+                continue
+            if self.appear_then_click(button=BUTTON_GG_SCRIPT_FATAL, offset=(50, 50)):
                 logger.info('Stop previous script')
-            elif self.appear_then_click(button=BUTTON_GG_APP_CHOOSE, offset=(150, 500)):
+                count += 1
+                continue
+            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE, offset=(150, 500)):
                 logger.info('APP choose')
-            elif self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.95):
+                count += 1
+                continue
+            if self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.95):
                 self.device.click(BUTTON_GG_SCRIPT_ENTER_POS)
                 logger.info('Enter script choose')
-            else:
+                count += 1
+                continue
+            if count == 0:
                 self.device.click(BUTTON_GG_TAB_SEARCH_POS)
                 logger.info('Enter search mode')
+                continue
 
         skip_first_screenshot = True
         while 1:
@@ -190,7 +200,7 @@ class GGScreenshot(Base):
             if self.appear(button=BUTTON_GG_SCRIPT_START, offset=(50, 50)):
                 self.device.click(BUTTON_GG_SCRIPT_START)
                 continue
-            if self.appear(button=BUTTON_GG_SCRIPT_MENU_A, offset=(50, 50), threshold=0.8):
+            if self.appear(button=BUTTON_GG_SCRIPT_MENU_A, offset=(50, 50)):
                 break
 
     def gg_mode(self):
@@ -206,7 +216,8 @@ class GGScreenshot(Base):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear_then_click(button=BUTTON_GG_SCRIPT_MENU_A, offset=(50, 50), threshold=0.8):
+            if self.appear(button=BUTTON_GG_SCRIPT_MENU_A, offset=(50, 50)):
+                self.device.click(BUTTON_GG_SCRIPT_MENU_A)
                 continue
             if self.appear(button=BUTTON_GG_SCRIPT_START_PROCESS, offset=(50, 50)):
                 break
@@ -403,7 +414,7 @@ class GGScreenshot(Base):
                 if self.appear_then_click(button=BUTTON_GG_PATH1, offset=(50, 50)):
                     continue
                 if self.appear_then_click(button=BUTTON_GG_LUA, offset=(50, 50)):
-                    return 1
+                    break
 
     def gg_push(self):
         if self.oldpath == False:
