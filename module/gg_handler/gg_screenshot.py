@@ -413,7 +413,7 @@ class GGScreenshot(Base):
         else:
             logger.hr('Skip push lua file')
 
-    def run(self, factor=200):
+    def run(self, factor):
         self._factor = factor
         self.gg_push()
         self.gg_start()
