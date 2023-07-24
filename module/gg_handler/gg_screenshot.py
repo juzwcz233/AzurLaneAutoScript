@@ -353,6 +353,9 @@ class GGScreenshot(Base):
                 if self.appear_then_click(button=BUTTON_GG_SKIP1, offset=(50, 50)):
                     self.device.sleep(1)
                     continue
+                if self.appear_then_click(button=BUTTON_GG_CONFIRM, offset=(50, 50)):
+                    self.device.click(BUTTON_GG_EXIT_POS)
+                    continue
                 if self.appear_then_click(button=BUTTON_GG_START, offset=(50, 50)):
                     self.device.sleep(1)
                     self.device.screenshot()
