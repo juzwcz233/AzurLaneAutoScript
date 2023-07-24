@@ -149,7 +149,7 @@ class GGScreenshot(Base):
                 break
             if not self.appear(button=BUTTON_GG_APP_ENTER, offset=(50, 50)):
                 logger.info('Actually APP choosing button')
-                self.device.click(BUTTON_GG_EXIT_POS)
+                self.device.click(BACK_ARROW)
                 continue
 
     def gg_enter_script(self):
