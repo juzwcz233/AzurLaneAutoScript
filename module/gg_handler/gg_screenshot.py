@@ -183,6 +183,7 @@ class GGScreenshot(Base):
             if self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.95):
                 self.device.click(BUTTON_GG_SCRIPT_ENTER_POS)
                 self.device.sleep(1)
+                self.device.screenshot()
                 if self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.95):
                     self.device.click(BUTTON_GG_SCRIPT_ENTER_POS)
                 logger.info('Enter script choose')
