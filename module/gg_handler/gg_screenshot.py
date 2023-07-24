@@ -168,6 +168,10 @@ class GGScreenshot(Base):
                 self._gg_lua()
                 logger.hr('Lua execute')
                 break
+            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE, offset=(10, 10)):
+                logger.info('APP Choose')
+                count += 1
+                continue
             if self.appear_then_click(button=BUTTON_GG_SCRIPT_END, offset=(10, 10)):
                 logger.info('Close previous script')
                 count += 1
@@ -188,6 +192,7 @@ class GGScreenshot(Base):
             if count == 0 or not self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.95):
                 self.device.click(BUTTON_GG_TAB_SEARCH_POS)
                 logger.info('Enter search mode')
+                count += 1
                 continue
 
         skip_first_screenshot = True
