@@ -142,13 +142,13 @@ class GGScreenshot(Base):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE, offset=(150, 500)):
+            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE, offset=(50, 50)):
                 logger.info('APP Choose')
                 continue
-            if self.appear(button=BUTTON_GG_APP_ENTER, offset=(150, 500)):
+            if self.appear(button=BUTTON_GG_APP_ENTER, offset=(50, 50)):
                 logger.info('APP Enter')
                 break
-            if not self.appear(button=BUTTON_GG_APP_ENTER, offset=(150, 500)):
+            if not self.appear(button=BUTTON_GG_APP_ENTER, offset=(50, 50)):
                 logger.info('Actually APP choosing button')
                 self.device.click(BACK_ARROW)
                 continue
@@ -182,10 +182,13 @@ class GGScreenshot(Base):
                 continue
             if self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.95):
                 self.device.click(BUTTON_GG_SCRIPT_ENTER_POS)
+                self.device.sleep(1)
+                if self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.95):
+                    self.device.click(BUTTON_GG_SCRIPT_ENTER_POS)
                 logger.info('Enter script choose')
                 count += 1
                 continue
-            if count == 0:
+            if count == 0 or not self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.95):
                 self.device.click(BUTTON_GG_TAB_SEARCH_POS)
                 logger.info('Enter search mode')
                 continue
