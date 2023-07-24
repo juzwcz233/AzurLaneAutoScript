@@ -69,7 +69,7 @@ class GGScreenshot(Base):
                 logger.info('Restart previous script')
                 skipped = 1
                 continue
-            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE, offset=(150, 500)):
+            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE, offset=(50, 50)):
                 logger.info('APP choose')
                 skipped = 1
                 continue
@@ -176,7 +176,7 @@ class GGScreenshot(Base):
                 logger.info('Stop previous script')
                 count += 1
                 continue
-            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE, offset=(150, 500)):
+            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE, offset=(50, 50)):
                 logger.info('APP choose')
                 count += 1
                 continue
