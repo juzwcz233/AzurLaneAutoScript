@@ -148,7 +148,7 @@ class GGScreenshot(Base):
                 logger.info('APP Enter')
                 break
             if not self.appear(button=BUTTON_GG_APP_ENTER, offset=(50, 50)):
-                logger.info('Actually APP choosing button')
+                logger.info('Reselect APP')
                 self.device.click(BACK_ARROW)
                 continue
 
