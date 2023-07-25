@@ -68,9 +68,12 @@ class GGScreenshot(Base):
                 logger.info('Restart previous script')
                 skipped = 1
                 continue
-            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE, offset=(50, 50)):
+            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE0, offset=(50, 50)):
                 logger.info('APP choose')
                 skipped = 1
+                continue
+            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE1, offset=(50, 50)):
+                logger.info('APP Choose')
                 continue
             if self.appear(button=BUTTON_GG_SCRIPT_MENU_A, offset=(50, 50)):
                 logger.info('Close previous script')
@@ -141,7 +144,10 @@ class GGScreenshot(Base):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE, offset=(50, 50)):
+            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE0, offset=(50, 50)):
+                logger.info('APP Choose')
+                continue
+            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE1, offset=(50, 50)):
                 logger.info('APP Choose')
                 continue
             if self.appear(button=BUTTON_GG_APP_ENTER, offset=(50, 50)):
@@ -166,7 +172,10 @@ class GGScreenshot(Base):
                 self.gg_lua()
                 logger.hr('Lua execute')
                 break
-            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE, offset=(50, 50)):
+            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE0, offset=(50, 50)):
+                logger.info('APP Choose')
+                continue
+            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE1, offset=(50, 50)):
                 logger.info('APP Choose')
                 continue
             if self.appear_then_click(button=BUTTON_GG_SCRIPT_END, offset=(50, 50)):
@@ -174,9 +183,6 @@ class GGScreenshot(Base):
                 continue
             if self.appear_then_click(button=BUTTON_GG_SCRIPT_FATAL, offset=(50, 50)):
                 logger.info('Stop previous script')
-                continue
-            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE, offset=(50, 50)):
-                logger.info('APP choose')
                 continue
             if self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(50, 50)):
                 self.device.click(BUTTON_GG_SCRIPT_ENTER_POS)
