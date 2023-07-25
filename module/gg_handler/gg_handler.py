@@ -34,7 +34,6 @@ class GGHandler(Base):
     def restart(self, crashed=False):
         from module.handler.login import LoginHandler
         from module.exception import GameStuckError
-        _crashed = crashed
         for _ in range(2):
             try:
                 # if _crashed:
@@ -46,13 +45,13 @@ class GGHandler(Base):
                 pass
             except Exception as e:
                 logger.exception(e)
-                if _crashed:
+                if crashed:
                     from module.notify import handle_notify
                     handle_notify(self.config.Error_OnePushConfig,
                                   title=f"Alas <{self.config.config_name}> 崩溃了",
                                   content=f"<{self.config.config_name}> 需要手动介入，也许你的模拟器卡死")
                     exit(1)
-                _crashed = True
+                crashed = True
 
     def set(self, mode=True):
         """

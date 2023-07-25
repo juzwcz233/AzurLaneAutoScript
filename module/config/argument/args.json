@@ -9850,8 +9850,9 @@
   "AzurLaneUncensored": {
     "AzurLaneUncensored": {
       "Repository": {
-        "type": "input",
+        "type": "textarea",
         "value": "https://gitee.com/LmeSzinc/AzurLaneUncensored",
+        "mode": "yaml",
         "display": "disabled"
       }
     },

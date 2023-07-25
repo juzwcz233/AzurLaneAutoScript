@@ -13,7 +13,7 @@ To add a new event, add a new row in here, and run `python -m module.config.conf
 **CN, EN, JP, TW** Event names in GUI. If an event is not aired on some servers, use `-`.
 
 | Aired Date | Directory                | Event Name                                   | CN                     | EN                                           | JP                                   | TW                       |
-| ---------- | ------------------------ | -------------------------------------------- | ---------------------- | -------------------------------------------- | ------------------------------------ | ------------------------ |
+| :--------- | :----------------------- | :------------------------------------------- | :--------------------- | :------------------------------------------- | :----------------------------------- | :----------------------- |
 | 20170607   | war archives 20181020 en | Strive, Wish, and Strategize                 | 努力、希望和计划       | Strive, Wish, and Strategize                 | 努力、希望と計画                     | 努力、希望和計劃         |
 | 20170802   | war archives 20191031 en | Divergent Chessboard                         | 异色格                 | Divergent Chessboard                         | 鏡写されし異色                       | 異色格                   |
 | 20170928   | war archives 20190321 en | Visitors Dyed in Red                         | 红染的参访者           | Visitors Dyed in Red                         | 紅染の来訪者                         | 紅染的參訪者             |
@@ -34,8 +34,8 @@ To add a new event, add a new row in here, and run `python -m module.config.conf
 | 20221117   | war archives 20200903 cn | Stars of the Shimmering Fjord                | 峡湾间的星辰           | Stars of the Shimmering Fjord                | 輝ける峡湾の星                       | -                        |
 | 20221117   | war archives 20210819 cn | Microlayer Medley                            | 微层混合               | Microlayer Medley                            | 闇靄払う銀翼                         | -                        |
 | 20211028   | war archives 20211028 cn | Skybound Oratorio                            | 穹顶下的圣咏曲         | Skybound Oratorio                            | 神穹を衝く聖歌                       | 穹頂下的聖詠曲           |
-| 20230420   | war archives 20220210 cn | Northern Overture                            | 北境序曲               | Northern Overture                            | 凍絶の北海                           | 北境序曲                |
-| 20230511   | war archives 20220414 cn | Aurora Noctis                                | 永夜幻光               | Aurora Noctis                                | 極夜照らす幻光                       | 永夜幻光              |
+| 20230420   | war archives 20220210 cn | Northern Overture                            | 北境序曲               | Northern Overture                            | 凍絶の北海                           | 北境序曲                 |
+| 20230511   | war archives 20220414 cn | Aurora Noctis                                | 永夜幻光               | Aurora Noctis                                | 極夜照らす幻光                       | 永夜幻光                 |
 | 20200227   | event 20200227 cn        | Northern Overture                            | 北境序曲               | Northern Overture                            | 凍絶の北海                           | -                        |
 | 20200312   | event 20200312 cn        | The Solomon Ranger                           | 复刻斯图尔特的硝烟     | The Solomon Ranger Rerun                     | 南洋に靡く硝煙（復刻）               | -                        |
 | 20200326   | event 20200326 cn        | Microlayer Medley                            | 微层混合               | Microlayer Medley                            | 闇靄払う銀翼                         | -                        |
@@ -140,14 +140,14 @@ To add a new event, add a new row in here, and run `python -m module.config.conf
 | 20230309   | event 20210422 cn        | Daedalian Hymn                               | 复刻复兴的赞美诗       | Daedalian Hymn Rerun                         | 讃える復興の迷路（復刻）             | -                        |
 | 20230323   | raid 20220630            | Angel of Iris                                | -                      | -                                            | -                                    | 來自鳶尾的天使           |
 | 20230323   | coalition 20230323       | Frostfall                                    | 极地风暴               | Frostfall                                    | 星霜海嵐                             | -                        |
-| 20230413   | event 20211111 cn        | The Flame-Touched Dagger                     | 复刻杰诺瓦的焰火        | The Flame-Touched Dagger Rerun               | 復刻-燈火のシニエ                    | -                        |
+| 20230413   | event 20211111 cn        | The Flame-Touched Dagger                     | 复刻杰诺瓦的焰火       | The Flame-Touched Dagger Rerun               | 復刻-燈火のシニエ                    | -                        |
 | 20230413   | event 20210819 cn        | Microlayer Medley                            | -                      | -                                            | -                                    | 復刻-微層混合            |
-| 20230427   | event 20201126 cn        | Vacation Lane                                | 假日航线                | Vacation Lane                                | バケーションレーン                   | 假日航線   |
-| 20230525   | event 20220526 cn        | Pledge of the Radiant Court                  | -                      | -                                            | -                    | 泠誓光庭                        |
-| 20230525   | event 20230525 cn        | Confluence of Nothingness                    | 空相交汇点              | Confluence of Nothingness                    | 覆天せし万象の塵                      | - |
-| 20230615   | event 20200603 cn        | Counterattack Within the Fjord               | -                      | -                                            | -                                    | 復刻峽灣間的反擊          |
-| 20230621   | event 20210527 cn        | Mirror Involution Rerun                      | 复刻镜位螺旋            | Mirror Involution Rerun                      | 照らす螺旋の鏡海（復刻）               | -                        |
-| 20230629   | event 20220428 cn        | Rondo at Rainbow's End                       | -                      | -                                            | -                                    | 虹彩的終幕曲              |
-| 20230629   | raid 20230629            | Reflections of the Oasis                     | 绿洲往事                | Reflections of the Oasis                     | 緑地伽話                              | -                         |
-| 20230713 | event 20220818 cn        | Operation Convergence                        | -                      | -                                            | 結像点作戦                            | 遠匯點作戰                        |
-| 20230720 | event 20211125 cn | World-spanning Arclight | 复刻交汇世界的弧光 | World-spanning Arclight Rerun | 弧光は交わる世界にて（復刻） | - |
+| 20230427   | event 20201126 cn        | Vacation Lane                                | 假日航线               | Vacation Lane                                | バケーションレーン                   | 假日航線                 |
+| 20230525   | event 20220526 cn        | Pledge of the Radiant Court                  | -                      | -                                            | -                                    | 泠誓光庭                 |
+| 20230525   | event 20230525 cn        | Confluence of Nothingness                    | 空相交汇点             | Confluence of Nothingness                    | 覆天せし万象の塵                     | -                        |
+| 20230615   | event 20200603 cn        | Counterattack Within the Fjord               | -                      | -                                            | -                                    | 復刻峽灣間的反擊         |
+| 20230621   | event 20210527 cn        | Mirror Involution Rerun                      | 复刻镜位螺旋           | Mirror Involution Rerun                      | 照らす螺旋の鏡海（復刻）             | -                        |
+| 20230629   | event 20220428 cn        | Rondo at Rainbow's End                       | -                      | -                                            | -                                    | 虹彩的終幕曲             |
+| 20230629   | raid 20230629            | Reflections of the Oasis                     | 绿洲往事               | Reflections of the Oasis                     | 緑地伽話                             | -                        |
+| 20230713   | event 20220818 cn        | Operation Convergence                        | -                      | -                                            | 結像点作戦                           | 遠匯點作戰               |
+| 20230720   | event 20211125 cn        | World-spanning Arclight                      | 复刻交汇世界的弧光     | World-spanning Arclight Rerun                | 弧光は交わる世界にて（復刻）         | -                        |

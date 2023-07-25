@@ -48,13 +48,13 @@ class AzurLaneUncensored(LoginHandler):
         os.chdir(folder)
         # Monkey patch `print()` build-in to show logs.
         self.create_level1_uncensored()
-        # manager.git_repository_init(
-        #     repo=repo,
-        #     source='origin',
-        #     branch='master',
-        #     proxy=manager.config['GitProxy'],
-        #     keep_changes=False
-        # )
+        manager.git_repository_init(
+            repo=repo,
+            source='origin',
+            branch='master',
+            proxy=manager.config['GitProxy'],
+            keep_changes=False
+        )
 
         logger.hr('Push Uncensored Files', level=1)
         logger.info('This will take a few seconds')

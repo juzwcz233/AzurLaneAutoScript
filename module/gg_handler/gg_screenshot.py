@@ -1,11 +1,10 @@
 import uiautomator2 as u2
 from module.base.timer import Timer
-from module.ui.assets import BACK_ARROW
-from module.logger import logger
 from module.gg_handler.assets import *
 from module.ui.assets import *
 from module.meowfficer.assets import *
 from module.ocr.ocr import Digit
+from module.logger import logger
 from module.base.base import ModuleBase as Base
 from module.gg_handler.gg_data import GGData
 
@@ -69,7 +68,7 @@ class GGScreenshot(Base):
                 logger.info('Restart previous script')
                 skipped = 1
                 continue
-            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE, offset=(150, 500)):
+            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE, offset=(50, 50)):
                 logger.info('APP choose')
                 skipped = 1
                 continue
@@ -125,14 +124,14 @@ class GGScreenshot(Base):
                 self.device.screenshot()
             if self.appear_then_click(button=BUTTON_GG_START, offset=(50, 50)):
                 continue
-            if self.appear(button=BUTTON_GG_ENTER, offset=(50, 50)) or self.appear(button=BUTTON_GG_CONFIRM, offset=(50, 50)):
-                logger.hr('Enter GG')
-                logger.info('Entered GG')
-                break
             for i in range(len(method)):
                 if self.appear(button=method[int(i)], offset=(50, 50)):
                     self.device.click(BUTTON_GG_ENTER_POS)
                     break
+            if self.appear(button=BUTTON_GG_ENTER, offset=(50, 50)) or self.appear(button=BUTTON_GG_CONFIRM, offset=(50, 50)):
+                logger.hr('Enter GG')
+                logger.info('Entered GG')
+                break
 
         skip_first_screenshot = True
         logger.hr('Enter APP State')
@@ -142,14 +141,14 @@ class GGScreenshot(Base):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE, offset=(150, 500)):
+            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE, offset=(50, 50)):
                 logger.info('APP Choose')
                 continue
-            if self.appear(button=BUTTON_GG_APP_ENTER, offset=(150, 500)):
+            if self.appear(button=BUTTON_GG_APP_ENTER, offset=(50, 50)):
                 logger.info('APP Enter')
                 break
-            if not self.appear(button=BUTTON_GG_APP_ENTER, offset=(150, 500)):
-                logger.info('Actually APP choosing button')
+            if not self.appear(button=BUTTON_GG_APP_ENTER, offset=(50, 50)):
+                logger.info('Reselect APP')
                 self.device.click(BACK_ARROW)
                 continue
 
@@ -159,33 +158,31 @@ class GGScreenshot(Base):
             in: any GG
             out: GG ready to start script
         """
-        count = 0
         logger.hr('Select Script')
         while 1:
             self.device.sleep(0.5)
             self.device.screenshot()
             if self.appear(button=BUTTON_GG_SCRIPT_ENTER_CONFIRM, offset=(50, 50)):
-                self._gg_lua()
+                self.gg_lua()
                 logger.hr('Lua execute')
                 break
+            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE, offset=(50, 50)):
+                logger.info('APP Choose')
+                continue
             if self.appear_then_click(button=BUTTON_GG_SCRIPT_END, offset=(50, 50)):
                 logger.info('Close previous script')
-                count += 1
                 continue
             if self.appear_then_click(button=BUTTON_GG_SCRIPT_FATAL, offset=(50, 50)):
                 logger.info('Stop previous script')
-                count += 1
                 continue
-            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE, offset=(150, 500)):
+            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE, offset=(50, 50)):
                 logger.info('APP choose')
-                count += 1
                 continue
-            if self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.95):
+            if self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(50, 50)):
                 self.device.click(BUTTON_GG_SCRIPT_ENTER_POS)
                 logger.info('Enter script choose')
-                count += 1
                 continue
-            if count == 0:
+            if not self.appear(button=BUTTON_GG_SEARCH_MODE_BUTTON, offset=(50, 50)):
                 self.device.click(BUTTON_GG_TAB_SEARCH_POS)
                 logger.info('Enter search mode')
                 continue
@@ -242,20 +239,20 @@ class GGScreenshot(Base):
         ]
         self.wait_until_appear(button=BUTTON_GG_SCRIPT_START_PROCESS, skip_first_screenshot=True)
         logger.hr('Factor Input')
-        if (isinstance(self._factor, int) == True or isinstance(self._factor, float) == True) and (1 <= self._factor <= 1000):
-            logger.attr('Factor', self._factor)
+        if (isinstance(self.factor, int) == True or isinstance(self.factor, float) == True) and (1 <= self.factor <= 1000):
+            logger.attr('Factor', self.factor)
             self.device.sleep(0.5)
             self.device.screenshot()
             FOLD = OCR_GG_FOLD.ocr(self.device.image)
-            if self._factor == int(FOLD):
+            if self.factor == int(FOLD):
                 logger.hr('Re: Input')
                 logger.info('Skip factor input')
                 logger.hr('Factor Check')
                 logger.info('Skip factor check')
-                return 0
+                return 1
             logger.hr('Re: Input')
             logger.info('Factor Reinput')
-            for i in str(self._factor):
+            for i in str(self.factor):
                 self.appear_then_click(button=method[int(i)], offset=(50, 50))
                 self.device.sleep(0.5)
             logger.info('Input success')
@@ -264,22 +261,22 @@ class GGScreenshot(Base):
             while 1:
                 self.device.screenshot()
                 FOLD_CHECK = OCR_GG_FOLD_CHECK.ocr(self.device.image)
-                if self._factor == FOLD_CHECK:
+                if self.factor == FOLD_CHECK:
                     logger.info('Check success')
                     break
                 else:
-                    count+=1
+                    count += 1
                     logger.warning('Check error')  
                     logger.info('Factor delete')
-                    self.device.long_click(button=BUTTON_GG_SCRIPT_PANEL_DEL, duration=(1, 1))
-                    if count>=3:
+                    self.device.long_click(button=BUTTON_GG_SCRIPT_PANEL_DEL, duration=(1, 1.2))
+                    if count >= 3:
                         logger.error('Check more failed,Try default factor will be run')
                         for i in str(200):
                             self.appear_then_click(button=method[int(i)], offset=(50, 50))
                             self.device.sleep(0.5)
                         break
                     logger.info('Input again')
-                    for i in str(self._factor):
+                    for i in str(self.factor):
                         self.appear_then_click(button=method[int(i)], offset=(50, 50))
                         self.device.sleep(0.5)
                     self.device.sleep(0.5)
@@ -311,10 +308,10 @@ class GGScreenshot(Base):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear_then_click(button=BUTTON_GG_SCRIPT_START_PROCESS, offset=(50, 50), threshold=0.9):
+            if self.appear_then_click(button=BUTTON_GG_SCRIPT_START_PROCESS, offset=(50, 50)):
                 self.device.sleep(0.5)
                 self.device.screenshot()
-                if self.appear(button=BUTTON_GG_SCRIPT_START_PROCESS, offset=(50, 50), threshold=0.9):
+                if self.appear(button=BUTTON_GG_SCRIPT_START_PROCESS, offset=(50, 50)):
                     self.device.click(BUTTON_GG_SCRIPT_START_PROCESS)
                     break
                 else:
@@ -328,7 +325,7 @@ class GGScreenshot(Base):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear_then_click(button=BUTTON_GG_SCRIPT_END, offset=(50, 50), threshold=0.9):
+            if self.appear_then_click(button=BUTTON_GG_SCRIPT_END, offset=(50, 50)):
                 return 1
     
     def gg_exit(self):
@@ -353,21 +350,16 @@ class GGScreenshot(Base):
                 if self.appear_then_click(button=BUTTON_GG_SKIP1, offset=(50, 50)):
                     self.device.sleep(1)
                     continue
+                if self.appear(button=BUTTON_GG_ENTER, offset=(50, 50)):
+                    self.device.click(BUTTON_GG_EXIT_POS)
+                    continue
+                if self.appear(button=BUTTON_GG_CONFIRM, offset=(50, 50)):
+                    self.device.click(BUTTON_GG_EXIT_POS)
+                    continue
                 if self.appear_then_click(button=BUTTON_GG_START, offset=(50, 50)):
-                    self.device.sleep(1)
-                    self.device.screenshot()
-                    if self.appear_then_click(button=BUTTON_GG_START, offset=(50, 50)):
-                        self.device.sleep(1)
-                        self.device.screenshot()
-                        if self.appear(button=BUTTON_GG_START, offset=(50, 50)):
-                            self.device.click(BUTTON_GG_START)
-                            break
-                        else:
-                            break
-                    else:
-                        break
+                    break
 
-    def _gg_lua(self):
+    def gg_lua(self):
         if self.path != "" and self.gg_action == 'manual' and self.gg_package_name != 'com.':
             self.luapath = self.path
         if self.oldpath == False:
@@ -425,7 +417,7 @@ class GGScreenshot(Base):
             logger.hr('Skip push lua file')
 
     def run(self, factor):
-        self._factor = factor
+        self.factor = factor
         self.gg_push()
         self.gg_start()
         self.enter_gg()
