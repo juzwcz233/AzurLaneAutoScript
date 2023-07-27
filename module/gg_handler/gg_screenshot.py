@@ -340,6 +340,7 @@ class GGScreenshot(Base):
             self.d.app_start(f'{self.gg_package_name}')
             logger.hr('GG start')
             skip_first_screenshot = True
+            count = 0
             while 1:
                 if skip_first_screenshot:
                     skip_first_screenshot = False
@@ -347,21 +348,23 @@ class GGScreenshot(Base):
                     self.device.sleep(0.5)
                     self.device.screenshot()
                 if self.appear_then_click(button=BUTTON_GG_SKIP0, offset=(50, 50)):
-                    self.device.sleep(1)
+                    count += 1
                     continue
                 if self.appear_then_click(button=BUTTON_GG_SKIP1, offset=(50, 50)):
-                    self.device.sleep(1)
+                    count += 1
                     continue
                 if self.appear(button=BUTTON_GG_ENTER, offset=(50, 50)):
                     self.device.click(BUTTON_GG_EXIT_POS)
+                    count += 1
                     continue
                 if self.appear(button=BUTTON_GG_CONFIRM, offset=(50, 50)):
                     self.device.click(BUTTON_GG_EXIT_POS)
+                    count += 1
                     continue
                 if self.appear_then_click(button=BUTTON_GG_START, offset=(50, 50)):
                     continue
                 for i in range(len(self.method)):
-                    if self.appear(button=self.method[int(i)], offset=(50, 50)):
+                    if self.appear(button=self.method[int(i)], offset=(50, 50)) and count != 0:
                         return 1
 
     def gg_lua(self):
