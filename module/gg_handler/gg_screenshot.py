@@ -125,8 +125,6 @@ class GGScreenshot(Base):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear_then_click(button=BUTTON_GG_START, offset=(50, 50)):
-                continue
             for i in range(len(self.method)):
                 if self.appear(button=self.method[int(i)], offset=(50, 50)):
                     self.device.click(BUTTON_GG_ENTER_POS)
@@ -360,9 +358,11 @@ class GGScreenshot(Base):
                 if self.appear(button=BUTTON_GG_CONFIRM, offset=(50, 50)):
                     self.device.click(BUTTON_GG_EXIT_POS)
                     continue
+                if self.appear_then_click(button=BUTTON_GG_START, offset=(50, 50)):
+                    continue
                 for i in range(len(self.method)):
                     if self.appear(button=self.method[int(i)], offset=(50, 50)):
-                        break
+                        return 1
 
     def gg_lua(self):
         if self.path != "" and self.gg_action == 'manual' and self.gg_package_name != 'com.':
