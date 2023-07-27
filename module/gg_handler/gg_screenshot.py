@@ -412,6 +412,8 @@ class GGScreenshot(Base):
                     continue
                 if self.appear_then_click(button=BUTTON_GG_LUA, offset=(50, 50)):
                     continue
+                if self.appear(button=BUTTON_GG_SCRIPT_START_PROCESS, offset=(50, 50)):
+                    break
 
     def gg_push(self):
         if self.oldpath == False:
