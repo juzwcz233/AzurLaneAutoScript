@@ -362,6 +362,7 @@ class GGScreenshot(Base):
                     count += 1
                     continue
                 if self.appear_then_click(button=BUTTON_GG_START, offset=(50, 50)):
+                    count += 1
                     continue
                 for i in range(len(self.method)):
                     if self.appear(button=self.method[int(i)], offset=(50, 50)) and count != 0:
