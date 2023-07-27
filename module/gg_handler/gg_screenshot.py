@@ -198,8 +198,9 @@ class GGScreenshot(Base):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear(button=BUTTON_GG_SCRIPT_START, offset=(50, 50)):
-                self.device.click(BUTTON_GG_SCRIPT_START)
+            if self.appear_then_click(button=BUTTON_GG_SCRIPT_START, offset=(50, 50)):
+                continue
+            if self.appear_then_click(button=BUTTON_GG_STOP, offset=(50, 50)):
                 continue
             if self.appear(button=BUTTON_GG_SCRIPT_MENU_A, offset=(50, 50)):
                 break
@@ -217,8 +218,7 @@ class GGScreenshot(Base):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear(button=BUTTON_GG_SCRIPT_MENU_A, offset=(50, 50)):
-                self.device.click(BUTTON_GG_SCRIPT_MENU_A)
+            if self.appear_then_click(button=BUTTON_GG_SCRIPT_MENU_A, offset=(50, 50)):
                 continue
             if self.appear(button=BUTTON_GG_SCRIPT_START_PROCESS, offset=(50, 50)):
                 break
@@ -325,6 +325,10 @@ class GGScreenshot(Base):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
+            for i in range(len(self.method)):
+                if self.appear(button=self.method[int(i)], offset=(50, 50)):
+                    self.device.click(BUTTON_GG_ENTER_POS)
+                    break
             if self.appear_then_click(button=BUTTON_GG_SCRIPT_END, offset=(50, 50)):
                 continue
             if self.appear(button=BUTTON_GG_SEARCH_MODE_BUTTON, offset=(50, 50)):
