@@ -47,7 +47,7 @@ class GGScreenshot(Base):
             self.device.screenshot()
             if timeout.reached():
                 break
-            if self.appear_then_click(button=BUTTON_GG_RESTART_ERROR, offset=(50, 50), interval=1):
+            if self.appear_then_click(button=BUTTON_GG_RESTART_ERROR, offset=(50, 50)):
                 logger.hr('Game died with GG panel')
                 logger.info('Close GG restart error')
                 skipped = 1
@@ -62,28 +62,28 @@ class GGScreenshot(Base):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear_then_click(button=BUTTON_GG_RESTART_ERROR, offset=(50, 50), interval=1):
+            if self.appear_then_click(button=BUTTON_GG_RESTART_ERROR, offset=(50, 50)):
                 logger.hr('Game died with GG panel')
                 logger.info('Close GG restart error')
                 skipped = 1
                 continue
-            if self.appear_then_click(button=BUTTON_GG_STOP, offset=(50, 50), interval=1):
+            if self.appear_then_click(button=BUTTON_GG_STOP, offset=(50, 50)):
                 logger.info('Stop lua')
                 skipped = 1
                 continue
-            if self.appear_then_click(button=BUTTON_GG_SCRIPT_END, offset=(50, 50), interval=1):
+            if self.appear_then_click(button=BUTTON_GG_SCRIPT_END, offset=(50, 50)):
                 logger.info('Close previous script')
                 skipped = 1
                 continue
-            if self.appear_then_click(button=BUTTON_GG_SCRIPT_FATAL, offset=(50, 50), interval=1):
+            if self.appear_then_click(button=BUTTON_GG_SCRIPT_FATAL, offset=(50, 50)):
                 logger.info('Restart previous script')
                 skipped = 1
                 continue
-            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE0, offset=(50, 50), interval=1):
+            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE0, offset=(50, 50)):
                 logger.info('APP choose')
                 skipped = 1
                 continue
-            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE1, offset=(50, 50), interval=1):
+            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE1, offset=(50, 50)):
                 logger.info('APP Choose')
                 continue
             if self.appear(button=BUTTON_GG_SCRIPT_MENU_A, offset=(50, 50)):
@@ -91,7 +91,7 @@ class GGScreenshot(Base):
                 self.device.click(BUTTON_GG_EXIT_POS)
                 skipped = 1
                 continue
-            if self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.999):
+            if self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.5):
                 logger.info('At GG main panel, click GG exit')
                 self.device.click(BUTTON_GG_EXIT_POS)
                 skipped = 1
@@ -146,10 +146,10 @@ class GGScreenshot(Base):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE0, offset=(50, 50), interval=1):
+            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE0, offset=(50, 50)):
                 logger.info('APP Choose')
                 continue
-            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE1, offset=(50, 50), interval=1):
+            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE1, offset=(50, 50)):
                 logger.info('APP Choose')
                 continue
             if self.appear(button=BUTTON_GG_APP_ENTER, offset=(50, 50), threshold=0.999):
@@ -177,16 +177,16 @@ class GGScreenshot(Base):
                 self.gg_lua()
                 logger.hr('Lua execute')
                 break
-            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE0, offset=(50, 50), interval=1):
+            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE0, offset=(50, 50)):
                 logger.info('APP Choose')
                 continue
-            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE1, offset=(50, 50), interval=1):
+            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE1, offset=(50, 50)):
                 logger.info('APP Choose')
                 continue
-            if self.appear_then_click(button=BUTTON_GG_SCRIPT_END, offset=(50, 50), interval=1):
+            if self.appear_then_click(button=BUTTON_GG_SCRIPT_END, offset=(50, 50)):
                 logger.info('Close previous script')
                 continue
-            if self.appear_then_click(button=BUTTON_GG_SCRIPT_FATAL, offset=(50, 50), interval=1):
+            if self.appear_then_click(button=BUTTON_GG_SCRIPT_FATAL, offset=(50, 50)):
                 logger.info('Stop previous script')
                 continue
             if self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.5):
@@ -205,9 +205,9 @@ class GGScreenshot(Base):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear_then_click(button=BUTTON_GG_SCRIPT_START, offset=(50, 50), interval=1):
+            if self.appear_then_click(button=BUTTON_GG_SCRIPT_START, offset=(50, 50)):
                 continue
-            if self.appear_then_click(button=BUTTON_GG_STOP, offset=(50, 50), interval=1):
+            if self.appear_then_click(button=BUTTON_GG_STOP, offset=(50, 50)):
                 continue
             if self.appear(button=BUTTON_GG_SCRIPT_MENU_A, offset=(50, 50)):
                 break
@@ -228,7 +228,7 @@ class GGScreenshot(Base):
             if self.appear(button=BUTTON_GG_STOP, offset=(50, 50)):
                 self.config.task_call('Restart')
                 self.config.task_stop()
-            if self.appear_then_click(button=BUTTON_GG_SCRIPT_MENU_A, offset=(50, 50), interval=1):
+            if self.appear_then_click(button=BUTTON_GG_SCRIPT_MENU_A, offset=(50, 50)):
                 continue
             if self.appear(button=BUTTON_GG_SCRIPT_START_PROCESS, offset=(50, 50)):
                 break
@@ -319,7 +319,7 @@ class GGScreenshot(Base):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear_then_click(button=BUTTON_GG_SCRIPT_START_PROCESS, offset=(50, 50), interval=1):
+            if self.appear_then_click(button=BUTTON_GG_SCRIPT_START_PROCESS, offset=(50, 50)):
                 continue
             if self.appear(button=BUTTON_GG_SCRIPT_START_CHECK, offset=(50, 50)):
                 break
@@ -363,10 +363,10 @@ class GGScreenshot(Base):
                 if self.appear(button=BUTTON_GG_STOP, offset=(50, 50)):
                     self.config.task_call('Restart')
                     self.config.task_stop()
-                if self.appear_then_click(button=BUTTON_GG_SKIP0, offset=(50, 50), interval=1):
+                if self.appear_then_click(button=BUTTON_GG_SKIP0, offset=(50, 50)):
                     count += 1
                     continue
-                if self.appear_then_click(button=BUTTON_GG_SKIP1, offset=(50, 50), interval=1):
+                if self.appear_then_click(button=BUTTON_GG_SKIP1, offset=(50, 50)):
                     count += 1
                     continue
                 if self.appear(button=BUTTON_GG_ENTER, offset=(50, 50)):
@@ -377,7 +377,7 @@ class GGScreenshot(Base):
                     self.device.click(BUTTON_GG_EXIT_POS)
                     count += 1
                     continue
-                if self.appear_then_click(button=BUTTON_GG_START, offset=(50, 50), interval=1):
+                if self.appear_then_click(button=BUTTON_GG_START, offset=(50, 50)):
                     count += 1
                     continue
                 for i in range(len(self.method)):
@@ -427,11 +427,11 @@ class GGScreenshot(Base):
                 else:
                     self.device.sleep(0.5)
                     self.device.screenshot()
-                if self.appear_then_click(button=BUTTON_GG_PATH0, offset=(50, 50), interval=1):
+                if self.appear_then_click(button=BUTTON_GG_PATH0, offset=(50, 50)):
                     continue
-                if self.appear_then_click(button=BUTTON_GG_PATH1, offset=(50, 50), interval=1):
+                if self.appear_then_click(button=BUTTON_GG_PATH1, offset=(50, 50)):
                     continue
-                if self.appear_then_click(button=BUTTON_GG_LUA, offset=(50, 50), interval=1):
+                if self.appear_then_click(button=BUTTON_GG_LUA, offset=(50, 50)):
                     continue
                 if self.appear(button=BUTTON_GG_SCRIPT_START_PROCESS, offset=(50, 50)):
                     break
