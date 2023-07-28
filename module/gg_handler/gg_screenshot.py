@@ -319,6 +319,7 @@ class GGScreenshot(Base):
         logger.info('Waiting for end')
 
         skip_first_screenshot = True
+        count = 0
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -326,10 +327,11 @@ class GGScreenshot(Base):
                 self.device.sleep(0.5)
                 self.device.screenshot()
             for i in range(len(self.method)):
-                if self.appear(button=self.method[int(i)], offset=(50, 50)):
+                if self.appear(button=self.method[int(i)], offset=(50, 50)) and count != 0:
                     self.device.click(BUTTON_GG_ENTER_POS)
                     break
             if self.appear_then_click(button=BUTTON_GG_SCRIPT_END, offset=(50, 50)):
+                count += 1
                 continue
             if self.appear(button=BUTTON_GG_SEARCH_MODE_BUTTON, offset=(50, 50)):
                 return 1
