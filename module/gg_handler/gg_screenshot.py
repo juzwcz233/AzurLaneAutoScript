@@ -189,7 +189,7 @@ class GGScreenshot(Base):
             if self.appear_then_click(button=BUTTON_GG_SCRIPT_FATAL, offset=(50, 50), interval=1):
                 logger.info('Stop previous script')
                 continue
-            if self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(50, 50), threshold=0.999):
+            if self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.5):
                 self.device.click(BUTTON_GG_SCRIPT_ENTER_POS)
                 logger.info('Enter script choose')
                 continue
