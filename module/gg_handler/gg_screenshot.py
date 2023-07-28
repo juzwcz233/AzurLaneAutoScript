@@ -67,6 +67,10 @@ class GGScreenshot(Base):
                 logger.info('Close GG restart error')
                 skipped = 1
                 continue
+            if self.appear_then_click(button=BUTTON_GG_STOP, offset=(50, 50)):
+                logger.info('Stop lua')
+                skipped = 1
+                continue
             if self.appear_then_click(button=BUTTON_GG_SCRIPT_END, offset=(50, 50)):
                 logger.info('Close previous script')
                 skipped = 1
@@ -166,6 +170,9 @@ class GGScreenshot(Base):
         while 1:
             self.device.sleep(0.5)
             self.device.screenshot()
+            if self.appear(button=BUTTON_GG_STOP, offset=(50, 50)):
+                self.config.task_call('Restart')
+                self.config.task_stop()
             if self.appear(button=BUTTON_GG_SCRIPT_ENTER_CONFIRM, offset=(50, 50)):
                 self.gg_lua()
                 logger.hr('Lua execute')
@@ -218,6 +225,9 @@ class GGScreenshot(Base):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
+            if self.appear(button=BUTTON_GG_STOP, offset=(50, 50)):
+                self.config.task_call('Restart')
+                self.config.task_stop()
             if self.appear_then_click(button=BUTTON_GG_SCRIPT_MENU_A, offset=(50, 50)):
                 continue
             if self.appear(button=BUTTON_GG_SCRIPT_START_PROCESS, offset=(50, 50)):
@@ -353,6 +363,9 @@ class GGScreenshot(Base):
                 else:
                     self.device.sleep(0.5)
                     self.device.screenshot()
+                if self.appear(button=BUTTON_GG_STOP, offset=(50, 50)):
+                    self.config.task_call('Restart')
+                    self.config.task_stop()
                 if self.appear_then_click(button=BUTTON_GG_SKIP0, offset=(50, 50)):
                     count += 1
                     continue
