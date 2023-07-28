@@ -337,9 +337,8 @@ class GGScreenshot(Base):
                 self.device.sleep(0.5)
                 self.device.screenshot()
             for i in range(len(self.method)):
-                if self.appear(button=self.method[int(i)], offset=(50, 50)):
+                if self.appear(button=self.method[int(i)], offset=(50, 50)) and count != 0:
                     self.device.click(BUTTON_GG_ENTER_POS)
-                    count += 1
                     break
             if self.appear_then_click(button=BUTTON_GG_SCRIPT_END, offset=(50, 50)):
                 count += 1
