@@ -187,7 +187,7 @@ class GGScreenshot(Base):
                 self.device.click(BUTTON_GG_SCRIPT_ENTER_POS)
                 logger.info('Enter script choose')
                 continue
-            if not self.appear(button=BUTTON_GG_SEARCH_MODE_BUTTON, offset=(50, 50)):
+            if not self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(50, 50), threshold=0.5):
                 self.device.click(BUTTON_GG_TAB_SEARCH_POS)
                 logger.info('Enter search mode')
                 continue
