@@ -102,7 +102,7 @@ class GGHandler(Base):
         logger.hr('Check GG config')
         logger.info(f'GG config:')
         logger.info(
-            f'[Enabled={self.gg_enable}] [AutoRestart={self.gg_auto}] [CurrentStage={self.gg_on}]')
+            f'[Enabled]{self.gg_enable} [AutoRestart]{self.gg_auto} [CurrentStage]{self.gg_on}')
         return self.gg_data
 
     # def handle_u2_restart(self):
@@ -148,7 +148,7 @@ class GGHandler(Base):
             logger.hr('Loading GG config')
             logger.info(f'GG config:')
             logger.info(
-                f'[Enabled={self.gg_enable}] [AutoRestart={self.gg_auto}] [CurrentStage={self.gg_on}]')
+                f'[Enabled]{self.gg_enable} [AutoRestart]{self.gg_auto} [CurrentStage]{self.gg_on}')
             if not self.skip_error():
                 logger.hr('Assume game died without GG panel')
 
@@ -172,7 +172,7 @@ class GGHandler(Base):
             logger.hr('Check GG status')
             logger.info(f'Check GG status:')
             logger.info(
-                f'[Enabled={self.gg_enable}] [AutoRestart={self.gg_auto}] [CurrentStage={self.gg_on}]')
+                f'[Enabled]{self.gg_enable} [AutoRestart]{self.gg_auto} [CurrentStage]{self.gg_on}')
             if gg_auto:
                 if not self.gg_on:
                     self.set(True)
