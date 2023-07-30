@@ -12,15 +12,16 @@ class GGData(ModuleBase):
 
     def __init__(self, config=AzurLaneConfig):
         self.config = config
+        self.filename = f'./gg_config/{self.config.config_name}.GG.json'
         if not os.path.exists('./gg_config'):
             os.mkdir('./gg_config')
-        with open(file=f'./gg_config/{self.config.config_name}.GG.json', mode='a+', encoding='utf-8') as json:
+        with open(file=self.filename, mode='a+', encoding='utf-8') as json:
             json.close()
-        json = open(file=f'./gg_config/{self.config.config_name}.GG.json', mode='r', encoding='utf-8')
+        json = open(file=self.filename, mode='r', encoding='utf-8')
         line = json.readline()
         if line[:-1] != self.config.config_name:
             json.close()
-            json = open(file=f'./gg_config/{self.config.config_name}.GG.json', mode='w', encoding='utf-8')
+            json = open(file=self.filename, mode='w', encoding='utf-8')
             json.write(f'{self.config.config_name}\n')
             json.write('gg_on=False\n')
             self.ggdata['gg_on'] = False
@@ -47,7 +48,7 @@ class GGData(ModuleBase):
         self.update_data()
 
     def update_data(self):
-        with open(file=f'./gg_config/{self.config.config_name}.GG.json', mode='w', encoding='utf-8') as json:
+        with open(file=self.filename, mode='w', encoding='utf-8') as json:
             json.write(f'{self.config.config_name}\n')
             for t in self.ggdata:
                 json.write(t + '=' + str(self.ggdata[t]) + '\n')
