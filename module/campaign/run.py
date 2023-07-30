@@ -381,11 +381,6 @@ class CampaignRun(CampaignEvent, ShopStatus):
             if self.triggered_stop_condition(oil_check=not self.campaign.is_in_auto_search_menu()):
                 break
 
-            # Update config
-            if len(self.config.modified):
-                logger.info('Updating dashboard data')
-                self.config.update()
-
             # Run
             try:
                 self.campaign.run()
