@@ -147,7 +147,6 @@ class GGScreenshot(Base):
                 self.device.sleep(0.5)
                 self.device.screenshot()
             if self.appear(button=BUTTON_GG_ENTER, offset=(50, 50)):
-                self.device.click(BUTTON_GG_RECHOOSE)
                 continue
             if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE0, offset=(50, 50)):
                 logger.info('APP Choose')
@@ -180,6 +179,12 @@ class GGScreenshot(Base):
                 self.gg_lua()
                 logger.hr('Lua execute')
                 break
+            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE0, offset=(50, 50)):
+                logger.info('APP Choose')
+                continue
+            if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE1, offset=(50, 50)):
+                logger.info('APP Choose')
+                continue
             if self.appear_then_click(button=BUTTON_GG_SCRIPT_END, offset=(50, 50)):
                 logger.info('Close previous script')
                 continue

@@ -29,9 +29,9 @@ class DashboardUpdate(DashboardStatus):
         self.ui_goto(page_campaign_menu)
         self.device.sleep(0.5)
         self.device.screenshot()
+        pt = 0
         if self.appear(button=CAMPAIGN_MENU_NO_EVENT, offset=(50, 50)):
             logger.warning('Event is already closed')
-            pt = 0
             logger.attr('Event_PT', pt)
             LogRes(self.config).Pt = pt
         else:
@@ -43,7 +43,9 @@ class DashboardUpdate(DashboardStatus):
                     break
                 elif self.appear(button=SP_CHECK, offset=(50, 50)):
                     logger.warning('Event is SP, no PT')
+                    LogRes(self.config).Pt = pt
                     return 1
+            
             skip_first_screenshot = True
             while 1:
                 if skip_first_screenshot:
