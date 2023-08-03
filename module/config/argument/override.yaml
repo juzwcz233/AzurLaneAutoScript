@@ -289,25 +289,16 @@ CoalitionSp:
 
 Reward:
   Scheduler:
-    Enable:
-      value: true
-      type: lock
     SuccessInterval: 120-240
     FailureInterval: 120-240
     ServerUpdate: 00:00
 Commission:
   Scheduler:
-    Enable:
-      value: true
-      type: lock
     SuccessInterval: 30-60
     FailureInterval: 30-60
     ServerUpdate: 00:00
 Research:
   Scheduler:
-    Enable:
-      value: true
-      type: lock
     SuccessInterval: 30-60
     FailureInterval: 30-60
     ServerUpdate: 00:00
@@ -376,9 +367,6 @@ Exercise:
     ServerUpdate: 00:00, 12:00, 18:00
 DashboardUpdate:
   Scheduler:
-    Enable:
-      value: true
-      type: lock
     SuccessInterval: 30
     FailureInterval: 30
     ServerUpdate: 00:00

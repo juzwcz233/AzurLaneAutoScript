@@ -1715,7 +1715,7 @@
   },
   "DashboardUpdate": {
     "Scheduler": {
-      "Enable": true,
+      "Enable": false,
       "NextRun": "2023-01-01 00:00:00",
       "Command": "DashboardUpdate",
       "SuccessInterval": 30,
