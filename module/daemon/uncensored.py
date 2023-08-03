@@ -57,6 +57,8 @@ class AzurLaneUncensored(LoginHandler):
         )
 
         if self.config.AzurLaneUncensored_Remove:
+            logger.hr('Remove Patch')
+            logger.info('Gametip alreay removed')
             os.remove("./files/AssetBundles/sharecfgdata/gametip")
 
         logger.hr('Push Uncensored Files', level=1)
