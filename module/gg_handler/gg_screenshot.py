@@ -129,14 +129,14 @@ class GGScreenshot(Base):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            for i in range(len(self.method)):
-                if self.appear(button=self.method[int(i)], offset=(50, 50)):
-                    self.device.click(BUTTON_GG_ENTER_POS)
-                    break
             if self.appear(button=BUTTON_GG_ENTER, offset=(50, 50)) or self.appear(button=BUTTON_GG_CONFIRM, offset=(50, 50)):
                 logger.hr('Enter GG')
                 logger.info('Entered GG')
                 break
+            for i in range(len(self.method)):
+                if self.appear(button=self.method[int(i)], offset=(50, 50)):
+                    self.device.click(BUTTON_GG_ENTER_POS)
+                    break
 
         skip_first_screenshot = True
         logger.hr('Enter APP State')
@@ -146,6 +146,9 @@ class GGScreenshot(Base):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
+            if self.appear(button=BUTTON_GG_ENTER, offset=(50, 50)):
+                self.device.click(BUTTON_GG_RECHOOSE)
+                continue
             if self.appear_then_click(button=BUTTON_GG_APP_CHOOSE0, offset=(50, 50)):
                 logger.info('APP Choose')
                 continue
