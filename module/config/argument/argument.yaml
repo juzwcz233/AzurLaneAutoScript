@@ -692,6 +692,7 @@ AzurLaneUncensored:
     mode: yaml
     value: 'https://gitee.com/LmeSzinc/AzurLaneUncensored'
     display: disabled
+  Remove: true
 GameManager:
   AutoRestart: true
 GGHandler:

@@ -2423,6 +2423,10 @@
     "Repository": {
       "name": "AzurLaneUncensored Repository",
       "help": "Do not need to modify\nGithub: <https://github.com/LmeSzinc/AzurLaneUncensored>"
+    },
+    "Remove": {
+      "name": "AzurLaneUncensored.Remove.name",
+      "help": "AzurLaneUncensored.Remove.help"
     }
   },
   "GameManager": {

@@ -2038,7 +2038,8 @@
   },
   "AzurLaneUncensored": {
     "AzurLaneUncensored": {
-      "Repository": "https://gitee.com/LmeSzinc/AzurLaneUncensored"
+      "Repository": "https://gitee.com/LmeSzinc/AzurLaneUncensored",
+      "Remove": true
     },
     "Storage": {
       "Storage": {}

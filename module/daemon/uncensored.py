@@ -56,6 +56,9 @@ class AzurLaneUncensored(LoginHandler):
             keep_changes=False
         )
 
+        if self.config.AzurLaneUncensored_Remove:
+            os.remove("./files/AssetBundles/sharecfgdata/gametip")
+
         logger.hr('Push Uncensored Files', level=1)
         logger.info('This will take a few seconds')
         command = ['push', 'files', f'/sdcard/Android/data/{self.device.package}']
