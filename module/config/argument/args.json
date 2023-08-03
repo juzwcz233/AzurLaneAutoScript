@@ -9852,8 +9852,7 @@
       "Repository": {
         "type": "textarea",
         "value": "https://gitee.com/LmeSzinc/AzurLaneUncensored",
-        "mode": "yaml",
-        "display": "disabled"
+        "mode": "yaml"
       },
       "Remove": {
         "type": "checkbox",
