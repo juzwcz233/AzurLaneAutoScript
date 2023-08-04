@@ -162,8 +162,8 @@ class AzurLaneConfig(ConfigUpdater, ManualConfig, GeneratedConfig, ConfigWatcher
                     visited.add(path)
 
         # Override arguments
-        for arg, value in self.overridden.items():
-            super().__setattr__(arg, value)
+        # for arg, value in self.overridden.items():
+        #     super().__setattr__(arg, value)
 
     @property
     def hoarding(self):
@@ -276,18 +276,18 @@ class AzurLaneConfig(ConfigUpdater, ManualConfig, GeneratedConfig, ConfigWatcher
                 if isinstance(next_run, datetime) and next_run > limit:
                     deep_set(self.data, keys=f"{task}.Scheduler.NextRun", value=now)
 
-        for task in ["Commission", "Research", "Reward"]:
-            if not self.is_task_enabled(task):
-                self.modified[f"{task}.Scheduler.Enable"] = True
-        force_enable = list
+        # for task in ["Commission", "Research", "Reward"]:
+        #     if not self.is_task_enabled(task):
+        #         self.modified[f"{task}.Scheduler.Enable"] = True
+        # force_enable = list
 
-        force_enable(
-            [
-                "Commission",
-                "Research",
-                "Reward",
-            ]
-        )
+        # force_enable(
+        #     [
+        #         "Commission",
+        #         "Research",
+        #         "Reward",
+        #     ]
+        # )
         limit_next_run(["Commission", "Reward"], limit=now + timedelta(hours=12, seconds=-1))
         limit_next_run(["Research"], limit=now + timedelta(hours=24, seconds=-1))
         limit_next_run(["OpsiExplore", "OpsiCrossMonth", "OpsiVoucher", "OpsiMonthBoss"],
@@ -300,9 +300,10 @@ class AzurLaneConfig(ConfigUpdater, ManualConfig, GeneratedConfig, ConfigWatcher
         Variables stall remain overridden even config is reloaded from yaml file.
         Note that this method is irreversible.
         """
-        for arg, value in kwargs.items():
-            self.overridden[arg] = value
-            super().__setattr__(arg, value)
+        # for arg, value in kwargs.items():
+        #     self.overridden[arg] = value
+        #     super().__setattr__(arg, value)
+        pass
 
     config_override = override
 
