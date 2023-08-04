@@ -87,7 +87,7 @@ class AzurLaneConfig(ConfigUpdater, ManualConfig, GeneratedConfig, ConfigWatcher
         self.auto_update = True
         # Force override variables
         # Key: Argument name in GeneratedConfig. Value: Modified value.
-        self.overridden = {}
+        # self.overridden = {}
         # Scheduler queue, will be updated in `get_next_task()`, list of Function objects
         # pending_task: Run time has been reached, but haven't been run due to task scheduling.
         # waiting_task: Run time haven't been reached, wait needed.
@@ -303,7 +303,6 @@ class AzurLaneConfig(ConfigUpdater, ManualConfig, GeneratedConfig, ConfigWatcher
         # for arg, value in kwargs.items():
         #     self.overridden[arg] = value
         #     super().__setattr__(arg, value)
-        pass
 
     config_override = override
 

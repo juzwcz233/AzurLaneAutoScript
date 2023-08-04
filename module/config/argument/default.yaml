@@ -56,6 +56,9 @@ Reward:
 Freebies:
   Scheduler:
     Enable: true
+DashboardUpdate:
+  Scheduler:
+    Enable: true
 
 # ==================== DailyMission ====================
 
