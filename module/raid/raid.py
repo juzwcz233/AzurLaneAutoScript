@@ -155,7 +155,7 @@ class Raid(MapOperation, RaidCombat, CampaignEvent):
         gg_enable = deep_get(d=self.config.data, keys='GameManager.GGHandler.Enabled')
         gg_auto = deep_get(d=self.config.data, keys='GameManager.GGHandler.GGFactorEnable')
         if (gg_enable == True and gg_auto == True) or gg_enable == True:
-            if GGHandler(config=self.config, device=self.device).power_limit('Raid') == True:
+            if GGHandler(config=self.config, device=self.device).power_limit('Raid'):
                 self.config.task_delay(minute=0.5)
                 self.config.task_call('Restart')
                 self.config.task_stop()

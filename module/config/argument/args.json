@@ -1987,8 +1987,9 @@
         "type": "select",
         "value": "campaign_main",
         "option": [
-          "event_20200917_cn",
+          "event_20230803_cn",
           "event_20211125_cn",
+          "event_20200917_cn",
           "event_20220818_cn",
           "event_20220428_cn",
           "event_20210527_cn",
@@ -2045,10 +2046,10 @@
           "event_20200227_cn"
         ],
         "display": "hide",
-        "tw": "event_20200917_cn",
-        "cn": "event_20211125_cn",
-        "en": "event_20211125_cn",
-        "jp": "event_20211125_cn"
+        "cn": "event_20230803_cn",
+        "en": "event_20230803_cn",
+        "jp": "event_20230803_cn",
+        "tw": "event_20211125_cn"
       },
       "Mode": {
         "type": "select",
@@ -2307,8 +2308,9 @@
         "type": "select",
         "value": "campaign_main",
         "option": [
-          "event_20200917_cn",
+          "event_20230803_cn",
           "event_20211125_cn",
+          "event_20200917_cn",
           "event_20220818_cn",
           "event_20220428_cn",
           "event_20210527_cn",
@@ -2365,10 +2367,10 @@
           "event_20200227_cn"
         ],
         "display": "disabled",
-        "tw": "event_20200917_cn",
-        "cn": "event_20211125_cn",
-        "en": "event_20211125_cn",
-        "jp": "event_20211125_cn"
+        "cn": "event_20230803_cn",
+        "en": "event_20230803_cn",
+        "jp": "event_20230803_cn",
+        "tw": "event_20211125_cn"
       },
       "Mode": {
         "type": "select",
@@ -2741,8 +2743,9 @@
         "type": "select",
         "value": "campaign_main",
         "option": [
-          "event_20200917_cn",
+          "event_20230803_cn",
           "event_20211125_cn",
+          "event_20200917_cn",
           "event_20220818_cn",
           "event_20220428_cn",
           "event_20210527_cn",
@@ -2799,10 +2802,10 @@
           "event_20200227_cn"
         ],
         "display": "disabled",
-        "tw": "event_20200917_cn",
-        "cn": "event_20211125_cn",
-        "en": "event_20211125_cn",
-        "jp": "event_20211125_cn"
+        "cn": "event_20230803_cn",
+        "en": "event_20230803_cn",
+        "jp": "event_20230803_cn",
+        "tw": "event_20211125_cn"
       },
       "Mode": {
         "type": "select",
@@ -3175,8 +3178,9 @@
         "type": "select",
         "value": "campaign_main",
         "option": [
-          "event_20200917_cn",
+          "event_20230803_cn",
           "event_20211125_cn",
+          "event_20200917_cn",
           "event_20220818_cn",
           "event_20220428_cn",
           "event_20210527_cn",
@@ -3233,10 +3237,10 @@
           "event_20200227_cn"
         ],
         "display": "disabled",
-        "tw": "event_20200917_cn",
-        "cn": "event_20211125_cn",
-        "en": "event_20211125_cn",
-        "jp": "event_20211125_cn"
+        "cn": "event_20230803_cn",
+        "en": "event_20230803_cn",
+        "jp": "event_20230803_cn",
+        "tw": "event_20211125_cn"
       },
       "Mode": {
         "type": "select",
@@ -4520,8 +4524,9 @@
         "type": "select",
         "value": "campaign_main",
         "option": [
-          "event_20200917_cn",
+          "event_20230803_cn",
           "event_20211125_cn",
+          "event_20200917_cn",
           "event_20220818_cn",
           "event_20220428_cn",
           "event_20210527_cn",
@@ -4578,10 +4583,10 @@
           "event_20200227_cn"
         ],
         "display": "disabled",
-        "tw": "event_20200917_cn",
-        "cn": "event_20211125_cn",
-        "en": "event_20211125_cn",
-        "jp": "event_20211125_cn"
+        "cn": "event_20230803_cn",
+        "en": "event_20230803_cn",
+        "jp": "event_20230803_cn",
+        "tw": "event_20211125_cn"
       },
       "Mode": {
         "type": "select",
@@ -4971,8 +4976,9 @@
         "type": "select",
         "value": "campaign_main",
         "option": [
-          "event_20200917_cn",
+          "event_20230803_cn",
           "event_20211125_cn",
+          "event_20200917_cn",
           "event_20220818_cn",
           "event_20220428_cn",
           "event_20210527_cn",
@@ -5029,10 +5035,10 @@
           "event_20200227_cn"
         ],
         "display": "disabled",
-        "tw": "event_20200917_cn",
-        "cn": "event_20211125_cn",
-        "en": "event_20211125_cn",
-        "jp": "event_20211125_cn"
+        "cn": "event_20230803_cn",
+        "en": "event_20230803_cn",
+        "jp": "event_20230803_cn",
+        "tw": "event_20211125_cn"
       },
       "Mode": {
         "type": "select",
@@ -5422,8 +5428,9 @@
         "type": "select",
         "value": "campaign_main",
         "option": [
-          "event_20200917_cn",
+          "event_20230803_cn",
           "event_20211125_cn",
+          "event_20200917_cn",
           "event_20220818_cn",
           "event_20220428_cn",
           "event_20210527_cn",
@@ -5480,10 +5487,10 @@
           "event_20200227_cn"
         ],
         "display": "disabled",
-        "tw": "event_20200917_cn",
-        "cn": "event_20211125_cn",
-        "en": "event_20211125_cn",
-        "jp": "event_20211125_cn"
+        "cn": "event_20230803_cn",
+        "en": "event_20230803_cn",
+        "jp": "event_20230803_cn",
+        "tw": "event_20211125_cn"
       },
       "Mode": {
         "type": "select",
@@ -5873,8 +5880,9 @@
         "type": "select",
         "value": "campaign_main",
         "option": [
-          "event_20200917_cn",
+          "event_20230803_cn",
           "event_20211125_cn",
+          "event_20200917_cn",
           "event_20220818_cn",
           "event_20220428_cn",
           "event_20210527_cn",
@@ -5931,10 +5939,10 @@
           "event_20200227_cn"
         ],
         "display": "disabled",
-        "tw": "event_20200917_cn",
-        "cn": "event_20211125_cn",
-        "en": "event_20211125_cn",
-        "jp": "event_20211125_cn"
+        "cn": "event_20230803_cn",
+        "en": "event_20230803_cn",
+        "jp": "event_20230803_cn",
+        "tw": "event_20211125_cn"
       },
       "Mode": {
         "type": "select",
@@ -6314,8 +6322,9 @@
         "type": "select",
         "value": "campaign_main",
         "option": [
-          "event_20200917_cn",
+          "event_20230803_cn",
           "event_20211125_cn",
+          "event_20200917_cn",
           "event_20220818_cn",
           "event_20220428_cn",
           "event_20210527_cn",
@@ -6372,10 +6381,10 @@
           "event_20200227_cn"
         ],
         "display": "disabled",
-        "tw": "event_20200917_cn",
-        "cn": "event_20211125_cn",
-        "en": "event_20211125_cn",
-        "jp": "event_20211125_cn"
+        "cn": "event_20230803_cn",
+        "en": "event_20230803_cn",
+        "jp": "event_20230803_cn",
+        "tw": "event_20211125_cn"
       },
       "Mode": {
         "type": "select",
@@ -7163,9 +7172,8 @@
   "Commission": {
     "Scheduler": {
       "Enable": {
-        "type": "lock",
-        "value": true,
-        "display": "disabled"
+        "type": "checkbox",
+        "value": true
       },
       "NextRun": {
         "type": "datetime",
@@ -7317,9 +7325,8 @@
   "Research": {
     "Scheduler": {
       "Enable": {
-        "type": "lock",
-        "value": true,
-        "display": "disabled"
+        "type": "checkbox",
+        "value": true
       },
       "NextRun": {
         "type": "datetime",
@@ -7635,9 +7642,8 @@
   "Reward": {
     "Scheduler": {
       "Enable": {
-        "type": "lock",
-        "value": true,
-        "display": "disabled"
+        "type": "checkbox",
+        "value": true
       },
       "NextRun": {
         "type": "datetime",
@@ -8799,9 +8805,8 @@
   "DashboardUpdate": {
     "Scheduler": {
       "Enable": {
-        "type": "lock",
-        "value": true,
-        "display": "disabled"
+        "type": "checkbox",
+        "value": false
       },
       "NextRun": {
         "type": "datetime",
@@ -9852,8 +9857,11 @@
       "Repository": {
         "type": "textarea",
         "value": "https://gitee.com/LmeSzinc/AzurLaneUncensored",
-        "mode": "yaml",
-        "display": "disabled"
+        "mode": "yaml"
+      },
+      "Remove": {
+        "type": "checkbox",
+        "value": true
       }
     },
     "Storage": {

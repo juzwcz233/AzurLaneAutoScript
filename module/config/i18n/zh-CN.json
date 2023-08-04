@@ -719,8 +719,9 @@
       "name": "活动名称",
       "help": "自动选择至最新的活动",
       "campaign_main": "主线图",
-      "event_20200917_cn": "复刻蝶海梦花",
+      "event_20230803_cn": "奏响鸢尾之歌",
       "event_20211125_cn": "复刻交汇世界的弧光",
+      "event_20200917_cn": "复刻蝶海梦花",
       "event_20220818_cn": "远汇点作战",
       "raid_20230629": "绿洲往事",
       "event_20220428_cn": "虹彩的终幕曲",
@@ -2423,6 +2424,10 @@
     "Repository": {
       "name": "反和谐仓库",
       "help": "一般不需要修改\n仓库（默认） https://github.com/LmeSzinc/AzurLaneUncensored"
+    },
+    "Remove": {
+      "name": "移除补丁",
+      "help": "移除舰名反和谐补丁"
     }
   },
   "GameManager": {
