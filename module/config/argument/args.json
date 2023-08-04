@@ -7172,8 +7172,9 @@
   "Commission": {
     "Scheduler": {
       "Enable": {
-        "type": "checkbox",
-        "value": true
+        "type": "lock",
+        "value": true,
+        "display": "disabled"
       },
       "NextRun": {
         "type": "datetime",
@@ -7325,8 +7326,9 @@
   "Research": {
     "Scheduler": {
       "Enable": {
-        "type": "checkbox",
-        "value": true
+        "type": "lock",
+        "value": true,
+        "display": "disabled"
       },
       "NextRun": {
         "type": "datetime",
@@ -7642,8 +7644,9 @@
   "Reward": {
     "Scheduler": {
       "Enable": {
-        "type": "checkbox",
-        "value": true
+        "type": "lock",
+        "value": true,
+        "display": "disabled"
       },
       "NextRun": {
         "type": "datetime",
