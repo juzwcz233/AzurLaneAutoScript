@@ -303,7 +303,6 @@ class AzurLaneConfig(ConfigUpdater, ManualConfig, GeneratedConfig, ConfigWatcher
         # for arg, value in kwargs.items():
         #     self.overridden[arg] = value
         #     super().__setattr__(arg, value)
-        pass
 
     config_override = override
 
