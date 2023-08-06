@@ -182,7 +182,9 @@ class GGScreenshot(Base):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear(button=BUTTON_GG_STOP, offset=(50, 50)):
+            if self.appear_then_click(button=BUTTON_GG_STOP, offset=(50, 50)):
+                continue
+            if self.appear_then_click(button=BUTTON_GG_SCRIPT_END, offset=(50, 50)):
                 self.config.task_call('Restart')
                 self.config.task_stop()
             if self.appear(button=BUTTON_GG_SCRIPT_ENTER_CONFIRM, offset=(50, 50)):
@@ -243,7 +245,9 @@ class GGScreenshot(Base):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear(button=BUTTON_GG_STOP, offset=(50, 50)):
+            if self.appear_then_click(button=BUTTON_GG_STOP, offset=(50, 50)):
+                continue
+            if self.appear_then_click(button=BUTTON_GG_SCRIPT_END, offset=(50, 50)):
                 self.config.task_call('Restart')
                 self.config.task_stop()
             if self.appear_then_click(button=BUTTON_GG_SCRIPT_MENU_A, offset=(50, 50)):
@@ -381,7 +385,9 @@ class GGScreenshot(Base):
                 else:
                     self.device.sleep(0.5)
                     self.device.screenshot()
-                if self.appear(button=BUTTON_GG_STOP, offset=(50, 50)):
+                if self.appear_then_click(button=BUTTON_GG_STOP, offset=(50, 50)):
+                    continue
+                if self.appear_then_click(button=BUTTON_GG_SCRIPT_END, offset=(50, 50)):
                     self.config.task_call('Restart')
                     self.config.task_stop()
                 if self.appear_then_click(button=BUTTON_GG_SKIP0, offset=(50, 50)):
