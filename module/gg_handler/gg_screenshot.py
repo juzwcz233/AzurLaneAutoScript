@@ -96,7 +96,7 @@ class GGScreenshot(Base):
                 self.device.click(BUTTON_GG_EXIT_POS)
                 skipped = 1
                 continue
-            if self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.5):
+            if self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.999):
                 logger.info('At GG main panel, click GG exit')
                 self.device.click(BUTTON_GG_EXIT_POS)
                 skipped = 1
@@ -158,12 +158,12 @@ class GGScreenshot(Base):
                 if i == range(len(self.choose)):
                     self.device.sleep(0.5)
                     self.device.screenshot()
-            if self.appear(button=BUTTON_GG_APP_ENTER, offset=(50, 50), threshold=0.999) and \
-                self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.5):
+            if self.appear(button=BUTTON_GG_APP_ENTER, offset=(50, 50)) and \
+                BUTTON_GG_APP_ENTER.match_appear_on(self.device.image):
                 logger.info('APP Enter')
                 break
             if not self.appear(button=BUTTON_GG_APP_ENTER, offset=(50, 50), threshold=0.999) and \
-                self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.5):
+                self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.999):
                 logger.info('Reselect APP')
                 self.device.click(BUTTON_GG_RECHOOSE)
                 continue
@@ -202,11 +202,12 @@ class GGScreenshot(Base):
             if self.appear_then_click(button=BUTTON_GG_SCRIPT_FATAL, offset=(50, 50)):
                 logger.info('Stop previous script')
                 continue
-            if self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.5):
+            if self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(10, 10)) and \
+                BUTTON_GG_SEARCH_MODE_CONFIRM.match_appear_on(self.device.image):
                 self.device.long_click(button=BUTTON_GG_SCRIPT_ENTER_POS, duration=(0.5, 1))
                 logger.info('Enter script choose')
                 continue
-            if not self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(50, 50), threshold=0.5):
+            if not self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.999):
                 self.device.click(BUTTON_GG_TAB_SEARCH_POS)
                 logger.info('Enter search mode')
                 continue
@@ -218,11 +219,15 @@ class GGScreenshot(Base):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
+            if self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(10, 10)) and \
+                BUTTON_GG_SEARCH_MODE_CONFIRM.match_appear_on(self.device.image):
+                self.device.long_click(button=BUTTON_GG_SCRIPT_ENTER_POS, duration=(0.5, 1))
             if self.appear_then_click(button=BUTTON_GG_SCRIPT_START, offset=(50, 50)):
                 continue
             if self.appear_then_click(button=BUTTON_GG_STOP, offset=(50, 50)):
                 continue
             if self.appear(button=BUTTON_GG_SCRIPT_MENU_A, offset=(50, 50)):
+                logger.info('Revise mode')
                 break
 
     def gg_mode(self):
