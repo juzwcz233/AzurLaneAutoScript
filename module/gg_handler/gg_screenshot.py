@@ -218,11 +218,14 @@ class GGScreenshot(Base):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
+            if self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.5):
+                self.device.long_click(button=BUTTON_GG_SCRIPT_ENTER_POS, duration=(0.5, 1))
             if self.appear_then_click(button=BUTTON_GG_SCRIPT_START, offset=(50, 50)):
                 continue
             if self.appear_then_click(button=BUTTON_GG_STOP, offset=(50, 50)):
                 continue
             if self.appear(button=BUTTON_GG_SCRIPT_MENU_A, offset=(50, 50)):
+                logger.info('Revise mode')
                 break
 
     def gg_mode(self):
