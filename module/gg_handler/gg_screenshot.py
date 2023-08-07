@@ -101,6 +101,9 @@ class GGScreenshot(Base):
                 self.device.click(BUTTON_GG_EXIT_POS)
                 skipped = 1
                 continue
+            if self.appear_then_click(button=BUTTON_GG_ERROR_ENTER, offset=(50, 50)):
+                skipped = 1
+                continue
             if self.appear(button=BUTTON_GG_CONFIRM, offset=(50, 50)) and not self.appear(button=BUTTON_GG_CONFIRM, offset=(10, 10)):
                 logger.info('Enter search mode')
                 self.device.click(BUTTON_GG_TAB_SEARCH_POS)
@@ -138,6 +141,8 @@ class GGScreenshot(Base):
                 logger.hr('Enter GG')
                 logger.info('Entered GG')
                 break
+            if self.appear_then_click(button=BUTTON_GG_ERROR_ENTER, offset=(50, 50)):
+                continue
             for i in range(len(self.method)):
                 if self.appear(button=self.method[int(i)], offset=(50, 50)):
                     self.device.click(BUTTON_GG_ENTER_POS)
@@ -183,6 +188,8 @@ class GGScreenshot(Base):
                 self.device.sleep(0.5)
                 self.device.screenshot()
             if self.appear_then_click(button=BUTTON_GG_STOP, offset=(50, 50)):
+                continue
+            if self.appear_then_click(button=BUTTON_GG_ERROR_ENTER, offset=(50, 50)):
                 continue
             if self.appear_then_click(button=BUTTON_GG_SCRIPT_END, offset=(50, 50)):
                 self.config.task_call('Restart')
@@ -394,6 +401,9 @@ class GGScreenshot(Base):
                     count += 1
                     continue
                 if self.appear_then_click(button=BUTTON_GG_SKIP1, offset=(50, 50)):
+                    count += 1
+                    continue
+                if self.appear_then_click(button=BUTTON_GG_ERROR_ENTER, offset=(50, 50)):
                     count += 1
                     continue
                 if self.appear(button=BUTTON_GG_ENTER, offset=(50, 50)):
