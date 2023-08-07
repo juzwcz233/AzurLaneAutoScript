@@ -265,6 +265,8 @@ class Combat(Combat_, MapEventHandler):
                 continue
 
             # End
+            if self.appear_then_click(CONTINUE_CONFIRM):
+                continue
             if self.is_combat_executing():
                 continue
             if self.handle_auto_search_battle_status():
