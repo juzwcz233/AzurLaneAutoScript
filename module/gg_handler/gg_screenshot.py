@@ -230,7 +230,7 @@ class GGScreenshot(Base):
                 self.device.screenshot()
             if self.appear(button=BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(10, 10)) and \
                 BUTTON_GG_SEARCH_MODE_CONFIRM.match_appear_on(self.device.image):
-                self.device.long_click(button=BUTTON_GG_SCRIPT_ENTER_POS)
+                self.device.click(button=BUTTON_GG_SCRIPT_ENTER_POS)
             if self.appear_then_click(button=BUTTON_GG_SCRIPT_START, offset=(50, 50)):
                 continue
             if self.appear_then_click(button=BUTTON_GG_STOP, offset=(50, 50)):
