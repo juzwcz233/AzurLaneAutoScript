@@ -72,10 +72,6 @@ class GGScreenshot(Base):
                 logger.info('Close GG restart error')
                 skipped = 1
                 continue
-            if self.appear_then_click(BUTTON_GG_STOP, offset=(50, 50)):
-                logger.info('Stop lua')
-                skipped = 1
-                continue
             if self.appear_then_click(BUTTON_GG_SCRIPT_END, offset=(50, 50)):
                 logger.info('Close previous script')
                 skipped = 1
@@ -124,7 +120,7 @@ class GGScreenshot(Base):
                 break
         return skipped
 
-    def enter_gg(self):
+    def _enter_gg(self):
         """
         Page:
             in: any
@@ -141,13 +137,13 @@ class GGScreenshot(Base):
                 logger.hr('Enter GG')
                 logger.info('Entered GG')
                 break
-            if self.appear_then_click(BUTTON_GG_ERROR_ENTER, offset=(50, 50)):
-                continue
             for i in range(len(self.method)):
                 if self.appear(self.method[int(i)], offset=(50, 50)):
                     self.device.click(BUTTON_GG_ENTER_POS)
                     break
 
+    def enter_gg(self):
+        self._enter_gg()
         skip_first_screenshot = True
         logger.hr('Enter APP State')
         while 1:
@@ -163,6 +159,13 @@ class GGScreenshot(Base):
                 if i == range(len(self.choose)):
                     self.device.sleep(0.5)
                     self.device.screenshot()
+            if self.appear(BUTTON_GG_STOP, offset=(50, 50)):
+                logger.hr('GG Restart')
+                self.gg_exit()
+                self.gg_push()
+                self.gg_start()
+                self._enter_gg()
+                continue
             if self.appear(BUTTON_GG_APP_ENTER, offset=(50, 50)) and \
                 BUTTON_GG_APP_ENTER.match_appear_on(self.device.image):
                 logger.info('APP Enter')
@@ -173,7 +176,7 @@ class GGScreenshot(Base):
                 self.device.click(BUTTON_GG_RECHOOSE)
                 continue
 
-    def gg_enter_script(self):
+    def _gg_enter_script(self):
         """
         Page:
             in: any GG
@@ -188,8 +191,11 @@ class GGScreenshot(Base):
                 self.device.sleep(0.5)
                 self.device.screenshot()
             if self.appear_then_click(BUTTON_GG_STOP, offset=(50, 50)):
-                continue
-            if self.appear_then_click(BUTTON_GG_ERROR_ENTER, offset=(50, 50)):
+                logger.hr('GG Restart')
+                self.gg_exit()
+                self.gg_push()
+                self.gg_start()
+                self.enter_gg()
                 continue
             if self.appear_then_click(BUTTON_GG_SCRIPT_END, offset=(50, 50)):
                 continue 
@@ -220,6 +226,8 @@ class GGScreenshot(Base):
                 logger.info('Enter search mode')
                 continue
 
+    def gg_enter_script(self):
+        self._gg_enter_script()
         skip_first_screenshot = True
         while 1:
             if skip_first_screenshot:
@@ -232,7 +240,8 @@ class GGScreenshot(Base):
                 self.device.click(BUTTON_GG_SCRIPT_ENTER_POS)
             if self.appear_then_click(BUTTON_GG_SCRIPT_START, offset=(50, 50)):
                 continue
-            if self.appear_then_click(BUTTON_GG_STOP, offset=(50, 50)):
+            if self.appear_then_click(BUTTON_GG_ERROR_ENTER, offset=(50, 50)):
+                self._gg_enter_script()
                 continue
             if self.appear(BUTTON_GG_SCRIPT_MENU_A, offset=(50, 50)):
                 logger.info('Revise mode')
@@ -252,6 +261,12 @@ class GGScreenshot(Base):
                 self.device.sleep(0.5)
                 self.device.screenshot()
             if self.appear_then_click(BUTTON_GG_STOP, offset=(50, 50)):
+                logger.hr('GG Restart')
+                self.gg_exit()
+                self.gg_push()
+                self.gg_start()
+                self.enter_gg()
+                self.gg_enter_script()
                 continue
             if self.appear_then_click(BUTTON_GG_SCRIPT_END, offset=(50, 50)):
                 continue
@@ -390,17 +405,12 @@ class GGScreenshot(Base):
                 else:
                     self.device.sleep(0.5)
                     self.device.screenshot()
-                if self.appear_then_click(BUTTON_GG_STOP, offset=(50, 50)):
-                    continue
                 if self.appear_then_click(BUTTON_GG_SCRIPT_END, offset=(50, 50)):
                     continue
                 if self.appear_then_click(BUTTON_GG_SKIP0, offset=(50, 50)):
                     count += 1
                     continue
                 if self.appear_then_click(BUTTON_GG_SKIP1, offset=(50, 50)):
-                    count += 1
-                    continue
-                if self.appear_then_click(BUTTON_GG_ERROR_ENTER, offset=(50, 50)):
                     count += 1
                     continue
                 if self.appear(BUTTON_GG_ENTER, offset=(50, 50)):
