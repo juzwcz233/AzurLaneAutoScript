@@ -192,8 +192,7 @@ class GGScreenshot(Base):
             if self.appear_then_click(BUTTON_GG_ERROR_ENTER, offset=(50, 50)):
                 continue
             if self.appear_then_click(BUTTON_GG_SCRIPT_END, offset=(50, 50)):
-                self.config.task_call('Restart')
-                self.config.task_stop()
+                continue 
             if self.appear(BUTTON_GG_SCRIPT_ENTER_CONFIRM, offset=(50, 50)):
                 self.gg_lua()
                 logger.hr('Lua execute')
@@ -255,8 +254,7 @@ class GGScreenshot(Base):
             if self.appear_then_click(BUTTON_GG_STOP, offset=(50, 50)):
                 continue
             if self.appear_then_click(BUTTON_GG_SCRIPT_END, offset=(50, 50)):
-                self.config.task_call('Restart')
-                self.config.task_stop()
+                continue
             if self.appear_then_click(BUTTON_GG_SCRIPT_MENU_A, offset=(50, 50)):
                 continue
             if self.appear(BUTTON_GG_SCRIPT_START_PROCESS, offset=(50, 50)):
@@ -395,8 +393,7 @@ class GGScreenshot(Base):
                 if self.appear_then_click(BUTTON_GG_STOP, offset=(50, 50)):
                     continue
                 if self.appear_then_click(BUTTON_GG_SCRIPT_END, offset=(50, 50)):
-                    self.config.task_call('Restart')
-                    self.config.task_stop()
+                    continue
                 if self.appear_then_click(BUTTON_GG_SKIP0, offset=(50, 50)):
                     count += 1
                     continue
