@@ -2425,9 +2425,12 @@
       "name": "反和諧倉庫",
       "help": "一般不需要修改\n倉庫(預設) https://github.com/LmeSzinc/AzurLaneUncensored"
     },
-    "Remove": {
-      "name": "AzurLaneUncensored.Remove.name",
-      "help": "AzurLaneUncensored.Remove.help"
+    "Option": {
+      "name": "AzurLaneUncensored.Option.name",
+      "help": "AzurLaneUncensored.Option.help",
+      "all": "all",
+      "main": "main",
+      "only_patch": "only_patch"
     }
   },
   "GameManager": {

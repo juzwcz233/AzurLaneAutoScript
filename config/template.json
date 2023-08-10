@@ -2039,7 +2039,7 @@
   "AzurLaneUncensored": {
     "AzurLaneUncensored": {
       "Repository": "https://gitee.com/LmeSzinc/AzurLaneUncensored",
-      "Remove": true
+      "Option": "all"
     },
     "Storage": {
       "Storage": {}

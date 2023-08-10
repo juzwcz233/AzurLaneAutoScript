@@ -691,7 +691,9 @@ AzurLaneUncensored:
     type: textarea
     mode: yaml
     value: 'https://gitee.com/LmeSzinc/AzurLaneUncensored'
-  Remove: true
+  Option:
+    value: all
+    option: [ all, main, only_patch]
 GameManager:
   AutoRestart: true
 GGHandler:
