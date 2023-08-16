@@ -59,6 +59,9 @@ class AzurLaneUncensored(LoginHandler):
         logger.hr('Push Uncensored Files', level=1)
         logger.info('This will take a few seconds')
 
+        if os.path.exists('./files/loadingbg'):
+            shutil.rmtree('./files/loadingbg')
+
         option = self.config.AzurLaneUncensored_Option
         if option == 'all':
             command = ['push', 'files', f'/sdcard/Android/data/{self.device.package}']
