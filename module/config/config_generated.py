@@ -430,7 +430,7 @@ class GeneratedConfig:
 
     # Group `AzurLaneUncensored`
     AzurLaneUncensored_Repository = 'https://gitee.com/LmeSzinc/AzurLaneUncensored'
-    AzurLaneUncensored_Remove = True
+    AzurLaneUncensored_Option = 'all'  # all, main, only_patch
 
     # Group `GameManager`
     GameManager_AutoRestart = True

@@ -251,6 +251,8 @@ class Combat(Level, HPBalancer, Retirement, SubmarineCall, CombatAuto, CombatMan
                 continue
 
             # End
+            if self.appear_then_click(CONTINUE_CONFIRM):
+                continue
             if self.handle_battle_status(drop=drop) \
                     or self.handle_get_items(drop=drop):
                 self.device.screenshot_interval_set()

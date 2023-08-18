@@ -9859,9 +9859,14 @@
         "value": "https://gitee.com/LmeSzinc/AzurLaneUncensored",
         "mode": "yaml"
       },
-      "Remove": {
-        "type": "checkbox",
-        "value": true
+      "Option": {
+        "type": "select",
+        "value": "all",
+        "option": [
+          "all",
+          "main",
+          "only_patch"
+        ]
       }
     },
     "Storage": {

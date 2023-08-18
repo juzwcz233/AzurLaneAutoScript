@@ -2425,9 +2425,12 @@
       "name": "反和谐仓库",
       "help": "一般不需要修改\n仓库（默认） https://github.com/LmeSzinc/AzurLaneUncensored"
     },
-    "Remove": {
-      "name": "移除补丁",
-      "help": "移除舰名反和谐补丁"
+    "Option": {
+      "name": "反和谐设置",
+      "help": "选择需要的反和谐文件",
+      "all": "全部反和谐",
+      "main": "普通反和谐",
+      "only_patch": "仅舰名反和谐"
     }
   },
   "GameManager": {

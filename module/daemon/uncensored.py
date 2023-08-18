@@ -56,14 +56,22 @@ class AzurLaneUncensored(LoginHandler):
             keep_changes=False
         )
 
-        if self.config.AzurLaneUncensored_Remove:
-            logger.hr('Remove Patch')
-            logger.info('Gametip alreay removed')
-            os.remove("./files/AssetBundles/sharecfgdata/gametip")
-
         logger.hr('Push Uncensored Files', level=1)
         logger.info('This will take a few seconds')
-        command = ['push', 'files', f'/sdcard/Android/data/{self.device.package}']
+
+        if os.path.exists('./files/loadingbg'):
+            shutil.rmtree('./files/loadingbg')
+
+        option = self.config.AzurLaneUncensored_Option
+        if option == 'all':
+            command = ['push', 'files', f'/sdcard/Android/data/{self.device.package}']
+        elif option == 'main':
+            logger.hr('Remove Patch')
+            os.remove("./files/AssetBundles/sharecfgdata/gametip")
+            logger.info('Gametip alreay removed')
+            command = ['push', 'files', f'/sdcard/Android/data/{self.device.package}']
+        elif option == 'only_patch':
+            command = ['push', 'files/AssetBundles/sharecfgdata/gametip', f'/sdcard/Android/data/{self.device.package}/files/AssetBundles/sharecfgdata']
         logger.info(f'Command: {command}')
         self.device.adb_command(command, timeout=30)
         logger.info('Push success')
