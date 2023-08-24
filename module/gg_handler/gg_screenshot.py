@@ -1,5 +1,6 @@
 import uiautomator2 as u2
 from module.base.timer import Timer
+from module.handler.assets import LOGIN_CHECK
 from module.gg_handler.assets import *
 from module.ui.assets import *
 from module.meowfficer.assets import *
@@ -133,6 +134,8 @@ class GGScreenshot(Base):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
+            if self.appear_then_click(LOGIN_CHECK, offset=(30, 30)):
+                continue
             if self.appear(BUTTON_GG_CONFIRM, offset=(50, 50)):
                 logger.hr('Enter GG')
                 logger.info('Entered GG')
@@ -350,12 +353,7 @@ class GGScreenshot(Base):
                 
         logger.hr('GG Exit')
 
-    def gg_script_run(self):
-        """
-        Page:
-            in: GG factor set
-            out: GG Menu
-        """
+    def _gg_script_run(self):
         logger.hr('Execute')
         skip_first_screenshot = True
         while 1:
@@ -370,6 +368,13 @@ class GGScreenshot(Base):
                 break
         logger.info('Waiting for end')
 
+    def gg_script_run(self):
+        """
+        Page:
+            in: GG factor set
+            out: GG Menu
+        """
+        self._gg_script_run()
         skip_first_screenshot = True
         count = 0
         while 1:
@@ -382,6 +387,17 @@ class GGScreenshot(Base):
                 if self.appear(self.method[int(i)], offset=(50, 50), threshold=0.999):
                     self.device.click(BUTTON_GG_ENTER_POS)
                     break
+            if self.appear_then_click(BUTTON_GG_ERROR_ENTER, offset=(50, 50)):
+                logger.hr('GG Restart')
+                self.gg_exit()
+                self.gg_push()
+                self.gg_start()
+                self.enter_gg()
+                self.gg_enter_script()
+                self.gg_mode()
+                self.gg_handle_factor()
+                self._gg_script_run()
+                continue
             if self.appear_then_click(BUTTON_GG_SCRIPT_END, offset=(50, 50)):
                 count += 1
                 continue
