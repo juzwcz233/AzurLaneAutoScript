@@ -353,12 +353,7 @@ class GGScreenshot(Base):
                 
         logger.hr('GG Exit')
 
-    def gg_script_run(self):
-        """
-        Page:
-            in: GG factor set
-            out: GG Menu
-        """
+    def _gg_script_run(self):
         logger.hr('Execute')
         skip_first_screenshot = True
         while 1:
@@ -373,6 +368,13 @@ class GGScreenshot(Base):
                 break
         logger.info('Waiting for end')
 
+    def gg_script_run(self):
+        """
+        Page:
+            in: GG factor set
+            out: GG Menu
+        """
+        self._gg_script_run()
         skip_first_screenshot = True
         count = 0
         while 1:
@@ -385,6 +387,13 @@ class GGScreenshot(Base):
                 if self.appear(self.method[int(i)], offset=(50, 50), threshold=0.999):
                     self.device.click(BUTTON_GG_ENTER_POS)
                     break
+            if self.appear_then_click(BUTTON_GG_ERROR_ENTER, offset=(50, 50)):
+                continue
+            if self.appear(button=BUTTON_GG_SCRIPT_START, offset=(50, 50)):
+                self.gg_enter_script()
+                self.gg_mode()
+                self.gg_handle_factor()
+                self._gg_script_run()
             if self.appear_then_click(BUTTON_GG_SCRIPT_END, offset=(50, 50)):
                 count += 1
                 continue
