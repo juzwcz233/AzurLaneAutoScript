@@ -388,12 +388,16 @@ class GGScreenshot(Base):
                     self.device.click(BUTTON_GG_ENTER_POS)
                     break
             if self.appear_then_click(BUTTON_GG_ERROR_ENTER, offset=(50, 50)):
-                continue
-            if self.appear(button=BUTTON_GG_SCRIPT_START, offset=(50, 50)):
+                logger.hr('GG Restart')
+                self.gg_exit()
+                self.gg_push()
+                self.gg_start()
+                self.enter_gg()
                 self.gg_enter_script()
                 self.gg_mode()
                 self.gg_handle_factor()
                 self._gg_script_run()
+                continue
             if self.appear_then_click(BUTTON_GG_SCRIPT_END, offset=(50, 50)):
                 count += 1
                 continue
