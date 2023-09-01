@@ -413,7 +413,7 @@ class AlasGUI(Frame):
                             ],
                         ),
                     ],
-                )
+                ),
             else:
                 put_scope(
                     "log-bar",
@@ -431,7 +431,7 @@ class AlasGUI(Frame):
                         put_html('<hr class="hr-group">'),
                         put_scope("dashboard"),
                     ],
-                )
+                ),
             put_scope("log", [put_html("")])
 
         log.console.width = log.get_width()
