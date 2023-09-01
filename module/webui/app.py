@@ -399,7 +399,7 @@ class AlasGUI(Frame):
         self._log.dashboard_arg_group = LogRes(self.alas_config).groups
 
         with use_scope("logs"):
-            if 'Maa' in self.ALAS_ARGS:
+            if not 'Alas' in self.ALAS_ARGS:
                 put_scope(
                     "log-bar",
                     [
