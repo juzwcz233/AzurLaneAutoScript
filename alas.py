@@ -15,10 +15,6 @@ from module.logger import logger
 from module.notify import handle_notify
 from module.handler.login import LoginHandler
 from module.gg_handler.gg_handler import GGHandler
-from module.campaign.run import CampaignRun
-from module.shop.shop_reward import RewardShop
-from module.event.campaign_abcd import CampaignABCD
-from module.campaign.os_run import OSCampaignRun
 
 
 class AzurLaneAutoScript:
@@ -219,9 +215,11 @@ class AzurLaneAutoScript:
         Reward(config=self.config, device=self.device).run()
 
     def shop_frequent(self):
+        from module.shop.shop_reward import RewardShop
         RewardShop(config=self.config, device=self.device).run_frequent()
 
     def shop_once(self):
+        from module.shop.shop_reward import RewardShop
         RewardShop(config=self.config, device=self.device).run_once()
 
     def shipyard(self):
@@ -266,15 +264,19 @@ class AzurLaneAutoScript:
         RaidDaily(config=self.config, device=self.device).run()
 
     def event_a(self):
+        from module.event.campaign_abcd import CampaignABCD
         CampaignABCD(config=self.config, device=self.device).run()
 
     def event_b(self):
+        from module.event.campaign_abcd import CampaignABCD
         CampaignABCD(config=self.config, device=self.device).run()
 
     def event_c(self):
+        from module.event.campaign_abcd import CampaignABCD
         CampaignABCD(config=self.config, device=self.device).run()
 
     def event_d(self):
+        from module.event.campaign_abcd import CampaignABCD
         CampaignABCD(config=self.config, device=self.device).run()
 
     def event_sp(self):
@@ -294,66 +296,85 @@ class AzurLaneAutoScript:
         OpsiAshBeacon(config=self.config, device=self.device).run()
 
     def opsi_explore(self):
+        from module.campaign.os_run import OSCampaignRun
         OSCampaignRun(config=self.config, device=self.device).opsi_explore()
 
     def opsi_shop(self):
+        from module.campaign.os_run import OSCampaignRun
         OSCampaignRun(config=self.config, device=self.device).opsi_shop()
 
     def opsi_voucher(self):
+        from module.campaign.os_run import OSCampaignRun
         OSCampaignRun(config=self.config, device=self.device).opsi_voucher()
 
     def opsi_daily(self):
+        from module.campaign.os_run import OSCampaignRun
         OSCampaignRun(config=self.config, device=self.device).opsi_daily()
 
     def opsi_obscure(self):
+        from module.campaign.os_run import OSCampaignRun
         OSCampaignRun(config=self.config, device=self.device).opsi_obscure()
 
     def opsi_month_boss(self):
+        from module.campaign.os_run import OSCampaignRun
         OSCampaignRun(config=self.config, device=self.device).opsi_month_boss()
 
     def opsi_abyssal(self):
+        from module.campaign.os_run import OSCampaignRun
         OSCampaignRun(config=self.config, device=self.device).opsi_abyssal()
 
     def opsi_archive(self):
+        from module.campaign.os_run import OSCampaignRun
         OSCampaignRun(config=self.config, device=self.device).opsi_archive()
 
     def opsi_stronghold(self):
+        from module.campaign.os_run import OSCampaignRun
         OSCampaignRun(config=self.config, device=self.device).opsi_stronghold()
 
     def opsi_meowfficer_farming(self):
+        from module.campaign.os_run import OSCampaignRun
         OSCampaignRun(config=self.config, device=self.device).opsi_meowfficer_farming()
 
     def opsi_hazard1_leveling(self):
+        from module.campaign.os_run import OSCampaignRun
         OSCampaignRun(config=self.config, device=self.device).opsi_hazard1_leveling()
 
     def opsi_cross_month(self):
+        from module.campaign.os_run import OSCampaignRun
         OSCampaignRun(config=self.config, device=self.device).opsi_cross_month()
 
     def main_normal(self):
+        from module.campaign.run import CampaignRun
         CampaignRun(config=self.config, device=self.device).run(
             name=self.config.Campaign_Name, folder=self.config.Campaign_Event, mode=self.config.Campaign_Mode)
 
     def main_hard(self):
+        from module.campaign.run import CampaignRun
         CampaignRun(config=self.config, device=self.device).run(
             name=self.config.Campaign_Name, folder=self.config.Campaign_Event, mode=self.config.Campaign_Mode)
 
     def main(self):
+        from module.campaign.run import CampaignRun
         CampaignRun(config=self.config, device=self.device).run(
             name=self.config.Campaign_Name, folder=self.config.Campaign_Event, mode=self.config.Campaign_Mode)
         
     def main2(self):
+        from module.campaign.run import CampaignRun
         CampaignRun(config=self.config, device=self.device).run(
             name=self.config.Campaign_Name, folder=self.config.Campaign_Event, mode=self.config.Campaign_Mode)
 
     def event(self):
+        from module.campaign.run import CampaignRun
         CampaignRun(config=self.config, device=self.device).run(
             name=self.config.Campaign_Name, folder=self.config.Campaign_Event, mode=self.config.Campaign_Mode)
 
     def event2(self):
+        from module.campaign.run import CampaignRun
         CampaignRun(config=self.config, device=self.device).run(
             name=self.config.Campaign_Name, folder=self.config.Campaign_Event, mode=self.config.Campaign_Mode)
 
     def event3(self):
+        from module.campaign.run import CampaignRun
         CampaignRun(config=self.config, device=self.device).run(
             name=self.config.Campaign_Name, folder=self.config.Campaign_Event, mode=self.config.Campaign_Mode)
 
@@ -370,14 +391,17 @@ class AzurLaneAutoScript:
         CoalitionSP(config=self.config, device=self.device).run()
 
     def c72_mystery_farming(self):
+        from module.campaign.run import CampaignRun
         CampaignRun(config=self.config, device=self.device).run(
             name=self.config.Campaign_Name, folder=self.config.Campaign_Event, mode=self.config.Campaign_Mode)
 
     def c122_medium_leveling(self):
+        from module.campaign.run import CampaignRun
         CampaignRun(config=self.config, device=self.device).run(
             name=self.config.Campaign_Name, folder=self.config.Campaign_Event, mode=self.config.Campaign_Mode)
 
     def c124_large_leveling(self):
+        from module.campaign.run import CampaignRun
         CampaignRun(config=self.config, device=self.device).run(
             name=self.config.Campaign_Name, folder=self.config.Campaign_Event, mode=self.config.Campaign_Mode)
 
