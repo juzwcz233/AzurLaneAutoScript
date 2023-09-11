@@ -265,6 +265,9 @@ class Combat(Combat_, MapEventHandler):
                 continue
 
             # End
+            if self.is_in_map():
+                self.device.screenshot_interval_set()
+                break
             if self.appear_then_click(CONTINUE_CONFIRM):
                 continue
             if self.is_combat_executing():
@@ -277,9 +280,6 @@ class Combat(Combat_, MapEventHandler):
                 continue
             if self.handle_map_event():
                 continue
-            if self.is_in_map():
-                self.device.screenshot_interval_set()
-                break
-
+            
         logger.info('Combat end.')
         return success
