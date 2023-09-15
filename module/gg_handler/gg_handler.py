@@ -197,7 +197,7 @@ class GGHandler(Base):
             else:
                 self.device.sleep((1.5, 2))
                 self.device.screenshot()
-            if Combat.handle_combat_automation_confirm():
+            if Combat(config=self.config, device=self.device).handle_combat_automation_confirm():
                 continue
             if timeout.reached():
                 logger.error('Get ScoutCE timeout')
