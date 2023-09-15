@@ -190,13 +190,15 @@ class GGHandler(Base):
         logger.attr('Power Limit', limit)
         skip_first_screenshot = True
         timeout = Timer(1, count=15).start()
+        from module.combat.combat import Combat
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
             else:
                 self.device.sleep((1.5, 2))
                 self.device.screenshot()
-
+            if Combat.handle_combat_automation_confirm():
+                continue
             if timeout.reached():
                 logger.error('Get ScoutCE timeout')
                 handle_notify(self.config.Error_OnePushConfig,
