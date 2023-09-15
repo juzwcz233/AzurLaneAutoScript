@@ -440,6 +440,10 @@ class GGScreenshot(Base):
                     count += 1
                     continue
                 if self.appear_then_click(BUTTON_GG_START, offset=(50, 50)):
+                    if not self.device.app_is_running():
+                        self.device.app_start()
+                    else:
+                        logger.info('Game is already running')
                     count += 1
                     continue
                 if self.appear_then_click(LOGIN_CHECK, offset=(30, 30)):
