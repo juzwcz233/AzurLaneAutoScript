@@ -110,8 +110,8 @@ class CampaignStatus(UI):
                 break
 
             _coin = {
-            'Value': OCR_COIN.ocr(self.device.image),
-            'Limit': OCR_COIN_LIMIT.ocr(self.device.image)
+                'Value': OCR_COIN.ocr(self.device.image),
+                'Limit': OCR_COIN_LIMIT.ocr(self.device.image)
             }
             if _coin['Value'] >= 100:
                 break
