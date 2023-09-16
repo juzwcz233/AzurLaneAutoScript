@@ -7,7 +7,6 @@ from module.logger import logger
 from module.notify import handle_notify
 from module.gg_handler.assets import OCR_PRE_BATTLE_CHECK
 from module.combat.assets import BATTLE_PREPARATION
-from module.os_ash.assets import ASH_START
 from module.ocr.ocr import Digit
 from module.gg_handler.gg_task import *
 
@@ -202,8 +201,6 @@ class GGHandler(Base):
                 self.device.sleep((1, 1.5))
                 self.device.screenshot()
             if Combat(config=self.config, device=self.device).handle_combat_automation_confirm():
-                continue
-            if self.appear_then_click(ASH_START, offset=(30, 30)):
                 continue
             if timeout.reached():
                 logger.error('Get ScoutCE timeout')
