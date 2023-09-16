@@ -188,15 +188,12 @@ class GGHandler(Base):
         """
         limit = self.config.cross_get(f'GameManager.PowerLimit.{task}', default=16500)
         logger.attr('Power Limit', limit)
-        skip_first_screenshot = True
+        self.device.sleep(2)
         timeout = Timer(1, count=15).start()
         from module.combat.combat import Combat
         while 1:
-            if skip_first_screenshot:
-                skip_first_screenshot = False
-            else:
-                self.device.sleep((1.5, 2))
-                self.device.screenshot()
+            self.device.sleep((2, 3))
+            self.device.screenshot()
             if Combat(config=self.config, device=self.device).handle_combat_automation_confirm():
                 continue
             if timeout.reached():
