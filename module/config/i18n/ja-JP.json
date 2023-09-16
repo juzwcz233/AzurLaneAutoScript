@@ -2525,6 +2525,10 @@
     "Ash": {
       "name": "PowerLimit.Ash.name",
       "help": "PowerLimit.Ash.help"
+    },
+    "Coalition": {
+      "name": "PowerLimit.Coalition.name",
+      "help": "PowerLimit.Coalition.help"
     }
   },
   "Storage": {

@@ -6,6 +6,7 @@ from module.gg_handler.gg_screenshot import GGScreenshot
 from module.logger import logger
 from module.notify import handle_notify
 from module.gg_handler.assets import OCR_PRE_BATTLE_CHECK
+from module.combat.assets import BATTLE_PREPARATION
 from module.ocr.ocr import Digit
 from module.gg_handler.gg_task import *
 
@@ -188,14 +189,16 @@ class GGHandler(Base):
         """
         limit = self.config.cross_get(f'GameManager.PowerLimit.{task}', default=16500)
         logger.attr('Power Limit', limit)
-        skip_first_screenshot = True
+        self.device.sleep(2)
         timeout = Timer(1, count=15).start()
         from module.combat.combat import Combat
+        skip_first_screenshot = True
+        ocr = 0
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
             else:
-                self.device.sleep((1.5, 2))
+                self.device.sleep((1, 1.5))
                 self.device.screenshot()
             if Combat(config=self.config, device=self.device).handle_combat_automation_confirm():
                 continue
@@ -205,8 +208,9 @@ class GGHandler(Base):
                             title=f"Alas <{self.config.config_name}> 超时",
                             content=f"<{self.config.config_name}> 识别战力超时，模拟器卡死或者网络掉线")
                 exit(1)
-            ocr = OCR_CHECK.ocr(self.device.image)
-            if ocr > 1000:
+            if self.appear(BATTLE_PREPARATION, offset=(20, 20)):
+                ocr = OCR_CHECK.ocr(self.device.image)
+            if ocr > 5000:
                 break
         if ocr >= limit:
             for i in range(3):

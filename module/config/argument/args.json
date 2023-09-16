@@ -9987,6 +9987,10 @@
       "Ash": {
         "type": "input",
         "value": 16500
+      },
+      "Coalition": {
+        "type": "input",
+        "value": 16500
       }
     },
     "Storage": {

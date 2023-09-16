@@ -453,6 +453,7 @@ class GeneratedConfig:
     PowerLimit_Exercise = 16500
     PowerLimit_Raid = 16500
     PowerLimit_Ash = 16500
+    PowerLimit_Coalition = 16500
 
     # Group `Oil`
     Oil_Value = 0

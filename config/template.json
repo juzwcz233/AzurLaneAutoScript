@@ -2066,7 +2066,8 @@
     "PowerLimit": {
       "Exercise": 16500,
       "Raid": 16500,
-      "Ash": 16500
+      "Ash": 16500,
+      "Coalition": 16500
     },
     "Storage": {
       "Storage": {}
