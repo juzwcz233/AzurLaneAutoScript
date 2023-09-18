@@ -49,11 +49,17 @@ class AshCombat(Combat):
         return False
 
     def handle_battle_preparation(self):
+        if super().handle_combat_automation_confirm():
+            return True
         if super().handle_battle_preparation():
             return True
 
         if self.appear_then_click(ASH_START, offset=(30, 30), interval=2):
             # Power limit check
+            self.device.sleep(0.5)
+            self.device.screenshot()
+            if self.appear(ASH_START):
+                return False
             from module.gg_handler.gg_handler import GGHandler
             from module.config.utils import deep_get
             gg_enable = deep_get(self.config.data, 'GameManager.GGHandler.Enabled', default=True)

@@ -4,6 +4,7 @@ from module.handler.assets import LOGIN_CHECK, LOGIN_ANNOUNCE
 from module.gg_handler.assets import *
 from module.ui.assets import *
 from module.meowfficer.assets import *
+from module.os_ash.assets import ASH_QUIT
 from module.ocr.ocr import Digit
 from module.logger import logger
 from module.base.base import ModuleBase as Base
@@ -30,7 +31,8 @@ class GGScreenshot(Base):
             GOTO_MAIN,
             MAIN_GOTO_BUILD,
             DORM_CHECK,
-            MEOWFFICER_FORT_ENTER
+            MEOWFFICER_FORT_ENTER,
+            ASH_QUIT
             ]
         self.choose = [
             BUTTON_GG_APP_CHOOSE0,
