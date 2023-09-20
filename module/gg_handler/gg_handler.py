@@ -2,6 +2,7 @@ from module.base.timer import timeout, Timer
 from module.base.base import ModuleBase as Base
 from module.gg_handler.gg_data import GGData
 from module.gg_handler.gg_screenshot import GGScreenshot
+from module.combat.combat import Combat
 # from module.gg_handler.gg_u2 import GGU2
 from module.logger import logger
 from module.notify import handle_notify
@@ -199,6 +200,8 @@ class GGHandler(Base):
             else:
                 self.device.sleep((1, 1.5))
                 self.device.screenshot()
+            if Combat(config=self.config, device=self.device).handle_combat_automation_confirm():
+                continue
             if timeout.reached():
                 logger.error('Get ScoutCE timeout')
                 handle_notify(self.config.Error_OnePushConfig,

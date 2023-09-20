@@ -49,8 +49,6 @@ class AshCombat(Combat):
         return False
 
     def handle_battle_preparation(self):
-        if super().handle_combat_automation_confirm():
-            return True
         if super().handle_battle_preparation():
             return True
 
