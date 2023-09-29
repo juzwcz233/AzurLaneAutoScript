@@ -273,6 +273,8 @@ DailyMission:
       - DataKey
       - Mail
       - SupplyPack
+    Minigame:
+      - Scheduler
     DashboardUpdate:
       - Scheduler
       - DashboardUpdate
