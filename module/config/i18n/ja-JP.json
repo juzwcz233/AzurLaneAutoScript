@@ -186,6 +186,10 @@
       "name": "他ギフト",
       "help": ""
     },
+    "Minigame": {
+      "name": "Task.Minigame.name",
+      "help": "Task.Minigame.help"
+    },
     "DashboardUpdate": {
       "name": "Dashboard Update",
       "help": ""
@@ -1929,6 +1933,16 @@
       "4": "4",
       "5": "5",
       "6": "6"
+    }
+  },
+  "Minigame": {
+    "_info": {
+      "name": "Minigame._info.name",
+      "help": "Minigame._info.help"
+    },
+    "Collect": {
+      "name": "Minigame.Collect.name",
+      "help": "Minigame.Collect.help"
     }
   },
   "Daily": {
