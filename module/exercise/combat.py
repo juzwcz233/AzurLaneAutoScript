@@ -19,7 +19,6 @@ class ExerciseCombat(HpDaemon, OpponentChoose, ExerciseEquipment):
 
     def _combat_preparation(self, skip_first_screenshot=True):
         logger.info('Combat preparation')
-
         # Power limit check
         from module.gg_handler.gg_handler import GGHandler
         from module.config.utils import deep_get
@@ -30,7 +29,8 @@ class ExerciseCombat(HpDaemon, OpponentChoose, ExerciseEquipment):
                 self.config.task_delay(minute=0.5)
                 self.config.task_call('Restart')
                 self.config.task_stop()
-
+        self.device.stuck_record_clear()
+        self.device.click_record_clear()
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -54,6 +54,8 @@ class ExerciseCombat(HpDaemon, OpponentChoose, ExerciseEquipment):
             bool: True if wins. False if quit.
         """
         logger.info('Combat execute')
+        self.device.stuck_record_clear()
+        self.device.click_record_clear()
         self.low_hp_confirm_timer = Timer(self.config.Exercise_LowHpConfirmWait, count=2).start()
         show_hp_timer = Timer(5)
         pause_interval = Timer(0.5, count=1)
