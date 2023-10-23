@@ -260,7 +260,6 @@ class Combat(Level, HPBalancer, Retirement, SubmarineCall, CombatAuto, CombatMan
             # End
             if self.handle_battle_status(drop=drop) \
                     or self.handle_get_items(drop=drop):
-                self.device.screenshot_interval_set()
                 break
 
     def handle_battle_status(self, drop=None):
@@ -408,6 +407,7 @@ class Combat(Level, HPBalancer, Retirement, SubmarineCall, CombatAuto, CombatMan
         """
         logger.info('Combat status')
         logger.attr('expected_end', expected_end.__name__ if callable(expected_end) else expected_end)
+        self.device.screenshot_interval_set()
         self.device.stuck_record_clear()
         self.device.click_record_clear()
         battle_status = False
