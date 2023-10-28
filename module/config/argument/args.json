@@ -455,13 +455,12 @@
         "display": "hide"
       },
       "Mode": {
-        "type": "select",
+        "type": "state",
         "value": "normal",
         "option": [
           "normal",
           "hard"
-        ],
-        "display": "disabled"
+        ]
       },
       "UseClearMode": {
         "type": "checkbox",
@@ -833,13 +832,12 @@
         "display": "hide"
       },
       "Mode": {
-        "type": "select",
+        "type": "state",
         "value": "hard",
         "option": [
           "normal",
           "hard"
-        ],
-        "display": "disabled"
+        ]
       },
       "UseClearMode": {
         "type": "checkbox",
@@ -2075,8 +2073,8 @@
         ],
         "display": "hide",
         "option_bold": [
-          "event_20231026_cn",
-          "event_20201229_cn"
+          "event_20201229_cn",
+          "event_20231026_cn"
         ],
         "cn": "event_20231026_cn",
         "en": "event_20231026_cn",
@@ -2406,8 +2404,8 @@
           "event_20231026_cn"
         ],
         "option_bold": [
-          "event_20231026_cn",
-          "event_20201229_cn"
+          "event_20201229_cn",
+          "event_20231026_cn"
         ],
         "cn": "event_20231026_cn",
         "en": "event_20231026_cn",
@@ -2851,8 +2849,8 @@
           "event_20231026_cn"
         ],
         "option_bold": [
-          "event_20231026_cn",
-          "event_20201229_cn"
+          "event_20201229_cn",
+          "event_20231026_cn"
         ],
         "cn": "event_20231026_cn",
         "en": "event_20231026_cn",
@@ -3296,8 +3294,8 @@
           "event_20231026_cn"
         ],
         "option_bold": [
-          "event_20231026_cn",
-          "event_20201229_cn"
+          "event_20201229_cn",
+          "event_20231026_cn"
         ],
         "cn": "event_20231026_cn",
         "en": "event_20231026_cn",
@@ -4223,8 +4221,8 @@
           "war_archives_20220414_cn"
         ],
         "option_bold": [
-          "war_archives_20201229_cn",
-          "war_archives_20220414_cn"
+          "war_archives_20220414_cn",
+          "war_archives_20201229_cn"
         ],
         "cn": "war_archives_20201229_cn",
         "en": "war_archives_20201229_cn",
@@ -4679,8 +4677,8 @@
           "event_20231026_cn"
         ],
         "option_bold": [
-          "event_20231026_cn",
-          "event_20201229_cn"
+          "event_20201229_cn",
+          "event_20231026_cn"
         ],
         "cn": "event_20231026_cn",
         "en": "event_20231026_cn",
@@ -5141,8 +5139,8 @@
           "event_20231026_cn"
         ],
         "option_bold": [
-          "event_20231026_cn",
-          "event_20201229_cn"
+          "event_20201229_cn",
+          "event_20231026_cn"
         ],
         "cn": "event_20231026_cn",
         "en": "event_20231026_cn",
@@ -5603,8 +5601,8 @@
           "event_20231026_cn"
         ],
         "option_bold": [
-          "event_20231026_cn",
-          "event_20201229_cn"
+          "event_20201229_cn",
+          "event_20231026_cn"
         ],
         "cn": "event_20231026_cn",
         "en": "event_20231026_cn",
@@ -6065,8 +6063,8 @@
           "event_20231026_cn"
         ],
         "option_bold": [
-          "event_20231026_cn",
-          "event_20201229_cn"
+          "event_20201229_cn",
+          "event_20231026_cn"
         ],
         "cn": "event_20231026_cn",
         "en": "event_20231026_cn",
@@ -6517,8 +6515,8 @@
           "event_20231026_cn"
         ],
         "option_bold": [
-          "event_20231026_cn",
-          "event_20201229_cn"
+          "event_20201229_cn",
+          "event_20231026_cn"
         ],
         "cn": "event_20231026_cn",
         "en": "event_20231026_cn",

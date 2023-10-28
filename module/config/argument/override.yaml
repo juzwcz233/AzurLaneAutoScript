@@ -53,13 +53,13 @@ MainNormal:
     Event: campaign_main
     Mode:
       value: normal
-      display: disabled
+      type: state
 MainHard:
   Campaign:
     Event: campaign_main
     Mode:
       value: hard
-      display: disabled
+      type: state
   StopCondition:
     RunCount: 3
 Main:
