@@ -87,7 +87,7 @@ Event3:
   Campaign:
     Mode: normal
     Event:
-      display: disabled
+      type: state
     AmbushEvade: true
 EventA:
   Scheduler:
@@ -291,31 +291,31 @@ CoalitionSp:
 
 Reward:
   Scheduler:
-    Enable:
+    # Enable:
     #   type: lock
-      value: true
-      option: [ true, ]
-      option_bold: [ true, ]
+    #   value: true
+    #   option: [ true, ]
+    #   option_bold: [ true, ]
     SuccessInterval: 120-240
     FailureInterval: 120-240
     ServerUpdate: 00:00
 Commission:
   Scheduler:
-    Enable:
+    # Enable:
     #   type: lock
-      value: true
-      option: [ true, ]
-      option_bold: [ true, ]
+    #   value: true
+    #   option: [ true, ]
+    #   option_bold: [ true, ]
     SuccessInterval: 30-60
     FailureInterval: 30-60
     ServerUpdate: 00:00
 Research:
   Scheduler:
-    Enable:
+    # Enable:
     #   type: lock
-      value: true
-      option: [ true, ]
-      option_bold: [ true, ]
+    #   value: true
+    #   option: [ true, ]
+    #   option_bold: [ true, ]
     SuccessInterval: 30-60
     FailureInterval: 30-60
     ServerUpdate: 00:00

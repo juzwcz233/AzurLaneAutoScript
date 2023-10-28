@@ -2075,8 +2075,8 @@
         ],
         "display": "hide",
         "option_bold": [
-          "event_20201229_cn",
-          "event_20231026_cn"
+          "event_20231026_cn",
+          "event_20201229_cn"
         ],
         "cn": "event_20231026_cn",
         "en": "event_20231026_cn",
@@ -2406,8 +2406,8 @@
           "event_20231026_cn"
         ],
         "option_bold": [
-          "event_20201229_cn",
-          "event_20231026_cn"
+          "event_20231026_cn",
+          "event_20201229_cn"
         ],
         "cn": "event_20231026_cn",
         "en": "event_20231026_cn",
@@ -2851,8 +2851,8 @@
           "event_20231026_cn"
         ],
         "option_bold": [
-          "event_20201229_cn",
-          "event_20231026_cn"
+          "event_20231026_cn",
+          "event_20201229_cn"
         ],
         "cn": "event_20231026_cn",
         "en": "event_20231026_cn",
@@ -3231,7 +3231,7 @@
         "value": "12-4"
       },
       "Event": {
-        "type": "select",
+        "type": "state",
         "value": "campaign_main",
         "option": [
           "event_20200227_cn",
@@ -3295,10 +3295,9 @@
           "event_20230914_cn",
           "event_20231026_cn"
         ],
-        "display": "disabled",
         "option_bold": [
-          "event_20201229_cn",
-          "event_20231026_cn"
+          "event_20231026_cn",
+          "event_20201229_cn"
         ],
         "cn": "event_20231026_cn",
         "en": "event_20231026_cn",
@@ -4224,8 +4223,8 @@
           "war_archives_20220414_cn"
         ],
         "option_bold": [
-          "war_archives_20220414_cn",
-          "war_archives_20201229_cn"
+          "war_archives_20201229_cn",
+          "war_archives_20220414_cn"
         ],
         "cn": "war_archives_20201229_cn",
         "en": "war_archives_20201229_cn",
@@ -4680,8 +4679,8 @@
           "event_20231026_cn"
         ],
         "option_bold": [
-          "event_20201229_cn",
-          "event_20231026_cn"
+          "event_20231026_cn",
+          "event_20201229_cn"
         ],
         "cn": "event_20231026_cn",
         "en": "event_20231026_cn",
@@ -5142,8 +5141,8 @@
           "event_20231026_cn"
         ],
         "option_bold": [
-          "event_20201229_cn",
-          "event_20231026_cn"
+          "event_20231026_cn",
+          "event_20201229_cn"
         ],
         "cn": "event_20231026_cn",
         "en": "event_20231026_cn",
@@ -5604,8 +5603,8 @@
           "event_20231026_cn"
         ],
         "option_bold": [
-          "event_20201229_cn",
-          "event_20231026_cn"
+          "event_20231026_cn",
+          "event_20201229_cn"
         ],
         "cn": "event_20231026_cn",
         "en": "event_20231026_cn",
@@ -6066,8 +6065,8 @@
           "event_20231026_cn"
         ],
         "option_bold": [
-          "event_20201229_cn",
-          "event_20231026_cn"
+          "event_20231026_cn",
+          "event_20201229_cn"
         ],
         "cn": "event_20231026_cn",
         "en": "event_20231026_cn",
@@ -6518,8 +6517,8 @@
           "event_20231026_cn"
         ],
         "option_bold": [
-          "event_20201229_cn",
-          "event_20231026_cn"
+          "event_20231026_cn",
+          "event_20201229_cn"
         ],
         "cn": "event_20231026_cn",
         "en": "event_20231026_cn",
@@ -7329,12 +7328,9 @@
         "type": "checkbox",
         "value": true,
         "option": [
-          true
-        ],
-        "option_bold": [
-          true
-        ],
-        "display": "hide"
+          true,
+          false
+        ]
       },
       "NextRun": {
         "type": "datetime",
@@ -7493,12 +7489,9 @@
         "type": "checkbox",
         "value": true,
         "option": [
-          true
-        ],
-        "option_bold": [
-          true
-        ],
-        "display": "hide"
+          true,
+          false
+        ]
       },
       "NextRun": {
         "type": "datetime",
@@ -7829,12 +7822,9 @@
         "type": "checkbox",
         "value": true,
         "option": [
-          true
-        ],
-        "option_bold": [
-          true
-        ],
-        "display": "hide"
+          true,
+          false
+        ]
       },
       "NextRun": {
         "type": "datetime",
