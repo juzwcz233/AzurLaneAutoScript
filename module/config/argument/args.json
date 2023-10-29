@@ -460,7 +460,8 @@
         "option": [
           "normal",
           "hard"
-        ]
+        ],
+        "option_bold": "normal"
       },
       "UseClearMode": {
         "type": "checkbox",
@@ -837,7 +838,8 @@
         "option": [
           "normal",
           "hard"
-        ]
+        ],
+        "option_bold": "hard"
       },
       "UseClearMode": {
         "type": "checkbox",
@@ -4221,8 +4223,8 @@
           "war_archives_20220414_cn"
         ],
         "option_bold": [
-          "war_archives_20220414_cn",
-          "war_archives_20201229_cn"
+          "war_archives_20201229_cn",
+          "war_archives_20220414_cn"
         ],
         "cn": "war_archives_20201229_cn",
         "en": "war_archives_20201229_cn",

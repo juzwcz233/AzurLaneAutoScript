@@ -52,14 +52,16 @@ MainNormal:
   Campaign:
     Event: campaign_main
     Mode:
-      value: normal
       type: state
+      value: normal
+      option_bold: normal
 MainHard:
   Campaign:
     Event: campaign_main
     Mode:
-      value: hard
       type: state
+      value: hard
+      option_bold: hard
   StopCondition:
     RunCount: 3
 Main:
