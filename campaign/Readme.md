@@ -163,4 +163,4 @@ To add a new event, add a new row in here, and run `python -m module.config.conf
 | 20231012   | event 20201229 cn        | Inverted Orthant                             | -                      | -                                            | -                                    | 復刻-負象限作戰           |
 | 20231019   | raid 20221027            | Fight! Royal Maid                            | -                      | -                                            | -                                    | 戰鬥！皇家女僕隊3rd       |
 | 20231026 | event 20231026 cn | Tempesta and the Fountain of Youth | 飓风与青春之泉 | Tempesta and the Fountain of Youth | テンペスタと若返りの泉 | - |
-
+| 20231109  | event 20210916 cn        | Upon the Shimmering Blue                     | 碧海光粼               | Upon the Shimmering Blue                     | 駆けよ 碧海の吹き風                  | -                        |
