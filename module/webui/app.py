@@ -458,11 +458,10 @@ class AlasGUI(Frame):
         )
         self.task_handler.add(switch_scheduler.g(), 1, True)
         self.task_handler.add(switch_log_scroll.g(), 1, True)
-        if 'Maa' not in self.ALAS_ARGS:
+        if 'Alas' in self.ALAS_ARGS:
             self.task_handler.add(switch_dashboard.g(), 1, True)
-        self.task_handler.add(self.alas_update_overview_task, 10, True)
-        if 'Maa' not in self.ALAS_ARGS:
             self.task_handler.add(self.alas_update_dashboard, 10, True)
+        self.task_handler.add(self.alas_update_overview_task, 10, True)
         self.task_handler.add(log.put_log(self.alas), 0.25, True)
 
     def set_dashboard_display(self, b):
