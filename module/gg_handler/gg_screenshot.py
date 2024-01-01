@@ -165,6 +165,8 @@ class GGScreenshot(Base):
             for i in range(len(self.choose)):
                 if self.appear_then_click(self.choose[int(i)], offset=(50, 50), interval=1):
                     logger.info('APP Choose')
+                    self.device.sleep(0.5)
+                    self.device.screenshot()
                     break
                 if i == range(len(self.choose)):
                     self.device.sleep(0.5)
