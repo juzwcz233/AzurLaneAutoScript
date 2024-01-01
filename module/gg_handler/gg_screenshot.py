@@ -3,6 +3,7 @@ from module.base.timer import Timer
 from module.handler.assets import LOGIN_CHECK, LOGIN_ANNOUNCE
 from module.gg_handler.assets import *
 from module.ui.assets import *
+from module.ui.page import MAIN_CHECK
 from module.meowfficer.assets import *
 from module.os_ash.assets import ASH_QUIT
 from module.combat.assets import GET_ITEMS_1
@@ -454,8 +455,8 @@ class GGScreenshot(Base):
                     count += 1
                     continue
                 if self.appear(LOGIN_CHECK, offset=(30, 30)) and LOGIN_CHECK.match_appear_on(self.device.image):
-                    self.device.click(LOGIN_CHECK)
-                    continue
+                    if self._handle_app_login():
+                        continue
                 if self.appear_then_click(LOGIN_ANNOUNCE, offset=(30, 30), interval=5):
                     continue
                 for i in range(len(self.method)):
@@ -521,6 +522,48 @@ class GGScreenshot(Base):
             logger.info('Push success')
         else:
             logger.hr('Skip push lua file')
+    def _handle_app_login(self):
+        """
+        Pages:
+            in: Any page
+            out: page_main
+        """
+        logger.hr('Game login')
+        confirm_timer = Timer(1.5, count=4).start()
+        orientation_timer = Timer(5)
+        login_success = False
+        while 1:
+            # Watch device rotation
+            if not login_success and orientation_timer.reached():
+                # Screen may rotate after starting an app
+                self.device.get_orientation()
+                orientation_timer.reset()
+
+            self.device.screenshot()
+
+            # End
+            if self.appear(MAIN_CHECK, offset=(30, 30)):
+                if confirm_timer.reached():
+                    logger.info('Login to main confirm')
+                    break
+            else:
+                confirm_timer.reset()
+
+            # Login
+            if self.appear(LOGIN_CHECK, offset=(30, 30), interval=5) and LOGIN_CHECK.match_appear_on(self.device.image):
+                self.device.click(LOGIN_CHECK)
+                if not login_success:
+                    logger.info('Login success')
+                    login_success = True
+            if self.appear_then_click(LOGIN_ANNOUNCE, offset=(30, 30), interval=5):
+                continue
+            if self.appear(EVENT_LIST_CHECK, offset=(30, 30), interval=5):
+                self.device.click(BACK_ARROW)
+                continue
+            # Always goto page_main
+            if self.appear_then_click(GOTO_MAIN, offset=(30, 30), interval=5):
+                continue
+        return True
 
     def run(self, factor):
         self.factor = factor
