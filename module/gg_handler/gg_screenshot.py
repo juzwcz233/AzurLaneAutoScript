@@ -251,7 +251,14 @@ class GGScreenshot(Base):
             if self.appear(BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(10, 10)) and \
                 BUTTON_GG_SEARCH_MODE_CONFIRM.match_appear_on(self.device.image):
                 self.device.click(BUTTON_GG_SCRIPT_ENTER_POS)
-            if self.appear_then_click(BUTTON_GG_SCRIPT_START, offset=(50, 50), interval=1):
+            if self.appear_then_click(BUTTON_GG_STOP, offset=(50, 50), interval=1):
+                logger.hr('GG Restart')
+                self.gg_exit()
+                self.gg_push()
+                self.gg_start()
+                self.enter_gg()
+                continue
+            if self.appear_then_click(BUTTON_GG_SCRIPT_START, offset=(10, 10), interval=1):
                 continue
             if self.appear_then_click(BUTTON_GG_ERROR_ENTER, offset=(50, 50), interval=1):
                 self._gg_enter_script()
