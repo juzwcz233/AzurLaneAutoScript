@@ -454,7 +454,8 @@ class GGScreenshot(Base):
                     self.device.click(BUTTON_GG_EXIT_POS)
                     count += 1
                     continue
-                if self.appear_then_click(BUTTON_GG_START, offset=(50, 50), interval=1):
+                if self.appear_then_click(BUTTON_GG_START, offset=(50, 50), interval=2):
+                    self.device.sleep(self.gg_wait_time)
                     if not self.device.app_is_running():
                         self.device.app_start()
                     else:
