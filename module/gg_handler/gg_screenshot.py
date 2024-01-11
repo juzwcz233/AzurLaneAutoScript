@@ -462,7 +462,7 @@ class GGScreenshot(Base):
                         logger.info('Game is already running')
                     count += 1
                     continue
-                if self.appear(LOGIN_CHECK, offset=(30, 30)) and LOGIN_CHECK.match_appear_on(self.device.image):
+                if (self.appear(LOGIN_CHECK, offset=(30, 30)) and LOGIN_CHECK.match_appear_on(self.device.image)) or self.appear(LOGIN_GAME_UPDATE, offset=(30, 30)):
                     if self._handle_app_login():
                         continue
                 if self.appear_then_click(LOGIN_ANNOUNCE, offset=(30, 30), interval=5):
