@@ -1,6 +1,6 @@
 import uiautomator2 as u2
 from module.base.timer import Timer
-from module.handler.assets import LOGIN_CHECK, LOGIN_ANNOUNCE
+from module.handler.assets import *
 from module.gg_handler.assets import *
 from module.ui.assets import *
 from module.ui.page import MAIN_CHECK
@@ -462,7 +462,7 @@ class GGScreenshot(Base):
                         logger.info('Game is already running')
                     count += 1
                     continue
-                if self.appear(LOGIN_CHECK, offset=(30, 30)) and LOGIN_CHECK.match_appear_on(self.device.image):
+                if (self.appear(LOGIN_CHECK, offset=(30, 30)) and LOGIN_CHECK.match_appear_on(self.device.image)) or self.appear(LOGIN_GAME_UPDATE, offset=(30, 30)):
                     if self._handle_app_login():
                         continue
                 if self.appear_then_click(LOGIN_ANNOUNCE, offset=(30, 30), interval=5):
@@ -567,6 +567,8 @@ class GGScreenshot(Base):
                 continue
             if self.appear(EVENT_LIST_CHECK, offset=(30, 30), interval=5):
                 self.device.click(BACK_ARROW)
+                continue
+            if self.appear_then_click(LOGIN_GAME_UPDATE, offset=(30, 30), interval=5):
                 continue
             # Always goto page_main
             if self.appear_then_click(GOTO_MAIN, offset=(30, 30), interval=5):
