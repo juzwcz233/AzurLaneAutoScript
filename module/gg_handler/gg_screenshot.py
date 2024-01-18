@@ -118,6 +118,7 @@ class GGScreenshot(Base):
                 continue
             if not self.appear(BUTTON_GG_CONFIRM, offset=(50, 50)):
                 logger.hr('GG Panel Disappearance Confirmed')
+                self.device.sleep(self.gg_wait_time)
                 if not self.device.app_is_running():
                     self.device.app_start()
                 else:
@@ -139,9 +140,9 @@ class GGScreenshot(Base):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear(LOGIN_CHECK, offset=(30, 30)) and LOGIN_CHECK.match_appear_on(self.device.image):
-                self.device.click(LOGIN_CHECK)
-                continue
+            if (self.appear(LOGIN_CHECK, offset=(30, 30)) and LOGIN_CHECK.match_appear_on(self.device.image)) or self.appear(LOGIN_GAME_UPDATE, offset=(30, 30)):
+                    if self._handle_app_login():
+                        continue
             if self.appear_then_click(LOGIN_ANNOUNCE, offset=(30, 30), interval=5):
                 continue
             if self.appear(BUTTON_GG_CONFIRM, offset=(50, 50)):
@@ -172,7 +173,7 @@ class GGScreenshot(Base):
                 if i == range(len(self.choose)):
                     self.device.sleep(0.5)
                     self.device.screenshot()
-            if self.appear(BUTTON_GG_STOP, offset=(50, 50)):
+            if self.appear(BUTTON_GG_STOP, offset=(50, 50)) or self.appear(BUTTON_GG_NOTRUN, offset=(50, 50)):
                 logger.hr('GG Restart')
                 self.gg_exit()
                 self.gg_push()
@@ -530,6 +531,7 @@ class GGScreenshot(Base):
             logger.info('Push success')
         else:
             logger.hr('Skip push lua file')
+
     def _handle_app_login(self):
         """
         Pages:
