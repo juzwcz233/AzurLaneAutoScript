@@ -1809,7 +1809,8 @@
     "ResearchSeries": {
       "name": "Research Series",
       "help": "",
-      "2": "PR2"
+      "2": "DR2",
+      "3": "DR3"
     },
     "ShipIndex": {
       "name": "Ship Index",
@@ -1841,7 +1842,8 @@
       "help": "",
       "1": "PR1",
       "2": "PR2",
-      "3": "PR3"
+      "3": "PR3",
+      "4": "PR4"
     },
     "ShipIndex": {
       "name": "Ship Index",
