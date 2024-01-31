@@ -208,10 +208,10 @@ class GGHandler(Base):
                             title=f"Alas <{self.config.config_name}> 超时",
                             content=f"<{self.config.config_name}> 识别战力超时，模拟器卡死或者网络掉线")
                 exit(1)
-            if self.appear(BATTLE_PREPARATION, offset=(20, 20)):
+            if self.appear(BATTLE_PREPARATION, offset=(30, 20)):
                 self.device.screenshot()
                 ocr = OCR_CHECK.ocr(self.device.image)
-            if ocr > 5000:
+            if ocr > 500:
                 break
         if ocr >= limit:
             for i in range(3):
