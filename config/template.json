@@ -2077,6 +2077,7 @@
       "GGLuapathRecord": false,
       "GGPackageName": "com.",
       "GGWaitTime": 5,
+      "GGLowLimit": 500,
       "DisabledTask": "disable_all_dangerous_task",
       "RestartEverytime": true,
       "RestartATX": false
