@@ -189,6 +189,7 @@ class GGHandler(Base):
             task: str = What task it is to limit power, default limit is 16500 for front ships.
         """
         limit = self.config.cross_get(f'GameManager.PowerLimit.{task}', default=16500)
+        lowlimit = self.config.cross_get(f'GameManager.GGHandler.GGLowLimit', default=500)
         logger.attr('Power Limit', limit)
         self.device.sleep(2)
         timeout = Timer(1, count=15).start()
@@ -211,7 +212,7 @@ class GGHandler(Base):
             if self.appear(BATTLE_PREPARATION, offset=(30, 20)):
                 self.device.screenshot()
                 ocr = OCR_CHECK.ocr(self.device.image)
-            if ocr > 500:
+            if ocr > lowlimit:
                 break
         if ocr >= limit:
             for i in range(3):

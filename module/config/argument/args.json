@@ -10293,6 +10293,10 @@
         "type": "input",
         "value": 5
       },
+      "GGLowLimit": {
+        "type": "input",
+        "value": 500
+      },
       "DisabledTask": {
         "type": "select",
         "value": "disable_all_dangerous_task",
