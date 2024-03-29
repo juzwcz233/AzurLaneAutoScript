@@ -6,6 +6,7 @@ from module.ui.assets import *
 from module.ui.page import MAIN_CHECK
 from module.meowfficer.assets import *
 from module.os_ash.assets import ASH_QUIT
+from module.raid.assets import RPG_HOME
 from module.combat.assets import GET_ITEMS_1
 from module.ocr.ocr import Digit
 from module.logger import logger
@@ -35,7 +36,8 @@ class GGScreenshot(Base):
             DORM_CHECK,
             MEOWFFICER_FORT_ENTER,
             ASH_QUIT,
-            GET_ITEMS_1
+            GET_ITEMS_1,
+            RPG_HOME
             ]
         self.choose = [
             BUTTON_GG_APP_CHOOSE0,
