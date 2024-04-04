@@ -220,6 +220,7 @@ class GemsFarming(CampaignRun, Dock, EquipmentChange):
 
         self.dock_select_one(button)
         self.dock_filter_set()
+        self.dock_sort_method_dsc_set()
         self.dock_select_confirm(check_button=self.page_fleet_check_button)
 
     def get_common_rarity_cv(self):
@@ -237,7 +238,6 @@ class GemsFarming(CampaignRun, Dock, EquipmentChange):
         scanner.disable('rarity')
 
         if self.config.GemsFarming_CommonCV == 'any':
-            logger.info('')
 
             self.dock_sort_method_dsc_set(False)
 
