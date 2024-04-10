@@ -116,7 +116,8 @@
           "aScreenCap_nc",
           "DroidCast",
           "DroidCast_raw",
-          "scrcpy"
+          "scrcpy",
+          "nemu_ipc"
         ]
       },
       "ControlMethod": {
@@ -127,7 +128,8 @@
           "uiautomator2",
           "minitouch",
           "Hermit",
-          "MaaTouch"
+          "MaaTouch",
+          "nemu_ipc"
         ]
       },
       "ScreenshotDedithering": {
@@ -139,23 +141,34 @@
         "value": false
       }
     },
-    "RestartEmulator": {
-      "Enable": {
-        "type": "checkbox",
-        "value": false
+    "EmulatorInfo": {
+      "Emulator": {
+        "type": "select",
+        "value": "auto",
+        "option": [
+          "auto",
+          "NoxPlayer",
+          "NoxPlayer64",
+          "BlueStacks4",
+          "BlueStacks5",
+          "BlueStacks4HyperV",
+          "BlueStacks5HyperV",
+          "LDPlayer3",
+          "LDPlayer4",
+          "LDPlayer9",
+          "MuMuPlayer",
+          "MuMuPlayerX",
+          "MuMuPlayer12",
+          "MEmuPlayer"
+        ]
       },
-      "EmulatorData": {
+      "name": {
         "type": "textarea",
-        "value": "emulator:\nname:\npath:",
-        "mode": "yaml"
+        "value": null
       },
-      "ErrorRestart": {
-        "type": "checkbox",
-        "value": false
-      },
-      "DailyRestart": {
-        "type": "checkbox",
-        "value": false
+      "path": {
+        "type": "textarea",
+        "value": null
       }
     },
     "Error": {
@@ -1961,32 +1974,6 @@
           "ship_equip"
         ]
       },
-      "ChangeVanguard": {
-        "type": "select",
-        "value": "ship",
-        "option": [
-          "disabled",
-          "ship",
-          "ship_equip"
-        ]
-      },
-      "ALLowLowVanguardLevel": {
-        "type": "checkbox",
-        "value": true
-      },
-      "FleetNumberInHardMode": {
-        "type": "select",
-        "value": 0,
-        "option": [
-          0,
-          1,
-          2
-        ]
-      },
-      "StopIFAutoNotEnsured": {
-        "type": "checkbox",
-        "value": true
-      },
       "CommonCV": {
         "type": "select",
         "value": "any",
@@ -1996,6 +1983,24 @@
           "bogue",
           "ranger",
           "hermes"
+        ]
+      },
+      "ChangeVanguard": {
+        "type": "select",
+        "value": "ship",
+        "option": [
+          "disabled",
+          "ship",
+          "ship_equip"
+        ]
+      },
+      "CommonDD": {
+        "type": "select",
+        "value": "any",
+        "option": [
+          "any",
+          "aulick_or_foote",
+          "cassin_or_downes"
         ]
       },
       "CommissionLimit": {
@@ -3719,8 +3724,8 @@
           "raid_20240328"
         ],
         "option_bold": [
-          "raid_20230629",
-          "raid_20240328"
+          "raid_20240328",
+          "raid_20230629"
         ],
         "cn": "raid_20240328",
         "en": "raid_20240328",
@@ -6960,8 +6965,8 @@
           "raid_20240328"
         ],
         "option_bold": [
-          "raid_20230629",
-          "raid_20240328"
+          "raid_20240328",
+          "raid_20230629"
         ],
         "cn": "raid_20240328",
         "en": "raid_20240328",
@@ -10201,11 +10206,9 @@
         "value": "emulator",
         "option": [
           "emulator",
-          "emulator_android_12",
           "plone_cloud_with_adb",
           "phone_cloud_without_adb",
           "android_phone",
-          "android_phone_12",
           "android_phone_vmos"
         ]
       },
