@@ -36,7 +36,6 @@ class DashboardUpdate(DashboardStatus):
             LogRes(self.config).Pt = pt
         else:
             while 1:
-                from module.config.utils import deep_get
                 self.device.click(button=CAMPAIGN_MENU_NO_EVENT)
                 self.device.sleep(0.5)
                 self.device.screenshot()
