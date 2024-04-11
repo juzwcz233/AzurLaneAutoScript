@@ -48,7 +48,9 @@ class DashboardUpdate(DashboardStatus):
                     logger.warning('Event is SP, no PT')
                     LogRes(self.config).Pt = pt
                     return 1
-                if deep_get(self.config.data, 'Raid.Campaign.Event') == 'raid_20240328':
+                if not self.appear(button=EVENT_CHECK, offset=(50, 50)) and \
+                    not self.appear(button=RAID_CHECK, offset=(50, 50)) and \
+                    not self.appear(button=SP_CHECK, offset=(50, 50)):
                     logger.warning('Event is no PT')
                     LogRes(self.config).Pt = pt
                     return 1
