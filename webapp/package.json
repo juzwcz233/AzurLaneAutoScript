@@ -13,7 +13,7 @@
     "pretest": "npm run build",
     "test": "node tests/app.spec.js",
     "watch": "node scripts/watch.js",
-    "lint": "eslint . --ext js,ts,vue",
+    "lint": "eslint . --ext js,ts,vue --fix",
     "typecheck-main": "tsc --noEmit -p packages/main/tsconfig.json",
     "typecheck-preload": "tsc --noEmit -p packages/preload/tsconfig.json",
     "typecheck-renderer": "vue-tsc --noEmit -p packages/renderer/tsconfig.json",
@@ -30,7 +30,7 @@
     "*.{js,ts,vue}": "eslint --cache --fix"
   },
   "devDependencies": {
-    "@types/electron-devtools-installer": "2.2.0",
+    "@types/electron-devtools-installer": "2.2.5",
     "@typescript-eslint/eslint-plugin": "4.32.0",
     "@vitejs/plugin-vue": "1.9.2",
     "cross-env": "7.0.3",
@@ -47,12 +47,12 @@
     "vue-tsc": "0.3.0"
   },
   "dependencies": {
-    "@ant-design/icons-vue": "^6.0.1",
+    "@ant-design/icons-vue": "6.1.0",
     "electron-updater": "4.6.0",
-    "python-shell": "^3.0.0",
-    "tree-kill": "^1.2.2",
+    "python-shell": "3.0.1",
+    "tree-kill": "1.2.2",
     "vue": "3.2.19",
     "vue-router": "4.0.11",
-    "yaml": "^1.10.2"
+    "yaml": "1.10.2"
   }
 }
