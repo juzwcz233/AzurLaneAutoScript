@@ -111,19 +111,19 @@ const createWindow = async () => {
   const tray = new Tray(path.join(__dirname, 'icon.png'));
   const contextMenu = Menu.buildFromTemplate([
     {
-      label: 'Show',
+      label: '显示',
       click: function () {
         mainWindow?.show();
       }
     },
     {
-      label: 'Hide',
+      label: '隐藏',
       click: function () {
         mainWindow?.hide();
       }
     },
     {
-      label: 'Exit',
+      label: '退出',
       click: function () {
         alas.kill(function () {
           mainWindow?.close();
