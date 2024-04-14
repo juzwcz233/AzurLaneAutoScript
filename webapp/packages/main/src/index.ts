@@ -29,7 +29,7 @@ if (import.meta.env.MODE === 'development') {
 /**
  * Load deploy settings and start Alas web server.
  */
-let alas = new PyShell(webuiPath, webuiArgs);
+const alas = new PyShell(webuiPath, webuiArgs);
 alas.end(function (err: string) {
   // if (err) throw err;
 });
@@ -74,21 +74,21 @@ const createWindow = async () => {
     // Dev tools
     globalShortcut.register('Ctrl+Shift+I', function () {
       if (mainWindow?.webContents.isDevToolsOpened()) {
-        mainWindow?.webContents.closeDevTools()
+        mainWindow?.webContents.closeDevTools();
       } else {
-        mainWindow?.webContents.openDevTools()
+        mainWindow?.webContents.openDevTools();
       }
     });
     // Refresh
     globalShortcut.register('Ctrl+R', function () {
-      mainWindow?.reload()
+      mainWindow?.reload();
     });
     globalShortcut.register('Ctrl+Shift+R', function () {
-      mainWindow?.reload()
+      mainWindow?.reload();
     });
   });
   mainWindow.on('blur', function () {
-    globalShortcut.unregisterAll()
+    globalShortcut.unregisterAll();
   });
 
   // Minimize, maximize, close window.
