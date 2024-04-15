@@ -55,8 +55,16 @@ jobs:
         id: version
         run: echo "::set-output name=build-version::$(node -e "try{console.log(require('./electron-builder.config.js').extraMetadata.version)}catch(e){console.error(e);process.exit(1)}")"
 
+
+      - name: Waiting on All checks
+        uses: lewagon/wait-on-check-action@v0.2
+        with:
+          ref: ${{ github.ref }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          running-workflow-name: 'draft'
+
       - name: Delete outdated drafts
-        uses: hugo19941994/delete-draft-releases@v1.0.0
+        uses: hugo19941994/delete-draft-releases@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -74,13 +82,7 @@ jobs:
   upload_artifacts:
     needs: [ draft ]
 
-    strategy:
-      matrix:
-        os: [ windows-latest ]
-    #    To compile the application for different platforms, use:
-    #    os: [ macos-latest, ubuntu-latest, windows-latest ]
-
-    runs-on: ${{ matrix.os }}
+    runs-on: windows-latest
 
     steps:
       - uses: actions/checkout@v2
