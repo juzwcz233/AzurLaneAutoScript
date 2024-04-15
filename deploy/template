@@ -157,3 +157,4 @@ Deploy:
     # '["alas"]' specified "alas" config
     # '["alas","alas2"]' specified "alas" "alas2" configs
     Run: null
+    AppAsarUpdate: true
