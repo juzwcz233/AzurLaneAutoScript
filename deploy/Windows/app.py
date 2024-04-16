@@ -80,6 +80,9 @@ class AppManager(DeployConfig):
         if not self.AppAsarUpdate:
             self.app_asar_update(os.getcwd())
             Progress.UpdateAlasApp()
+        elif self.AppAsarUpdate == "none":
+            logger.info('AppAsarUpdate is disabled, skip')
+            Progress.UpdateAlasApp()
             return False
 
         # self.app_asar_replace(os.getcwd())
