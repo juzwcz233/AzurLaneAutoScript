@@ -75,6 +75,11 @@ class GGScreenshot(Base):
                 logger.info('APP choose')
                 skipped = 1
                 continue
+            if self.appear_then_click(BUTTON_GG_RESTART_ERROR, offset=(50, 50), interval=1):
+                logger.hr('Game died with GG panel')
+                logger.info('Close GG restart error')
+                skipped = 1
+                continue
             if self.appear_then_click(BUTTON_GG_APP_CHOOSE1, offset=(50, 50), interval=1):
                 logger.info('APP Choose')
                 continue
