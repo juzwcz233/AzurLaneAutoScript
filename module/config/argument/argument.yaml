@@ -745,7 +745,7 @@ GGHandler:
   GGMultiplyingFactor: 200
   GGMethod:
     value: screenshot
-    option: [ screenshot, u2 ]
+    option: [ screenshot, ]
   GGAction: 
     value: auto
     option: [ auto, manual ]

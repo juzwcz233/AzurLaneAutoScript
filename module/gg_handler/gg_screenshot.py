@@ -51,22 +51,12 @@ class GGScreenshot(Base):
             in: Game down error
             out: restart
         """
-        count = 0
         skipped = 0
         logger.attr('Confirm Time', f'{self.gg_wait_time}s')
         timeout = Timer(0.5, count=self.gg_wait_time).start()
         while 1:
-            self.device.sleep(0.5)
-            self.device.screenshot()
             if timeout.reached():
                 break
-            if self.appear_then_click(BUTTON_GG_RESTART_ERROR, offset=(50, 50), interval=1):
-                logger.hr('Game died with GG panel')
-                logger.info('Close GG restart error')
-                skipped = 1
-                count += 1
-                if count >= 1:
-                    break
 
         skip_first_screenshot = True
         while 1:
@@ -75,11 +65,6 @@ class GGScreenshot(Base):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear_then_click(BUTTON_GG_RESTART_ERROR, offset=(50, 50), interval=1):
-                logger.hr('Game died with GG panel')
-                logger.info('Close GG restart error')
-                skipped = 1
-                continue
             if self.appear_then_click(BUTTON_GG_SCRIPT_END, offset=(50, 50), interval=1):
                 logger.info('Close previous script')
                 skipped = 1

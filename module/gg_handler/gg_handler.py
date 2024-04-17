@@ -3,7 +3,6 @@ from module.base.base import ModuleBase as Base
 from module.gg_handler.gg_data import GGData
 from module.gg_handler.gg_screenshot import GGScreenshot
 from module.combat.combat import Combat
-# from module.gg_handler.gg_u2 import GGU2
 from module.logger import logger
 from module.notify import handle_notify
 from module.gg_handler.assets import OCR_PRE_BATTLE_CHECK
@@ -38,8 +37,6 @@ class GGHandler(Base):
         from module.exception import GameStuckError
         for _ in range(2):
             try:
-                # if _crashed:
-                #     timeout(self.handle_u2_restart, timeout_sec=60)
                 if not timeout(LoginHandler(self.config, self.device).app_restart, timeout_sec=600):
                     break
                 raise RuntimeError
@@ -64,14 +61,6 @@ class GGHandler(Base):
         logger.hr('Enabling GG', level=2)
         if mode:
             GGScreenshot(config=self.config, device=self.device).run(factor=self.factor)
-            # if self.method == 'screenshot' or self.gg_package_name == 'com.':
-            #     GGScreenshot(config=self.config, device=self.device).gg_set(mode=True, factor=self.factor)
-            # elif self.method == 'u2':
-            #     self.handle_u2_restart()
-            #     success = timeout(GGU2(config=self.config, device=self.device).set_on, timeout_sec=120, factor=self.factor)
-            #     if success:
-            #         from module.exception import GameStuckError
-            #         raise GameStuckError
         else:
             self.gg_reset()
 
@@ -83,10 +72,6 @@ class GGHandler(Base):
             bool: Whether GG error panel occurs
         """
         return GGScreenshot(config=self.config, device=self.device).skip_error()
-        # if self.method == 'screenshot' or self.gg_package_name == 'com.':
-        #     return GGScreenshot(config=self.config, device=self.device).skip_error()
-        # elif self.method == 'u2':
-        #     return GGU2(config=self.config, device=self.device).skip_error()
 
     def check_config(self) -> dict:
         """
@@ -106,28 +91,6 @@ class GGHandler(Base):
         logger.info(
             f'[Enabled]{self.gg_enable} [AutoRestart]{self.gg_auto} [CurrentStage]{self.gg_on}')
         return self.gg_data
-
-    # def handle_u2_restart(self):
-    #     _need_restart_atx = self.config.cross_get('GameManager.GGHandler.RestartATX')
-    #     if self.method == 'u2' and _need_restart_atx:
-    #         try:
-    #             timeout(self.device.restart_atx, 60)
-    #         except Exception:
-    #             from module.notify import handle_notify
-    #             handle_notify(self.config.Error_OnePushConfig,
-    #                           title=f"Alas <{self.config.config_name}> 模拟器出错",
-    #                           content=f"<{self.config.config_name}> 需要手动介入，也许你的模拟器卡死")
-    #             exit(1)
-    #         import uiautomator2 as u2
-    #         logger.info('Reset uiautomator')
-    #         try:
-    #             u2.connect(self.device.serial).reset_uiautomator()
-    #         except Exception:
-    #             from module.notify import handle_notify
-    #             handle_notify(self.config.Error_OnePushConfig,
-    #                           title=f"Alas <{self.config.config_name}> 重启u2服务失败",
-    #                           content=f"<{self.config.config_name}> 需要手动介入，也许你的模拟器卡死")
-    #             exit(1)
 
     def handle_restart_before_tasks(self) -> bool:
         """

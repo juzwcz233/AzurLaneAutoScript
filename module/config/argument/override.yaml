@@ -461,6 +461,7 @@ GameManager:
   GGHandler:
     GGMethod:
       value: screenshot
+      option_bold: screenshot
       display: disabled
     RestartEverytime:
       value: true
