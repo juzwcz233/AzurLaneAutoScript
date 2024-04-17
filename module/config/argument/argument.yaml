@@ -746,6 +746,7 @@ GGHandler:
   GGMethod:
     value: screenshot
     option: [ screenshot, ]
+    option_bold: screenshot
   GGAction: 
     value: auto
     option: [ auto, manual ]

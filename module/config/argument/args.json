@@ -10282,8 +10282,7 @@
         "option": [
           "screenshot"
         ],
-        "option_bold": "screenshot",
-        "display": "disabled"
+        "option_bold": "screenshot"
       },
       "GGAction": {
         "type": "select",
