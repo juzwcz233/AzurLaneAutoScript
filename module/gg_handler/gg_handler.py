@@ -114,8 +114,6 @@ class GGHandler(Base):
             logger.info(f'GG config:')
             logger.info(
                 f'[Enabled]{self.gg_enable} [AutoRestart]{self.gg_auto} [CurrentStage]{self.gg_on}')
-            if not self.skip_error():
-                logger.hr('Assume game died without GG panel')
 
     def gg_reset(self):
         """

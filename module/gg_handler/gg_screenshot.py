@@ -53,10 +53,8 @@ class GGScreenshot(Base):
         """
         skipped = 0
         logger.attr('Confirm Time', f'{self.gg_wait_time}s')
-        timeout = Timer(0.5, count=self.gg_wait_time).start()
-        while 1:
-            if timeout.reached():
-                break
+        self.device.sleep(self.gg_wait_time)
+        self.device.screenshot()
 
         skip_first_screenshot = True
         while 1:
