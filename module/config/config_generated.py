@@ -444,7 +444,7 @@ class GeneratedConfig:
     GGHandler_Enabled = False
     GGHandler_GGFactorEnable = False
     GGHandler_GGMultiplyingFactor = 200
-    GGHandler_GGMethod = 'screenshot'  # screenshot, u2
+    GGHandler_GGMethod = 'screenshot'  # screenshot
     GGHandler_GGAction = 'auto'  # auto, manual
     GGHandler_GGLuapath = None
     GGHandler_GGLuapathRecord = False

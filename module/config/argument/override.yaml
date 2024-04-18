@@ -459,9 +459,6 @@ OpsiHazard1Leveling:
 
 GameManager:
   GGHandler:
-    GGMethod:
-      value: screenshot
-      display: disabled
     RestartEverytime:
       value: true
       display: hide

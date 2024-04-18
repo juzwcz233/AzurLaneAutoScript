@@ -10280,10 +10280,9 @@
         "type": "select",
         "value": "screenshot",
         "option": [
-          "screenshot",
-          "u2"
+          "screenshot"
         ],
-        "display": "disabled"
+        "option_bold": "screenshot"
       },
       "GGAction": {
         "type": "select",
