@@ -1756,8 +1756,7 @@
       },
       "RunCount": {
         "type": "input",
-        "value": 0,
-        "display": "hide"
+        "value": 0
       },
       "MapAchievement": {
         "type": "select",
