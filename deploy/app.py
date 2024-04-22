@@ -82,4 +82,5 @@ class AppManager(DeployConfig):
             return self.app_asar_update(os.getcwd())
         if not self.AppAsarUpdate:
             return False
+
         return self.app_asar_replace(os.getcwd())
