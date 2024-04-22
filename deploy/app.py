@@ -78,9 +78,8 @@ class AppManager(DeployConfig):
         if not self.AutoUpdate:
             logger.info('AutoUpdate is disabled, skip')
             return False
-        if not self.AppAsarUpdate:
+        if self.AppAsarUpdate == False:
             return self.app_asar_update(os.getcwd())
-        if self.AppAsarUpdate == "none":
+        if not self.AppAsarUpdate:
             return False
-
         return self.app_asar_replace(os.getcwd())

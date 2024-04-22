@@ -30,7 +30,6 @@ class GGHandler(Base):
         self.RestartEverytime = self.config.cross_get('GameManager.GGHandler.RestartEverytime', default=True)
         self.factor = self.config.cross_get('GameManager.GGHandler.GGMultiplyingFactor', default=200)
         self.method = self.config.cross_get('GameManager.GGHandler.GGMethod', default='screenshot')
-        # self.gg_package_name = self.config.cross_get('GameManager.GGHandler.GGPackageName')
 
     def restart(self, crashed=False):
         from module.handler.login import LoginHandler
@@ -58,20 +57,20 @@ class GGHandler(Base):
             Args:
                 mode: bool
         """
-        logger.hr('Enabling GG', level=2)
         if mode:
+            logger.hr('Enabling GG', level=2)
             GGScreenshot(config=self.config, device=self.device).run(factor=self.factor)
         else:
             self.gg_reset()
 
-    def skip_error(self) -> bool:
+    def skip_error(self):
         """
         Close all the windows of GG.
         Often to be used when game restarts with GG enabled.
         Returns:
             bool: Whether GG error panel occurs
         """
-        return GGScreenshot(config=self.config, device=self.device).skip_error()
+        GGScreenshot(config=self.config, device=self.device).skip_error()
 
     def check_config(self) -> dict:
         """
@@ -87,7 +86,7 @@ class GGHandler(Base):
         GGData(self.config).set_data(target='gg_enable', value=gg_enable)
         GGData(self.config).set_data(target='gg_auto', value=gg_auto)
         logger.hr('Check GG config')
-        logger.info(f'GG config:')
+        logger.info('GG config:')
         logger.info(
             f'[Enabled]{self.gg_enable} [AutoRestart]{self.gg_auto} [CurrentStage]{self.gg_on}')
         return self.gg_data
@@ -111,7 +110,7 @@ class GGHandler(Base):
         if self.gg_enable:
             GGData(config=self.config).set_data(target='gg_on', value=False)
             logger.hr('Loading GG config')
-            logger.info(f'GG config:')
+            logger.info('GG config:')
             logger.info(
                 f'[Enabled]{self.gg_enable} [AutoRestart]{self.gg_auto} [CurrentStage]{self.gg_on}')
 

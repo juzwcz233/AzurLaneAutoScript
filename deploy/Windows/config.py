@@ -62,7 +62,7 @@ class ConfigModel:
     Password: Optional[str] = None
     CDN: Union[str, bool] = False
     Run: Optional[str] = None
-    AppAsarUpdate: str = "true"
+    AppAsarUpdate: bool = True
     NoSandbox: bool = True
 
     # Dynamic
