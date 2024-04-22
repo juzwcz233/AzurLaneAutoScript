@@ -51,7 +51,6 @@ class GGScreenshot(Base):
             in: Game down error
             out: restart
         """
-        skipped = 0
         logger.attr('Confirm Time', f'{self.gg_wait_time}s')
         self.device.sleep(self.gg_wait_time)
         self.device.screenshot()
@@ -65,20 +64,17 @@ class GGScreenshot(Base):
                 self.device.screenshot()
             if self.appear_then_click(BUTTON_GG_SCRIPT_END, offset=(50, 50), interval=1):
                 logger.info('Close previous script')
-                skipped = 1
                 continue
             if self.appear_then_click(BUTTON_GG_SCRIPT_FATAL, offset=(50, 50), interval=1):
                 logger.info('Restart previous script')
-                skipped = 1
                 continue
             if self.appear_then_click(BUTTON_GG_APP_CHOOSE0, offset=(50, 50), interval=1):
                 logger.info('APP choose')
-                skipped = 1
                 continue
-            if self.appear_then_click(BUTTON_GG_RESTART_ERROR, offset=(50, 50), interval=1):
+            if self.appear(BUTTON_GG_RESTART_ERROR, offset=(50, 50), interval=1):
                 logger.hr('Game died with GG panel')
                 logger.info('Close GG restart error')
-                skipped = 1
+                self.gg_exit()
                 continue
             if self.appear_then_click(BUTTON_GG_APP_CHOOSE1, offset=(50, 50), interval=1):
                 logger.info('APP Choose')
@@ -86,25 +82,20 @@ class GGScreenshot(Base):
             if self.appear(BUTTON_GG_SCRIPT_MENU_A, offset=(50, 50), interval=1):
                 logger.info('Close previous script')
                 self.device.click(BUTTON_GG_EXIT_POS)
-                skipped = 1
                 continue
             if self.appear(BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.999):
                 logger.info('At GG main panel, click GG exit')
                 self.device.click(BUTTON_GG_EXIT_POS)
-                skipped = 1
                 continue
             if self.appear_then_click(BUTTON_GG_ERROR_ENTER, offset=(50, 50), interval=1):
-                skipped = 1
                 continue
             if self.appear(BUTTON_GG_CONFIRM, offset=(50, 50)) and not self.appear(BUTTON_GG_CONFIRM, offset=(10, 10)):
                 logger.info('Enter search mode')
                 self.device.click(BUTTON_GG_TAB_SEARCH_POS)
-                skipped = 1
                 continue
             if self.appear(BUTTON_GG_CONFIRM, offset=(10, 10)):
                 logger.info('Unexpected GG page, Try GG exit')
                 self.device.click(BUTTON_GG_EXIT_POS)
-                skipped = 1
                 continue
             if not self.appear(BUTTON_GG_CONFIRM, offset=(50, 50)):
                 logger.hr('GG Panel Disappearance Confirmed')
@@ -113,9 +104,7 @@ class GGScreenshot(Base):
                     self.device.app_start()
                 else:
                     logger.info('Game is already running')
-                self.gg_exit()
                 break
-        return skipped
 
     def _enter_gg(self):
         """

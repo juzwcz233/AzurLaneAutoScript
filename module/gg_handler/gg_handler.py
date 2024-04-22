@@ -63,14 +63,14 @@ class GGHandler(Base):
         else:
             self.gg_reset()
 
-    def skip_error(self) -> bool:
+    def skip_error(self):
         """
         Close all the windows of GG.
         Often to be used when game restarts with GG enabled.
         Returns:
             bool: Whether GG error panel occurs
         """
-        return GGScreenshot(config=self.config, device=self.device).skip_error()
+        GGScreenshot(config=self.config, device=self.device).skip_error()
 
     def check_config(self) -> dict:
         """
