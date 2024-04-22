@@ -2,8 +2,8 @@
   "name": "alas",
   "private": true,
   "engines": {
-    "node": ">=v14.14",
-    "npm": ">=7.7"
+    "node": ">=v18",
+    "npm": ">=9"
   },
   "main": "packages/main/dist/index.cjs",
   "scripts": {
@@ -31,14 +31,14 @@
   },
   "devDependencies": {
     "@types/electron-devtools-installer": "2.2.5",
-    "@typescript-eslint/eslint-plugin": "4.33.0",
+    "@typescript-eslint/eslint-plugin": "7.7.0",
     "@vitejs/plugin-vue": "1.10.2",
     "cross-env": "7.0.3",
     "electron": "15.1.0",
     "electron-builder": "24.13.3",
     "electron-devtools-installer": "3.2.0",
-    "eslint": "7.32.0",
-    "eslint-plugin-vue": "7.20.0",
+    "eslint": "8.56.0",
+    "eslint-plugin-vue": "9.25.0",
     "lint-staged": "15.2.2",
     "playwright": "1.43.1",
     "simple-git-hooks": "2.11.1",
@@ -51,8 +51,8 @@
     "electron-updater": "6.1.8",
     "python-shell": "5.0.0",
     "tree-kill": "1.2.2",
-    "vue": "3.4.22",
-    "vue-router": "4.3.0",
+    "vue": "3.4.23",
+    "vue-router": "4.3.1",
     "yaml": "2.4.1"
   }
 }
