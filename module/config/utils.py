@@ -395,7 +395,10 @@ def dict_to_kv(dictionary, allow_none=True):
     Returns:
         str: Such as `path='Scheduler.ServerUpdate', value=True`
     """
-    return ',\n'.join([f'{k}={repr(v)}' for k, v in dictionary.items() if allow_none or v is not None])
+    for k, v in dictionary.items():
+        if 'eso' in k:
+            return ',\n'.join([f'{k}={repr(v)}' for k, v in dictionary.items() if allow_none or v is not None])
+        return ', '.join([f'{k}={repr(v)}' for k, v in dictionary.items() if allow_none or v is not None])
 
 
 def server_timezone() -> timedelta:
