@@ -7375,11 +7375,13 @@
   "Commission": {
     "Scheduler": {
       "Enable": {
-        "type": "checkbox",
+        "type": "lock",
         "value": true,
         "option": [
-          true,
-          false
+          true
+        ],
+        "option_bold": [
+          true
         ]
       },
       "NextRun": {
@@ -7536,11 +7538,13 @@
   "Research": {
     "Scheduler": {
       "Enable": {
-        "type": "checkbox",
+        "type": "lock",
         "value": true,
         "option": [
-          true,
-          false
+          true
+        ],
+        "option_bold": [
+          true
         ]
       },
       "NextRun": {
@@ -7888,11 +7892,13 @@
   "Reward": {
     "Scheduler": {
       "Enable": {
-        "type": "checkbox",
+        "type": "lock",
         "value": true,
         "option": [
-          true,
-          false
+          true
+        ],
+        "option_bold": [
+          true
         ]
       },
       "NextRun": {
