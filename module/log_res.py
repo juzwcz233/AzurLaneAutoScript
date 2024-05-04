@@ -27,14 +27,12 @@ class LogRes(Base):
             if isinstance(value, int):
                 if value != original['Value']:
                     _key = _key_group + '.Value'
-                    modified = {_key: value, _key_time: now()}
-                    self.config.modified.update(modified)
+                    self.config.modified.update({_key: value, _key_time: now()})
             elif isinstance(value, dict):
                 for value_name, value in value.items():
                     if value != original[value_name]:
                         _key = _key_group + f'.{value_name}'
-                        modified = {_key: value, _key_time: now()}
-                        self.config.modified.update(modified)
+                        self.config.modified.update({_key: value, _key_time: now()})
         else:
             logger.info('No such resource on dashboard')
             super().__setattr__(key, value)
