@@ -497,13 +497,13 @@
       }
     },
     "StopCondition": {
-      "RunCount": {
-        "type": "input",
-        "value": 0
-      },
       "OilLimit": {
         "type": "input",
         "value": 1000
+      },
+      "RunCount": {
+        "type": "input",
+        "value": 0
       },
       "MapAchievement": {
         "type": "select",
@@ -875,14 +875,14 @@
       }
     },
     "StopCondition": {
+      "OilLimit": {
+        "type": "input",
+        "value": 1000
+      },
       "RunCount": {
         "type": "input",
         "value": 3,
         "display": "hide"
-      },
-      "OilLimit": {
-        "type": "input",
-        "value": 1000
       },
       "MapAchievement": {
         "type": "select",
@@ -1253,13 +1253,13 @@
       }
     },
     "StopCondition": {
-      "RunCount": {
-        "type": "input",
-        "value": 0
-      },
       "OilLimit": {
         "type": "input",
         "value": 1000
+      },
+      "RunCount": {
+        "type": "input",
+        "value": 0
       },
       "MapAchievement": {
         "type": "select",
@@ -1630,13 +1630,13 @@
       }
     },
     "StopCondition": {
-      "RunCount": {
-        "type": "input",
-        "value": 0
-      },
       "OilLimit": {
         "type": "input",
         "value": 1000
+      },
+      "RunCount": {
+        "type": "input",
+        "value": 0
       },
       "MapAchievement": {
         "type": "select",
@@ -2126,14 +2126,14 @@
       }
     },
     "StopCondition": {
+      "OilLimit": {
+        "type": "input",
+        "value": 1000
+      },
       "RunCount": {
         "type": "input",
         "value": 0,
         "display": "hide"
-      },
-      "OilLimit": {
-        "type": "input",
-        "value": 1000
       },
       "MapAchievement": {
         "type": "select",
@@ -2458,13 +2458,13 @@
       }
     },
     "StopCondition": {
-      "RunCount": {
-        "type": "input",
-        "value": 0
-      },
       "OilLimit": {
         "type": "input",
         "value": 1000
+      },
+      "RunCount": {
+        "type": "input",
+        "value": 0
       },
       "MapAchievement": {
         "type": "select",
@@ -2907,13 +2907,13 @@
       }
     },
     "StopCondition": {
-      "RunCount": {
-        "type": "input",
-        "value": 0
-      },
       "OilLimit": {
         "type": "input",
         "value": 1000
+      },
+      "RunCount": {
+        "type": "input",
+        "value": 0
       },
       "MapAchievement": {
         "type": "select",
@@ -3356,13 +3356,13 @@
       }
     },
     "StopCondition": {
-      "RunCount": {
-        "type": "input",
-        "value": 0
-      },
       "OilLimit": {
         "type": "input",
         "value": 1000
+      },
+      "RunCount": {
+        "type": "input",
+        "value": 0
       },
       "MapAchievement": {
         "type": "select",
@@ -3771,13 +3771,13 @@
       }
     },
     "StopCondition": {
-      "RunCount": {
-        "type": "input",
-        "value": 0
-      },
       "OilLimit": {
         "type": "input",
         "value": 1000
+      },
+      "RunCount": {
+        "type": "input",
+        "value": 0
       },
       "MapAchievement": {
         "type": "select",
@@ -3998,13 +3998,13 @@
       }
     },
     "StopCondition": {
-      "RunCount": {
-        "type": "input",
-        "value": 0
-      },
       "OilLimit": {
         "type": "input",
         "value": 1000
+      },
+      "RunCount": {
+        "type": "input",
+        "value": 0
       },
       "MapAchievement": {
         "type": "select",
@@ -4291,13 +4291,13 @@
       }
     },
     "StopCondition": {
-      "RunCount": {
-        "type": "input",
-        "value": 0
-      },
       "OilLimit": {
         "type": "input",
         "value": 1000
+      },
+      "RunCount": {
+        "type": "input",
+        "value": 0
       },
       "MapAchievement": {
         "type": "select",
@@ -4752,14 +4752,14 @@
       }
     },
     "StopCondition": {
+      "OilLimit": {
+        "type": "input",
+        "value": 1000
+      },
       "RunCount": {
         "type": "input",
         "value": 0,
         "display": "hide"
-      },
-      "OilLimit": {
-        "type": "input",
-        "value": 1000
       },
       "MapAchievement": {
         "type": "select",
@@ -5218,14 +5218,14 @@
       }
     },
     "StopCondition": {
+      "OilLimit": {
+        "type": "input",
+        "value": 1000
+      },
       "RunCount": {
         "type": "input",
         "value": 0,
         "display": "hide"
-      },
-      "OilLimit": {
-        "type": "input",
-        "value": 1000
       },
       "MapAchievement": {
         "type": "select",
@@ -5684,14 +5684,14 @@
       }
     },
     "StopCondition": {
+      "OilLimit": {
+        "type": "input",
+        "value": 1000
+      },
       "RunCount": {
         "type": "input",
         "value": 0,
         "display": "hide"
-      },
-      "OilLimit": {
-        "type": "input",
-        "value": 1000
       },
       "MapAchievement": {
         "type": "select",
@@ -6150,14 +6150,14 @@
       }
     },
     "StopCondition": {
+      "OilLimit": {
+        "type": "input",
+        "value": 1000
+      },
       "RunCount": {
         "type": "input",
         "value": 0,
         "display": "hide"
-      },
-      "OilLimit": {
-        "type": "input",
-        "value": 1000
       },
       "MapAchievement": {
         "type": "select",
@@ -6606,14 +6606,14 @@
       }
     },
     "StopCondition": {
+      "OilLimit": {
+        "type": "input",
+        "value": 1000
+      },
       "RunCount": {
         "type": "input",
         "value": 0,
         "display": "hide"
-      },
-      "OilLimit": {
-        "type": "input",
-        "value": 1000
       },
       "MapAchievement": {
         "type": "select",
@@ -7017,14 +7017,14 @@
       }
     },
     "StopCondition": {
+      "OilLimit": {
+        "type": "input",
+        "value": 1000
+      },
       "RunCount": {
         "type": "input",
         "value": 0,
         "display": "hide"
-      },
-      "OilLimit": {
-        "type": "input",
-        "value": 1000
       },
       "MapAchievement": {
         "type": "select",
@@ -7246,13 +7246,13 @@
       }
     },
     "StopCondition": {
-      "RunCount": {
-        "type": "input",
-        "value": 0
-      },
       "OilLimit": {
         "type": "input",
         "value": 1000
+      },
+      "RunCount": {
+        "type": "input",
+        "value": 0
       },
       "MapAchievement": {
         "type": "select",
