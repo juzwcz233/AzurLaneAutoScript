@@ -462,9 +462,10 @@ GameManager:
     RestartEverytime:
       value: true
       display: hide
-    RestartATX:
-      value: false
-      display: hide
+    GGMethod:
+      type: state
+      value: screenshot
+      option_bold: screenshot
 
 # ==================== Dashboard ====================
 

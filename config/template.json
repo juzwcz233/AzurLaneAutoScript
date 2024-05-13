@@ -2067,6 +2067,7 @@
     "GGHandler": {
       "Enabled": false,
       "GGFactorEnable": false,
+      "RestartEverytime": true,
       "GGMultiplyingFactor": 200,
       "GGMethod": "screenshot",
       "GGAction": "auto",
@@ -2075,9 +2076,7 @@
       "GGPackageName": "com.",
       "GGWaitTime": 5,
       "GGLowLimit": 500,
-      "DisabledTask": "disable_all_dangerous_task",
-      "RestartEverytime": true,
-      "RestartATX": false
+      "DisabledTask": "disable_all_dangerous_task"
     },
     "PowerLimit": {
       "Exercise": 16500,

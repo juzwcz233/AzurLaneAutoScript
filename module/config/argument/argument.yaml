@@ -742,11 +742,11 @@ GameManager:
 GGHandler:
   Enabled: false
   GGFactorEnable: false
+  RestartEverytime: true
   GGMultiplyingFactor: 200
   GGMethod:
     value: screenshot
     option: [ screenshot, ]
-    option_bold: screenshot
   GGAction: 
     value: auto
     option: [ auto, manual ]
@@ -761,8 +761,6 @@ GGHandler:
   DisabledTask:
     value: disable_all_dangerous_task
     option: [ disable_guild_and_dangerous, disable_all_dangerous_task, disable_meta_and_exercise, disable_exercise, enable_all ]
-  RestartEverytime: true
-  RestartATX: false
 PowerLimit:
   Exercise: 16500
   Raid: 16500
