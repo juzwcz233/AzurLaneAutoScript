@@ -2506,7 +2506,7 @@
     },
     "Enabled": {
       "name": "启用该功能",
-      "help": "若GG打开则应该启用该功能以达成防弹窗卡重启\n只能使用指定的lua，会自动推送至/sdcard/Alarms/Multiplier.lua\n演习，共斗，Meta信标时会自动关闭倍率"
+      "help": "若GG打开则应该启用该功能以达成防弹窗卡重启\n演习，共斗，Meta信标时会自动关闭倍率"
     },
     "GGFactorEnable": {
       "name": "启用倍率",

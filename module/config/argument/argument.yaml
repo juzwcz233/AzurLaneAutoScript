@@ -753,9 +753,12 @@ GGHandler:
   GGLuapath:
     type: textarea
     mode: yaml
-    value:
+    value: null
   GGLuapathRecord: false
-  GGPackageName: com.
+  GGPackageName:
+    type: textarea
+    mode: yaml
+    value: 'com.'
   GGWaitTime: 5
   GGLowLimit: 500
   DisabledTask:
