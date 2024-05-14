@@ -443,6 +443,7 @@ class GeneratedConfig:
     # Group `GGHandler`
     GGHandler_Enabled = False
     GGHandler_GGFactorEnable = False
+    GGHandler_RestartEverytime = True
     GGHandler_GGMultiplyingFactor = 200
     GGHandler_GGMethod = 'screenshot'  # screenshot
     GGHandler_GGAction = 'auto'  # auto, manual
@@ -452,8 +453,6 @@ class GeneratedConfig:
     GGHandler_GGWaitTime = 5
     GGHandler_GGLowLimit = 500
     GGHandler_DisabledTask = 'disable_all_dangerous_task'  # disable_guild_and_dangerous, disable_all_dangerous_task, disable_meta_and_exercise, disable_exercise, enable_all
-    GGHandler_RestartEverytime = True
-    GGHandler_RestartATX = False
 
     # Group `PowerLimit`
     PowerLimit_Exercise = 16500

@@ -10287,12 +10287,17 @@
         "type": "checkbox",
         "value": false
       },
+      "RestartEverytime": {
+        "type": "checkbox",
+        "value": true,
+        "display": "hide"
+      },
       "GGMultiplyingFactor": {
         "type": "input",
         "value": 200
       },
       "GGMethod": {
-        "type": "select",
+        "type": "state",
         "value": "screenshot",
         "option": [
           "screenshot"
@@ -10317,8 +10322,9 @@
         "value": false
       },
       "GGPackageName": {
-        "type": "input",
-        "value": "com."
+        "type": "textarea",
+        "value": "com.",
+        "mode": "yaml"
       },
       "GGWaitTime": {
         "type": "input",
@@ -10338,16 +10344,6 @@
           "disable_exercise",
           "enable_all"
         ]
-      },
-      "RestartEverytime": {
-        "type": "checkbox",
-        "value": true,
-        "display": "hide"
-      },
-      "RestartATX": {
-        "type": "checkbox",
-        "value": false,
-        "display": "hide"
       }
     },
     "PowerLimit": {

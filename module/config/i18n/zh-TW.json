@@ -2506,11 +2506,15 @@
     },
     "Enabled": {
       "name": "启用该功能",
-      "help": "若GG打开则应该启用该功能以达成防弹窗卡重启\n只能使用指定的lua，会自动推送至/sdcard/Alarms/Multiplier.lua\n演习，共斗，Meta信标时会自动关闭倍率"
+      "help": "若GG打开则应该启用该功能以达成防弹窗卡重启\n演习，共斗，Meta信标时会自动关闭倍率"
     },
     "GGFactorEnable": {
       "name": "启用倍率",
       "help": "总开关，打开后才会开启倍率"
+    },
+    "RestartEverytime": {
+      "name": "每次启动Alas时重启",
+      "help": "强制开启，初始化倍率，防止误操作"
     },
     "GGMultiplyingFactor": {
       "name": "倍率",
@@ -2555,14 +2559,6 @@
       "disable_meta_and_exercise": "禁用Meta和演习",
       "disable_exercise": "禁用演习",
       "enable_all": "百无禁忌"
-    },
-    "RestartEverytime": {
-      "name": "每次启动Alas时重启",
-      "help": "初始化倍率。防止误操作"
-    },
-    "RestartATX": {
-      "name": "重启ATX和U2",
-      "help": "重启游戏时重启ATX和U2，默认关闭。蓝叠和红手指等环境重启会报错。雷电易丢ATX服务，需要打开"
     }
   },
   "PowerLimit": {
