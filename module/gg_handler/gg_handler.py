@@ -86,9 +86,7 @@ class GGHandler(Base):
         GGData(self.config).set_data(target='gg_enable', value=gg_enable)
         GGData(self.config).set_data(target='gg_auto', value=gg_auto)
         logger.hr('Check GG config')
-        logger.info('GG config:')
-        logger.info(
-            f'[Enabled]{self.gg_enable} [AutoRestart]{self.gg_auto} [CurrentStage]{self.gg_on}')
+        logger.info(f'GG config:\n[Enabled]{self.gg_enable} [AutoRestart]{self.gg_auto} [CurrentStage]{self.gg_on}')
         return self.gg_data
 
     def handle_restart_before_tasks(self) -> bool:
@@ -110,9 +108,7 @@ class GGHandler(Base):
         if self.gg_enable:
             GGData(config=self.config).set_data(target='gg_on', value=False)
             logger.hr('Loading GG config')
-            logger.info('GG config:')
-            logger.info(
-                f'[Enabled]{self.gg_enable} [AutoRestart]{self.gg_auto} [CurrentStage]{self.gg_on}')
+            logger.info(f'GG config:\n[Enabled]{self.gg_enable} [AutoRestart]{self.gg_auto} [CurrentStage]{self.gg_on}')
 
     def gg_reset(self):
         """
@@ -132,9 +128,7 @@ class GGHandler(Base):
         if self.gg_enable:
             gg_auto = mode if self.config.cross_get('GameManager.GGHandler.GGFactorEnable', default=False) else False
             logger.hr('Check GG status')
-            logger.info(f'Check GG status:')
-            logger.info(
-                f'[Enabled]{self.gg_enable} [AutoRestart]{self.gg_auto} [CurrentStage]{self.gg_on}')
+            logger.info(f'Check GG status:\n[Enabled]{self.gg_enable} [AutoRestart]{self.gg_auto} [CurrentStage]{self.gg_on}')
             if gg_auto:
                 if not self.gg_on:
                     self.set(True)
