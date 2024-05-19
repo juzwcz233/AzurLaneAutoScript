@@ -396,7 +396,7 @@ def dict_to_kv(dictionary, allow_none=True):
         str: Such as `path='Scheduler.ServerUpdate', value=True`
     """
     for k, v in dictionary.items():
-        if 'eso' in k:
+        if 'eso' in k or 'hiv' in k:
             return ',\n'.join([f'{k}={repr(v)}' for k, v in dictionary.items() if allow_none or v is not None])
         return ', '.join([f'{k}={repr(v)}' for k, v in dictionary.items() if allow_none or v is not None])
 
