@@ -3,7 +3,6 @@ from module.base.timer import Timer
 from module.handler.assets import *
 from module.gg_handler.assets import *
 from module.ui.assets import *
-from module.ui.page import MAIN_CHECK
 from module.meowfficer.assets import *
 from module.os_ash.assets import ASH_QUIT
 from module.raid.assets import RPG_HOME
@@ -11,12 +10,13 @@ from module.combat.assets import GET_ITEMS_1
 from module.ocr.ocr import Digit
 from module.logger import logger
 from module.base.base import ModuleBase as Base
+from module.ui.ui import UI
 from module.gg_handler.gg_data import GGData
 
 OCR_GG_FOLD = Digit(OCR_GG_FOLD, name='OCR_GG_FOLD', letter=(222, 228, 227), threshold=255)
 OCR_GG_FOLD_CHECK = Digit(OCR_GG_FOLD_CHECK, name= 'OCR_GG_FOLD_CHECK', letter=(222, 228, 227), threshold=255)
 
-class GGScreenshot(Base):
+class GGScreenshot(Base, UI):
 
     def __init__(self, config, device):
         super().__init__(config, device)
@@ -531,7 +531,7 @@ class GGScreenshot(Base):
             self.device.screenshot()
 
             # End
-            if self.appear(MAIN_CHECK, offset=(30, 30)):
+            if self.is_in_main():
                 if confirm_timer.reached():
                     logger.info('Login to main confirm')
                     break
@@ -546,8 +546,13 @@ class GGScreenshot(Base):
                     login_success = True
             if self.appear_then_click(LOGIN_ANNOUNCE, offset=(30, 30), interval=5):
                 continue
+            if self.appear_then_click(LOGIN_ANNOUNCE_2, offset=(30, 30), interval=5):
+                continue
             if self.appear(EVENT_LIST_CHECK, offset=(30, 30), interval=5):
                 self.device.click(BACK_ARROW)
+                continue
+            # Updates and maintenance
+            if self.appear_then_click(MAINTENANCE_ANNOUNCE, offset=(30, 30), interval=5):
                 continue
             if self.appear_then_click(LOGIN_GAME_UPDATE, offset=(30, 30), interval=5):
                 continue
