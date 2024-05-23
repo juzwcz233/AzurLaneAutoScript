@@ -16,7 +16,7 @@ from module.gg_handler.gg_data import GGData
 OCR_GG_FOLD = Digit(OCR_GG_FOLD, name='OCR_GG_FOLD', letter=(222, 228, 227), threshold=255)
 OCR_GG_FOLD_CHECK = Digit(OCR_GG_FOLD_CHECK, name= 'OCR_GG_FOLD_CHECK', letter=(222, 228, 227), threshold=255)
 
-class GGScreenshot(Base, UI):
+class GGScreenshot(Base):
 
     def __init__(self, config, device):
         super().__init__(config, device)
@@ -531,7 +531,7 @@ class GGScreenshot(Base, UI):
             self.device.screenshot()
 
             # End
-            if self.is_in_main():
+            if UI(self.config, self.device).is_in_main():
                 if confirm_timer.reached():
                     logger.info('Login to main confirm')
                     break
