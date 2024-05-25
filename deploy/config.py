@@ -1,5 +1,4 @@
 import copy
-import locale
 from typing import Optional, Union
 
 from deploy.logger import logger
