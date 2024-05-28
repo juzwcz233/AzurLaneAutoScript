@@ -23,13 +23,12 @@ class GGHandler(Base):
     def __init__(self, config, device):
         self.config = config
         self.device = device
-        self.gg_data = GGData(self.config).get_data()
-        self.gg_enable = GGData(self.config).get_data()['gg_enable']
-        self.gg_auto = GGData(self.config).get_data()['gg_auto']
-        self.gg_on = GGData(self.config).get_data()['gg_on']
         self.RestartEverytime = self.config.cross_get('GameManager.GGHandler.RestartEverytime', default=True)
         self.factor = self.config.cross_get('GameManager.GGHandler.GGMultiplyingFactor', default=200)
         self.method = self.config.cross_get('GameManager.GGHandler.GGMethod', default='screenshot')
+
+    def gg_data(self):
+        return GGData(self.config).get_data()
 
     def restart(self, crashed=False):
         from module.handler.login import LoginHandler
@@ -85,9 +84,12 @@ class GGHandler(Base):
         gg_auto = self.config.cross_get('GameManager.GGHandler.GGFactorEnable', default=False)
         GGData(self.config).set_data(target='gg_enable', value=gg_enable)
         GGData(self.config).set_data(target='gg_auto', value=gg_auto)
+        _gg_enable = self.gg_data()['gg_enable']
+        _gg_auto = self.gg_data()['gg_auto']
+        _gg_on = self.gg_data()['gg_on']
         logger.hr('Check GG config')
-        logger.info(f'GG config:\n[Enabled]{self.gg_enable} [AutoRestart]{self.gg_auto} [CurrentStage]{self.gg_on}')
-        return self.gg_data
+        logger.info(f'GG config:\n[Enabled]{_gg_enable} [AutoRestart]{_gg_auto} [CurrentStage]{_gg_on}')
+        return GGData(self.config).get_data()
 
     def handle_restart_before_tasks(self) -> bool:
         """
@@ -95,7 +97,8 @@ class GGHandler(Base):
         Returns:
             bool: If it needs restart first
         """
-        if self.RestartEverytime and self.gg_enable:
+        _gg_enable = self.gg_data()['gg_enable']
+        if self.RestartEverytime and _gg_enable:
             logger.info('Restart to reset GG status.')
             self.restart()
             return True
@@ -105,16 +108,21 @@ class GGHandler(Base):
         """
         Handle the restart errors of GG.
         """
-        if self.gg_enable:
+        _gg_enable = self.gg_data()['gg_enable']
+        if _gg_enable:
             GGData(config=self.config).set_data(target='gg_on', value=False)
+            _gg_auto = self.gg_data()['gg_auto']
+            _gg_on = self.gg_data()['gg_on']
             logger.hr('Loading GG config')
-            logger.info(f'GG config:\n[Enabled]{self.gg_enable} [AutoRestart]{self.gg_auto} [CurrentStage]{self.gg_on}')
+            logger.info(f'GG config:\n[Enabled]{_gg_enable} [AutoRestart]{_gg_auto} [CurrentStage]{_gg_on}')
 
     def gg_reset(self):
         """
         Force restart the game to reset GG status to False
         """
-        if self.gg_enable and self.gg_on:
+        _gg_enable = self.gg_data()['gg_enable']
+        _gg_on = self.gg_data()['gg_on']
+        if _gg_enable and _gg_on:
             logger.hr('Disabling GG', level=2)
             self.restart()
             logger.attr('GG', 'Disabled')
@@ -125,14 +133,17 @@ class GGHandler(Base):
         Args:
             mode: The multiplier status when finish the check.
         """
-        if self.gg_enable:
-            gg_auto = mode if self.config.cross_get('GameManager.GGHandler.GGFactorEnable', default=False) else False
+        _gg_enable = self.gg_data()['gg_enable']
+        _gg_auto = self.gg_data()['gg_auto']
+        _gg_on = self.gg_data()['gg_on']
+        if _gg_enable:
             logger.hr('Check GG status')
-            logger.info(f'Check GG status:\n[Enabled]{self.gg_enable} [AutoRestart]{self.gg_auto} [CurrentStage]{self.gg_on}')
+            logger.info(f'Check GG status:\n[Enabled]{_gg_enable} [AutoRestart]{_gg_auto} [CurrentStage]{_gg_on}')
+            gg_auto = mode if self.config.cross_get('GameManager.GGHandler.GGFactorEnable', default=False) else False
             if gg_auto:
-                if not self.gg_on:
+                if not _gg_on:
                     self.set(True)
-            elif self.gg_on:
+            elif _gg_on:
                 self.gg_reset()
 
     def power_limit(self, task=''):
