@@ -33,22 +33,22 @@ class GGHandler(Base):
     def restart(self, crashed=False):
         from module.handler.login import LoginHandler
         from module.exception import GameStuckError
-        for _ in range(2):
-            try:
-                if not timeout(LoginHandler(self.config, self.device).app_restart, timeout_sec=600):
-                    break
-                raise RuntimeError
-            except GameStuckError as e:
+        try:
+            if not timeout(LoginHandler(self.config, self.device).app_restart, timeout_sec=600):
                 pass
-            except Exception as e:
-                logger.exception(e)
-                if crashed:
-                    from module.notify import handle_notify
-                    handle_notify(self.config.Error_OnePushConfig,
-                                  title=f"Alas <{self.config.config_name}> 崩溃了",
-                                  content=f"<{self.config.config_name}> 需要手动介入，也许你的模拟器卡死")
-                    exit(1)
-                crashed = True
+            else:
+                raise RuntimeError
+        except GameStuckError as e:
+            pass
+        except Exception as e:
+            logger.exception(e)
+            if crashed:
+                from module.notify import handle_notify
+                handle_notify(self.config.Error_OnePushConfig,
+                              title=f"Alas <{self.config.config_name}> 崩溃了",
+                              content=f"<{self.config.config_name}> 需要手动介入，也许你的模拟器卡死")
+                exit(1)
+            crashed = True
 
     def set(self, mode=True):
         """
@@ -57,7 +57,7 @@ class GGHandler(Base):
                 mode: bool
         """
         if mode:
-            logger.hr('Enabling GG', level=2)
+            logger.hr('Enable GG', level=2)
             GGScreenshot(config=self.config, device=self.device).run(factor=self.factor)
         else:
             self.gg_reset()
@@ -88,7 +88,7 @@ class GGHandler(Base):
         _gg_auto = self.gg_data()['gg_auto']
         _gg_on = self.gg_data()['gg_on']
         logger.hr('Check GG config')
-        logger.info(f'GG config:\n[Enabled]{_gg_enable} [AutoRestart]{_gg_auto} [CurrentStage]{_gg_on}')
+        logger.info(f'[Enabled]{_gg_enable} [AutoRestart]{_gg_auto} [CurrentStage]{_gg_on}')
         return GGData(self.config).get_data()
 
     def handle_restart_before_tasks(self) -> bool:
@@ -97,8 +97,8 @@ class GGHandler(Base):
         Returns:
             bool: If it needs restart first
         """
-        _gg_enable = self.gg_data()['gg_enable']
-        if self.RestartEverytime and _gg_enable:
+        gg_enable = self.gg_data()['gg_enable']
+        if self.RestartEverytime and gg_enable:
             logger.info('Restart to reset GG status.')
             self.restart()
             return True
@@ -108,22 +108,22 @@ class GGHandler(Base):
         """
         Handle the restart errors of GG.
         """
-        _gg_enable = self.gg_data()['gg_enable']
-        if _gg_enable:
+        gg_enable = self.gg_data()['gg_enable']
+        if gg_enable:
             GGData(config=self.config).set_data(target='gg_on', value=False)
-            _gg_auto = self.gg_data()['gg_auto']
-            _gg_on = self.gg_data()['gg_on']
-            logger.hr('Loading GG config')
-            logger.info(f'GG config:\n[Enabled]{_gg_enable} [AutoRestart]{_gg_auto} [CurrentStage]{_gg_on}')
+            gg_auto = self.gg_data()['gg_auto']
+            gg_on = self.gg_data()['gg_on']
+            logger.hr('Loade GG config')
+            logger.info(f'[Enabled]{gg_enable} [AutoRestart]{gg_auto} [CurrentStage]{gg_on}')
 
     def gg_reset(self):
         """
         Force restart the game to reset GG status to False
         """
-        _gg_enable = self.gg_data()['gg_enable']
-        _gg_on = self.gg_data()['gg_on']
-        if _gg_enable and _gg_on:
-            logger.hr('Disabling GG', level=2)
+        gg_enable = self.gg_data()['gg_enable']
+        gg_on = self.gg_data()['gg_on']
+        if gg_enable and gg_on:
+            logger.hr('Disable GG', level=2)
             self.restart()
             logger.attr('GG', 'Disabled')
 
@@ -133,17 +133,17 @@ class GGHandler(Base):
         Args:
             mode: The multiplier status when finish the check.
         """
-        _gg_enable = self.gg_data()['gg_enable']
-        _gg_auto = self.gg_data()['gg_auto']
-        _gg_on = self.gg_data()['gg_on']
-        if _gg_enable:
+        gg_enable = self.gg_data()['gg_enable']
+        gg_auto = self.gg_data()['gg_auto']
+        gg_on = self.gg_data()['gg_on']
+        if gg_enable:
             logger.hr('Check GG status')
-            logger.info(f'Check GG status:\n[Enabled]{_gg_enable} [AutoRestart]{_gg_auto} [CurrentStage]{_gg_on}')
-            gg_auto = mode if self.config.cross_get('GameManager.GGHandler.GGFactorEnable', default=False) else False
-            if gg_auto:
-                if not _gg_on:
+            logger.info(f'[Enabled]{gg_enable} [AutoRestart]{gg_auto} [CurrentStage]{gg_on}')
+            _gg_auto = mode if self.config.cross_get('GameManager.GGHandler.GGFactorEnable', default=False) else False
+            if _gg_auto:
+                if not gg_on:
                     self.set(True)
-            elif _gg_on:
+            elif gg_on:
                 self.gg_reset()
 
     def power_limit(self, task=''):
@@ -180,7 +180,7 @@ class GGHandler(Base):
             if ocr > lowlimit:
                 break
         if ocr >= limit:
-            for i in range(3):
+            for _ in range(3):
                 logger.critical('There\'s high chance that GG is on, restart to disable it')
             handle_notify(self.config.Error_OnePushConfig,
                               title=f"Alas <{self.config.config_name}> 超模战力",
