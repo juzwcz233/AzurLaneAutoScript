@@ -17,15 +17,14 @@ Restart:
 
 # ==================== Farm ====================
 
-Main:
+WarArchives:
+  Scheduler:
+    SuccessInterval: 30
+    FailureInterval: 30
+    ServerUpdate: 00:00
   Campaign:
-    Event: campaign_main
-Main2:
-  Campaign:
-    Event: campaign_main
-Main3:
-  Campaign:
-    Event: campaign_main
+    Mode: normal
+    AmbushEvade: true
 GemsFarming:
   Campaign:
     Event:
@@ -47,6 +46,31 @@ GemsFarming:
       value: fleet1_all_fleet2_standby
       option: [ fleet1_all_fleet2_standby, fleet1_standby_fleet2_all ]
 
+# ==================== Main ====================
+
+MainNormal:
+  Campaign:
+    Event: campaign_main
+    Mode:
+      type: state
+      value: normal
+      option_bold: normal
+MainHard:
+  Campaign:
+    Event: campaign_main
+    Mode:
+      type: state
+      value: hard
+      option_bold: hard
+  StopCondition:
+    RunCount: 3
+Main:
+  Campaign:
+    Event: campaign_main
+Main2:
+  Campaign:
+    Event: campaign_main
+
 # ==================== Event ====================
 
 Event:
@@ -56,6 +80,12 @@ Event:
       type: state
     AmbushEvade: true
 Event2:
+  Campaign:
+    Mode: normal
+    Event:
+      type: state
+    AmbushEvade: true
+Event3:
   Campaign:
     Mode: normal
     Event:
@@ -171,7 +201,7 @@ Raid:
     ReachLevel: 0
   Emotion:
     Fleet2Value: 119
-    Fleet2Record: 2020-01-01 00:00:00
+    Fleet2Record: 2023-01-01 00:00:00
     Fleet2Control: prevent_yellow_face
     Fleet2Recover: not_in_dormitory
     Fleet2Oath: false
@@ -198,7 +228,7 @@ RaidDaily:
     ReachLevel: 0
   Emotion:
     Fleet2Value: 119
-    Fleet2Record: 2020-01-01 00:00:00
+    Fleet2Record: 2023-01-01 00:00:00
     Fleet2Control: prevent_yellow_face
     Fleet2Recover: not_in_dormitory
     Fleet2Oath: false
@@ -228,7 +258,7 @@ Coalition:
     ReachLevel: 0
   Emotion:
     Fleet2Value: 119
-    Fleet2Record: 2020-01-01 00:00:00
+    Fleet2Record: 2023-01-01 00:00:00
     Fleet2Control: prevent_yellow_face
     Fleet2Recover: not_in_dormitory
     Fleet2Oath: false
@@ -254,14 +284,34 @@ CoalitionSp:
     ReachLevel: 0
   Emotion:
     Fleet2Value: 119
-    Fleet2Record: 2020-01-01 00:00:00
+    Fleet2Record: 2023-01-01 00:00:00
     Fleet2Control: prevent_yellow_face
     Fleet2Recover: not_in_dormitory
     Fleet2Oath: false
 
 # ==================== Reward ====================
 
+Reward:
+  Scheduler:
+    Enable:
+      type: lock
+      value: true
+      option: [ true, ]
+      option_bold: [ true, ]
+    SuccessInterval: 120-240
+    FailureInterval: 120-240
+    ServerUpdate: 00:00
 Commission:
+  Scheduler:
+    Enable:
+      type: lock
+      value: true
+      option: [ true, ]
+      option_bold: [ true, ]
+    SuccessInterval: 30-60
+    FailureInterval: 30-60
+    ServerUpdate: 00:00
+Research:
   Scheduler:
     Enable:
       type: lock
@@ -275,16 +325,6 @@ Tactical:
   Scheduler:
     SuccessInterval: 30-60
     FailureInterval: 120-240
-    ServerUpdate: 00:00
-Research:
-  Scheduler:
-    Enable:
-      type: lock
-      value: true
-      option: [ true, ]
-      option_bold: [ true, ]
-    SuccessInterval: 30-60
-    FailureInterval: 30-60
     ServerUpdate: 00:00
 Dorm:
   Scheduler:
@@ -301,16 +341,6 @@ Guild:
     SuccessInterval: 30
     FailureInterval: 30
     ServerUpdate: 00:00, 06:00, 12:00, 18:00, 21:00
-Reward:
-  Scheduler:
-    Enable:
-      type: lock
-      value: true
-      option: [ true, ]
-      option_bold: [ true, ]
-    SuccessInterval: 120-240
-    FailureInterval: 120-240
-    ServerUpdate: 00:00
 ShopFrequent:
   Scheduler:
     SuccessInterval: 30
@@ -354,14 +384,11 @@ Exercise:
     SuccessInterval: 30
     FailureInterval: 30
     ServerUpdate: 00:00, 12:00, 18:00
-WarArchives:
+DashboardUpdate:
   Scheduler:
     SuccessInterval: 30
     FailureInterval: 30
     ServerUpdate: 00:00
-  Campaign:
-    Mode: normal
-    AmbushEvade: true
 
 # ==================== Opsi ====================
 
@@ -427,3 +454,43 @@ OpsiHazard1Leveling:
     ServerUpdate: 00:00, 12:00
   OpsiFleet:
     Submarine: false
+
+# ==================== Tools ====================
+
+GameManager:
+  GGHandler:
+    RestartEverytime:
+      value: true
+      display: hide
+    GGMethod:
+      type: state
+      value: screenshot
+      option_bold: screenshot
+
+# ==================== Dashboard ====================
+
+Resource:
+  Oil:
+    Color: ^000000
+  Coin:
+    Color: ^FFAA33
+  Gem:
+    Color: ^FF3333
+  Pt:
+    Color: ^00BFFF
+  YellowCoin:
+    Color: ^FF8800
+  PurpleCoin:
+    Color: ^7700BB
+  ActionPoint:
+    Color: ^0000FF
+  Merit:
+    Color: ^FFFF00
+  Cube:
+    Color: ^33FFFF
+  Core:
+    Color: ^AAAAAA
+  Medal:
+    Color: ^FFDD00
+  GuildCoin:
+    Color: ^AAAAAA

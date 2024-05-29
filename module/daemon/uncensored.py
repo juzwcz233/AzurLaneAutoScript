@@ -48,17 +48,30 @@ class AzurLaneUncensored(LoginHandler):
         os.chdir(folder)
         # Monkey patch `print()` build-in to show logs.
         self.create_level1_uncensored()
-        # manager.git_repository_init(
-        #     repo=repo,
-        #     source='origin',
-        #     branch='master',
-        #     proxy=manager.config['GitProxy'],
-        #     keep_changes=False
-        # )
+        manager.git_repository_init(
+            repo=repo,
+            source='origin',
+            branch='master',
+            proxy=manager.config['GitProxy'],
+            keep_changes=False
+        )
 
         logger.hr('Push Uncensored Files', level=1)
         logger.info('This will take a few seconds')
-        command = ['push', 'files', f'/sdcard/Android/data/{self.device.package}']
+
+        if os.path.exists('./files/loadingbg'):
+            shutil.rmtree('./files/loadingbg')
+
+        option = self.config.AzurLaneUncensored_Option
+        if option == 'all':
+            command = ['push', 'files', f'/sdcard/Android/data/{self.device.package}']
+        elif option == 'main':
+            logger.hr('Remove Patch')
+            os.remove("./files/AssetBundles/sharecfgdata/gametip")
+            logger.info('Gametip alreay removed')
+            command = ['push', 'files', f'/sdcard/Android/data/{self.device.package}']
+        elif option == 'only_patch':
+            command = ['push', 'files/AssetBundles/sharecfgdata/gametip', f'/sdcard/Android/data/{self.device.package}/files/AssetBundles/sharecfgdata']
         logger.info(f'Command: {command}')
         self.device.adb_command(command, timeout=30)
         logger.info('Push success')
@@ -68,7 +81,14 @@ class AzurLaneUncensored(LoginHandler):
         logger.hr('Restart AzurLane', level=1)
         self.config.override(Error_HandleError=True)
         self.device.app_stop()
-        self.device.app_start()
+        from module.config.utils import deep_get
+        from module.gg_handler.gg_handler import GGHandler
+        gg_enable = deep_get(self.config.data, 'GameManager.GGHandler.Enabled', default=True)
+        gg_auto = deep_get(self.config.data, 'GameManager.GGHandler.GGFactorEnable', default=True)
+        if (gg_enable == True and gg_auto == True) or gg_enable == True:
+            GGHandler(config=self.config, device=self.device).skip_error()
+        else:
+            self.device.app_start()
         self.handle_app_login()
 
         logger.info('Uncensored Finished')
