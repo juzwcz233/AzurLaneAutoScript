@@ -442,8 +442,12 @@ class GGScreenshot(Base):
                         logger.info('Game is already running')
                     count += 1
                     continue
-                if UI(self.config, self.device).ui_additional():
-                    continue
+                if self.get_interval_timer(IDLE, interval=3).reached():
+                    if IDLE.match_luma(self.device.image, offset=(5, 5)):
+                        logger.info(f'UI additional: {IDLE} -> {REWARD_GOTO_MAIN}')
+                        self.device.click(REWARD_GOTO_MAIN)
+                        self.get_interval_timer(IDLE).reset()
+                        continue
                 if (self.appear(LOGIN_CHECK, offset=(30, 30)) and LOGIN_CHECK.match_appear_on(self.device.image)) or self.appear(LOGIN_GAME_UPDATE, offset=(30, 30)):
                     if self._handle_app_login():
                         continue
