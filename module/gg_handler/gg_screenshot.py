@@ -447,6 +447,7 @@ class GGScreenshot(Base):
                         logger.info(f'UI additional: {IDLE} -> {REWARD_GOTO_MAIN}')
                         self.device.click(REWARD_GOTO_MAIN)
                         self.get_interval_timer(IDLE).reset()
+                        count += 1
                         continue
                 if (self.appear(LOGIN_CHECK, offset=(30, 30)) and LOGIN_CHECK.match_appear_on(self.device.image)) or self.appear(LOGIN_GAME_UPDATE, offset=(30, 30)):
                     if self._handle_app_login():
