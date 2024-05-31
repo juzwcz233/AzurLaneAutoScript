@@ -74,7 +74,7 @@ class GGScreenshot(Base):
             if self.appear(BUTTON_GG_RESTART_ERROR, offset=(50, 50), interval=1):
                 logger.hr('Game died with GG panel')
                 logger.info('Close GG restart error')
-                self.gg_exit()
+                self.gg_stop()
                 continue
             if self.appear_then_click(BUTTON_GG_APP_CHOOSE1, offset=(50, 50), interval=1):
                 logger.info('APP Choose')
@@ -154,7 +154,7 @@ class GGScreenshot(Base):
                     self.device.screenshot()
             if self.appear(BUTTON_GG_STOP, offset=(50, 50)) or self.appear(BUTTON_GG_NOTRUN, offset=(50, 50)):
                 logger.hr('GG Restart')
-                self.gg_exit()
+                self.gg_stop()
                 self.gg_push()
                 self.gg_start()
                 self._enter_gg()
@@ -185,7 +185,7 @@ class GGScreenshot(Base):
                 self.device.screenshot()
             if self.appear_then_click(BUTTON_GG_STOP, offset=(50, 50), interval=1):
                 logger.hr('GG Restart')
-                self.gg_exit()
+                self.gg_stop()
                 self.gg_push()
                 self.gg_start()
                 self.enter_gg()
@@ -233,7 +233,7 @@ class GGScreenshot(Base):
                 self.device.click(BUTTON_GG_SCRIPT_ENTER_POS)
             if self.appear_then_click(BUTTON_GG_STOP, offset=(50, 50), interval=1):
                 logger.hr('GG Restart')
-                self.gg_exit()
+                self.gg_stop()
                 self.gg_push()
                 self.gg_start()
                 self.enter_gg()
@@ -262,7 +262,7 @@ class GGScreenshot(Base):
                 self.device.screenshot()
             if self.appear_then_click(BUTTON_GG_STOP, offset=(50, 50), interval=1):
                 logger.hr('GG Restart')
-                self.gg_exit()
+                self.gg_stop()
                 self.gg_push()
                 self.gg_start()
                 self.enter_gg()
@@ -386,7 +386,7 @@ class GGScreenshot(Base):
                     break
             if self.appear_then_click(BUTTON_GG_ERROR_ENTER, offset=(50, 50), interval=1):
                 logger.hr('GG Restart')
-                self.gg_exit()
+                self.gg_stop()
                 self.gg_push()
                 self.gg_start()
                 self.enter_gg()
@@ -401,15 +401,15 @@ class GGScreenshot(Base):
             if self.appear(BUTTON_GG_SEARCH_MODE_BUTTON, offset=(50, 50)) and count != 0:
                 return 1
     
-    def gg_exit(self):
+    def gg_stop(self):
         if (self.gg_action == 'auto' and self.gg_package_name != 'com.') or (self.gg_action == 'manual' and self.gg_package_name != 'com.'):
+            logger.hr('GG kill')
             self.d.app_stop(f'{self.gg_package_name}')
-            logger.info('GG kill')
 
     def gg_start(self):
         if (self.gg_action == 'auto' and self.gg_package_name != 'com.') or (self.gg_action == 'manual' and self.gg_package_name != 'com.'):
-            self.d.app_start(f'{self.gg_package_name}')
             logger.hr('GG start')
+            self.d.app_start(f'{self.gg_package_name}')
             skip_first_screenshot = True
             count = 0
             while 1:
@@ -442,8 +442,12 @@ class GGScreenshot(Base):
                         logger.info('Game is already running')
                     count += 1
                     continue
-                if UI(self.config, self.device).ui_additional():
-                    continue
+                if self.get_interval_timer(IDLE, interval=3).reached():
+                    if IDLE.match_luma(self.device.image, offset=(5, 5)):
+                        logger.info(f'UI additional: {IDLE} -> {REWARD_GOTO_MAIN}')
+                        self.device.click(REWARD_GOTO_MAIN)
+                        self.get_interval_timer(IDLE).reset()
+                        continue
                 if (self.appear(LOGIN_CHECK, offset=(30, 30)) and LOGIN_CHECK.match_appear_on(self.device.image)) or self.appear(LOGIN_GAME_UPDATE, offset=(30, 30)):
                     if self._handle_app_login():
                         continue
@@ -576,4 +580,4 @@ class GGScreenshot(Base):
         self.skip_error()
         logger.attr('GG', 'Enabled')
         logger.hr('GG panel closed')
-        self.gg_exit()
+        self.gg_stop()
