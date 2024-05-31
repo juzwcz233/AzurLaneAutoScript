@@ -113,7 +113,7 @@ class GGHandler(Base):
             GGData(config=self.config).set_data(target='gg_on', value=False)
             gg_auto = self.gg_data()['gg_auto']
             gg_on = self.gg_data()['gg_on']
-            logger.hr('Loade GG config')
+            logger.hr('Load GG config')
             logger.info(f'[Enabled]{gg_enable} [AutoRestart]{gg_auto} [CurrentStage]{gg_on}')
 
     def gg_reset(self):

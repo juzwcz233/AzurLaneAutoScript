@@ -27,7 +27,7 @@ class GGData(ModuleBase):
                 data = json.load(json_file)
                 if data['name'] != self.config.config_name:
                     raise ValueError
-            except (ValueError, KeyError):
+            except(ValueError, KeyError):
                 data = {
                     'name': self.config.config_name,
                     'gg_on': False,
@@ -45,8 +45,5 @@ class GGData(ModuleBase):
 
     def set_data(self, target=None, value=None):
         self.ggdata[target] = value
-        self.update_data()
-
-    def update_data(self):
         with open(file=self.filename, mode='w', encoding='utf-8') as json_file:
             json.dump(self.ggdata, json_file, ensure_ascii=False, indent=4)
