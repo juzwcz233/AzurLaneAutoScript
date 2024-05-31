@@ -234,6 +234,10 @@ class AzurLaneAutoScript:
         from module.freebies.freebies import Freebies
         Freebies(config=self.config, device=self.device).run()
 
+    def dashboard_update(self):
+        from module.dashboard.dashboard import DashboardUpdate
+        DashboardUpdate(config=self.config, device=self.device).run()
+
     def minigame(self):
         from module.minigame.minigame import Minigame
         Minigame(config=self.config, device=self.device).run()
@@ -241,10 +245,6 @@ class AzurLaneAutoScript:
     def daily(self):
         from module.daily.daily import Daily
         Daily(config=self.config, device=self.device).run()
-
-    def dashboard_update(self):
-        from module.dashboard.dashboard import DashboardUpdate
-        DashboardUpdate(config=self.config, device=self.device).run()
 
     def hard(self):
         from module.hard.hard import CampaignHard
