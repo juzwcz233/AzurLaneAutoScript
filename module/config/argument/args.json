@@ -9190,6 +9190,10 @@
           "all",
           "main"
         ]
+      },
+      "NewUi": {
+        "type": "checkbox",
+        "value": false
       }
     },
     "Storage": {

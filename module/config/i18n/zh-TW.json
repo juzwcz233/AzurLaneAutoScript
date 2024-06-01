@@ -2169,14 +2169,18 @@
   },
   "DashboardUpdate": {
     "_info": {
-      "name": "DashboardUpdate._info.name",
-      "help": "DashboardUpdate._info.help"
+      "name": "更新儀表盤",
+      "help": "大世界相關數據不支持更新"
     },
     "Update": {
-      "name": "DashboardUpdate.Update.name",
-      "help": "DashboardUpdate.Update.help",
-      "all": "DashboardUpdate.Update.all",
-      "main": "DashboardUpdate.Update.main"
+      "name": "更新選項",
+      "help": "選擇需要更新的儀表盤數據",
+      "all": "更新全部",
+      "main": "僅石油、物資、鑽石、魔方"
+    },
+    "NewUi": {
+      "name": "使用新UI",
+      "help": ""
     }
   },
   "OpsiAshAssist": {
