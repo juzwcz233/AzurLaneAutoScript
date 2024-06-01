@@ -2170,7 +2170,7 @@
   "DashboardUpdate": {
     "_info": {
       "name": "更新仪表盘",
-      "help": "大世界以及共斗相关数据不支持更新"
+      "help": "大世界相关数据不支持更新"
     },
     "Update": {
       "name": "更新选项",

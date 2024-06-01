@@ -113,7 +113,6 @@ class DashboardStatus(ShopUI, GachaUI):
         Pages:
             in: page_raid
         """
-        from module.log_res import LogRes
         skip_first_screenshot = True
         timeout = Timer(1.5, count=5).start()
         event = self.config.cross_get('Raid.Campaign.Event')

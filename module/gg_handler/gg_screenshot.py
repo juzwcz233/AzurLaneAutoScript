@@ -3,6 +3,7 @@ from module.base.timer import Timer
 from module.handler.assets import *
 from module.gg_handler.assets import *
 from module.ui.assets import *
+from module.ui_white.assets import *
 from module.meowfficer.assets import *
 from module.os_ash.assets import ASH_QUIT
 from module.raid.assets import RPG_HOME
@@ -33,6 +34,7 @@ class GGScreenshot(Base):
             REWARD_GOTO_MAIN,
             GOTO_MAIN,
             MAIN_GOTO_BUILD,
+            MAIN_GOTO_BUILD_WHITE,
             DORM_CHECK,
             MEOWFFICER_FORT_ENTER,
             ASH_QUIT,
