@@ -2177,10 +2177,6 @@
       "help": "DashboardUpdate.Update.help",
       "all": "DashboardUpdate.Update.all",
       "main": "DashboardUpdate.Update.main"
-    },
-    "NewUi": {
-      "name": "DashboardUpdate.NewUi.name",
-      "help": "DashboardUpdate.NewUi.help"
     }
   },
   "OpsiAshAssist": {

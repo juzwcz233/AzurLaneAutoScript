@@ -2170,17 +2170,13 @@
   "DashboardUpdate": {
     "_info": {
       "name": "更新儀表盤",
-      "help": "大世界相關數據不支持更新"
+      "help": "大世界相關數據不支援更新"
     },
     "Update": {
       "name": "更新選項",
       "help": "選擇需要更新的儀表盤數據",
       "all": "更新全部",
       "main": "僅石油、物資、鑽石、魔方"
-    },
-    "NewUi": {
-      "name": "使用新UI",
-      "help": ""
     }
   },
   "OpsiAshAssist": {

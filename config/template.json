@@ -1738,8 +1738,7 @@
       "ServerUpdate": "00:00"
     },
     "DashboardUpdate": {
-      "Update": "all",
-      "NewUi": false
+      "Update": "all"
     },
     "Storage": {
       "Storage": {}

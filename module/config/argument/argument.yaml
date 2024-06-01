@@ -639,7 +639,6 @@ DashboardUpdate:
   Update:
     value: all
     option: [ all, main ]
-  NewUi: false
 
 # ==================== Opsi ====================
 

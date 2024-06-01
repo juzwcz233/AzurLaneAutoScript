@@ -358,7 +358,6 @@ class GeneratedConfig:
 
     # Group `DashboardUpdate`
     DashboardUpdate_Update = 'all'  # all, main
-    DashboardUpdate_NewUi = False
 
     # Group `OpsiAshAssist`
     OpsiAshAssist_Tier = 15

@@ -8,38 +8,15 @@ from module.ui.assets import CAMPAIGN_MENU_NO_EVENT, EVENT_CHECK, SP_CHECK, RAID
 class DashboardUpdate(DashboardStatus):
     def dashboard_run(self):
         option = self.config.DashboardUpdate_Update
-        newui = self.config.DashboardUpdate_NewUi
-        if newui:
-            if option=="main":
-                self.ui_goto_main()
-                self.get_cube()
-                self.ui_goto_main()
-                self.ui_goto_shop()
-                self.get_oilcoin()
-                self.ui_goto_main()
-            elif option=="all":
-                self.ui_goto_main()
-                self.get_cube()
-                self.ui_goto_main()
-                self.ui_goto_shop()
-                self.get_oilcoin()
-                self.goto_shop()
-                self.get_event_pt()
-                self.ui_goto_main()
-        else:
-            if option=="main":
-                self.ui_goto_main()
-                self.get_oilcoin()
-                self.get_cube()
-                self.ui_goto_main()
-            elif option=="all":
-                self.ui_goto_main()
-                self.get_oilcoin()
-                self.get_cube()
-                self.ui_goto_main()
-                self.goto_shop()
-                self.get_event_pt()
-                self.ui_goto_main()
+        self.ui_goto_main()
+        self.get_cube()
+        self.ui_goto_main()
+        self.ui_goto_shop()
+        self.get_oilcoin()
+        if option=="all":
+            self.goto_shop()
+            self.get_event_pt()
+        self.ui_goto_main()
         logger.info('Update Dashboard Data Finished')
 
     def get_event_pt(self):
