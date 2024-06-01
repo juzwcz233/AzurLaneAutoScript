@@ -10,20 +10,20 @@ from module.raid.assets import RPG_HOME
 from module.combat.assets import GET_ITEMS_1
 from module.ocr.ocr import Digit
 from module.logger import logger
-from module.base.base import ModuleBase as Base
+from module.base.base import ModuleBase
 from module.ui.ui import UI
 from module.gg_handler.gg_data import GGData
 
 OCR_GG_FOLD = Digit(OCR_GG_FOLD, name='OCR_GG_FOLD', letter=(222, 228, 227), threshold=255)
 OCR_GG_FOLD_CHECK = Digit(OCR_GG_FOLD_CHECK, name= 'OCR_GG_FOLD_CHECK', letter=(222, 228, 227), threshold=255)
 
-class GGScreenshot(Base):
+class GGScreenshot(ModuleBase):
 
     def __init__(self, config, device):
         super().__init__(config, device)
         self.device = device
         self.config = config
-        self.d = u2.connect(self.device.serial)
+        self.d = u2.connect_usb(self.device.serial)
         self.gg_wait_time = self.config.cross_get('GameManager.GGHandler.GGWaitTime')
         self.gg_package_name = self.config.cross_get('GameManager.GGHandler.GGPackageName')
         self.gg_action = self.config.cross_get('GameManager.GGHandler.GGAction')
@@ -403,70 +403,12 @@ class GGScreenshot(Base):
             if self.appear(BUTTON_GG_SEARCH_MODE_BUTTON, offset=(50, 50)) and count != 0:
                 return 1
 
-    def gg_stop(self):
-        if (self.gg_action == 'auto' and self.gg_package_name != 'com.') or (self.gg_action == 'manual' and self.gg_package_name != 'com.'):
-            logger.hr('GG kill')
-            self.d.app_stop(f'{self.gg_package_name}')
-
-    def gg_start(self):
-        if (self.gg_action == 'auto' and self.gg_package_name != 'com.') or (self.gg_action == 'manual' and self.gg_package_name != 'com.'):
-            logger.hr('GG start')
-            self.d.app_start(f'{self.gg_package_name}')
-            skip_first_screenshot = True
-            count = 0
-            while 1:
-                if skip_first_screenshot:
-                    skip_first_screenshot = False
-                else:
-                    self.device.sleep(0.5)
-                    self.device.screenshot()
-                if self.appear_then_click(BUTTON_GG_SCRIPT_END, offset=(50, 50), interval=1):
-                    continue
-                if self.appear_then_click(BUTTON_GG_SKIP0, offset=(50, 50), interval=1):
-                    count += 1
-                    continue
-                if self.appear_then_click(BUTTON_GG_SKIP1, offset=(50, 50), interval=1):
-                    count += 1
-                    continue
-                if self.appear(BUTTON_GG_ENTER, offset=(50, 50)):
-                    self.device.click(BUTTON_GG_EXIT_POS)
-                    count += 1
-                    continue
-                if self.appear(BUTTON_GG_CONFIRM, offset=(50, 50)):
-                    self.device.click(BUTTON_GG_EXIT_POS)
-                    count += 1
-                    continue
-                if self.appear_then_click(BUTTON_GG_START, offset=(50, 50), interval=2):
-                    self.device.sleep(self.gg_wait_time)
-                    if not self.device.app_is_running():
-                        self.device.app_start()
-                    else:
-                        logger.info('Game is already running')
-                    count += 1
-                    continue
-                if self.get_interval_timer(IDLE, interval=3).reached():
-                    if IDLE.match_luma(self.device.image, offset=(5, 5)):
-                        logger.info(f'UI additional: {IDLE} -> {REWARD_GOTO_MAIN}')
-                        self.device.click(REWARD_GOTO_MAIN)
-                        self.get_interval_timer(IDLE).reset()
-                        count += 1
-                        continue
-                if (self.appear(LOGIN_CHECK, offset=(30, 30)) and LOGIN_CHECK.match_appear_on(self.device.image) and count != 0) \
-                    or self.appear(LOGIN_GAME_UPDATE, offset=(30, 30)):
-                    if self._handle_app_login():
-                        continue
-                if self.appear_then_click(LOGIN_ANNOUNCE, offset=(30, 30), interval=5):
-                    continue
-                for i in range(len(self.method)):
-                    if self.appear(self.method[int(i)], offset=(50, 50)) and count != 0:
-                        return 1
-
     def gg_lua(self):
-        if self.path != "" and self.gg_action == 'manual' and self.gg_package_name != 'com.':
+        if self.path != '' and self.gg_action == 'manual' and self.gg_package_name != 'com.':
             self.luapath = self.path
         if self.oldpath == False:
             logger.hr('Lua path set')
-            self.d.send_keys(f"{self.luapath}")
+            self.d.send_keys(f'{self.luapath}')
             logger.info('Lua path set success')
             self.config.cross_set('GameManager.GGHandler.GGLuapathRecord', value=True)
         else:
@@ -520,6 +462,66 @@ class GGScreenshot(Base):
             logger.info('Push success')
         else:
             logger.hr('Skip push lua file')
+
+    def gg_start(self):
+        if (self.gg_action == 'auto' and self.gg_package_name != 'com.') or (self.gg_action == 'manual' and self.gg_package_name != 'com.'):
+            logger.hr('GG start')
+            self.d.app_start(f'{self.gg_package_name}')
+            logger.info(f'GG start: {self.gg_package_name}')
+            skip_first_screenshot = True
+            count = 0
+            while 1:
+                if skip_first_screenshot:
+                    skip_first_screenshot = False
+                else:
+                    self.device.sleep(0.5)
+                    self.device.screenshot()
+                if self.appear_then_click(BUTTON_GG_SCRIPT_END, offset=(50, 50), interval=1):
+                    continue
+                if self.appear_then_click(BUTTON_GG_SKIP0, offset=(50, 50), interval=1):
+                    count += 1
+                    continue
+                if self.appear_then_click(BUTTON_GG_SKIP1, offset=(50, 50), interval=1):
+                    count += 1
+                    continue
+                if self.appear(BUTTON_GG_ENTER, offset=(50, 50)):
+                    self.device.click(BUTTON_GG_EXIT_POS)
+                    count += 1
+                    continue
+                if self.appear(BUTTON_GG_CONFIRM, offset=(50, 50)):
+                    self.device.click(BUTTON_GG_EXIT_POS)
+                    count += 1
+                    continue
+                if self.appear_then_click(BUTTON_GG_START, offset=(50, 50), interval=2):
+                    self.device.sleep(self.gg_wait_time)
+                    if not self.device.app_is_running():
+                        self.device.app_start()
+                    else:
+                        logger.info('Game is already running')
+                    count += 1
+                    continue
+                if self.get_interval_timer(IDLE, interval=3).reached():
+                    if IDLE.match_luma(self.device.image, offset=(5, 5)):
+                        logger.info(f'UI additional: {IDLE} -> {REWARD_GOTO_MAIN}')
+                        self.device.click(REWARD_GOTO_MAIN)
+                        self.get_interval_timer(IDLE).reset()
+                        count += 1
+                        continue
+                if (self.appear(LOGIN_CHECK, offset=(30, 30)) and LOGIN_CHECK.match_appear_on(self.device.image) and count != 0) \
+                    or self.appear(LOGIN_GAME_UPDATE, offset=(30, 30)):
+                    if self._handle_app_login():
+                        continue
+                if self.appear_then_click(LOGIN_ANNOUNCE, offset=(30, 30), interval=5):
+                    continue
+                for i in range(len(self.method)):
+                    if self.appear(self.method[int(i)], offset=(50, 50)) and count != 0:
+                        return 1
+
+    def gg_stop(self):
+        if (self.gg_action == 'auto' and self.gg_package_name != 'com.') or (self.gg_action == 'manual' and self.gg_package_name != 'com.'):
+            logger.hr('GG kill')
+            self.d.app_stop(f'{self.gg_package_name}')
+            logger.info(f'GG stop: {self.gg_package_name}')
 
     def _handle_app_login(self):
         """
