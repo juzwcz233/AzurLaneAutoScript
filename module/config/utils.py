@@ -647,7 +647,7 @@ def type_to_str(typ):
     return str(typ)
 
 
-def time_delta(_timedelta: str, value: str) -> str:
+def readable_time(before: str, value: str) -> str:
     """
     Output the delta between two times
     """
@@ -656,20 +656,20 @@ def time_delta(_timedelta: str, value: str) -> str:
         'time': '',
         'time_name': 'NoData'
     }
-    if not _timedelta:
+    if not before:
         timedata['value'] = 'None'
         return timedata
     try:
-        ti = datetime.fromisoformat(_timedelta)
+        ti = datetime.fromisoformat(before)
     except ValueError:
-        return False
+        timedata['time_name'] = 'TimeError'
+        return timedata
     if ti == DEFAULT_TIME:
         timedata['value'] = 'None'
         return timedata
 
     diff = time.time() - ti.timestamp()
     if diff < -1:
-        timedata['time']= ''
         timedata['time_name'] = 'TimeError'
     elif diff < 60:
         timedata['time_name'] = 'JustNow'
@@ -683,7 +683,6 @@ def time_delta(_timedelta: str, value: str) -> str:
         timedata['time'] = int(diff // 86400)
         timedata['time_name'] = 'DaysAgo'
     else:
-        timedata['time'] = ''
         timedata['time_name'] = 'LongTimeAgo'
     return timedata
 
