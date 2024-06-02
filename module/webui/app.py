@@ -636,18 +636,11 @@ class AlasGUI(Frame):
                 value_total = ''
 
             value_time = group['Record']
-            time_now = datetime.now().replace(microsecond=0)
-            if value_time is None or value_time == datetime(2023, 1, 1, 0, 0, 0):
-                value = 'None'
-                delta = '' + t('Gui.Dashboard.NoData')
-            else:
-                time = time_delta(value_time - time_now)
-                if isinstance(time, dict):
-                    for _key in time:
-                        if time[_key]:
-                            time_name = _key.replace('s','SecondsAgo').replace('Y','YearsAgo').replace('h','HoursAgo').replace('M','MonthsAgo').replace('D','DaysAgo').replace('m','MinutesAgo')
-                            break
-                delta = str(time[_key]) + t(f'Gui.Dashboard.{time_name}')
+            timedata = time_delta(str(value_time), str(group['Value']))
+            value =timedata['value']
+            time = timedata['time']
+            time_name = timedata['time_name']
+            delta = str(time) + t(f'Gui.Dashboard.{time_name}')
             if group_name not in self._log.last_display_time.keys():
                 self._log.last_display_time[group_name] = ''
             if self._log.last_display_time[group_name] == delta and not self._log.first_display:
