@@ -56,12 +56,13 @@ Overview:
   NoTask:
 
 Dashboard:
-  SecondsAgo:
+  TimeError:
+  JustNow:
   MinutesAgo:
   HoursAgo:
   DaysAgo:
   MonthsAgo:
-  YearsAgo:
+  LongTimeAgo:
   NoData:
   Oil:
   Coin:

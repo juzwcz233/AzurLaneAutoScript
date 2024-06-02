@@ -2530,12 +2530,13 @@
       "NoTask": "No Task"
     },
     "Dashboard": {
-      "SecondsAgo": "Seconds ago",
+      "TimeError": "Time error",
+      "JustNow": "Just now",
       "MinutesAgo": "Minutes ago",
       "HoursAgo": "Hours ago",
       "DaysAgo": "Days ago",
       "MonthsAgo": "Months ago",
-      "YearsAgo": "Years ago",
+      "LongTimeAgo": "Long time ago",
       "NoData": "No data",
       "Oil": "Oil",
       "Coin": "Coin",

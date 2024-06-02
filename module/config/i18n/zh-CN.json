@@ -2530,12 +2530,13 @@
       "NoTask": "无任务"
     },
     "Dashboard": {
-      "SecondsAgo": "秒前",
+      "TimeError": "时间错误",
+      "JustNow": "刚刚",
       "MinutesAgo": "分钟前",
       "HoursAgo": "小时前",
       "DaysAgo": "天前",
       "MonthsAgo": "月前",
-      "YearsAgo": "年前",
+      "LongTimeAgo": "很久之前",
       "NoData": "无数据",
       "Oil": "石油",
       "Coin": "物资",
