@@ -57,7 +57,7 @@ from module.config.utils import (
     filepath_config,
     read_file,
 )
-from module.config.utils import time_delta
+from module.config.utils import readable_time
 from module.logger import logger
 from module.log_res import LogRes
 from module.ocr.rpc import start_ocr_server_process, stop_ocr_server_process
@@ -636,7 +636,7 @@ class AlasGUI(Frame):
                 value_total = ''
 
             value_time = group['Record']
-            timedata = time_delta(str(value_time), str(group['Value']))
+            timedata = readable_time(str(value_time), str(group['Value']))
             value =timedata['value']
             time = timedata['time']
             time_name = timedata['time_name']
