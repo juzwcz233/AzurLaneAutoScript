@@ -2658,12 +2658,12 @@
       "NoTask": "無任務"
     },
     "Dashboard": {
-      "SecondsAgo": "秒前",
+      "TimeError": "時間錯誤",
+      "JustNow": "剛剛",
       "MinutesAgo": "分鐘前",
       "HoursAgo": "小時前",
       "DaysAgo": "天前",
-      "MonthsAgo": "月前",
-      "YearsAgo": "年前",
+      "LongTimeAgo": "很久之前",
       "NoData": "無數據",
       "Oil": "石油",
       "Coin": "物資",
