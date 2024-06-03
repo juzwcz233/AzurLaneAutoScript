@@ -619,24 +619,20 @@ class AlasGUI(Frame):
                 continue
 
             value = str(group['Value'])
+            value_limit = ''
+            value_total = ''
             if 'Limit' in group.keys():
                 value_limit = f' / {group["Limit"]}'
-                value_total = ''
             elif 'Total' in group.keys():
                 value_total = f' ({group["Total"]})'
-                value_limit = ''
             elif group_name == 'Pt':
                 value_limit = ' / ' + re.sub(r'[,.\'"，。]', '',
                                              str(deep_get(self.alas_config.data, 'EventGeneral.EventGeneral.PtLimit')))
                 if value_limit == ' / 0':
                     value_limit = ''
-            else:
-                value = str(group['Value'])
-                value_limit = ''
-                value_total = ''
 
-            value_time = group['Record']
-            timedata = readable_time(str(value_time), str(group['Value']))
+            value_time = str(group['Record'])
+            timedata = readable_time(value_time, value)
             value =timedata['value']
             time = timedata['time']
             time_name = timedata['time_name']
