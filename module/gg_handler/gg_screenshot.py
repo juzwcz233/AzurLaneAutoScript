@@ -312,11 +312,11 @@ class GGScreenshot(ModuleBase):
                 if FOLD != None:
                     break
             if self.factor == int(FOLD):
-                logger.hr('Re: Input')
+                logger.hr('Factor Input')
                 logger.info('Skip factor input')
                 logger.hr('Factor Check')
                 logger.info('Skip factor check')
-                return 1
+                return True
             logger.hr('Re: Input')
             logger.info('Factor Reinput')
             for i in str(self.factor):
@@ -345,7 +345,7 @@ class GGScreenshot(ModuleBase):
                     for i in str(self.factor):
                         self.appear_then_click(method[int(i)], offset=(50, 50), interval=1)
         else:
-            for i in range(3):
+            for _ in range(3):
                 logger.error('Factor illegal')
             logger.warning('Try default factor will be run')
             from module.notify import handle_notify
@@ -355,8 +355,6 @@ class GGScreenshot(ModuleBase):
             logger.hr('Try again')
             for i in str(200):
                 self.appear_then_click(method[int(i)], offset=(50, 50), interval=1)
-                
-        logger.hr('GG Exit')
 
     def _gg_script_run(self):
         logger.hr('Execute')
@@ -506,6 +504,10 @@ class GGScreenshot(ModuleBase):
                         logger.info('Game is already running')
                     count += 1
                     continue
+                if count != 0:
+                    for i in range(len(self.method)):
+                        if self.appear(self.method[int(i)], offset=(50, 50)):
+                            return True
                 if self.get_interval_timer(IDLE, interval=3).reached():
                     if IDLE.match_luma(self.device.image, offset=(5, 5)):
                         logger.info(f'UI additional: {IDLE} -> {REWARD_GOTO_MAIN}')
@@ -519,10 +521,6 @@ class GGScreenshot(ModuleBase):
                         continue
                 if self.appear_then_click(LOGIN_ANNOUNCE, offset=(30, 30), interval=5):
                     continue
-                if count != 0:
-                    for i in range(len(self.method)):
-                        if self.appear(self.method[int(i)], offset=(50, 50)):
-                            return True
 
     def gg_stop(self):
         if (self.gg_action == 'auto' and self.gg_package_name != 'com.') or (self.gg_action == 'manual' and self.gg_package_name != 'com.'):
