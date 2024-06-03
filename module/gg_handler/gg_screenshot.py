@@ -106,7 +106,7 @@ class GGScreenshot(ModuleBase):
                     self.device.app_start()
                 else:
                     logger.info('Game is already running')
-                break
+                return True
 
     def _enter_gg(self):
         """
@@ -115,13 +115,15 @@ class GGScreenshot(ModuleBase):
             out: any GG
         """
         skip_first_screenshot = True
+        appear = False
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if (self.appear(LOGIN_CHECK, offset=(30, 30)) and LOGIN_CHECK.match_appear_on(self.device.image)) or self.appear(LOGIN_GAME_UPDATE, offset=(30, 30)):
+            if (self.appear(LOGIN_CHECK, offset=(30, 30)) and LOGIN_CHECK.match_appear_on(self.device.image)) \
+                or self.appear(LOGIN_GAME_UPDATE, offset=(30, 30)):
                     if self._handle_app_login():
                         continue
             if self.appear_then_click(LOGIN_ANNOUNCE, offset=(30, 30), interval=5):
@@ -129,11 +131,15 @@ class GGScreenshot(ModuleBase):
             if self.appear(BUTTON_GG_CONFIRM, offset=(50, 50)):
                 logger.hr('Enter GG')
                 logger.info('Entered GG')
-                break
-            for i in range(len(self.method)):
-                if self.appear(self.method[int(i)], offset=(50, 50)):
-                    self.device.click(BUTTON_GG_ENTER_POS)
-                    break
+                return True
+            if appear:
+                self.device.click(BUTTON_GG_ENTER_POS)
+            else:
+                for i in range(len(self.method)):
+                    if self.appear(self.method[int(i)], offset=(50, 50)):
+                        self.device.click(BUTTON_GG_ENTER_POS)
+                        appear = True
+                        break
 
     def enter_gg(self):
         self._enter_gg()
@@ -382,6 +388,11 @@ class GGScreenshot(ModuleBase):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
+            if self.appear(BUTTON_GG_SEARCH_MODE_BUTTON, offset=(50, 50)) and count != 0:
+                return True
+            if self.appear_then_click(BUTTON_GG_SCRIPT_END, offset=(50, 50), interval=1):
+                count += 1
+                continue
             for i in range(len(self.method)):
                 if self.appear(self.method[int(i)], offset=(50, 50), threshold=0.999):
                     self.device.click(BUTTON_GG_ENTER_POS)
@@ -397,11 +408,6 @@ class GGScreenshot(ModuleBase):
                 self.gg_handle_factor()
                 self._gg_script_run()
                 continue
-            if self.appear_then_click(BUTTON_GG_SCRIPT_END, offset=(50, 50), interval=1):
-                count += 1
-                continue
-            if self.appear(BUTTON_GG_SEARCH_MODE_BUTTON, offset=(50, 50)) and count != 0:
-                return 1
 
     def gg_lua(self):
         if self.path != '' and self.gg_action == 'manual' and self.gg_package_name != 'com.':
@@ -420,7 +426,7 @@ class GGScreenshot(ModuleBase):
                 if not self.appear(OCR_GG_LUAPATH, offset=(50, 50)) and self.appear(BUTTON_GG_LUACHOOSE, offset=(50, 50)):
                     break
                 if self.appear(OCR_GG_LUAPATH, offset=(50, 50)):
-                    return 1
+                    return True
 
             logger.warning("Lua path error")
             self.device.click(BUTTON_GG_LUACHOOSE)
@@ -453,7 +459,7 @@ class GGScreenshot(ModuleBase):
                 if self.appear_then_click(BUTTON_GG_LUA, offset=(50, 50), interval=1):
                     continue
                 if self.appear(BUTTON_GG_SCRIPT_START_PROCESS, offset=(50, 50)):
-                    break
+                    return True
 
     def gg_push(self):
         if self.oldpath == False:
@@ -513,9 +519,10 @@ class GGScreenshot(ModuleBase):
                         continue
                 if self.appear_then_click(LOGIN_ANNOUNCE, offset=(30, 30), interval=5):
                     continue
-                for i in range(len(self.method)):
-                    if self.appear(self.method[int(i)], offset=(50, 50)) and count != 0:
-                        return 1
+                if count != 0:
+                    for i in range(len(self.method)):
+                        if self.appear(self.method[int(i)], offset=(50, 50)):
+                            return True
 
     def gg_stop(self):
         if (self.gg_action == 'auto' and self.gg_package_name != 'com.') or (self.gg_action == 'manual' and self.gg_package_name != 'com.'):
