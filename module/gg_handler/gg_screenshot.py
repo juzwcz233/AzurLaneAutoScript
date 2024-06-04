@@ -41,11 +41,6 @@ class GGScreenshot(ModuleBase):
             GET_ITEMS_1,
             RPG_HOME
             ]
-        self.choose = [
-            BUTTON_GG_APP_CHOOSE0,
-            BUTTON_GG_APP_CHOOSE1,
-            BUTTON_GG_APP_CHOOSE2
-        ]
 
     def skip_error(self):
         """
@@ -70,16 +65,13 @@ class GGScreenshot(ModuleBase):
             if self.appear_then_click(BUTTON_GG_SCRIPT_FATAL, offset=(50, 50), interval=1):
                 logger.info('Restart previous script')
                 continue
-            if self.appear_then_click(BUTTON_GG_APP_CHOOSE0, offset=(50, 50), interval=1):
-                logger.info('APP choose')
+            if self.appear_then_click(BUTTON_GG_APP_CHOOSE1, offset=(50, 50), interval=1):
+                logger.info('APP Choose')
                 continue
             if self.appear(BUTTON_GG_RESTART_ERROR, offset=(50, 50), interval=1):
                 logger.hr('Game died with GG panel')
                 logger.info('Close GG restart error')
                 self.gg_stop()
-                continue
-            if self.appear_then_click(BUTTON_GG_APP_CHOOSE1, offset=(50, 50), interval=1):
-                logger.info('APP Choose')
                 continue
             if self.appear(BUTTON_GG_SCRIPT_MENU_A, offset=(50, 50), interval=1):
                 logger.info('Close previous script')
@@ -151,15 +143,10 @@ class GGScreenshot(ModuleBase):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            for i in range(len(self.choose)):
-                if self.appear_then_click(self.choose[int(i)], offset=(50, 50), interval=1):
-                    logger.info('APP Choose')
-                    self.device.sleep(0.5)
-                    self.device.screenshot()
-                    break
-                if i == range(len(self.choose)):
-                    self.device.sleep(0.5)
-                    self.device.screenshot()
+            if self.appear_then_click(BUTTON_GG_APP_CHOOSE1, offset=(50, 50), interval=1):
+                logger.info('APP Choose')
+                self.device.sleep(0.5)
+                self.device.screenshot()
             if self.appear(BUTTON_GG_STOP, offset=(50, 50)) or self.appear(BUTTON_GG_NOTRUN, offset=(50, 50)):
                 logger.hr('GG Restart')
                 self.gg_stop()
@@ -170,7 +157,7 @@ class GGScreenshot(ModuleBase):
             if self.appear(BUTTON_GG_APP_ENTER, offset=(50, 50)) and \
                 BUTTON_GG_APP_ENTER.match_appear_on(self.device.image):
                 logger.info('APP Enter')
-                break
+                return True
             if not self.appear(BUTTON_GG_APP_ENTER, offset=(50, 50), threshold=0.999) and \
                 self.appear(BUTTON_GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.999):
                 logger.info('Reselect APP')
@@ -204,13 +191,10 @@ class GGScreenshot(ModuleBase):
                 self.gg_lua()
                 logger.hr('Lua execute')
                 break
-            for i in range(len(self.choose)):
-                if self.appear_then_click(self.choose[int(i)], offset=(50, 50), interval=1):
-                    logger.info('APP Choose')
-                    break
-                if i == range(len(self.choose)):
-                    self.device.sleep(0.5)
-                    self.device.screenshot()
+            if self.appear_then_click(BUTTON_GG_APP_CHOOSE1, offset=(50, 50), interval=1):
+                logger.info('APP Choose')
+                self.device.sleep(0.5)
+                self.device.screenshot()
             if self.appear_then_click(BUTTON_GG_SCRIPT_END, offset=(50, 50), interval=1):
                 logger.info('Close previous script')
                 continue
