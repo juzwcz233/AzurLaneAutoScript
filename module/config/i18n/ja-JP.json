@@ -2506,8 +2506,8 @@
       "help": ""
     },
     "Enable": {
-      "name": "GGHandler.Enable.name",
-      "help": "GGHandler.Enable.help"
+      "name": "启用倍率",
+      "help": "演习，共斗，Meta时会自动关闭倍率"
     },
     "GGPopup": {
       "name": "弹窗处理",
