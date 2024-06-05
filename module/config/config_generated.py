@@ -441,8 +441,8 @@ class GeneratedConfig:
     GameManager_AutoRestart = True
 
     # Group `GGHandler`
-    GGHandler_Enabled = False
-    GGHandler_GGFactorEnable = False
+    GGHandler_Enable = False
+    GGHandler_GGPopup = False
     GGHandler_RestartEverytime = True
     GGHandler_GGMultiplyingFactor = 200
     GGHandler_GGMethod = 'screenshot'  # screenshot

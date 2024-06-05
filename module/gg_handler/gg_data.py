@@ -5,18 +5,18 @@ from module.config.config import AzurLaneConfig
 
 
 class GGData(ModuleBase):
-    gg_on = False
     gg_enable = False
-    gg_auto = False
+    gg_restart = True
+    gg_on = False
     ggdata = {}
 
     def __init__(self, config=AzurLaneConfig):
         self.config = config
         self.ggdata = {
             'name': self.config.config_name,
-            'gg_on': False,
-            'gg_enable': self.config.cross_get('GameManager.GGHandler.Enabled', default=False),
-            'gg_auto': self.config.cross_get('GameManager.GGHandler.GGFactorEnable', default=False)
+            'gg_enable': self.config.cross_get('GameManager.GGHandler.Enable', default=False),
+            'gg_restart': self.config.cross_get('GameManager.GGHandler.RestartEverytime', default=True),
+            'gg_on': False
         }
         self.filename = f'./gg_config/{self.config.config_name}.GG.json'
 

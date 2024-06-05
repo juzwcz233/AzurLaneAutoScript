@@ -2065,8 +2065,8 @@
       "AutoRestart": true
     },
     "GGHandler": {
-      "Enabled": false,
-      "GGFactorEnable": false,
+      "Enable": false,
+      "GGPopup": false,
       "RestartEverytime": true,
       "GGMultiplyingFactor": 200,
       "GGMethod": "screenshot",
