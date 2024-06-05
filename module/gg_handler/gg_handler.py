@@ -1,5 +1,5 @@
 from module.base.timer import timeout, Timer
-from module.base.base import ModuleBase as Base
+from module.base.base import ModuleBase
 from module.gg_handler.gg_data import GGData
 from module.gg_handler.gg_screenshot import GGScreenshot
 from module.combat.combat import Combat
@@ -12,7 +12,7 @@ from module.gg_handler.gg_task import *
 
 OCR_CHECK = Digit(OCR_PRE_BATTLE_CHECK, name='OCR_PRE_BATTLE_CHECK', letter=(255, 255, 255), threshold=255)
 
-class GGHandler(Base):
+class GGHandler(ModuleBase):
     """
     A module to handle needs of cheaters
     Args:
@@ -23,9 +23,7 @@ class GGHandler(Base):
     def __init__(self, config, device):
         self.config = config
         self.device = device
-        self.RestartEverytime = self.config.cross_get('GameManager.GGHandler.RestartEverytime', default=True)
         self.factor = self.config.cross_get('GameManager.GGHandler.GGMultiplyingFactor', default=200)
-        self.method = self.config.cross_get('GameManager.GGHandler.GGMethod', default='screenshot')
 
     def gg_data(self):
         return GGData(self.config).get_data()
@@ -97,8 +95,8 @@ class GGHandler(Base):
         Returns:
             bool: If it needs restart first
         """
-        gg_enable = self.gg_data()['gg_enable']
-        if self.RestartEverytime and gg_enable:
+        RestartEverytime = self.config.cross_get('GameManager.GGHandler.RestartEverytime', default=True)
+        if RestartEverytime and self.gg_data()['gg_enable']:
             logger.info('Restart to reset GG status.')
             self.restart()
             return True

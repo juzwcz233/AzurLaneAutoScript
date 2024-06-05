@@ -56,10 +56,9 @@ class CoalitionCombat(CoalitionUI, CampaignBase):
         self.battle_count = 0
         # Power limit check
         from module.gg_handler.gg_handler import GGHandler
-        from module.config.utils import deep_get
-        gg_enable = deep_get(self.config.data, 'GameManager.GGHandler.Enabled', default=True)
-        gg_auto = deep_get(self.config.data, 'GameManager.GGHandler.GGFactorEnable', default=True)
-        if (gg_enable == True and gg_auto == True) or gg_enable == True:
+        gg_enable = self.config.cross_get('GameManager.GGHandler.Enabled', default=True)
+        gg_auto = self.config.cross_get('GameManager.GGHandler.GGFactorEnable', default=True)
+        if gg_enable and gg_auto:
             if GGHandler(config=self.config, device=self.device).power_limit('Coalition'):
                 self.config.task_delay(minute=0.5)
                 self.config.task_call('Restart')

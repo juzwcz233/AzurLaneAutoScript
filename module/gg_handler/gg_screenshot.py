@@ -28,7 +28,7 @@ class GGScreenshot(ModuleBase):
         self.gg_package_name = self.config.cross_get('GameManager.GGHandler.GGPackageName')
         self.gg_action = self.config.cross_get('GameManager.GGHandler.GGAction')
         self.path = self.config.cross_get('GameManager.GGHandler.GGLuapath')
-        self.oldpath = self.config.cross_get('GameManager.GGHandler.GGLuapathRecord')
+        self.path_record = self.config.cross_get('GameManager.GGHandler.GGLuapathRecord')
         self.luapath = "/sdcard/Alarms/Multiplier.lua"
         self.method = [
             REWARD_GOTO_MAIN,
@@ -394,13 +394,13 @@ class GGScreenshot(ModuleBase):
     def gg_lua(self):
         if self.path != '' and self.gg_action == 'manual' and self.gg_package_name != 'com.':
             self.luapath = self.path
-        if self.oldpath == False:
+        if self.path_record:
+            logger.hr('Skip lua path set')
+        else:
             logger.hr('Lua path set')
             self.d.send_keys(f'{self.luapath}')
             logger.info('Lua path set success')
             self.config.cross_set('GameManager.GGHandler.GGLuapathRecord', value=True)
-        else:
-            logger.hr('Skip lua path set')
         if self.gg_action == 'auto' and self.gg_package_name != 'com.':
             while 1:
                 self.device.sleep(0.5)
@@ -444,12 +444,12 @@ class GGScreenshot(ModuleBase):
                     return True
 
     def gg_push(self):
-        if self.oldpath == False:
-            logger.hr('Push lua file')
-            self.device.adb_push('bin/lua/Multiplier.lua', f"{self.luapath}")
-            logger.info('Push success')
-        else:
+        if self.path_record:
             logger.hr('Skip push lua file')
+        else:
+            logger.hr('Push lua file')
+            self.device.adb_push('bin/lua/Multiplier.lua', f'{self.luapath}')
+            logger.info('Push success')
 
     def gg_start(self):
         if (self.gg_action == 'auto' and self.gg_package_name != 'com.') or (self.gg_action == 'manual' and self.gg_package_name != 'com.'):
