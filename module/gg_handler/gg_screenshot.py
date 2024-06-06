@@ -574,5 +574,4 @@ class GGScreenshot(ModuleBase):
         GGData(self.config).set_data(target='gg_on', value=True)
         self.skip_error()
         logger.attr('GG', 'Enabled')
-        logger.hr('GG panel closed')
         self.gg_stop()
