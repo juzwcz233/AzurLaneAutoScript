@@ -10288,11 +10288,11 @@
       }
     },
     "GGHandler": {
-      "Enabled": {
+      "Enable": {
         "type": "checkbox",
         "value": false
       },
-      "GGFactorEnable": {
+      "GGPopup": {
         "type": "checkbox",
         "value": false
       },
