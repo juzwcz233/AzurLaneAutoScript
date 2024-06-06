@@ -1,19 +1,17 @@
 from module.logger import logger
 from module.log_res import LogRes
-from module.base.utils import *
-from module.dashboard.dashboard_status import DashboardStatus
+from module.daily.dashboard_status import DashboardStatus
 from module.ui.page import page_campaign_menu
 from module.ui.assets import CAMPAIGN_MENU_NO_EVENT, EVENT_CHECK, SP_CHECK, RAID_CHECK
 
 class DashboardUpdate(DashboardStatus):
     def dashboard_run(self):
-        option = self.config.DashboardUpdate_Update
         self.ui_goto_main()
         self.get_cube()
         self.ui_goto_main()
         self.ui_goto_shop()
-        self.get_oilcoin()
-        if option=="all":
+        self.get_oilcoingem()
+        if self.config.DashboardUpdate_Update == "all":
             self.goto_shop()
             self.get_event_pt()
         self.ui_goto_main()

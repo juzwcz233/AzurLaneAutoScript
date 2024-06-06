@@ -235,7 +235,7 @@ class AzurLaneAutoScript:
         Freebies(config=self.config, device=self.device).run()
 
     def dashboard_update(self):
-        from module.dashboard.dashboard import DashboardUpdate
+        from module.daily.dashboard import DashboardUpdate
         DashboardUpdate(config=self.config, device=self.device).run()
 
     def minigame(self):
