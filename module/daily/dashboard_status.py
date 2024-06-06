@@ -46,7 +46,7 @@ OCR_PT = PtOcr(OCR_EVENT_PT)
 
 
 class DashboardStatus(ShopUI, GachaUI):
-    def get_oilcoin(self, skip_first_screenshot=True):
+    def get_oilcoingem(self, skip_first_screenshot=True):
         _oil = {}
         _coin = {}
         while 1:
