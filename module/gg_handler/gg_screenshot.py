@@ -93,7 +93,6 @@ class GGScreenshot(ModuleBase):
                 continue
             if not self.appear(BUTTON_GG_CONFIRM, offset=(50, 50)):
                 logger.hr('GG Panel Disappearance Confirmed')
-                self.device.sleep(self.gg_wait_time)
                 if not self.device.app_is_running():
                     self.device.app_start()
                 else:

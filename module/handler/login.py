@@ -157,6 +157,7 @@ class LoginHandler(UI):
     def app_restart(self):
         logger.hr('Game restart')
         self.device.app_stop()
+        self.device.sleep(2)
         gg_popup = self.config.cross_get('GameManager.GGHandler.GGPopup', default=True)
         from module.gg_handler.gg_handler import GGScreenshot
         if gg_popup:
