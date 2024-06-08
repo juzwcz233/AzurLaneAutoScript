@@ -1987,6 +1987,16 @@
       "help": ""
     }
   },
+  "DashboardUpdate": {
+    "_info": {
+      "name": "更新仪表盘",
+      "help": "大世界相关数据不支持更新"
+    },
+    "Update": {
+      "name": "全部更新",
+      "help": "若取消，则仅更新石油、物资、钻石、魔方数据"
+    }
+  },
   "Daily": {
     "_info": {
       "name": "每日任务",
@@ -2165,18 +2175,6 @@
     "OpponentRefreshRecord": {
       "name": "演习对手刷新记录时间",
       "help": ""
-    }
-  },
-  "DashboardUpdate": {
-    "_info": {
-      "name": "更新仪表盘",
-      "help": "大世界相关数据不支持更新"
-    },
-    "Update": {
-      "name": "更新选项",
-      "help": "选择需要更新的仪表盘数据",
-      "all": "更新全部",
-      "main": "仅石油、物资、钻石、魔方"
     }
   },
   "OpsiAshAssist": {

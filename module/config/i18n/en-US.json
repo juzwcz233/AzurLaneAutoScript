@@ -1987,6 +1987,16 @@
       "help": ""
     }
   },
+  "DashboardUpdate": {
+    "_info": {
+      "name": "DashboardUpdate._info.name",
+      "help": "DashboardUpdate._info.help"
+    },
+    "Update": {
+      "name": "DashboardUpdate.Update.name",
+      "help": "DashboardUpdate.Update.help"
+    }
+  },
   "Daily": {
     "_info": {
       "name": "Daily Settings",
@@ -2165,18 +2175,6 @@
     "OpponentRefreshRecord": {
       "name": "Last Refresh Record",
       "help": ""
-    }
-  },
-  "DashboardUpdate": {
-    "_info": {
-      "name": "DashboardUpdate._info.name",
-      "help": "DashboardUpdate._info.help"
-    },
-    "Update": {
-      "name": "DashboardUpdate.Update.name",
-      "help": "DashboardUpdate.Update.help",
-      "all": "DashboardUpdate.Update.all",
-      "main": "DashboardUpdate.Update.main"
     }
   },
   "OpsiAshAssist": {

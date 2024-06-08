@@ -11,7 +11,7 @@ class DashboardUpdate(DashboardStatus):
         self.ui_goto_main()
         self.ui_goto_shop()
         self.get_oilcoingem()
-        if self.config.DashboardUpdate_Update == "all":
+        if self.config.DashboardUpdate_Update:
             self.goto_shop()
             self.get_event_pt()
         self.ui_goto_main()
