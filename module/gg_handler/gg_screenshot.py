@@ -145,11 +145,8 @@ class GGScreenshot(ModuleBase):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear_then_click(BUTTON_GG_APP_CHOOSE, offset=(50, 50), interval=1):
-                logger.info('APP Choose')
-                self.device.sleep(0.5)
-                self.device.screenshot()
-            if self.appear_then_click(BUTTON_GG_APP_CHOOSE1, offset=(50, 50), interval=1):
+            if self.appear_then_click(BUTTON_GG_APP_CHOOSE, offset=(50, 50), interval=1) or \
+                self.appear_then_click(BUTTON_GG_APP_CHOOSE1, offset=(50, 50), interval=1):
                 logger.info('APP Choose')
                 self.device.sleep(0.5)
                 self.device.screenshot()
@@ -197,11 +194,8 @@ class GGScreenshot(ModuleBase):
                 self.gg_lua()
                 logger.hr('Lua execute')
                 break
-            if self.appear_then_click(BUTTON_GG_APP_CHOOSE, offset=(50, 50), interval=1):
-                logger.info('APP Choose')
-                self.device.sleep(0.5)
-                self.device.screenshot()
-            if self.appear_then_click(BUTTON_GG_APP_CHOOSE1, offset=(50, 50), interval=1):
+            if self.appear_then_click(BUTTON_GG_APP_CHOOSE, offset=(50, 50), interval=1) or \
+                self.appear_then_click(BUTTON_GG_APP_CHOOSE1, offset=(50, 50), interval=1):
                 logger.info('APP Choose')
                 self.device.sleep(0.5)
                 self.device.screenshot()
