@@ -445,7 +445,6 @@ class GeneratedConfig:
     GGHandler_GGPopup = False
     GGHandler_RestartEverytime = True
     GGHandler_GGMultiplyingFactor = 200
-    GGHandler_GGMethod = 'screenshot'  # screenshot
     GGHandler_GGAction = 'auto'  # auto, manual
     GGHandler_GGLuapath = None
     GGHandler_GGLuapathRecord = False

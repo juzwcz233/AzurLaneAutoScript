@@ -2069,7 +2069,6 @@
       "GGPopup": false,
       "RestartEverytime": true,
       "GGMultiplyingFactor": 200,
-      "GGMethod": "screenshot",
       "GGAction": "auto",
       "GGLuapath": null,
       "GGLuapathRecord": false,

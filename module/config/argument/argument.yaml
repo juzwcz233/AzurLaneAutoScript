@@ -743,11 +743,6 @@ GGHandler:
     value: true
     display: hide
   GGMultiplyingFactor: 200
-  GGMethod:
-    type: state
-    value: screenshot
-    option: [ screenshot, ]
-    option_bold: screenshot
   GGAction: 
     value: auto
     option: [ auto, manual ]

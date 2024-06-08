@@ -10301,14 +10301,6 @@
         "type": "input",
         "value": 200
       },
-      "GGMethod": {
-        "type": "state",
-        "value": "screenshot",
-        "option": [
-          "screenshot"
-        ],
-        "option_bold": "screenshot"
-      },
       "GGAction": {
         "type": "select",
         "value": "auto",

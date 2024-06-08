@@ -2501,7 +2501,7 @@
   "GGHandler": {
     "_info": {
       "name": "GG管理器",
-      "help": ""
+      "help": "将GG悬浮窗遮挡住石油图标(请将透明度调至90%以上)"
     },
     "Enable": {
       "name": "启用倍率",
@@ -2509,7 +2509,7 @@
     },
     "GGPopup": {
       "name": "弹窗处理",
-      "help": "若手动使用GG则应该启用以防弹窗卡重启"
+      "help": "若自行使用GG则应该启用以防弹窗卡重启"
     },
     "RestartEverytime": {
       "name": "每次启动Alas时重启",
@@ -2518,11 +2518,6 @@
     "GGMultiplyingFactor": {
       "name": "倍率",
       "help": "默认数值200\n建议数值1-1000，乱输将使用默认倍率运行"
-    },
-    "GGMethod": {
-      "name": "GG操作方法",
-      "help": "使用截图时，将GG悬浮窗遮挡住石油图标(请将透明度调至90%以上)，如为手动还需要指定好lua路径",
-      "screenshot": "截图"
     },
     "GGAction": {
       "name": "倍率操作方式",
