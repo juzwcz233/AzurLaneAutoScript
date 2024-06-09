@@ -28,9 +28,6 @@ class GGHandler(ModuleBase):
         self.gg_restart = self.config.cross_get('GameManager.GGHandler.RestartEverytime', default=True)
         self.factor = self.config.cross_get('GameManager.GGHandler.GGMultiplyingFactor', default=200)
 
-    def gg_data(self):
-        return GGData(self.config).get_data()
-
     def restart(self, crashed=False):
         from module.handler.login import LoginHandler
         from module.exception import GameStuckError
@@ -63,7 +60,7 @@ class GGHandler(ModuleBase):
             self.gg_reset()
 
     def check_config(self):
-        _gg_on = self.gg_data()['gg_on']
+        _gg_on = GGData(config=self.config).get_data(target='gg_on')
         logger.hr('Check GG config')
         logger.info(f'[Enabled]{self.gg_enable} [AutoRestart]{self.gg_restart} [CurrentStage]{_gg_on}')
 
@@ -85,7 +82,7 @@ class GGHandler(ModuleBase):
         """
         if self.gg_enable:
             GGData(config=self.config).set_data(target='gg_on', value=False)
-            gg_on = self.gg_data()['gg_on']
+            gg_on = GGData(config=self.config).get_data(target='gg_on')
             logger.hr('Load GG config')
             logger.info(f'[Enabled]{self.gg_enable} [AutoRestart]{self.gg_restart} [CurrentStage]{gg_on}')
 
@@ -95,7 +92,7 @@ class GGHandler(ModuleBase):
         Args:
             mode: The multiplier status when finish the check.
         """
-        gg_on = self.gg_data()['gg_on']
+        gg_on = GGData(config=self.config).get_data(target='gg_on')
         if self.gg_enable:
             logger.hr('Check GG status')
             logger.info(f'[Enabled]{self.gg_enable} [AutoRestart]{self.gg_restart} [CurrentStage]{gg_on}')
@@ -110,7 +107,7 @@ class GGHandler(ModuleBase):
         """
         Force restart the game to reset GG status to False
         """
-        gg_on = self.gg_data()['gg_on']
+        gg_on = GGData(config=self.config).get_data(target='gg_on')
         if self.gg_enable and gg_on:
             logger.hr('Disable GG', level=2)
             self.restart()
