@@ -2527,11 +2527,11 @@
     },
     "GGLuapath": {
       "name": "lua路径",
-      "help": "填写lua路径，如为自动请勿填入"
+      "help": "填写lua路径，如为自动请勿填入\n手动方式不会检查路径是否正确"
     },
     "GGLuapathRecord": {
       "name": "lua路径记录",
-      "help": "自动勾选，非设备更换及lua路径修改请勿取消"
+      "help": "自动勾选，非设备更换、lua路径修改及倍率操作方式切换请勿取消"
     },
     "GGPackageName": {
       "name": "GG包名",
