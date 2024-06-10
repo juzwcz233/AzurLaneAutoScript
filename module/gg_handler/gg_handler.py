@@ -28,9 +28,6 @@ class GGHandler(ModuleBase):
         self.gg_restart = self.config.cross_get('GameManager.GGHandler.RestartEverytime', default=True)
         self.factor = self.config.cross_get('GameManager.GGHandler.GGMultiplyingFactor', default=200)
 
-    def gg_data(self):
-        return GGData(self.config).get_data()
-
     def restart(self, crashed=False):
         from module.handler.login import LoginHandler
         from module.exception import GameStuckError
@@ -50,6 +47,9 @@ class GGHandler(ModuleBase):
                 exit(1)
             crashed = True
 
+    def gg_on(self):
+        return GGData(config=self.config).get_data(target='gg_on')
+
     def set(self, mode=True):
         """
             Set the GG status to True/False.
@@ -59,13 +59,13 @@ class GGHandler(ModuleBase):
         if mode:
             logger.hr('Enable GG', level=2)
             GGScreenshot(config=self.config, device=self.device).run(factor=self.factor)
+            logger.info(f'[Enabled]{self.gg_enable} [AutoRestart]{self.gg_restart} [CurrentStage]{self.gg_on()}')
         else:
             self.gg_reset()
 
     def check_config(self):
-        _gg_on = self.gg_data()['gg_on']
         logger.hr('Check GG config')
-        logger.info(f'[Enabled]{self.gg_enable} [AutoRestart]{self.gg_restart} [CurrentStage]{_gg_on}')
+        logger.info(f'[Enabled]{self.gg_enable} [AutoRestart]{self.gg_restart} [CurrentStage]{self.gg_on()}')
 
     def handle_restart_before_tasks(self) -> bool:
         """
@@ -84,10 +84,10 @@ class GGHandler(ModuleBase):
         Handle the restart errors of GG.
         """
         if self.gg_enable:
-            GGData(config=self.config).set_data(target='gg_on', value=False)
-            gg_on = self.gg_data()['gg_on']
+            if self.gg_on():
+                GGData(config=self.config).set_data(target='gg_on', value=False)
             logger.hr('Load GG config')
-            logger.info(f'[Enabled]{self.gg_enable} [AutoRestart]{self.gg_restart} [CurrentStage]{gg_on}')
+            logger.info(f'[Enabled]{self.gg_enable} [AutoRestart]{self.gg_restart} [CurrentStage]{self.gg_on()}')
 
     def check_status(self, mode=True):
         """
@@ -95,23 +95,21 @@ class GGHandler(ModuleBase):
         Args:
             mode: The multiplier status when finish the check.
         """
-        gg_on = self.gg_data()['gg_on']
         if self.gg_enable:
             logger.hr('Check GG status')
-            logger.info(f'[Enabled]{self.gg_enable} [AutoRestart]{self.gg_restart} [CurrentStage]{gg_on}')
+            logger.info(f'[Enabled]{self.gg_enable} [AutoRestart]{self.gg_restart} [CurrentStage]{self.gg_on()}')
             enable = mode if self.gg_restart else False
             if enable:
-                if not gg_on:
+                if not self.gg_on():
                     self.set(True)
-            elif gg_on:
+            elif self.gg_on():
                 self.gg_reset()
 
     def gg_reset(self):
         """
         Force restart the game to reset GG status to False
         """
-        gg_on = self.gg_data()['gg_on']
-        if self.gg_enable and gg_on:
+        if self.gg_enable and self.gg_on():
             logger.hr('Disable GG', level=2)
             self.restart()
             logger.attr('GG', 'Disabled')

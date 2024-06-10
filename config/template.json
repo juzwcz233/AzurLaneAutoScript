@@ -1738,7 +1738,7 @@
       "ServerUpdate": "00:00"
     },
     "DashboardUpdate": {
-      "Update": "all"
+      "Update": true
     },
     "Storage": {
       "Storage": {}
@@ -2069,7 +2069,6 @@
       "GGPopup": false,
       "RestartEverytime": true,
       "GGMultiplyingFactor": 200,
-      "GGMethod": "screenshot",
       "GGAction": "auto",
       "GGLuapath": null,
       "GGLuapathRecord": false,
