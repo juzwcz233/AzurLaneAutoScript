@@ -1,10 +1,10 @@
-from module.base.timer import timeout, Timer
+from module.base.timer import Timer
 from module.base.base import ModuleBase
 from module.gg_handler.gg_data import GGData
 from module.gg_handler.gg_screenshot import GGScreenshot
 from module.combat.combat import Combat
+from module.handler.login import LoginHandler
 from module.logger import logger
-from module.notify import handle_notify
 from module.gg_handler.assets import OCR_PRE_BATTLE_CHECK
 from module.combat.assets import BATTLE_PREPARATION
 from module.ocr.ocr import Digit
@@ -27,25 +27,6 @@ class GGHandler(ModuleBase):
         self.gg_enable = self.config.cross_get('GameManager.GGHandler.Enable', default=False)
         self.gg_restart = self.config.cross_get('GameManager.GGHandler.RestartEverytime', default=True)
         self.factor = self.config.cross_get('GameManager.GGHandler.GGMultiplyingFactor', default=200)
-
-    def restart(self, crashed=False):
-        from module.handler.login import LoginHandler
-        from module.exception import GameStuckError
-        try:
-            if not timeout(LoginHandler(self.config, self.device).app_restart, timeout_sec=600):
-                pass
-            else:
-                raise RuntimeError
-        except GameStuckError as e:
-            pass
-        except Exception as e:
-            logger.exception(e)
-            if crashed:
-                handle_notify(self.config.Error_OnePushConfig,
-                              title=f"Alas <{self.config.config_name}> 崩溃了",
-                              content=f"<{self.config.config_name}> 需要手动介入，也许你的模拟器卡死")
-                exit(1)
-            crashed = True
 
     def gg_on(self):
         return GGData(config=self.config).get_data(target='gg_on')
@@ -75,7 +56,7 @@ class GGHandler(ModuleBase):
         """
         if self.gg_restart and self.gg_enable:
             logger.info('Restart to reset GG status.')
-            self.restart()
+            LoginHandler(self.config, self.device).app_restart()
             return True
         return False
 
@@ -111,7 +92,7 @@ class GGHandler(ModuleBase):
         """
         if self.gg_enable and self.gg_on():
             logger.hr('Disable GG', level=2)
-            self.restart()
+            LoginHandler(self.config, self.device).app_restart()
             logger.attr('GG', 'Disabled')
 
     def power_limit(self, task=''):

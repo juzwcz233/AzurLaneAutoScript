@@ -59,24 +59,24 @@ class GGScreenshot(ModuleBase):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear_then_click(GG_SCRIPT_END, offset=(50, 50), interval=1):
+            if self.appear_then_click(GG_SCRIPT_END, offset=(20, 20), interval=1):
                 logger.info('Close previous script')
                 continue
-            if self.appear_then_click(GG_SCRIPT_FATAL, offset=(50, 50), interval=1):
+            if self.appear_then_click(GG_SCRIPT_FATAL, offset=(20, 20), interval=1):
                 logger.info('Restart previous script')
                 continue
-            if self.appear_then_click(GG_APP_CHOOSE, offset=(50, 50), interval=1):
+            if self.appear_then_click(GG_APP_CHOOSE, offset=(20, 20), interval=1):
                 logger.info('APP Choose')
                 continue
-            if self.appear_then_click(GG_APP_CHOOSE1, offset=(50, 50), interval=1):
+            if self.appear_then_click(GG_APP_CHOOSE1, offset=(20, 20), interval=1):
                 logger.info('APP Choose')
                 continue
-            if self.appear(GG_RESTART_ERROR, offset=(50, 50), interval=1):
+            if self.appear(GG_RESTART_ERROR, offset=(20, 20), interval=1):
                 logger.hr('Game died with GG panel')
                 logger.info('Close GG restart error')
                 self.gg_stop()
                 continue
-            if self.appear(GG_SCRIPT_MENU_A, offset=(50, 50), interval=1):
+            if self.appear(GG_SCRIPT_MENU_A, offset=(20, 20), interval=1):
                 logger.info('Close previous script')
                 self.device.click(GG_EXIT_POS)
                 continue
@@ -84,9 +84,9 @@ class GGScreenshot(ModuleBase):
                 logger.info('At GG main panel, click GG exit')
                 self.device.click(GG_EXIT_POS)
                 continue
-            if self.appear_then_click(GG_ERROR_ENTER, offset=(50, 50), interval=1):
+            if self.appear_then_click(GG_ERROR_ENTER, offset=(20, 20), interval=1):
                 continue
-            if self.appear(GG_CONFIRM, offset=(50, 50)) and not self.appear(GG_CONFIRM, offset=(10, 10)):
+            if self.appear(GG_CONFIRM, offset=(20, 20)) and not self.appear(GG_CONFIRM, offset=(10, 10)):
                 logger.info('Enter search mode')
                 self.device.click(GG_TAB_SEARCH_POS)
                 continue
@@ -94,7 +94,7 @@ class GGScreenshot(ModuleBase):
                 logger.info('Unexpected GG page, Try GG exit')
                 self.device.click(GG_EXIT_POS)
                 continue
-            if not self.appear(GG_CONFIRM, offset=(50, 50)):
+            if not self.appear(GG_CONFIRM, offset=(20, 20)):
                 logger.hr('GG Panel Disappearance Confirmed')
                 if not self.device.app_is_running():
                     self.device.app_start()
@@ -122,7 +122,7 @@ class GGScreenshot(ModuleBase):
                         continue
             if self.appear_then_click(LOGIN_ANNOUNCE, offset=(30, 30), interval=5):
                 continue
-            if self.appear(GG_CONFIRM, offset=(50, 50)):
+            if self.appear(GG_CONFIRM, offset=(20, 20)):
                 logger.hr('Enter GG')
                 logger.info('Entered GG')
                 return True
@@ -130,7 +130,7 @@ class GGScreenshot(ModuleBase):
                 self.device.click(GG_ENTER_POS)
             else:
                 for i in range(len(self.method)):
-                    if self.appear(self.method[int(i)], offset=(50, 50)):
+                    if self.appear(self.method[int(i)], offset=(20, 20)):
                         self.device.click(GG_ENTER_POS)
                         appear = True
                         break
@@ -145,23 +145,23 @@ class GGScreenshot(ModuleBase):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear_then_click(GG_APP_CHOOSE, offset=(50, 50), interval=1) or \
-                self.appear_then_click(GG_APP_CHOOSE1, offset=(50, 50), interval=1):
+            if self.appear_then_click(GG_APP_CHOOSE, offset=(20, 20), interval=1) or \
+                self.appear_then_click(GG_APP_CHOOSE1, offset=(20, 20), interval=1):
                 logger.info('APP Choose')
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear(GG_STOP, offset=(50, 50)) or self.appear(GG_NOTRUN, offset=(50, 50)):
+            if self.appear(GG_STOP, offset=(20, 20)) or self.appear(GG_NOTRUN, offset=(20, 20)):
                 logger.hr('GG Restart')
                 self.gg_stop()
                 self.gg_push()
                 self.gg_start()
                 self._enter_gg()
                 continue
-            if self.appear(GG_APP_ENTER, offset=(50, 50)) and \
+            if self.appear(GG_APP_ENTER, offset=(20, 20)) and \
                 GG_APP_ENTER.match_appear_on(self.device.image):
                 logger.info('APP Enter')
                 return True
-            if not self.appear(GG_APP_ENTER, offset=(50, 50), threshold=0.999) and \
+            if not self.appear(GG_APP_ENTER, offset=(20, 20), threshold=0.999) and \
                 self.appear(GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.999):
                 logger.info('Reselect APP')
                 self.device.click(GG_RECHOOSE)
@@ -181,28 +181,26 @@ class GGScreenshot(ModuleBase):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear_then_click(GG_STOP, offset=(50, 50), interval=1):
+            if self.appear_then_click(GG_STOP, offset=(20, 20), interval=1):
                 logger.hr('GG Restart')
                 self.gg_stop()
                 self.gg_push()
                 self.gg_start()
                 self.enter_gg()
                 continue
-            if self.appear_then_click(GG_SCRIPT_END, offset=(50, 50), interval=1):
+            if self.appear_then_click(GG_SCRIPT_END, offset=(20, 20), interval=1):
+                logger.info('Close previous script')
                 continue 
-            if self.appear(GG_SCRIPT_ENTER_CONFIRM, offset=(50, 50), interval=1):
+            if self.appear(GG_SCRIPT_ENTER_CONFIRM, offset=(20, 20), interval=1):
                 self.gg_lua()
                 logger.hr('Lua execute')
-                break
-            if self.appear_then_click(GG_APP_CHOOSE, offset=(50, 50), interval=1) or \
-                self.appear_then_click(GG_APP_CHOOSE1, offset=(50, 50), interval=1):
+                return True
+            if self.appear_then_click(GG_APP_CHOOSE, offset=(20, 20), interval=1) or \
+                self.appear_then_click(GG_APP_CHOOSE1, offset=(20, 20), interval=1):
                 logger.info('APP Choose')
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear_then_click(GG_SCRIPT_END, offset=(50, 50), interval=1):
-                logger.info('Close previous script')
-                continue
-            if self.appear_then_click(GG_SCRIPT_FATAL, offset=(50, 50), interval=1):
+            if self.appear_then_click(GG_SCRIPT_FATAL, offset=(20, 20), interval=1):
                 logger.info('Stop previous script')
                 continue
             if self.appear(GG_SEARCH_MODE_CONFIRM, offset=(10, 10)) and \
@@ -227,49 +225,23 @@ class GGScreenshot(ModuleBase):
             if self.appear(GG_SEARCH_MODE_CONFIRM, offset=(10, 10)) and \
                 GG_SEARCH_MODE_CONFIRM.match_appear_on(self.device.image):
                 self.device.click(GG_SCRIPT_ENTER_POS)
-            if self.appear_then_click(GG_STOP, offset=(50, 50), interval=1):
-                logger.hr('GG Restart')
-                self.gg_stop()
-                self.gg_push()
-                self.gg_start()
-                self.enter_gg()
-                continue
+                logger.info('Enter script choose')
             if self.appear_then_click(GG_SCRIPT_START, offset=(10, 10), interval=1):
                 continue
-            if self.appear_then_click(GG_ERROR_ENTER, offset=(50, 50), interval=1):
+            if self.appear_then_click(GG_SCRIPT_MENU_A, offset=(20, 20), interval=1):
+                continue
+            if self.appear(GG_SCRIPT_START_PROCESS, offset=(20, 20)):
+                return True
+            if self.appear_then_click(GG_ERROR_ENTER, offset=(20, 20), interval=1):
                 self._gg_enter_script()
                 continue
-            if self.appear(GG_SCRIPT_MENU_A, offset=(50, 50)):
-                logger.info('Revise mode')
-                break
-
-    def gg_mode(self):
-        """
-        Page:
-            in: GG Script Menu
-            out: GG GG input panel
-        """
-        skip_first_screenshot = True
-        while 1:
-            if skip_first_screenshot:
-                skip_first_screenshot = False
-            else:
-                self.device.sleep(0.5)
-                self.device.screenshot()
-            if self.appear_then_click(GG_STOP, offset=(50, 50), interval=1):
+            if self.appear_then_click(GG_STOP, offset=(20, 20), interval=1):
                 logger.hr('GG Restart')
                 self.gg_stop()
                 self.gg_push()
                 self.gg_start()
                 self.enter_gg()
-                self.gg_enter_script()
                 continue
-            if self.appear_then_click(GG_SCRIPT_END, offset=(50, 50), interval=1):
-                continue
-            if self.appear_then_click(GG_SCRIPT_MENU_A, offset=(50, 50), interval=1):
-                continue
-            if self.appear(GG_SCRIPT_START_PROCESS, offset=(50, 50)):
-                break
 
     def gg_handle_factor(self):
         """
@@ -308,7 +280,7 @@ class GGScreenshot(ModuleBase):
             logger.hr('Re: Input')
             logger.info('Factor Reinput')
             for i in str(self.factor):
-                self.appear_then_click(method[int(i)], offset=(50, 50), interval=1)
+                self.appear_then_click(method[int(i)], offset=(20, 20), interval=1)
             logger.info('Input success')
             logger.hr('Factor Check')
             count=0
@@ -327,11 +299,11 @@ class GGScreenshot(ModuleBase):
                     if count >= 3:
                         logger.error('Check more failed,Try default factor will be run')
                         for i in str(200):
-                            self.appear_then_click(method[int(i)], offset=(50, 50), interval=1)
+                            self.appear_then_click(method[int(i)], offset=(20, 20), interval=1)
                         break
                     logger.info('Input again')
                     for i in str(self.factor):
-                        self.appear_then_click(method[int(i)], offset=(50, 50), interval=1)
+                        self.appear_then_click(method[int(i)], offset=(20, 20), interval=1)
         else:
             for _ in range(3):
                 logger.error('Factor illegal')
@@ -342,7 +314,7 @@ class GGScreenshot(ModuleBase):
                           content=f"<{self.config.config_name}> 需要手动介入，输入的倍率不合法，将尝试默认倍率运行")
             logger.hr('Try again')
             for i in str(200):
-                self.appear_then_click(method[int(i)], offset=(50, 50), interval=1)
+                self.appear_then_click(method[int(i)], offset=(20, 20), interval=1)
 
     def _gg_script_run(self):
         logger.hr('Execute')
@@ -353,9 +325,9 @@ class GGScreenshot(ModuleBase):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear_then_click(GG_SCRIPT_START_PROCESS, offset=(50, 50), interval=1):
+            if self.appear_then_click(GG_SCRIPT_START_PROCESS, offset=(20, 20), interval=1):
                 continue
-            if self.appear(GG_SCRIPT_START_CHECK, offset=(50, 50)):
+            if self.appear(GG_SCRIPT_START_CHECK, offset=(20, 20)):
                 break
         logger.info('Waiting for end')
 
@@ -374,23 +346,22 @@ class GGScreenshot(ModuleBase):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear(GG_SEARCH_MODE, offset=(50, 50)) and count != 0:
+            if self.appear(GG_SEARCH_MODE, offset=(20, 20)) and count != 0:
                 return True
-            if self.appear_then_click(GG_SCRIPT_END, offset=(50, 50), interval=1):
+            if self.appear_then_click(GG_SCRIPT_END, offset=(20, 20), interval=1):
                 count += 1
                 continue
             for i in range(len(self.method)):
-                if self.appear(self.method[int(i)], offset=(50, 50), threshold=0.999):
+                if self.appear(self.method[int(i)], offset=(20, 20)):
                     self.device.click(GG_ENTER_POS)
                     break
-            if self.appear_then_click(GG_ERROR_ENTER, offset=(50, 50), interval=1):
+            if self.appear_then_click(GG_ERROR_ENTER, offset=(20, 20), interval=1):
                 logger.hr('GG Restart')
                 self.gg_stop()
                 self.gg_push()
                 self.gg_start()
                 self.enter_gg()
                 self.gg_enter_script()
-                self.gg_mode()
                 self.gg_handle_factor()
                 self._gg_script_run()
                 continue
@@ -428,23 +399,23 @@ class GGScreenshot(ModuleBase):
                 else:
                     self.device.sleep(0.5)
                     self.device.screenshot()
-                if self.appear_then_click(GG_SCRIPT_END, offset=(50, 50), interval=1):
+                if self.appear_then_click(GG_SCRIPT_END, offset=(20, 20), interval=1):
                     continue
-                if self.appear_then_click(GG_SKIP0, offset=(50, 50), interval=1):
+                if self.appear_then_click(GG_SKIP0, offset=(20, 20), interval=1):
                     count += 1
                     continue
-                if self.appear_then_click(GG_SKIP1, offset=(50, 50), interval=1):
+                if self.appear_then_click(GG_SKIP1, offset=(20, 20), interval=1):
                     count += 1
                     continue
-                if self.appear(GG_CHOOSE, offset=(50, 50)):
+                if self.appear(GG_CHOOSE, offset=(20, 20)):
                     self.device.click(GG_EXIT_POS)
                     count += 1
                     continue
-                if self.appear(GG_CONFIRM, offset=(50, 50)):
+                if self.appear(GG_CONFIRM, offset=(20, 20)):
                     self.device.click(GG_EXIT_POS)
                     count += 1
                     continue
-                if self.appear_then_click(GG_START, offset=(50, 50), interval=2):
+                if self.appear_then_click(GG_START, offset=(20, 20)):
                     self.device.sleep(self.gg_wait_time)
                     if not self.device.app_is_running():
                         self.device.app_start()
@@ -454,7 +425,7 @@ class GGScreenshot(ModuleBase):
                     continue
                 if count != 0:
                     for i in range(len(self.method)):
-                        if self.appear(self.method[int(i)], offset=(50, 50)):
+                        if self.appear(self.method[int(i)], offset=(20, 20)):
                             return True
                 if self.get_interval_timer(IDLE, interval=3).reached():
                     if IDLE.match_luma(self.device.image, offset=(5, 5)):
@@ -532,10 +503,8 @@ class GGScreenshot(ModuleBase):
         self.gg_start()
         self.enter_gg()
         self.gg_enter_script()
-        self.gg_mode()
         self.gg_handle_factor()
         self.gg_script_run()
         GGData(self.config).set_data(target='gg_on', value=True)
-        self.skip_error()
         logger.attr('GG', 'Enabled')
         self.gg_stop()
