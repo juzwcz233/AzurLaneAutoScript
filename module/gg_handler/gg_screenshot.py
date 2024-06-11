@@ -374,7 +374,7 @@ class GGScreenshot(ModuleBase):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear(GG_SEARCH_MODE_BUTTON, offset=(50, 50)) and count != 0:
+            if self.appear(GG_SEARCH_MODE, offset=(50, 50)) and count != 0:
                 return True
             if self.appear_then_click(GG_SCRIPT_END, offset=(50, 50), interval=1):
                 count += 1
