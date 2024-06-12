@@ -272,10 +272,7 @@ class GGScreenshot(ModuleBase):
                 if FOLD != None:
                     break
             if self.factor == int(FOLD):
-                logger.hr('Factor Input')
                 logger.info('Skip factor input')
-                logger.hr('Factor Check')
-                logger.info('Skip factor check')
                 return True
             logger.hr('Re: Input')
             logger.info('Factor Reinput')
@@ -399,15 +396,8 @@ class GGScreenshot(ModuleBase):
                 if self.appear_then_click(GG_SKIP1, offset=(20, 20), interval=1):
                     count += 1
                     continue
-                if self.appear(GG_CHOOSE, offset=(20, 20)):
-                    self.device.click(GG_EXIT_POS)
-                    count += 1
-                    continue
-                if self.appear(GG_CONFIRM, offset=(20, 20)):
-                    self.device.click(GG_EXIT_POS)
-                    count += 1
-                    continue
-                if self.appear_then_click(GG_START, offset=(20, 20)):
+                if self.appear(GG_START, offset=(20, 20)) and GG_START.match_appear_on(self.device.image):
+                    self.device.click(GG_START)
                     self.device.sleep(self.gg_wait_time)
                     if not self.device.app_is_running():
                         self.device.app_start()
