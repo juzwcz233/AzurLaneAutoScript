@@ -310,7 +310,7 @@ class GGScreenshot(ModuleBase):
             logger.info('Push success')
 
     def gg_start(self):
-        if (self.gg_action == 'auto' and self.gg_package_name != 'com.') or (self.gg_action == 'manual' and self.gg_package_name != 'com.'):
+        if self.gg_package_name != 'com.':
             logger.hr('GG start')
             self.d.app_start(f'{self.gg_package_name}')
             logger.info(f'GG start: {self.gg_package_name}')
@@ -353,7 +353,7 @@ class GGScreenshot(ModuleBase):
                     continue
 
     def gg_stop(self):
-        if  self.gg_package_name != 'com.':
+        if self.gg_package_name != 'com.':
             logger.hr('GG kill')
             self.d.app_stop(f'{self.gg_package_name}')
             logger.info(f'GG stop: {self.gg_package_name}')
