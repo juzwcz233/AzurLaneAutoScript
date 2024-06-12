@@ -41,23 +41,6 @@ class GGScreenshot(ModuleBase):
             RPG_HOME
             ]
 
-    def skip_error(self):
-        """
-        Page: 
-            in: Game down error
-            out: restart
-        """
-        confirm_timer = Timer(1, count=2).start()
-        while 1:
-            self.device.sleep(0.5)
-            self.device.screenshot()
-            if self.appear(GG_RESTART_ERROR, offset=(20, 20)):
-                self.gg_stop()
-                return True
-            if confirm_timer.reached():
-                self.gg_stop()
-                return True
-
     def _enter_gg(self):
         """
         Page:
@@ -370,7 +353,7 @@ class GGScreenshot(ModuleBase):
                     continue
 
     def gg_stop(self):
-        if (self.gg_action == 'auto' and self.gg_package_name != 'com.') or (self.gg_action == 'manual' and self.gg_package_name != 'com.'):
+        if  self.gg_package_name != 'com.':
             logger.hr('GG kill')
             self.d.app_stop(f'{self.gg_package_name}')
             logger.info(f'GG stop: {self.gg_package_name}')

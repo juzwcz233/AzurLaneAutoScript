@@ -2507,10 +2507,6 @@
       "name": "启用倍率",
       "help": "演习，共斗，Meta时会自动关闭倍率"
     },
-    "GGPopup": {
-      "name": "弹窗处理",
-      "help": "若自行使用GG则应该启用以防弹窗卡重启"
-    },
     "RestartEverytime": {
       "name": "每次启动Alas时重启",
       "help": "强制开启，初始化倍率，防止误操作"
@@ -2536,10 +2532,6 @@
     "GGPackageName": {
       "name": "GG包名",
       "help": "GG安装后请自行前往/Android/data檔案夹查看包名，应是com.一串乱码"
-    },
-    "GGWaitTime": {
-      "name": "GG面板等待时间",
-      "help": "设备越卡，GG面板出现的越晚，需要设置更长的阈值，单位秒。默认为5秒"
     },
     "GGLowLimit": {
       "name": "最低战力阈值",

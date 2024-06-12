@@ -442,14 +442,12 @@ class GeneratedConfig:
 
     # Group `GGHandler`
     GGHandler_Enable = False
-    GGHandler_GGPopup = False
     GGHandler_RestartEverytime = True
     GGHandler_GGMultiplyingFactor = 200
     GGHandler_GGAction = 'auto'  # auto, manual
     GGHandler_GGLuapath = None
     GGHandler_GGLuapathRecord = False
     GGHandler_GGPackageName = 'com.'
-    GGHandler_GGWaitTime = 5
     GGHandler_GGLowLimit = 500
     GGHandler_DisabledTask = 'disable_all_dangerous_task'  # disable_guild_and_dangerous, disable_all_dangerous_task, disable_meta_and_exercise, disable_exercise, enable_all
 

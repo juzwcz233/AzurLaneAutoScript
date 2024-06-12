@@ -738,7 +738,6 @@ GameManager:
   AutoRestart: true
 GGHandler:
   Enable: false
-  GGPopup: false
   RestartEverytime:
     value: true
     display: hide
@@ -755,7 +754,6 @@ GGHandler:
     type: textarea
     mode: yaml
     value: 'com.'
-  GGWaitTime: 5
   GGLowLimit: 500
   DisabledTask:
     value: disable_all_dangerous_task
