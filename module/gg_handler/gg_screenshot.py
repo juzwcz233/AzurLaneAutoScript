@@ -316,7 +316,12 @@ class GGScreenshot(ModuleBase):
             for i in str(200):
                 self.appear_then_click(method[int(i)], offset=(20, 20), interval=1)
 
-    def _gg_script_run(self):
+    def gg_script_run(self):
+        """
+        Page:
+            in: GG factor set
+            out: GG Menu
+        """
         logger.hr('Execute')
         skip_first_screenshot = True
         while 1:
@@ -331,14 +336,6 @@ class GGScreenshot(ModuleBase):
                 break
         logger.info('Waiting for end')
 
-    def gg_script_run(self):
-        """
-        Page:
-            in: GG factor set
-            out: GG Menu
-        """
-        self._gg_script_run()
-        skip_first_screenshot = True
         count = 0
         while 1:
             if skip_first_screenshot:
@@ -351,10 +348,6 @@ class GGScreenshot(ModuleBase):
             if self.appear_then_click(GG_SCRIPT_END, offset=(20, 20), interval=1):
                 count += 1
                 continue
-            for i in range(len(self.method)):
-                if self.appear(self.method[int(i)], offset=(20, 20)):
-                    self.device.click(GG_ENTER_POS)
-                    break
             if self.appear_then_click(GG_ERROR_ENTER, offset=(20, 20), interval=1):
                 logger.hr('GG Restart')
                 self.gg_stop()
@@ -363,7 +356,6 @@ class GGScreenshot(ModuleBase):
                 self.enter_gg()
                 self.gg_enter_script()
                 self.gg_handle_factor()
-                self._gg_script_run()
                 continue
 
     def gg_lua(self):
