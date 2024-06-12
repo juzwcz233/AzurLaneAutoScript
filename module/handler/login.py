@@ -11,7 +11,6 @@ from module.base.timer import Timer
 from module.base.utils import color_similarity_2d, crop, random_rectangle_point
 from module.exception import (GameStuckError, GameTooManyClickError,
                               RequestHumanTakeover)
-from module.gg_handler.gg_handler import (GGHandler, GGScreenshot)
 from module.handler.assets import *
 from module.logger import logger
 from module.map.assets import *
@@ -27,6 +26,7 @@ class LoginHandler(UI):
             in: Any page
             out: page_main
         """
+        from module.gg_handler.gg_handler import GGHandler
         GGHandler(config=self.config, device=self.device).handle_restart()
         logger.hr('Game login')
 
@@ -157,6 +157,7 @@ class LoginHandler(UI):
     def app_restart(self):
         logger.hr('Game restart')
         self.device.app_stop()
+        from module.gg_handler.gg_handler import GGScreenshot
         GGScreenshot(config=self.config, device=self.device).gg_stop()
         self.device.sleep(2)
         self.device.app_start()
