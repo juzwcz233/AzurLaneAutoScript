@@ -24,7 +24,6 @@ class GGScreenshot(ModuleBase):
         self.device = device
         self.config = config
         self.d = u2.connect_usb(self.device.serial)
-        self.gg_wait_time = self.config.cross_get('GameManager.GGHandler.GGWaitTime')
         self.gg_package_name = self.config.cross_get('GameManager.GGHandler.GGPackageName')
         self.gg_action = self.config.cross_get('GameManager.GGHandler.GGAction')
         self.path = self.config.cross_get('GameManager.GGHandler.GGLuapath')
@@ -48,10 +47,6 @@ class GGScreenshot(ModuleBase):
             in: Game down error
             out: restart
         """
-        logger.attr('Confirm Time', f'{self.gg_wait_time}s')
-        self.device.sleep(self.gg_wait_time)
-        self.device.screenshot()
-
         skip_first_screenshot = True
         while 1:
             if skip_first_screenshot:
@@ -59,47 +54,8 @@ class GGScreenshot(ModuleBase):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear_then_click(GG_SCRIPT_END, offset=(20, 20), interval=1):
-                logger.info('Close previous script')
-                continue
-            if self.appear_then_click(GG_SCRIPT_FATAL, offset=(20, 20), interval=1):
-                logger.info('Restart previous script')
-                continue
-            if self.appear_then_click(GG_APP_CHOOSE, offset=(20, 20), interval=1):
-                logger.info('APP Choose')
-                continue
-            if self.appear_then_click(GG_APP_CHOOSE1, offset=(20, 20), interval=1):
-                logger.info('APP Choose')
-                continue
-            if self.appear(GG_RESTART_ERROR, offset=(20, 20), interval=1):
-                logger.hr('Game died with GG panel')
-                logger.info('Close GG restart error')
+            if self.appear(GG_RESTART_ERROR, offset=(20, 20)):
                 self.gg_stop()
-                continue
-            if self.appear(GG_SCRIPT_MENU_A, offset=(20, 20), interval=1):
-                logger.info('Close previous script')
-                self.device.click(GG_EXIT_POS)
-                continue
-            if self.appear(GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.999):
-                logger.info('At GG main panel, click GG exit')
-                self.device.click(GG_EXIT_POS)
-                continue
-            if self.appear_then_click(GG_ERROR_ENTER, offset=(20, 20), interval=1):
-                continue
-            if self.appear(GG_CONFIRM, offset=(20, 20)) and not self.appear(GG_CONFIRM, offset=(10, 10)):
-                logger.info('Enter search mode')
-                self.device.click(GG_TAB_SEARCH_POS)
-                continue
-            if self.appear(GG_CONFIRM, offset=(10, 10)):
-                logger.info('Unexpected GG page, Try GG exit')
-                self.device.click(GG_EXIT_POS)
-                continue
-            if not self.appear(GG_CONFIRM, offset=(20, 20)):
-                logger.hr('GG Panel Disappearance Confirmed')
-                if not self.device.app_is_running():
-                    self.device.app_start()
-                else:
-                    logger.info('Game is already running')
                 return True
 
     def _enter_gg(self):
