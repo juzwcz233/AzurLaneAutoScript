@@ -116,18 +116,13 @@ class GGScreenshot(ModuleBase):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if (self.appear(LOGIN_CHECK, offset=(30, 30)) and LOGIN_CHECK.match_appear_on(self.device.image)) \
-                or self.appear(LOGIN_GAME_UPDATE, offset=(30, 30)):
-                    if self._handle_app_login():
-                        continue
-            if self.appear_then_click(LOGIN_ANNOUNCE, offset=(30, 30), interval=5):
-                continue
             if self.appear(GG_CONFIRM, offset=(20, 20)):
                 logger.hr('Enter GG')
                 logger.info('Entered GG')
                 return True
             if appear:
-                self.device.click(GG_ENTER_POS)
+                if self.appear(self.method[int(i)], offset=(20, 20)):
+                    self.device.click(GG_ENTER_POS)
             else:
                 for i in range(len(self.method)):
                     if self.appear(self.method[int(i)], offset=(20, 20)):
@@ -398,14 +393,9 @@ class GGScreenshot(ModuleBase):
                     continue
                 if self.appear(GG_START, offset=(20, 20)) and GG_START.match_appear_on(self.device.image):
                     self.device.click(GG_START)
-                    self.device.sleep(self.gg_wait_time)
-                    if not self.device.app_is_running():
-                        self.device.app_start()
-                    else:
-                        logger.info('Game is already running')
-                    count += 1
+                    count += 2
                     continue
-                if count != 0:
+                if count >= 2 and not self.appear(GG_START, offset=(20, 20)):
                     for i in range(len(self.method)):
                         if self.appear(self.method[int(i)], offset=(20, 20)):
                             return True
