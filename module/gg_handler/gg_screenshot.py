@@ -47,6 +47,7 @@ class GGScreenshot(ModuleBase):
             in: Game down error
             out: restart
         """
+        confirm_timer = Timer(1, count=1.5).start()
         skip_first_screenshot = True
         while 1:
             if skip_first_screenshot:
@@ -56,6 +57,8 @@ class GGScreenshot(ModuleBase):
                 self.device.screenshot()
             if self.appear(GG_RESTART_ERROR, offset=(20, 20)):
                 self.gg_stop()
+                return True
+            if confirm_timer.reached():
                 return True
 
     def _enter_gg(self):
