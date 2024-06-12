@@ -21,8 +21,8 @@ class GGScreenshot(ModuleBase):
 
     def __init__(self, config, device):
         super().__init__(config, device)
-        self.device = device
         self.config = config
+        self.device = device
         self.d = u2.connect_usb(self.device.serial)
         self.gg_package_name = self.config.cross_get('GameManager.GGHandler.GGPackageName')
         self.gg_action = self.config.cross_get('GameManager.GGHandler.GGAction')
@@ -47,18 +47,15 @@ class GGScreenshot(ModuleBase):
             in: Game down error
             out: restart
         """
-        confirm_timer = Timer(1, count=1.5).start()
-        skip_first_screenshot = True
+        confirm_timer = Timer(1, count=2).start()
         while 1:
-            if skip_first_screenshot:
-                skip_first_screenshot = False
-            else:
-                self.device.sleep(0.5)
-                self.device.screenshot()
+            self.device.sleep(0.5)
+            self.device.screenshot()
             if self.appear(GG_RESTART_ERROR, offset=(20, 20)):
                 self.gg_stop()
                 return True
             if confirm_timer.reached():
+                self.gg_stop()
                 return True
 
     def _enter_gg(self):
