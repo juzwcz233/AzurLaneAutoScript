@@ -157,13 +157,10 @@ class LoginHandler(UI):
     def app_restart(self):
         logger.hr('Game restart')
         self.device.app_stop()
-        self.device.sleep(2)
-        gg_popup = self.config.cross_get('GameManager.GGHandler.GGPopup', default=True)
         from module.gg_handler.gg_handler import GGScreenshot
-        if gg_popup:
-            GGScreenshot(config=self.config, device=self.device).skip_error()
-        else:
-            self.device.app_start()
+        GGScreenshot(config=self.config, device=self.device).gg_stop()
+        self.device.sleep(2)
+        self.device.app_start()
         self.handle_app_login()
         # self.ensure_no_unfinished_campaign()
         self.config.task_delay(server_update=True)

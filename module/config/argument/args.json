@@ -10288,10 +10288,6 @@
         "type": "checkbox",
         "value": false
       },
-      "GGPopup": {
-        "type": "checkbox",
-        "value": false
-      },
       "RestartEverytime": {
         "type": "checkbox",
         "value": true,
@@ -10322,10 +10318,6 @@
         "type": "textarea",
         "value": "com.",
         "mode": "yaml"
-      },
-      "GGWaitTime": {
-        "type": "input",
-        "value": 5
       },
       "GGLowLimit": {
         "type": "input",

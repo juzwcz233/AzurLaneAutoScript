@@ -21,10 +21,9 @@ class GGScreenshot(ModuleBase):
 
     def __init__(self, config, device):
         super().__init__(config, device)
-        self.device = device
         self.config = config
+        self.device = device
         self.d = u2.connect_usb(self.device.serial)
-        self.gg_wait_time = self.config.cross_get('GameManager.GGHandler.GGWaitTime')
         self.gg_package_name = self.config.cross_get('GameManager.GGHandler.GGPackageName')
         self.gg_action = self.config.cross_get('GameManager.GGHandler.GGAction')
         self.path = self.config.cross_get('GameManager.GGHandler.GGLuapath')
@@ -42,66 +41,6 @@ class GGScreenshot(ModuleBase):
             RPG_HOME
             ]
 
-    def skip_error(self):
-        """
-        Page: 
-            in: Game down error
-            out: restart
-        """
-        logger.attr('Confirm Time', f'{self.gg_wait_time}s')
-        self.device.sleep(self.gg_wait_time)
-        self.device.screenshot()
-
-        skip_first_screenshot = True
-        while 1:
-            if skip_first_screenshot:
-                skip_first_screenshot = False
-            else:
-                self.device.sleep(0.5)
-                self.device.screenshot()
-            if self.appear_then_click(GG_SCRIPT_END, offset=(20, 20), interval=1):
-                logger.info('Close previous script')
-                continue
-            if self.appear_then_click(GG_SCRIPT_FATAL, offset=(20, 20), interval=1):
-                logger.info('Restart previous script')
-                continue
-            if self.appear_then_click(GG_APP_CHOOSE, offset=(20, 20), interval=1):
-                logger.info('APP Choose')
-                continue
-            if self.appear_then_click(GG_APP_CHOOSE1, offset=(20, 20), interval=1):
-                logger.info('APP Choose')
-                continue
-            if self.appear(GG_RESTART_ERROR, offset=(20, 20), interval=1):
-                logger.hr('Game died with GG panel')
-                logger.info('Close GG restart error')
-                self.gg_stop()
-                continue
-            if self.appear(GG_SCRIPT_MENU_A, offset=(20, 20), interval=1):
-                logger.info('Close previous script')
-                self.device.click(GG_EXIT_POS)
-                continue
-            if self.appear(GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.999):
-                logger.info('At GG main panel, click GG exit')
-                self.device.click(GG_EXIT_POS)
-                continue
-            if self.appear_then_click(GG_ERROR_ENTER, offset=(20, 20), interval=1):
-                continue
-            if self.appear(GG_CONFIRM, offset=(20, 20)) and not self.appear(GG_CONFIRM, offset=(10, 10)):
-                logger.info('Enter search mode')
-                self.device.click(GG_TAB_SEARCH_POS)
-                continue
-            if self.appear(GG_CONFIRM, offset=(10, 10)):
-                logger.info('Unexpected GG page, Try GG exit')
-                self.device.click(GG_EXIT_POS)
-                continue
-            if not self.appear(GG_CONFIRM, offset=(20, 20)):
-                logger.hr('GG Panel Disappearance Confirmed')
-                if not self.device.app_is_running():
-                    self.device.app_start()
-                else:
-                    logger.info('Game is already running')
-                return True
-
     def _enter_gg(self):
         """
         Page:
@@ -116,18 +55,13 @@ class GGScreenshot(ModuleBase):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if (self.appear(LOGIN_CHECK, offset=(30, 30)) and LOGIN_CHECK.match_appear_on(self.device.image)) \
-                or self.appear(LOGIN_GAME_UPDATE, offset=(30, 30)):
-                    if self._handle_app_login():
-                        continue
-            if self.appear_then_click(LOGIN_ANNOUNCE, offset=(30, 30), interval=5):
-                continue
             if self.appear(GG_CONFIRM, offset=(20, 20)):
                 logger.hr('Enter GG')
                 logger.info('Entered GG')
                 return True
             if appear:
-                self.device.click(GG_ENTER_POS)
+                if self.appear(self.method[int(i)], offset=(20, 20)):
+                    self.device.click(GG_ENTER_POS)
             else:
                 for i in range(len(self.method)):
                     if self.appear(self.method[int(i)], offset=(20, 20)):
@@ -376,7 +310,7 @@ class GGScreenshot(ModuleBase):
             logger.info('Push success')
 
     def gg_start(self):
-        if (self.gg_action == 'auto' and self.gg_package_name != 'com.') or (self.gg_action == 'manual' and self.gg_package_name != 'com.'):
+        if self.gg_package_name != 'com.':
             logger.hr('GG start')
             self.d.app_start(f'{self.gg_package_name}')
             logger.info(f'GG start: {self.gg_package_name}')
@@ -398,14 +332,9 @@ class GGScreenshot(ModuleBase):
                     continue
                 if self.appear(GG_START, offset=(20, 20)) and GG_START.match_appear_on(self.device.image):
                     self.device.click(GG_START)
-                    self.device.sleep(self.gg_wait_time)
-                    if not self.device.app_is_running():
-                        self.device.app_start()
-                    else:
-                        logger.info('Game is already running')
-                    count += 1
+                    count += 2
                     continue
-                if count != 0:
+                if count >= 2 and not self.appear(GG_START, offset=(20, 20)):
                     for i in range(len(self.method)):
                         if self.appear(self.method[int(i)], offset=(20, 20)):
                             return True
@@ -424,7 +353,7 @@ class GGScreenshot(ModuleBase):
                     continue
 
     def gg_stop(self):
-        if (self.gg_action == 'auto' and self.gg_package_name != 'com.') or (self.gg_action == 'manual' and self.gg_package_name != 'com.'):
+        if self.gg_package_name != 'com.':
             logger.hr('GG kill')
             self.d.app_stop(f'{self.gg_package_name}')
             logger.info(f'GG stop: {self.gg_package_name}')
