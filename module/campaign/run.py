@@ -112,14 +112,11 @@ class CampaignRun(CampaignEvent, ShopStatus):
                 return True
         # Main_Hard limit
         if self.config.Scheduler_Command == "MainHard":
-            runcount = self.get_main_hard()
-            self.config.cross_set('MainHard.StopCondition.RunCount', runcount)
-            if self.config.StopCondition_RunCount == 0:
+            if self.get_main_hard() == 0:
                 self.config.cross_set('MainHard.StopCondition.RunCount', 3)
                 self.config.Scheduler_Enable = True
                 self.config.task_delay(server_update=True)
-                self.config.task_stop()
-            return True
+                return True
         # Auto search oil limit
         if self.campaign.auto_search_oil_limit_triggered:
             logger.hr('Triggered stop condition: Auto search oil limit')
@@ -390,8 +387,7 @@ class CampaignRun(CampaignEvent, ShopStatus):
 
             # if in hard mode, check remain times
             if self.ui_page_appear(page_campaign) and MODE_SWITCH_1.get(main=self) == 'normal':
-                from module.hard.hard import OCR_HARD_REMAIN
-                remain = OCR_HARD_REMAIN.ocr(self.device.image)
+                remain = self.get_main_hard()
                 if not remain:
                     logger.info('Remaining number of times of hard mode campaign_main is 0, delay task to next day')
                     self.config.task_delay(server_update=True)
