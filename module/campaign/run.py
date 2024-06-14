@@ -76,11 +76,12 @@ class CampaignRun(CampaignEvent, ShopStatus):
         # Run count limit
         if self.run_limit and self.config.StopCondition_RunCount <= 0:
             logger.hr('Triggered stop condition: Run count')
-            self.config.StopCondition_RunCount = 0
             if self.config.Scheduler_Command == "MainHard":
+                self.config.StopCondition_RunCount = 3
                 self.config.Scheduler_Enable = True
                 self.config.task_delay(server_update=True)
             else:
+                self.config.StopCondition_RunCount = 0
                 self.config.Scheduler_Enable = False
             handle_notify(
                 self.config.Error_OnePushConfig,
@@ -113,7 +114,7 @@ class CampaignRun(CampaignEvent, ShopStatus):
         if self.config.Scheduler_Command == "MainHard":
             self.config.StopCondition_RunCount = self.get_main_hard()
             if self.config.StopCondition_RunCount <= 0:
-                self.config.StopCondition_RunCount = 0
+                self.config.StopCondition_RunCount = 3
                 self.config.Scheduler_Enable = True
                 self.config.task_delay(server_update=True)
                 return True
