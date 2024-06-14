@@ -112,8 +112,9 @@ class CampaignRun(CampaignEvent, ShopStatus):
                 return True
         # Main_Hard limit
         if self.config.Scheduler_Command == "MainHard":
-            self.config.StopCondition_RunCount = self.get_main_hard()
-            if self.config.StopCondition_RunCount <= 0:
+            from module.hard.hard import OCR_HARD_REMAIN
+            count = OCR_HARD_REMAIN.ocr(self.device.image)
+            if count <= 0:
                 self.config.StopCondition_RunCount = 3
                 self.config.Scheduler_Enable = True
                 self.config.task_delay(server_update=True)

@@ -153,31 +153,6 @@ class CampaignStatus(UI):
 
         return ocr.ocr(self.device.image)
 
-    def get_main_hard(self, skip_first_screenshot=True):
-        """
-        Returns:
-            int: main_hard amount
-        """
-        amount = 0
-        timeout = Timer(1, count=2).start()
-        while 1:
-            if skip_first_screenshot:
-                skip_first_screenshot = False
-            else:
-                self.device.screenshot()
-
-            if timeout.reached():
-                if amount == 0:
-                    return amount
-                else:
-                    logger.warning('Get main_hard timeout')
-
-            amount = OCR_HARD_REMAIN.ocr(self.device.image)
-            if amount >= 1:
-                break
-
-        return amount
-
     def is_balancer_task(self):
         """
         Returns:
