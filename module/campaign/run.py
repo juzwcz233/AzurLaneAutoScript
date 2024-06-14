@@ -112,7 +112,9 @@ class CampaignRun(CampaignEvent, ShopStatus):
                 return True
         # Main_Hard limit
         if self.config.Scheduler_Command == "MainHard":
-            if self.get_main_hard() == 0:
+            count = self.get_main_hard()
+            self.config.cross_set('MainHard.StopCondition.RunCount', count)
+            if self.config.StopCondition_RunCount == 0:
                 self.config.cross_set('MainHard.StopCondition.RunCount', 3)
                 self.config.Scheduler_Enable = True
                 self.config.task_delay(server_update=True)
