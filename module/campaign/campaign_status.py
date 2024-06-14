@@ -167,8 +167,10 @@ class CampaignStatus(UI):
                 self.device.screenshot()
 
             if timeout.reached():
-                logger.warning('Get main_hard timeout')
-                break
+                if amount == 0:
+                    return amount
+                else:
+                    logger.warning('Get main_hard timeout')
 
             amount = OCR_HARD_REMAIN.ocr(self.device.image)
             if amount >= 1:

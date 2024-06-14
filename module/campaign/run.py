@@ -76,12 +76,11 @@ class CampaignRun(CampaignEvent, ShopStatus):
         # Run count limit
         if self.run_limit and self.config.StopCondition_RunCount <= 0:
             logger.hr('Triggered stop condition: Run count')
+            self.config.StopCondition_RunCount = 0
             if self.config.Scheduler_Command == "MainHard":
-                self.config.StopCondition_RunCount = 3
                 self.config.Scheduler_Enable = True
                 self.config.task_delay(server_update=True)
             else:
-                self.config.StopCondition_RunCount = 0
                 self.config.Scheduler_Enable = False
             handle_notify(
                 self.config.Error_OnePushConfig,
@@ -112,10 +111,9 @@ class CampaignRun(CampaignEvent, ShopStatus):
                 return True
         # Main_Hard limit
         if self.config.Scheduler_Command == "MainHard":
-            count = self.get_main_hard()
-            self.config.cross_set('MainHard.StopCondition.RunCount', count)
-            if self.config.StopCondition_RunCount == 0:
-                self.config.cross_set('MainHard.StopCondition.RunCount', 3)
+            self.config.StopCondition_RunCount = self.get_main_hard()
+            if self.config.StopCondition_RunCount <= 0:
+                self.config.StopCondition_RunCount = 0
                 self.config.Scheduler_Enable = True
                 self.config.task_delay(server_update=True)
                 return True
@@ -389,7 +387,8 @@ class CampaignRun(CampaignEvent, ShopStatus):
 
             # if in hard mode, check remain times
             if self.ui_page_appear(page_campaign) and MODE_SWITCH_1.get(main=self) == 'normal':
-                remain = self.get_main_hard()
+                from module.hard.hard import OCR_HARD_REMAIN
+                remain = OCR_HARD_REMAIN.ocr(self.device.image)
                 if not remain:
                     logger.info('Remaining number of times of hard mode campaign_main is 0, delay task to next day')
                     self.config.task_delay(server_update=True)
