@@ -105,8 +105,7 @@ class CampaignRun(CampaignEvent, ShopStatus):
             self.status_get_gems()
             # Coin limit
             self.get_coin()
-            _oil = self.get_oil()
-            if _oil < max(500, self.config.StopCondition_OilLimit):
+            if self.get_oil() < max(500, self.config.StopCondition_OilLimit):
                 logger.hr('Triggered stop condition: Oil limit')
                 self.config.task_delay(minute=(120, 240))
                 return True
