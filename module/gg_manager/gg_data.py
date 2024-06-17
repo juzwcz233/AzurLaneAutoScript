@@ -7,7 +7,6 @@ class GGData(ModuleBase):
         self.config = config
         self.ggdata = {
             'name': self.config.config_name,
-            'gg_enable': self.config.cross_get('GGManager.GGManager.Enable', default=False),
             'gg_restart': self.config.cross_get('GGManager.GGManager.RestartEverytime', default=True),
             'gg_on': False
         }
