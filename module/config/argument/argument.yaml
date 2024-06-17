@@ -144,27 +144,6 @@ OldRetire:
 
 # ==================== Farm ====================
 
-GemsFarming:
-  ChangeFlagship:
-    value: ship
-    option: [ ship, ship_equip ]
-  CommonCV:
-    value: any
-    option: [ any, langley, bogue, ranger, hermes ]
-  ChangeVanguard:
-    value: ship
-    option: [ disabled, ship, ship_equip ]
-  CommonDD:
-    value: any
-    option: [ any, aulick_or_foote , cassin_or_downes ]
-  CommissionLimit: true
-Sos:
-  Chapter:
-    value: 3
-    option: [ 3, 4, 5, 6, 7, 8, 9, 10 ]
-
-# ==================== Main ====================
-
 Campaign:
   Name: 12-4
   Event:
@@ -285,6 +264,20 @@ C124LargeLeveling:
   PickupAmmo:
     value: 3
     option: [ 3, 4, 5 ]
+GemsFarming:
+  ChangeFlagship:
+    value: ship
+    option: [ ship, ship_equip ]
+  CommonCV:
+    value: any
+    option: [ any, langley, bogue, ranger, hermes ]
+  ChangeVanguard:
+    value: ship
+    option: [ disabled, ship, ship_equip ]
+  CommonDD:
+    value: any
+    option: [ any, aulick_or_foote , cassin_or_downes ]
+  CommissionLimit: true
 
 # ==================== Event ====================
 
@@ -621,9 +614,9 @@ Daily:
     option: [ 1, 2, 3, 4, 5, 6 ]
 Hard:
   HardStage: 11-4
-  # HardFleet:
-  #   value: 1
-  #   option: [ 1, 2 ]
+  HardFleet:
+    value: 1
+    option: [ 1, 2 ]
 Exercise:
   OpponentChooseMode:
     value: max_exp
@@ -636,6 +629,10 @@ Exercise:
   LowHpConfirmWait: 0.1
   OpponentRefreshValue: 0
   OpponentRefreshRecord: 2023-01-01 00:00:00
+Sos:
+  Chapter:
+    value: 3
+    option: [ 3, 4, 5, 6, 7, 8, 9, 10 ]
 
 # ==================== Opsi ====================
 

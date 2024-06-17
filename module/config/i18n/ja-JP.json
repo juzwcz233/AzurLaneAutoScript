@@ -658,63 +658,6 @@
       "retire_10": "retire_10"
     }
   },
-  "GemsFarming": {
-    "_info": {
-      "name": "GemsFarming._info.name",
-      "help": "GemsFarming._info.help"
-    },
-    "ChangeFlagship": {
-      "name": "GemsFarming.ChangeFlagship.name",
-      "help": "GemsFarming.ChangeFlagship.help",
-      "ship": "ship",
-      "ship_equip": "ship_equip"
-    },
-    "CommonCV": {
-      "name": "GemsFarming.CommonCV.name",
-      "help": "GemsFarming.CommonCV.help",
-      "any": "any",
-      "langley": "langley",
-      "bogue": "bogue",
-      "ranger": "ranger",
-      "hermes": "hermes"
-    },
-    "ChangeVanguard": {
-      "name": "GemsFarming.ChangeVanguard.name",
-      "help": "GemsFarming.ChangeVanguard.help",
-      "disabled": "disabled",
-      "ship": "ship",
-      "ship_equip": "ship_equip"
-    },
-    "CommonDD": {
-      "name": "GemsFarming.CommonDD.name",
-      "help": "GemsFarming.CommonDD.help",
-      "any": "any",
-      "aulick_or_foote": "aulick or foote",
-      "cassin_or_downes": "cassin or downes"
-    },
-    "CommissionLimit": {
-      "name": "GemsFarming.CommissionLimit.name",
-      "help": "GemsFarming.CommissionLimit.help"
-    }
-  },
-  "Sos": {
-    "_info": {
-      "name": "Sos._info.name",
-      "help": "Sos._info.help"
-    },
-    "Chapter": {
-      "name": "Sos.Chapter.name",
-      "help": "Sos.Chapter.help",
-      "3": "3",
-      "4": "4",
-      "5": "5",
-      "6": "6",
-      "7": "7",
-      "8": "8",
-      "9": "9",
-      "10": "10"
-    }
-  },
   "Campaign": {
     "_info": {
       "name": "Campaign._info.name",
@@ -1191,6 +1134,45 @@
       "3": "3",
       "4": "4",
       "5": "5"
+    }
+  },
+  "GemsFarming": {
+    "_info": {
+      "name": "GemsFarming._info.name",
+      "help": "GemsFarming._info.help"
+    },
+    "ChangeFlagship": {
+      "name": "GemsFarming.ChangeFlagship.name",
+      "help": "GemsFarming.ChangeFlagship.help",
+      "ship": "ship",
+      "ship_equip": "ship_equip"
+    },
+    "CommonCV": {
+      "name": "GemsFarming.CommonCV.name",
+      "help": "GemsFarming.CommonCV.help",
+      "any": "any",
+      "langley": "langley",
+      "bogue": "bogue",
+      "ranger": "ranger",
+      "hermes": "hermes"
+    },
+    "ChangeVanguard": {
+      "name": "GemsFarming.ChangeVanguard.name",
+      "help": "GemsFarming.ChangeVanguard.help",
+      "disabled": "disabled",
+      "ship": "ship",
+      "ship_equip": "ship_equip"
+    },
+    "CommonDD": {
+      "name": "GemsFarming.CommonDD.name",
+      "help": "GemsFarming.CommonDD.help",
+      "any": "any",
+      "aulick_or_foote": "aulick or foote",
+      "cassin_or_downes": "cassin or downes"
+    },
+    "CommissionLimit": {
+      "name": "GemsFarming.CommissionLimit.name",
+      "help": "GemsFarming.CommissionLimit.help"
     }
   },
   "EventGeneral": {
@@ -2129,6 +2111,12 @@
     "HardStage": {
       "name": "Hard.HardStage.name",
       "help": "Hard.HardStage.help"
+    },
+    "HardFleet": {
+      "name": "Hard.HardFleet.name",
+      "help": "Hard.HardFleet.help",
+      "1": "1",
+      "2": "2"
     }
   },
   "Exercise": {
@@ -2175,6 +2163,24 @@
     "OpponentRefreshRecord": {
       "name": "Exercise.OpponentRefreshRecord.name",
       "help": "Exercise.OpponentRefreshRecord.help"
+    }
+  },
+  "Sos": {
+    "_info": {
+      "name": "Sos._info.name",
+      "help": "Sos._info.help"
+    },
+    "Chapter": {
+      "name": "Sos.Chapter.name",
+      "help": "Sos.Chapter.help",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "10"
     }
   },
   "OpsiAshAssist": {

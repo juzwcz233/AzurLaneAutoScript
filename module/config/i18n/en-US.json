@@ -658,63 +658,6 @@
       "retire_10": "Retire 10"
     }
   },
-  "GemsFarming": {
-    "_info": {
-      "name": "Commission Farming Settings",
-      "help": "Warning: This task allows players to get a small amount of gems, but not an efficient way to farm.\nPlayers who have recently started Azur Lane are easily superstitious about 0LB and low oil consumption, while being ignorant about character leveling.\nRunning this function will only make you feel fulfilled however in reality your account will not actually progress very much.\nThe main purpose of this task is to get extra cubes for players with a formed lineup. Please rationally treat gems as a by-product.\n\nFleet 1 is expected to consist of 1 0LB CV/CVL and 1 0LB Vanguard, Fleet 2 is expected to consist of support ships such as New Jersey or Shinano to provide external battle assistance.\nFor information about the drop mechanism/rate of urgent commissions, you can refer to <https://bbs.nga.cn/read.php?tid=27134956> (in Chinese Simplified)"
-    },
-    "ChangeFlagship": {
-      "name": "Change Flagship",
-      "help": "Change flagship if flagship level >= 32 or either flagship or vanguard are emotion exhausted (if Change Vanguard is enabled). If you choose not to change, your fleet will ignore the low emotion warning and continue combat.\nSwitch out to new common CV/CVL whose level is in range of 1 to 31, after current has reached level 32+. Meanwhile, abandoned flagships will be retired. Any common CV/CVL whose level is 2+ will be regarded as targets. Do confirm that your own ships which is not a target has been locked\n\nThe flagship's equipment is replaced when being switched out by first recording the current setup\nOnly populated equipment slots will be replaced. If the CV/CVL preference has been configured, all 5 slots will be populated otherwise only the auxiliary slots will be populated.",
-      "ship": "Change Ship",
-      "ship_equip": "Change Ship + Gears"
-    },
-    "CommonCV": {
-      "name": "Flagship Common CV/CVL Preference",
-      "help": "",
-      "any": "any",
-      "langley": "langley",
-      "bogue": "bogue",
-      "ranger": "ranger",
-      "hermes": "hermes"
-    },
-    "ChangeVanguard": {
-      "name": "Change Vanguard",
-      "help": "Change vanguard if flagship or vanguard are emotion exhausted.If you choose not to change, your fleet will ignore the low emotion warning and continue combat.\nSwitch out to new level 100(70) common vanguard after current flagship has reached level 32+ (Only CN players'0 limit break ship can reach level 100)\n\nThe vanguard's equipment is replaced when being switched out by first recording the current setup. Only populated equipment slots will be replaced.",
-      "disabled": "Don't Change",
-      "ship": "Change Ship",
-      "ship_equip": "Change Ship + Gears"
-    },
-    "CommonDD": {
-      "name": "Flagship Common DD Preference",
-      "help": "",
-      "any": "any",
-      "aulick_or_foote": "aulick or foote",
-      "cassin_or_downes": "cassin or downes"
-    },
-    "CommissionLimit": {
-      "name": "Prevent Too Many Urgent Commissions",
-      "help": "When running 7x24, prevent having a lot of urgent commissions and not being able to complete daily commissions. It is recommended to select only short-terms and high-yields in the commission filter"
-    }
-  },
-  "Sos": {
-    "_info": {
-      "name": "SOS Settings",
-      "help": ""
-    },
-    "Chapter": {
-      "name": "SOS Chapter",
-      "help": "",
-      "3": "3",
-      "4": "4",
-      "5": "5",
-      "6": "6",
-      "7": "7",
-      "8": "8",
-      "9": "9",
-      "10": "10"
-    }
-  },
   "Campaign": {
     "_info": {
       "name": "Level Settings",
@@ -1191,6 +1134,45 @@
       "3": "3",
       "4": "4",
       "5": "5"
+    }
+  },
+  "GemsFarming": {
+    "_info": {
+      "name": "Commission Farming Settings",
+      "help": "Warning: This task allows players to get a small amount of gems, but not an efficient way to farm.\nPlayers who have recently started Azur Lane are easily superstitious about 0LB and low oil consumption, while being ignorant about character leveling.\nRunning this function will only make you feel fulfilled however in reality your account will not actually progress very much.\nThe main purpose of this task is to get extra cubes for players with a formed lineup. Please rationally treat gems as a by-product.\n\nFleet 1 is expected to consist of 1 0LB CV/CVL and 1 0LB Vanguard, Fleet 2 is expected to consist of support ships such as New Jersey or Shinano to provide external battle assistance.\nFor information about the drop mechanism/rate of urgent commissions, you can refer to <https://bbs.nga.cn/read.php?tid=27134956> (in Chinese Simplified)"
+    },
+    "ChangeFlagship": {
+      "name": "Change Flagship",
+      "help": "Change flagship if flagship level >= 32 or either flagship or vanguard are emotion exhausted (if Change Vanguard is enabled). If you choose not to change, your fleet will ignore the low emotion warning and continue combat.\nSwitch out to new common CV/CVL whose level is in range of 1 to 31, after current has reached level 32+. Meanwhile, abandoned flagships will be retired. Any common CV/CVL whose level is 2+ will be regarded as targets. Do confirm that your own ships which is not a target has been locked\n\nThe flagship's equipment is replaced when being switched out by first recording the current setup\nOnly populated equipment slots will be replaced. If the CV/CVL preference has been configured, all 5 slots will be populated otherwise only the auxiliary slots will be populated.",
+      "ship": "Change Ship",
+      "ship_equip": "Change Ship + Gears"
+    },
+    "CommonCV": {
+      "name": "Flagship Common CV/CVL Preference",
+      "help": "",
+      "any": "any",
+      "langley": "langley",
+      "bogue": "bogue",
+      "ranger": "ranger",
+      "hermes": "hermes"
+    },
+    "ChangeVanguard": {
+      "name": "Change Vanguard",
+      "help": "Change vanguard if flagship or vanguard are emotion exhausted.If you choose not to change, your fleet will ignore the low emotion warning and continue combat.\nSwitch out to new level 100(70) common vanguard after current flagship has reached level 32+ (Only CN players'0 limit break ship can reach level 100)\n\nThe vanguard's equipment is replaced when being switched out by first recording the current setup. Only populated equipment slots will be replaced.",
+      "disabled": "Don't Change",
+      "ship": "Change Ship",
+      "ship_equip": "Change Ship + Gears"
+    },
+    "CommonDD": {
+      "name": "Flagship Common DD Preference",
+      "help": "",
+      "any": "any",
+      "aulick_or_foote": "aulick or foote",
+      "cassin_or_downes": "cassin or downes"
+    },
+    "CommissionLimit": {
+      "name": "Prevent Too Many Urgent Commissions",
+      "help": "When running 7x24, prevent having a lot of urgent commissions and not being able to complete daily commissions. It is recommended to select only short-terms and high-yields in the commission filter"
     }
   },
   "EventGeneral": {
@@ -2129,6 +2111,12 @@
     "HardStage": {
       "name": "Hard Stage",
       "help": "11-4, 12-2, 12-4, and etc."
+    },
+    "HardFleet": {
+      "name": "Hard.HardFleet.name",
+      "help": "Hard.HardFleet.help",
+      "1": "1",
+      "2": "2"
     }
   },
   "Exercise": {
@@ -2175,6 +2163,24 @@
     "OpponentRefreshRecord": {
       "name": "Last Refresh Record",
       "help": ""
+    }
+  },
+  "Sos": {
+    "_info": {
+      "name": "SOS Settings",
+      "help": ""
+    },
+    "Chapter": {
+      "name": "SOS Chapter",
+      "help": "",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "10"
     }
   },
   "OpsiAshAssist": {
