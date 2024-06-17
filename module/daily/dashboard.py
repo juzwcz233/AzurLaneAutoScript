@@ -26,7 +26,6 @@ class DashboardUpdate(DashboardStatus):
             logger.warning('Event is already closed')
             logger.attr('Event_PT', pt)
             LogRes(self.config).Pt = pt
-            self.config.update()
         else:
             while 1:
                 self.device.click(button=CAMPAIGN_MENU_NO_EVENT)
@@ -39,14 +38,12 @@ class DashboardUpdate(DashboardStatus):
                 if self.appear(button=SP_CHECK, offset=(50, 50)):
                     logger.warning('Event is SP, no PT')
                     LogRes(self.config).Pt = pt
-                    self.config.update()
                     return 1
                 if not self.appear(button=EVENT_CHECK, offset=(50, 50)) and \
                     not self.appear(button=RAID_CHECK, offset=(50, 50)) and \
                     not self.appear(button=SP_CHECK, offset=(50, 50)):
                     logger.warning('Event is no PT')
                     LogRes(self.config).Pt = pt
-                    self.config.update()
                     return 1
             
             skip_first_screenshot = True
