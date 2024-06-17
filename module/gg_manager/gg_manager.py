@@ -1,19 +1,19 @@
 from module.base.timer import Timer
 from module.base.base import ModuleBase
-from module.gg_handler.gg_data import GGData
-from module.gg_handler.gg_screenshot import GGScreenshot
+from module.gg_manager.gg_data import GGData
+from module.gg_manager.gg_screenshot import GGScreenshot
 from module.combat.combat import Combat
 from module.handler.login import LoginHandler
 from module.logger import logger
-from module.gg_handler.assets import OCR_PRE_BATTLE_CHECK
+from module.gg_manager.assets import OCR_PRE_BATTLE_CHECK
 from module.combat.assets import BATTLE_PREPARATION
 from module.ocr.ocr import Digit
 from module.notify import handle_notify
-from module.gg_handler.gg_task import *
+from module.gg_manager.gg_task import *
 
 OCR_CHECK = Digit(OCR_PRE_BATTLE_CHECK, name='OCR_PRE_BATTLE_CHECK', letter=(255, 255, 255), threshold=255)
 
-class GGHandler(ModuleBase):
+class GGManager(ModuleBase):
     """
     A module to handle needs of cheaters
     Args:
@@ -24,9 +24,9 @@ class GGHandler(ModuleBase):
     def __init__(self, config, device):
         self.config = config
         self.device = device
-        self.gg_enable = self.config.cross_get('GameManager.GGHandler.Enable', default=False)
-        self.gg_restart = self.config.cross_get('GameManager.GGHandler.RestartEverytime', default=True)
-        self.factor = self.config.cross_get('GameManager.GGHandler.GGMultiplyingFactor', default=200)
+        self.gg_enable = self.config.cross_get('GGManager.GGManager.Enable', default=False)
+        self.gg_restart = self.config.cross_get('GGManager.GGManager.RestartEverytime', default=True)
+        self.factor = self.config.cross_get('GGManager.GGManager.GGMultiplyingFactor', default=200)
 
     def gg_on(self):
         return GGData(config=self.config).get_data(target='gg_on')
@@ -103,7 +103,7 @@ class GGHandler(ModuleBase):
             task: str = What task it is to limit power, default limit is 16500 for front ships.
         """
         limit = self.config.cross_get(f'GameManager.PowerLimit.{task}', default=16500)
-        lowlimit = self.config.cross_get(f'GameManager.GGHandler.GGLowLimit', default=500)
+        lowlimit = self.config.cross_get(f'GGManager.GGManager.GGLowLimit', default=500)
         logger.attr('Power Limit', limit)
         self.device.sleep(2)
         timeout = Timer(1, count=15).start()
@@ -144,7 +144,7 @@ class GGHandler(ModuleBase):
         Args:
             task : str = the next task to run
         """
-        _disabled_task = self.config.cross_get('GameManager.GGHandler.DisabledTask')
+        _disabled_task = self.config.cross_get('GGManager.GGManager.DisabledTask')
         """
             'disable_guild_and_dangerous'
             'disable_all_dangerous_task'

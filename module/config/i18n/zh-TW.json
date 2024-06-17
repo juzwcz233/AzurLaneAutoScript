@@ -273,6 +273,10 @@
     "GameManager": {
       "name": "遊戲管理器(未完成)",
       "help": ""
+    },
+    "GGManager": {
+      "name": "GG管理器",
+      "help": ""
     }
   },
   "Scheduler": {
@@ -2504,53 +2508,53 @@
       "help": "遊戲被強制結束後自動登錄遊戲"
     }
   },
-  "GGHandler": {
+  "GGManager": {
     "_info": {
       "name": "GG管理器",
-      "help": "请在旧版UI中将GG悬浮窗遮挡住石油图标（透明度调至90%以上）"
+      "help": "請在舊版UI中將GG懸浮窗遮擋住石油圖標（透明度調至90%以上）"
     },
     "Enable": {
-      "name": "启用倍率",
-      "help": "演习，共斗，Meta时会自动关闭倍率"
+      "name": "啟用倍率",
+      "help": "運行演習、共鬥、Meta時會自動關閉倍率"
     },
     "RestartEverytime": {
-      "name": "每次启动Alas时重启",
-      "help": "强制开启，初始化倍率，防止误操作"
+      "name": "重啟",
+      "help": "强制開啟，初始化倍率，防止誤操作"
     },
     "GGMultiplyingFactor": {
-      "name": "倍率",
-      "help": "默认数值200\n建议数值1-1000，乱输将使用默认倍率运行"
+      "name": "倍率數值",
+      "help": "默認數值200\n建議數值1-1000，亂輸將使用默認倍率運行"
     },
     "GGAction": {
-      "name": "倍率操作方式",
-      "help": "如为手动，第一次使用需要指定lua路径\n手动方式可运行自己的lua，但操作逻辑必须和原版一样，否则报错无法运行",
-      "auto": "自动",
-      "manual": "手动"
+      "name": "倍率檔案選擇",
+      "help": "如爲手動，第一次使用需要指定lua路徑\n手動方式可運行自己的lua，但操作邏輯必須和原版一樣，否則報錯",
+      "auto": "自動",
+      "manual": "手動"
     },
     "GGLuapath": {
-      "name": "lua路径",
-      "help": "填写lua路径，如为自动请勿填入（不会检查路径是否正确）"
+      "name": "lua路徑",
+      "help": "填寫lua路徑，如爲自動請勿填入（不會檢查路徑是否正確）"
     },
     "GGLuapathRecord": {
-      "name": "lua路径记录",
-      "help": "自动勾选，非设备更换、lua路径修改及倍率操作方式切换请勿取消"
+      "name": "lua路徑記錄",
+      "help": "自動勾選，非設備更換、lua路徑修改及倍率操作方式切換請勿取消"
     },
     "GGPackageName": {
       "name": "GG包名",
-      "help": "GG安装后请自行前往/Android/data檔案夹查看包名，应是com.一串乱码"
+      "help": "GG安裝后請自行訪問/Android/data檔案夾查看包名，應是com.一串亂碼"
     },
     "GGLowLimit": {
-      "name": "最低战力阈值",
-      "help": "前排舰队最低战力，低于此战力将不会进行出击"
+      "name": "最低戰力閾值",
+      "help": "前排艦隊最低戰力，低於此戰力將不會進行出擊"
     },
     "DisabledTask": {
-      "name": "禁用倍率的任务",
-      "help": "需要关闭倍率的任务，建议敏感任务全关，如导致封号后果自负\n敏感任务：共斗，極地風暴，Meta与演习",
-      "disable_guild_and_dangerous": "禁用大舰队以及敏感任务",
-      "disable_all_dangerous_task": "禁用敏感任务",
-      "disable_meta_and_exercise": "禁用Meta和演习",
-      "disable_exercise": "禁用演习",
-      "enable_all": "百无禁忌"
+      "name": "禁用倍率的任務",
+      "help": "GGManager.DisabledTask.help",
+      "disable_guild_and_dangerous": "禁用大艦隊及敏感任務",
+      "disable_all_dangerous_task": "禁用敏感任務",
+      "disable_meta_and_exercise": "禁用Meta和演習",
+      "disable_exercise": "禁用演習",
+      "enable_all": "百無禁忌"
     }
   },
   "PowerLimit": {

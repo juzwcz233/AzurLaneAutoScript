@@ -1,7 +1,7 @@
 import uiautomator2 as u2
 from module.base.timer import Timer
 from module.handler.assets import *
-from module.gg_handler.assets import *
+from module.gg_manager.assets import *
 from module.ui.assets import *
 from module.ui_white.assets import *
 from module.meowfficer.assets import *
@@ -12,7 +12,7 @@ from module.ocr.ocr import Digit
 from module.logger import logger
 from module.base.base import ModuleBase
 from module.ui.ui import UI
-from module.gg_handler.gg_data import GGData
+from module.gg_manager.gg_data import GGData
 
 OCR_GG_FOLD = Digit(OCR_GG_FOLD, name='OCR_GG_FOLD', letter=(222, 228, 227), threshold=255)
 OCR_GG_FOLD_CHECK = Digit(OCR_GG_FOLD_CHECK, name= 'OCR_GG_FOLD_CHECK', letter=(222, 228, 227), threshold=255)
@@ -24,10 +24,10 @@ class GGScreenshot(ModuleBase):
         self.config = config
         self.device = device
         self.d = u2.connect_usb(self.device.serial)
-        self.gg_package_name = self.config.cross_get('GameManager.GGHandler.GGPackageName')
-        self.gg_action = self.config.cross_get('GameManager.GGHandler.GGAction')
-        self.path = self.config.cross_get('GameManager.GGHandler.GGLuapath')
-        self.path_record = self.config.cross_get('GameManager.GGHandler.GGLuapathRecord')
+        self.gg_package_name = self.config.cross_get('GGManager.GGManager.GGPackageName')
+        self.gg_action = self.config.cross_get('GGManager.GGManager.GGAction')
+        self.path = self.config.cross_get('GGManager.GGManager.GGLuapath')
+        self.path_record = self.config.cross_get('GGManager.GGManager.GGLuapathRecord')
         self.luapath = "/sdcard/Alarms/Multiplier.lua"
         self.method = [
             REWARD_GOTO_MAIN,
@@ -299,7 +299,7 @@ class GGScreenshot(ModuleBase):
             logger.hr('Lua path set')
             self.d.send_keys(f'{self.luapath}')
             logger.info('Lua path set success')
-            self.config.cross_set('GameManager.GGHandler.GGLuapathRecord', value=True)
+            self.config.cross_set('GGManager.GGManager.GGLuapathRecord', value=True)
 
     def gg_push(self):
         if self.path_record:

@@ -733,7 +733,7 @@ AzurLaneUncensored:
     option: [ all, main, only_patch]
 GameManager:
   AutoRestart: true
-GGHandler:
+GGManager:
   Enable: false
   RestartEverytime:
     value: true

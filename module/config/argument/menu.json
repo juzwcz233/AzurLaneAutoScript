@@ -104,7 +104,8 @@
       "OpsiDaemon",
       "Benchmark",
       "AzurLaneUncensored",
-      "GameManager"
+      "GameManager",
+      "GGManager"
     ]
   }
 }

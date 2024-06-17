@@ -196,11 +196,11 @@ class Raid(MapOperation, RaidCombat, CampaignEvent):
         logger.info('Combat preparation.')
 
         # Power limit check
-        from module.gg_handler.gg_handler import GGHandler
-        gg_enable = self.config.cross_get('GameManager.GGHandler.Enable', default=True)
-        gg_restart = self.config.cross_get('GameManager.GGHandler.RestartEverytime', default=True)
+        from module.gg_manager.gg_manager import GGManager
+        gg_enable = self.config.cross_get('GGManager.GGManager.Enable', default=True)
+        gg_restart = self.config.cross_get('GGManager.GGManager.RestartEverytime', default=True)
         if gg_enable and gg_restart:
-            if GGHandler(config=self.config, device=self.device).power_limit('Raid'):
+            if GGManager(config=self.config, device=self.device).power_limit('Raid'):
                 self.config.task_delay(minute=0.5)
                 self.config.task_call('Restart')
                 self.config.task_stop()

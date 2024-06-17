@@ -441,16 +441,16 @@ class GeneratedConfig:
     # Group `GameManager`
     GameManager_AutoRestart = True
 
-    # Group `GGHandler`
-    GGHandler_Enable = False
-    GGHandler_RestartEverytime = True
-    GGHandler_GGMultiplyingFactor = 200
-    GGHandler_GGAction = 'auto'  # auto, manual
-    GGHandler_GGLuapath = None
-    GGHandler_GGLuapathRecord = False
-    GGHandler_GGPackageName = 'com.'
-    GGHandler_GGLowLimit = 500
-    GGHandler_DisabledTask = 'disable_all_dangerous_task'  # disable_guild_and_dangerous, disable_all_dangerous_task, disable_meta_and_exercise, disable_exercise, enable_all
+    # Group `GGManager`
+    GGManager_Enable = False
+    GGManager_RestartEverytime = True
+    GGManager_GGMultiplyingFactor = 200
+    GGManager_GGAction = 'auto'  # auto, manual
+    GGManager_GGLuapath = None
+    GGManager_GGLuapathRecord = False
+    GGManager_GGPackageName = 'com.'
+    GGManager_GGLowLimit = 500
+    GGManager_DisabledTask = 'disable_all_dangerous_task'  # disable_guild_and_dangerous, disable_all_dangerous_task, disable_meta_and_exercise, disable_exercise, enable_all
 
     # Group `PowerLimit`
     PowerLimit_Exercise = 16500

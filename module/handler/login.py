@@ -26,8 +26,8 @@ class LoginHandler(UI):
             in: Any page
             out: page_main
         """
-        from module.gg_handler.gg_handler import GGHandler
-        GGHandler(config=self.config, device=self.device).handle_restart()
+        from module.gg_manager.gg_manager import GGManager
+        GGManager(config=self.config, device=self.device).handle_restart()
         logger.hr('Game login')
 
         confirm_timer = Timer(1.5, count=4).start()
@@ -157,7 +157,7 @@ class LoginHandler(UI):
     def app_restart(self):
         logger.hr('Game restart')
         self.device.app_stop()
-        from module.gg_handler.gg_handler import GGScreenshot
+        from module.gg_manager.gg_manager import GGScreenshot
         GGScreenshot(config=self.config, device=self.device).gg_stop()
         self.device.sleep(2)
         self.device.app_start()

@@ -273,6 +273,10 @@
     "GameManager": {
       "name": "游戏管理器(未完成)",
       "help": ""
+    },
+    "GGManager": {
+      "name": "GG管理器",
+      "help": ""
     }
   },
   "Scheduler": {
@@ -2504,26 +2508,26 @@
       "help": "游戏被强制结束后自动登录游戏"
     }
   },
-  "GGHandler": {
+  "GGManager": {
     "_info": {
       "name": "GG管理器",
       "help": "请在旧版UI中将GG悬浮窗遮挡住石油图标（透明度调至90%以上）"
     },
     "Enable": {
       "name": "启用倍率",
-      "help": "演习，共斗，Meta时会自动关闭倍率"
+      "help": "运行演习、共斗、Meta时会自动关闭倍率"
     },
     "RestartEverytime": {
-      "name": "每次启动Alas时重启",
+      "name": "重启",
       "help": "强制开启，初始化倍率，防止误操作"
     },
     "GGMultiplyingFactor": {
-      "name": "倍率",
+      "name": "倍率数值",
       "help": "默认数值200\n建议数值1-1000，乱输将使用默认倍率运行"
     },
     "GGAction": {
       "name": "倍率操作方式",
-      "help": "如为手动，第一次使用需要指定lua路径\n手动方式可运行自己的lua，但操作逻辑必须和原版一样，否则报错无法运行",
+      "help": "如为手动，第一次使用需要指定lua路径\n手动方式可运行自己的lua，但操作逻辑必须和原版一样，否则报错",
       "auto": "自动",
       "manual": "手动"
     },
@@ -2537,7 +2541,7 @@
     },
     "GGPackageName": {
       "name": "GG包名",
-      "help": "GG安装后请自行前往/Android/data文件夹查看包名，应是com.一串乱码"
+      "help": "GG安装后请自行访问/Android/data文件夹查看包名，应是com.一串乱码"
     },
     "GGLowLimit": {
       "name": "最低战力阈值",
@@ -2546,7 +2550,7 @@
     "DisabledTask": {
       "name": "禁用倍率的任务",
       "help": "需要关闭倍率的任务，建议敏感任务全关，如导致封号后果自负\n敏感任务：共斗，极地风暴，Meta与演习",
-      "disable_guild_and_dangerous": "禁用大舰队以及敏感任务",
+      "disable_guild_and_dangerous": "禁用大舰队及敏感任务",
       "disable_all_dangerous_task": "禁用敏感任务",
       "disable_meta_and_exercise": "禁用Meta和演习",
       "disable_exercise": "禁用演习",

@@ -273,6 +273,10 @@
     "GameManager": {
       "name": "Game Manager(WIP)",
       "help": ""
+    },
+    "GGManager": {
+      "name": "Task.GGManager.name",
+      "help": "Task.GGManager.help"
     }
   },
   "Scheduler": {
@@ -2504,53 +2508,53 @@
       "help": "GameManager.AutoRestart.help"
     }
   },
-  "GGHandler": {
+  "GGManager": {
     "_info": {
-      "name": "GG管理器",
-      "help": "请在旧版UI中将GG悬浮窗遮挡住石油图标（透明度调至90%以上）"
+      "name": "GGManager._info.name",
+      "help": "GGManager._info.help"
     },
     "Enable": {
-      "name": "启用倍率",
-      "help": "演习，共斗，Meta时会自动关闭倍率"
+      "name": "GGManager.Enable.name",
+      "help": "GGManager.Enable.help"
     },
     "RestartEverytime": {
-      "name": "每次启动Alas时重启",
-      "help": "强制开启，初始化倍率，防止误操作"
+      "name": "GGManager.RestartEverytime.name",
+      "help": "GGManager.RestartEverytime.help"
     },
     "GGMultiplyingFactor": {
-      "name": "倍率",
-      "help": "默认数值200\n建议数值1-1000，乱输将使用默认倍率运行"
+      "name": "GGManager.GGMultiplyingFactor.name",
+      "help": "GGManager.GGMultiplyingFactor.help"
     },
     "GGAction": {
-      "name": "倍率操作方式",
-      "help": "如为手动，第一次使用需要指定lua路径\n手动方式可运行自己的lua，但操作逻辑必须和原版一样，否则报错无法运行",
-      "auto": "自动",
-      "manual": "手动"
+      "name": "GGManager.GGAction.name",
+      "help": "GGManager.GGAction.help",
+      "auto": "auto",
+      "manual": "manual"
     },
     "GGLuapath": {
-      "name": "lua路径",
-      "help": "填写lua路径，如为自动请勿填入（不会检查路径是否正确）"
+      "name": "GGManager.GGLuapath.name",
+      "help": "GGManager.GGLuapath.help"
     },
     "GGLuapathRecord": {
-      "name": "lua路径记录",
-      "help": "自动勾选，非设备更换、lua路径修改及倍率操作方式切换请勿取消"
+      "name": "GGManager.GGLuapathRecord.name",
+      "help": "GGManager.GGLuapathRecord.help"
     },
     "GGPackageName": {
-      "name": "GG包名",
-      "help": "GG安装后请自行前往/Android/data文件夹查看包名，应是com.一串乱码"
+      "name": "GGManager.GGPackageName.name",
+      "help": "GGManager.GGPackageName.help"
     },
     "GGLowLimit": {
-      "name": "最低战力阈值",
-      "help": "前排舰队最低战力，低于此战力将不会进行出击"
+      "name": "GGManager.GGLowLimit.name",
+      "help": "GGManager.GGLowLimit.help"
     },
     "DisabledTask": {
-      "name": "禁用倍率的任务",
-      "help": "需要关闭倍率的任务，建议敏感任务全关，如导致封号后果自负\n敏感任务：共斗，Meta与演习",
-      "disable_guild_and_dangerous": "禁用大舰队以及敏感任务",
-      "disable_all_dangerous_task": "禁用敏感任务",
-      "disable_meta_and_exercise": "禁用Meta和演习",
-      "disable_exercise": "禁用演习",
-      "enable_all": "百无禁忌"
+      "name": "GGManager.DisabledTask.name",
+      "help": "GGManager.DisabledTask.help",
+      "disable_guild_and_dangerous": "disable_guild_and_dangerous",
+      "disable_all_dangerous_task": "disable_all_dangerous_task",
+      "disable_meta_and_exercise": "disable_meta_and_exercise",
+      "disable_exercise": "disable_exercise",
+      "enable_all": "enable_all"
     }
   },
   "PowerLimit": {

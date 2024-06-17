@@ -10108,7 +10108,17 @@
         "value": true
       }
     },
-    "GGHandler": {
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
+  "GGManager": {
+    "GGManager": {
       "Enable": {
         "type": "checkbox",
         "value": false
