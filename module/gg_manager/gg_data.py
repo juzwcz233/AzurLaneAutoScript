@@ -1,9 +1,8 @@
 from module.base.base import ModuleBase
-from module.config.config import AzurLaneConfig
 
 
 class GGData(ModuleBase):
-    def __init__(self, config=AzurLaneConfig):
+    def __init__(self, config):
         self.config = config
         self.ggdata = {
             'name': self.config.config_name,
@@ -11,8 +10,7 @@ class GGData(ModuleBase):
             'gg_on': False
         }
         try:
-            dataname = self.config.cross_get('GGManager.Storage.Storage.name', default=None)
-            if dataname != self.config.config_name:
+            if self.get_data('name') != self.config.config_name:
                 raise ValueError
         except(ValueError, KeyError):
             self.config.cross_set('GGManager.Storage.Storage', self.ggdata)

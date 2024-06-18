@@ -29,7 +29,7 @@ class GGManager(ModuleBase):
         self.factor = self.config.cross_get('GGManager.GGManager.GGMultiplyingFactor', default=200)
 
     def gg_on(self):
-        return GGData(config=self.config).get_data(target='gg_on')
+        return GGData(self.config).get_data('gg_on')
 
     def set(self, mode=True):
         """
@@ -39,7 +39,7 @@ class GGManager(ModuleBase):
         """
         if mode:
             logger.hr('Enable GG', level=2)
-            GGScreenshot(config=self.config, device=self.device).run(factor=self.factor)
+            GGScreenshot(self.config, self.device).run(factor=self.factor)
             logger.info(f'[Enabled]{self.gg_enable} [AutoRestart]{self.gg_restart} [CurrentStage]{self.gg_on()}')
         else:
             self.gg_reset()
@@ -66,7 +66,7 @@ class GGManager(ModuleBase):
         """
         if self.gg_enable:
             if self.gg_on():
-                GGData(config=self.config).set_data(target='gg_on', value=False)
+                GGData(self.config).set_data(target='gg_on', value=False)
             logger.hr('Load GG config')
             logger.info(f'[Enabled]{self.gg_enable} [AutoRestart]{self.gg_restart} [CurrentStage]{self.gg_on()}')
 
@@ -115,7 +115,7 @@ class GGManager(ModuleBase):
             else:
                 self.device.sleep((1, 1.5))
                 self.device.screenshot()
-            if Combat(config=self.config, device=self.device).handle_combat_automation_confirm():
+            if Combat(self.config, self.device).handle_combat_automation_confirm():
                 continue
             if timeout.reached():
                 logger.error('Get ScoutCE timeout')
