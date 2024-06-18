@@ -23,14 +23,15 @@ class LogRes(Base):
         if key in self.groups:
             _key_group = f'Resource.{key}'
             _key_time = _key_group + f'.Record'
+            time = deep_get(self.config.data, _key_time)
             original = deep_get(self.config.data, _key_group)
             if isinstance(value, int):
-                if value != original['Value']:
+                if value != original['Value'] or time == datetime(2023, 1, 1, 0, 0):
                     _key = _key_group + '.Value'
                     self.config.modified.update({_key: value, _key_time: now()})
             elif isinstance(value, dict):
                 for value_name, value in value.items():
-                    if value != original[value_name]:
+                    if value != original[value_name] or time == datetime(2023, 1, 1, 0, 0):
                         _key = _key_group + f'.{value_name}'
                         self.config.modified.update({_key: value, _key_time: now()})
         else:
