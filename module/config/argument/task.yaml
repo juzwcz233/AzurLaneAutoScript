@@ -246,9 +246,6 @@ DailyMission:
     Hard:
       - Scheduler
       - Hard
-      - Fleet
-      - Emotion
-      - EnemyPriority
     Exercise:
       - Scheduler
       - Exercise
@@ -354,7 +351,8 @@ Tool:
       - AzurLaneUncensored
     GameManager:
       - GameManager
-      - GGHandler
+    GGManager:
+      - GGManager
       - PowerLimit
 
 # ==================== Dashboard ====================

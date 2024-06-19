@@ -1,7 +1,7 @@
 import uiautomator2 as u2
 from module.base.timer import Timer
 from module.handler.assets import *
-from module.gg_handler.assets import *
+from module.gg_manager.assets import *
 from module.ui.assets import *
 from module.ui_white.assets import *
 from module.meowfficer.assets import *
@@ -12,34 +12,26 @@ from module.ocr.ocr import Digit
 from module.logger import logger
 from module.base.base import ModuleBase
 from module.ui.ui import UI
-from module.gg_handler.gg_data import GGData
+from module.gg_manager.gg_data import GGData
 
 OCR_GG_FOLD = Digit(OCR_GG_FOLD, name='OCR_GG_FOLD', letter=(222, 228, 227), threshold=255)
 OCR_GG_FOLD_CHECK = Digit(OCR_GG_FOLD_CHECK, name= 'OCR_GG_FOLD_CHECK', letter=(222, 228, 227), threshold=255)
 
 class GGScreenshot(ModuleBase):
+    method = [REWARD_GOTO_MAIN, GOTO_MAIN, MAIN_GOTO_BUILD,
+              MAIN_GOTO_BUILD_WHITE, DORM_CHECK, MEOWFFICER_FORT_ENTER,
+              ASH_QUIT, GET_ITEMS_1, RPG_HOME]
 
     def __init__(self, config, device):
         super().__init__(config, device)
         self.config = config
         self.device = device
-        self.d = u2.connect_usb(self.device.serial)
-        self.gg_package_name = self.config.cross_get('GameManager.GGHandler.GGPackageName')
-        self.gg_action = self.config.cross_get('GameManager.GGHandler.GGAction')
-        self.path = self.config.cross_get('GameManager.GGHandler.GGLuapath')
-        self.path_record = self.config.cross_get('GameManager.GGHandler.GGLuapathRecord')
+        self.u2 = u2.connect_usb(self.device.serial)
+        self.gg_package_name = self.config.cross_get('GGManager.GGManager.GGPackageName')
+        self.gg_action = self.config.cross_get('GGManager.GGManager.GGAction')
+        self.path = self.config.cross_get('GGManager.GGManager.GGLuapath')
+        self.path_record = self.config.cross_get('GGManager.GGManager.GGLuapathRecord')
         self.luapath = "/sdcard/Alarms/Multiplier.lua"
-        self.method = [
-            REWARD_GOTO_MAIN,
-            GOTO_MAIN,
-            MAIN_GOTO_BUILD,
-            MAIN_GOTO_BUILD_WHITE,
-            DORM_CHECK,
-            MEOWFFICER_FORT_ENTER,
-            ASH_QUIT,
-            GET_ITEMS_1,
-            RPG_HOME
-            ]
 
     def _enter_gg(self):
         """
@@ -71,34 +63,27 @@ class GGScreenshot(ModuleBase):
 
     def enter_gg(self):
         self._enter_gg()
-        skip_first_screenshot = True
         logger.hr('Enter APP State')
+        skip_first_screenshot = True
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear_then_click(GG_APP_CHOOSE, offset=(20, 20), interval=1) or \
+            if self.appear_then_click(GG_APP_CHOOSE0, offset=(20, 20), interval=1) or \
                 self.appear_then_click(GG_APP_CHOOSE1, offset=(20, 20), interval=1):
                 logger.info('APP Choose')
-                self.device.sleep(0.5)
-                self.device.screenshot()
-            if self.appear(GG_STOP, offset=(20, 20)) or self.appear(GG_NOTRUN, offset=(20, 20)):
-                logger.hr('GG Restart')
-                self.gg_stop()
-                self.gg_push()
-                self.gg_start()
-                self._enter_gg()
                 continue
             if self.appear(GG_APP_ENTER, offset=(20, 20)) and \
                 GG_APP_ENTER.match_appear_on(self.device.image):
                 logger.info('APP Enter')
                 return True
             if not self.appear(GG_APP_ENTER, offset=(20, 20), threshold=0.999) and \
-                self.appear(GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.999):
-                logger.info('Reselect APP')
-                self.device.click(GG_RECHOOSE)
+                self.appear(GG_SEARCH_MODE_CONFIRM, offset=(10, 10)) and \
+                    GG_SEARCH_MODE_CONFIRM.match_appear_on(self.device.image):
+                logger.info('Select APP')
+                self.device.click(GG_APP_RECHOOSE)
                 continue
 
     def _gg_enter_script(self):
@@ -129,11 +114,6 @@ class GGScreenshot(ModuleBase):
                 self.gg_lua()
                 logger.hr('Lua execute')
                 return True
-            if self.appear_then_click(GG_APP_CHOOSE, offset=(20, 20), interval=1) or \
-                self.appear_then_click(GG_APP_CHOOSE1, offset=(20, 20), interval=1):
-                logger.info('APP Choose')
-                self.device.sleep(0.5)
-                self.device.screenshot()
             if self.appear_then_click(GG_SCRIPT_FATAL, offset=(20, 20), interval=1):
                 logger.info('Stop previous script')
                 continue
@@ -166,9 +146,6 @@ class GGScreenshot(ModuleBase):
                 continue
             if self.appear(GG_SCRIPT_START_PROCESS, offset=(20, 20)):
                 return True
-            if self.appear_then_click(GG_ERROR_ENTER, offset=(20, 20), interval=1):
-                self._gg_enter_script()
-                continue
             if self.appear_then_click(GG_STOP, offset=(20, 20), interval=1):
                 logger.hr('GG Restart')
                 self.gg_stop()
@@ -183,7 +160,7 @@ class GGScreenshot(ModuleBase):
             in: GG input panel
             out:factor set(Not ensured yet)
         """
-        method = [
+        number = [
             GG_SCRIPT_PANEL_NUM0,
             GG_SCRIPT_PANEL_NUM1,
             GG_SCRIPT_PANEL_NUM2,
@@ -211,7 +188,7 @@ class GGScreenshot(ModuleBase):
             logger.hr('Re: Input')
             logger.info('Factor Reinput')
             for i in str(self.factor):
-                self.appear_then_click(method[int(i)], offset=(20, 20), interval=1)
+                self.appear_then_click(number[int(i)], interval=1)
             logger.info('Input success')
             logger.hr('Factor Check')
             count=0
@@ -230,11 +207,11 @@ class GGScreenshot(ModuleBase):
                     if count >= 3:
                         logger.error('Check more failed,Try default factor will be run')
                         for i in str(200):
-                            self.appear_then_click(method[int(i)], offset=(20, 20), interval=1)
+                            self.appear_then_click(number[int(i)], interval=1)
                         break
                     logger.info('Input again')
                     for i in str(self.factor):
-                        self.appear_then_click(method[int(i)], offset=(20, 20), interval=1)
+                        self.appear_then_click(number[int(i)], interval=1)
         else:
             for _ in range(3):
                 logger.error('Factor illegal')
@@ -245,7 +222,7 @@ class GGScreenshot(ModuleBase):
                           content=f"<{self.config.config_name}> 需要手动介入，输入的倍率不合法，将尝试默认倍率运行")
             logger.hr('Try again')
             for i in str(200):
-                self.appear_then_click(method[int(i)], offset=(20, 20), interval=1)
+                self.appear_then_click(number[int(i)], interval=1)
 
     def gg_script_run(self):
         """
@@ -267,26 +244,16 @@ class GGScreenshot(ModuleBase):
                 break
         logger.info('Waiting for end')
 
-        count = 0
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear(GG_SEARCH_MODE, offset=(20, 20)) and count != 0:
+            if self.appear(GG_APP_ENTER, offset=(20, 20)) and \
+                GG_APP_ENTER.match_appear_on(self.device.image):
                 return True
             if self.appear_then_click(GG_SCRIPT_END, offset=(20, 20), interval=1):
-                count += 1
-                continue
-            if self.appear_then_click(GG_ERROR_ENTER, offset=(20, 20), interval=1):
-                logger.hr('GG Restart')
-                self.gg_stop()
-                self.gg_push()
-                self.gg_start()
-                self.enter_gg()
-                self.gg_enter_script()
-                self.gg_handle_factor()
                 continue
 
     def gg_lua(self):
@@ -297,9 +264,9 @@ class GGScreenshot(ModuleBase):
             return True
         else:
             logger.hr('Lua path set')
-            self.d.send_keys(f'{self.luapath}')
+            self.u2.send_keys(f'{self.luapath}')
             logger.info('Lua path set success')
-            self.config.cross_set('GameManager.GGHandler.GGLuapathRecord', value=True)
+            self.config.cross_set('GGManager.GGManager.GGLuapathRecord', value=True)
 
     def gg_push(self):
         if self.path_record:
@@ -312,7 +279,7 @@ class GGScreenshot(ModuleBase):
     def gg_start(self):
         if self.gg_package_name != 'com.':
             logger.hr('GG start')
-            self.d.app_start(f'{self.gg_package_name}')
+            self.u2.app_start(f'{self.gg_package_name}')
             logger.info(f'GG start: {self.gg_package_name}')
             skip_first_screenshot = True
             count = 0
@@ -355,7 +322,7 @@ class GGScreenshot(ModuleBase):
     def gg_stop(self):
         if self.gg_package_name != 'com.':
             logger.hr('GG kill')
-            self.d.app_stop(f'{self.gg_package_name}')
+            self.u2.app_stop(f'{self.gg_package_name}')
             logger.info(f'GG stop: {self.gg_package_name}')
 
     def _handle_app_login(self):

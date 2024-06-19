@@ -273,6 +273,10 @@
     "GameManager": {
       "name": "Game Manager(WIP)",
       "help": ""
+    },
+    "GGManager": {
+      "name": "Task.GGManager.name",
+      "help": "Task.GGManager.help"
     }
   },
   "Scheduler": {
@@ -656,63 +660,6 @@
       "help": "",
       "retire_all": "Retire All",
       "retire_10": "Retire 10"
-    }
-  },
-  "GemsFarming": {
-    "_info": {
-      "name": "Commission Farming Settings",
-      "help": "Warning: This task allows players to get a small amount of gems, but not an efficient way to farm.\nPlayers who have recently started Azur Lane are easily superstitious about 0LB and low oil consumption, while being ignorant about character leveling.\nRunning this function will only make you feel fulfilled however in reality your account will not actually progress very much.\nThe main purpose of this task is to get extra cubes for players with a formed lineup. Please rationally treat gems as a by-product.\n\nFleet 1 is expected to consist of 1 0LB CV/CVL and 1 0LB Vanguard, Fleet 2 is expected to consist of support ships such as New Jersey or Shinano to provide external battle assistance.\nFor information about the drop mechanism/rate of urgent commissions, you can refer to <https://bbs.nga.cn/read.php?tid=27134956> (in Chinese Simplified)"
-    },
-    "ChangeFlagship": {
-      "name": "Change Flagship",
-      "help": "Change flagship if flagship level >= 32 or either flagship or vanguard are emotion exhausted (if Change Vanguard is enabled). If you choose not to change, your fleet will ignore the low emotion warning and continue combat.\nSwitch out to new common CV/CVL whose level is in range of 1 to 31, after current has reached level 32+. Meanwhile, abandoned flagships will be retired. Any common CV/CVL whose level is 2+ will be regarded as targets. Do confirm that your own ships which is not a target has been locked\n\nThe flagship's equipment is replaced when being switched out by first recording the current setup\nOnly populated equipment slots will be replaced. If the CV/CVL preference has been configured, all 5 slots will be populated otherwise only the auxiliary slots will be populated.",
-      "ship": "Change Ship",
-      "ship_equip": "Change Ship + Gears"
-    },
-    "CommonCV": {
-      "name": "Flagship Common CV/CVL Preference",
-      "help": "",
-      "any": "any",
-      "langley": "langley",
-      "bogue": "bogue",
-      "ranger": "ranger",
-      "hermes": "hermes"
-    },
-    "ChangeVanguard": {
-      "name": "Change Vanguard",
-      "help": "Change vanguard if flagship or vanguard are emotion exhausted.If you choose not to change, your fleet will ignore the low emotion warning and continue combat.\nSwitch out to new level 100(70) common vanguard after current flagship has reached level 32+ (Only CN players'0 limit break ship can reach level 100)\n\nThe vanguard's equipment is replaced when being switched out by first recording the current setup. Only populated equipment slots will be replaced.",
-      "disabled": "Don't Change",
-      "ship": "Change Ship",
-      "ship_equip": "Change Ship + Gears"
-    },
-    "CommonDD": {
-      "name": "Flagship Common DD Preference",
-      "help": "",
-      "any": "any",
-      "aulick_or_foote": "aulick or foote",
-      "cassin_or_downes": "cassin or downes"
-    },
-    "CommissionLimit": {
-      "name": "Prevent Too Many Urgent Commissions",
-      "help": "When running 7x24, prevent having a lot of urgent commissions and not being able to complete daily commissions. It is recommended to select only short-terms and high-yields in the commission filter"
-    }
-  },
-  "Sos": {
-    "_info": {
-      "name": "SOS Settings",
-      "help": ""
-    },
-    "Chapter": {
-      "name": "SOS Chapter",
-      "help": "",
-      "3": "3",
-      "4": "4",
-      "5": "5",
-      "6": "6",
-      "7": "7",
-      "8": "8",
-      "9": "9",
-      "10": "10"
     }
   },
   "Campaign": {
@@ -1191,6 +1138,45 @@
       "3": "3",
       "4": "4",
       "5": "5"
+    }
+  },
+  "GemsFarming": {
+    "_info": {
+      "name": "Commission Farming Settings",
+      "help": "Warning: This task allows players to get a small amount of gems, but not an efficient way to farm.\nPlayers who have recently started Azur Lane are easily superstitious about 0LB and low oil consumption, while being ignorant about character leveling.\nRunning this function will only make you feel fulfilled however in reality your account will not actually progress very much.\nThe main purpose of this task is to get extra cubes for players with a formed lineup. Please rationally treat gems as a by-product.\n\nFleet 1 is expected to consist of 1 0LB CV/CVL and 1 0LB Vanguard, Fleet 2 is expected to consist of support ships such as New Jersey or Shinano to provide external battle assistance.\nFor information about the drop mechanism/rate of urgent commissions, you can refer to <https://bbs.nga.cn/read.php?tid=27134956> (in Chinese Simplified)"
+    },
+    "ChangeFlagship": {
+      "name": "Change Flagship",
+      "help": "Change flagship if flagship level >= 32 or either flagship or vanguard are emotion exhausted (if Change Vanguard is enabled). If you choose not to change, your fleet will ignore the low emotion warning and continue combat.\nSwitch out to new common CV/CVL whose level is in range of 1 to 31, after current has reached level 32+. Meanwhile, abandoned flagships will be retired. Any common CV/CVL whose level is 2+ will be regarded as targets. Do confirm that your own ships which is not a target has been locked\n\nThe flagship's equipment is replaced when being switched out by first recording the current setup\nOnly populated equipment slots will be replaced. If the CV/CVL preference has been configured, all 5 slots will be populated otherwise only the auxiliary slots will be populated.",
+      "ship": "Change Ship",
+      "ship_equip": "Change Ship + Gears"
+    },
+    "CommonCV": {
+      "name": "Flagship Common CV/CVL Preference",
+      "help": "",
+      "any": "any",
+      "langley": "langley",
+      "bogue": "bogue",
+      "ranger": "ranger",
+      "hermes": "hermes"
+    },
+    "ChangeVanguard": {
+      "name": "Change Vanguard",
+      "help": "Change vanguard if flagship or vanguard are emotion exhausted.If you choose not to change, your fleet will ignore the low emotion warning and continue combat.\nSwitch out to new level 100(70) common vanguard after current flagship has reached level 32+ (Only CN players'0 limit break ship can reach level 100)\n\nThe vanguard's equipment is replaced when being switched out by first recording the current setup. Only populated equipment slots will be replaced.",
+      "disabled": "Don't Change",
+      "ship": "Change Ship",
+      "ship_equip": "Change Ship + Gears"
+    },
+    "CommonDD": {
+      "name": "Flagship Common DD Preference",
+      "help": "",
+      "any": "any",
+      "aulick_or_foote": "aulick or foote",
+      "cassin_or_downes": "cassin or downes"
+    },
+    "CommissionLimit": {
+      "name": "Prevent Too Many Urgent Commissions",
+      "help": "When running 7x24, prevent having a lot of urgent commissions and not being able to complete daily commissions. It is recommended to select only short-terms and high-yields in the commission filter"
     }
   },
   "EventGeneral": {
@@ -2124,11 +2110,17 @@
   "Hard": {
     "_info": {
       "name": "Hard Settings",
-      "help": "Running Hard mode defaults to 100% CLEAR conditions\nIf not 100% CLEAR conditions,fallback to traditional steps to complete the mission"
+      "help": "Hard mode for chapter must be unlocked, stage must be in 100% CLEAR condition, and auto search is enabled temporarily.\nUse Farm Main task to assist unlocking and achieving 100% CLEAR conditions"
     },
     "HardStage": {
       "name": "Hard Stage",
       "help": "11-4, 12-2, 12-4, and etc."
+    },
+    "HardFleet": {
+      "name": "Hard.HardFleet.name",
+      "help": "Hard.HardFleet.help",
+      "1": "1",
+      "2": "2"
     }
   },
   "Exercise": {
@@ -2175,6 +2167,24 @@
     "OpponentRefreshRecord": {
       "name": "Last Refresh Record",
       "help": ""
+    }
+  },
+  "Sos": {
+    "_info": {
+      "name": "SOS Settings",
+      "help": ""
+    },
+    "Chapter": {
+      "name": "SOS Chapter",
+      "help": "",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "10"
     }
   },
   "OpsiAshAssist": {
@@ -2498,53 +2508,53 @@
       "help": "Log back into the game when the game has been ended."
     }
   },
-  "GGHandler": {
+  "GGManager": {
     "_info": {
-      "name": "GG管理器",
-      "help": "请在旧版UI中将GG悬浮窗遮挡住石油图标（透明度调至90%以上）"
+      "name": "GGManager._info.name",
+      "help": "GGManager._info.help"
     },
     "Enable": {
-      "name": "启用倍率",
-      "help": "演习，共斗，Meta时会自动关闭倍率"
+      "name": "GGManager.Enable.name",
+      "help": "GGManager.Enable.help"
     },
     "RestartEverytime": {
-      "name": "每次启动Alas时重启",
-      "help": "强制开启，初始化倍率，防止误操作"
+      "name": "GGManager.RestartEverytime.name",
+      "help": "GGManager.RestartEverytime.help"
     },
     "GGMultiplyingFactor": {
-      "name": "倍率",
-      "help": "默认数值200\n建议数值1-1000，乱输将使用默认倍率运行"
+      "name": "GGManager.GGMultiplyingFactor.name",
+      "help": "GGManager.GGMultiplyingFactor.help"
     },
     "GGAction": {
-      "name": "倍率操作方式",
-      "help": "如为手动，第一次使用需要指定lua路径\n手动方式可运行自己的lua，但操作逻辑必须和原版一样，否则报错无法运行",
-      "auto": "自动",
-      "manual": "手动"
+      "name": "GGManager.GGAction.name",
+      "help": "GGManager.GGAction.help",
+      "auto": "auto",
+      "manual": "manual"
     },
     "GGLuapath": {
-      "name": "GGHandler.GGLuapath.name",
-      "help": "GGHandler.GGLuapath.help"
+      "name": "GGManager.GGLuapath.name",
+      "help": "GGManager.GGLuapath.help"
     },
     "GGLuapathRecord": {
-      "name": "lua路径记录",
-      "help": "自动勾选，非设备更换、lua路径修改及倍率操作方式切换请勿取消"
+      "name": "GGManager.GGLuapathRecord.name",
+      "help": "GGManager.GGLuapathRecord.help"
     },
     "GGPackageName": {
-      "name": "GG包名",
-      "help": "GG安装后请自行前往/Android/data文件夹查看包名，应是com.一串乱码"
+      "name": "GGManager.GGPackageName.name",
+      "help": "GGManager.GGPackageName.help"
     },
     "GGLowLimit": {
-      "name": "最低战力阈值",
-      "help": "前排舰队最低战力，低于此战力将不会进行出击"
+      "name": "GGManager.GGLowLimit.name",
+      "help": "GGManager.GGLowLimit.help"
     },
     "DisabledTask": {
-      "name": "禁用倍率的任务",
-      "help": "需要关闭倍率的任务，建议敏感任务全关，如导致封号后果自负\n敏感任务：共斗，极地风暴，Meta与演习",
-      "disable_guild_and_dangerous": "禁用大舰队以及敏感任务",
-      "disable_all_dangerous_task": "禁用敏感任务",
-      "disable_meta_and_exercise": "禁用Meta和演习",
-      "disable_exercise": "禁用演习",
-      "enable_all": "百无禁忌"
+      "name": "GGManager.DisabledTask.name",
+      "help": "GGManager.DisabledTask.help",
+      "disable_guild_and_dangerous": "disable_guild_and_dangerous",
+      "disable_all_dangerous_task": "disable_all_dangerous_task",
+      "disable_meta_and_exercise": "disable_meta_and_exercise",
+      "disable_exercise": "disable_exercise",
+      "enable_all": "enable_all"
     }
   },
   "PowerLimit": {

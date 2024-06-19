@@ -14,7 +14,7 @@ from module.exception import *
 from module.logger import logger
 from module.notify import handle_notify
 from module.handler.login import LoginHandler
-from module.gg_handler.gg_handler import GGHandler
+from module.gg_manager.gg_manager import GGManager
 
 
 class AzurLaneAutoScript:
@@ -521,7 +521,7 @@ class AzurLaneAutoScript:
 
         # Try forced task_call restart to reset GG status
         self.checker.wait_until_available()
-        GGHandler(config=self.config, device=self.device).handle_restart_before_tasks()
+        GGManager(config=self.config, device=self.device).handle_restart_before_tasks()
         check_fail=0
         while 1:
             # Check update event from GUI
@@ -555,9 +555,9 @@ class AzurLaneAutoScript:
                 continue
 
             # Check GG config before a task begins (to reset temporary config), and decide to enable it.
-            GGHandler(config=self.config, device=self.device).check_config()
+            GGManager(config=self.config, device=self.device).check_config()
             try:
-                GGHandler(config=self.config, device=self.device).check_then_set_gg_status(inflection.underscore(task))
+                GGManager(config=self.config, device=self.device).check_then_set_gg_status(inflection.underscore(task))
                 check_fail = 0
             except GameStuckError:
                 del_cached_property(self, 'config')

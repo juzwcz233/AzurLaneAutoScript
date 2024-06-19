@@ -72,16 +72,6 @@ class GeneratedConfig:
     OldRetire_SSR = False
     OldRetire_RetireAmount = 'retire_all'  # retire_all, retire_10
 
-    # Group `GemsFarming`
-    GemsFarming_ChangeFlagship = 'ship'  # ship, ship_equip
-    GemsFarming_CommonCV = 'any'  # any, langley, bogue, ranger, hermes
-    GemsFarming_ChangeVanguard = 'ship'  # disabled, ship, ship_equip
-    GemsFarming_CommonDD = 'any'  # any, aulick_or_foote, cassin_or_downes
-    GemsFarming_CommissionLimit = True
-
-    # Group `Sos`
-    Sos_Chapter = 3  # 3, 4, 5, 6, 7, 8, 9, 10
-
     # Group `Campaign`
     Campaign_Name = '12-4'
     Campaign_Event = 'campaign_main'  # campaign_main
@@ -156,6 +146,13 @@ class GeneratedConfig:
     C124LargeLeveling_NonLargeEnterTolerance = 1  # 0, 1, 2
     C124LargeLeveling_NonLargeRetreatTolerance = 1  # 0, 1, 2, 10
     C124LargeLeveling_PickupAmmo = 3  # 3, 4, 5
+
+    # Group `GemsFarming`
+    GemsFarming_ChangeFlagship = 'ship'  # ship, ship_equip
+    GemsFarming_CommonCV = 'any'  # any, langley, bogue, ranger, hermes
+    GemsFarming_ChangeVanguard = 'ship'  # disabled, ship, ship_equip
+    GemsFarming_CommonDD = 'any'  # any, aulick_or_foote, cassin_or_downes
+    GemsFarming_CommissionLimit = True
 
     # Group `EventGeneral`
     EventGeneral_PtLimit = 0
@@ -349,6 +346,7 @@ class GeneratedConfig:
 
     # Group `Hard`
     Hard_HardStage = '11-4'
+    Hard_HardFleet = 1  # 1, 2
 
     # Group `Exercise`
     Exercise_OpponentChooseMode = 'max_exp'  # max_exp, easiest, leftmost, easiest_else_exp
@@ -358,6 +356,9 @@ class GeneratedConfig:
     Exercise_LowHpConfirmWait = 0.1
     Exercise_OpponentRefreshValue = 0
     Exercise_OpponentRefreshRecord = datetime.datetime(2023, 1, 1, 0, 0)
+
+    # Group `Sos`
+    Sos_Chapter = 3  # 3, 4, 5, 6, 7, 8, 9, 10
 
     # Group `OpsiAshAssist`
     OpsiAshAssist_Tier = 15
@@ -440,16 +441,16 @@ class GeneratedConfig:
     # Group `GameManager`
     GameManager_AutoRestart = True
 
-    # Group `GGHandler`
-    GGHandler_Enable = False
-    GGHandler_RestartEverytime = True
-    GGHandler_GGMultiplyingFactor = 200
-    GGHandler_GGAction = 'auto'  # auto, manual
-    GGHandler_GGLuapath = None
-    GGHandler_GGLuapathRecord = False
-    GGHandler_GGPackageName = 'com.'
-    GGHandler_GGLowLimit = 500
-    GGHandler_DisabledTask = 'disable_all_dangerous_task'  # disable_guild_and_dangerous, disable_all_dangerous_task, disable_meta_and_exercise, disable_exercise, enable_all
+    # Group `GGManager`
+    GGManager_Enable = False
+    GGManager_RestartEverytime = True
+    GGManager_GGMultiplyingFactor = 200
+    GGManager_GGAction = 'auto'  # auto, manual
+    GGManager_GGLuapath = None
+    GGManager_GGLuapathRecord = False
+    GGManager_GGPackageName = 'com.'
+    GGManager_GGLowLimit = 500
+    GGManager_DisabledTask = 'disable_all_dangerous_task'  # disable_guild_and_dangerous, disable_all_dangerous_task, disable_meta_and_exercise, disable_exercise, enable_all
 
     # Group `PowerLimit`
     PowerLimit_Exercise = 16500

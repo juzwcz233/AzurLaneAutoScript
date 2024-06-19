@@ -13,11 +13,11 @@ class ExerciseCombat(HpDaemon, OpponentChoose, ExerciseEquipment, Combat):
     def _combat_preparation(self, skip_first_screenshot=True):
         logger.info('Combat preparation')
         # Power limit check
-        from module.gg_handler.gg_handler import GGHandler
-        gg_enable = self.config.cross_get('GameManager.GGHandler.Enable', default=True)
-        gg_restart = self.config.cross_get('GameManager.GGHandler.RestartEverytime', default=True)
+        from module.gg_manager.gg_manager import GGManager
+        gg_enable = self.config.cross_get('GGManager.GGManager.Enable', default=True)
+        gg_restart = self.config.cross_get('GGManager.GGManager.RestartEverytime', default=True)
         if gg_enable and gg_restart:
-            if GGHandler(config=self.config, device=self.device).power_limit('Exercise'):
+            if GGManager(config=self.config, device=self.device).power_limit('Exercise'):
                 self.config.task_delay(minute=0.5)
                 self.config.task_call('Restart')
                 self.config.task_stop()
