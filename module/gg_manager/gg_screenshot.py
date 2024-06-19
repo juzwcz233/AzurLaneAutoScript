@@ -71,8 +71,8 @@ class GGScreenshot(ModuleBase):
 
     def enter_gg(self):
         self._enter_gg()
-        skip_first_screenshot = True
         logger.hr('Enter APP State')
+        skip_first_screenshot = True
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -82,14 +82,6 @@ class GGScreenshot(ModuleBase):
             if self.appear_then_click(GG_APP_CHOOSE, offset=(20, 20), interval=1) or \
                 self.appear_then_click(GG_APP_CHOOSE1, offset=(20, 20), interval=1):
                 logger.info('APP Choose')
-                self.device.sleep(0.5)
-                self.device.screenshot()
-            if self.appear(GG_STOP, offset=(20, 20)) or self.appear(GG_NOTRUN, offset=(20, 20)):
-                logger.hr('GG Restart')
-                self.gg_stop()
-                self.gg_push()
-                self.gg_start()
-                self._enter_gg()
                 continue
             if self.appear(GG_APP_ENTER, offset=(20, 20)) and \
                 GG_APP_ENTER.match_appear_on(self.device.image):
@@ -97,7 +89,7 @@ class GGScreenshot(ModuleBase):
                 return True
             if not self.appear(GG_APP_ENTER, offset=(20, 20), threshold=0.999) and \
                 self.appear(GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.999):
-                logger.info('Reselect APP')
+                logger.info('Select APP')
                 self.device.click(GG_RECHOOSE)
                 continue
 
@@ -129,11 +121,6 @@ class GGScreenshot(ModuleBase):
                 self.gg_lua()
                 logger.hr('Lua execute')
                 return True
-            if self.appear_then_click(GG_APP_CHOOSE, offset=(20, 20), interval=1) or \
-                self.appear_then_click(GG_APP_CHOOSE1, offset=(20, 20), interval=1):
-                logger.info('APP Choose')
-                self.device.sleep(0.5)
-                self.device.screenshot()
             if self.appear_then_click(GG_SCRIPT_FATAL, offset=(20, 20), interval=1):
                 logger.info('Stop previous script')
                 continue
