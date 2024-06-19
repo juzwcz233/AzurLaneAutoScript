@@ -79,7 +79,7 @@ class GGScreenshot(ModuleBase):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear_then_click(GG_APP_CHOOSE, offset=(20, 20), interval=1) or \
+            if self.appear_then_click(GG_APP_CHOOSE0, offset=(20, 20), interval=1) or \
                 self.appear_then_click(GG_APP_CHOOSE1, offset=(20, 20), interval=1):
                 logger.info('APP Choose')
                 continue
@@ -198,7 +198,7 @@ class GGScreenshot(ModuleBase):
             logger.hr('Re: Input')
             logger.info('Factor Reinput')
             for i in str(self.factor):
-                self.appear_then_click(method[int(i)], offset=(20, 20), interval=1)
+                self.appear_then_click(method[int(i)], interval=1)
             logger.info('Input success')
             logger.hr('Factor Check')
             count=0
@@ -217,11 +217,11 @@ class GGScreenshot(ModuleBase):
                     if count >= 3:
                         logger.error('Check more failed,Try default factor will be run')
                         for i in str(200):
-                            self.appear_then_click(method[int(i)], offset=(20, 20), interval=1)
+                            self.appear_then_click(method[int(i)], interval=1)
                         break
                     logger.info('Input again')
                     for i in str(self.factor):
-                        self.appear_then_click(method[int(i)], offset=(20, 20), interval=1)
+                        self.appear_then_click(method[int(i)], interval=1)
         else:
             for _ in range(3):
                 logger.error('Factor illegal')
@@ -232,7 +232,7 @@ class GGScreenshot(ModuleBase):
                           content=f"<{self.config.config_name}> 需要手动介入，输入的倍率不合法，将尝试默认倍率运行")
             logger.hr('Try again')
             for i in str(200):
-                self.appear_then_click(method[int(i)], offset=(20, 20), interval=1)
+                self.appear_then_click(method[int(i)], interval=1)
 
     def gg_script_run(self):
         """
