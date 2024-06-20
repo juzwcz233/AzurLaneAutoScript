@@ -289,8 +289,6 @@ class GGScreenshot(ModuleBase):
                 else:
                     self.device.sleep(0.5)
                     self.device.screenshot()
-                if self.appear_then_click(GG_SCRIPT_END, offset=(20, 20), interval=1):
-                    continue
                 if self.appear_then_click(GG_SKIP0, offset=(20, 20), interval=1):
                     count += 1
                     continue
@@ -299,9 +297,9 @@ class GGScreenshot(ModuleBase):
                     continue
                 if self.appear(GG_START, offset=(20, 20)) and GG_START.match_appear_on(self.device.image):
                     self.device.click(GG_START)
-                    count += 2
+                    count += 3
                     continue
-                if count >= 2 and not self.appear(GG_START, offset=(20, 20)):
+                if count > 2 and not self.appear(GG_START, offset=(20, 20)):
                     for i in range(len(self.method)):
                         if self.appear(self.method[int(i)], offset=(20, 20)):
                             return True
@@ -310,9 +308,8 @@ class GGScreenshot(ModuleBase):
                         logger.info(f'UI additional: {IDLE} -> {REWARD_GOTO_MAIN}')
                         self.device.click(REWARD_GOTO_MAIN)
                         self.get_interval_timer(IDLE).reset()
-                        count += 1
                         continue
-                if (self.appear(LOGIN_CHECK, offset=(30, 30)) and LOGIN_CHECK.match_appear_on(self.device.image) and count != 0) \
+                if (count > 2 and self.appear(LOGIN_CHECK, offset=(30, 30)) and LOGIN_CHECK.match_appear_on(self.device.image)) \
                     or self.appear(LOGIN_GAME_UPDATE, offset=(30, 30)):
                     if self._handle_app_login():
                         continue
