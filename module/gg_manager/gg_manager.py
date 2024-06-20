@@ -11,7 +11,7 @@ from module.ocr.ocr import Digit
 from module.notify import handle_notify
 from module.gg_manager.gg_task import *
 
-OCR_CHECK = Digit(OCR_PRE_BATTLE_CHECK, name='OCR_PRE_BATTLE_CHECK', letter=(255, 255, 255), threshold=255)
+OCR_CHECK = Digit(OCR_PRE_BATTLE_CHECK, letter=(255, 255, 255), threshold=255)
 
 class GGManager(ModuleBase):
     """
