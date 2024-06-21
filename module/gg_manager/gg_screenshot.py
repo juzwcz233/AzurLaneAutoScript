@@ -100,23 +100,10 @@ class GGScreenshot(ModuleBase):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear_then_click(GG_STOP, offset=(20, 20), interval=1):
-                logger.hr('GG Restart')
-                self.gg_stop()
-                self.gg_push()
-                self.gg_start()
-                self.enter_gg()
-                continue
-            if self.appear_then_click(GG_SCRIPT_END, offset=(20, 20), interval=1):
-                logger.info('Close previous script')
-                continue 
             if self.appear(GG_SCRIPT_ENTER_CONFIRM, offset=(20, 20), interval=1):
                 self.gg_lua()
                 logger.hr('Lua execute')
                 return True
-            if self.appear_then_click(GG_SCRIPT_FATAL, offset=(20, 20), interval=1):
-                logger.info('Stop previous script')
-                continue
             if self.appear(GG_SEARCH_MODE_CONFIRM, offset=(10, 10)) and \
                 GG_SEARCH_MODE_CONFIRM.match_appear_on(self.device.image):
                 self.device.click(GG_SCRIPT_ENTER_POS)
@@ -289,6 +276,10 @@ class GGScreenshot(ModuleBase):
                 else:
                     self.device.sleep(0.5)
                     self.device.screenshot()
+                if count > 2 and not self.appear(GG_START, offset=(20, 20)):
+                    for i in range(len(self.method)):
+                        if self.appear(self.method[int(i)], offset=(20, 20)):
+                            return True
                 if self.appear_then_click(GG_SKIP0, offset=(20, 20), interval=1):
                     count += 1
                     continue
@@ -299,16 +290,17 @@ class GGScreenshot(ModuleBase):
                     self.device.click(GG_START)
                     count += 3
                     continue
-                if count > 2 and not self.appear(GG_START, offset=(20, 20)):
-                    for i in range(len(self.method)):
-                        if self.appear(self.method[int(i)], offset=(20, 20)):
-                            return True
                 if self.get_interval_timer(IDLE, interval=3).reached():
                     if IDLE.match_luma(self.device.image, offset=(5, 5)):
                         logger.info(f'UI additional: {IDLE} -> {REWARD_GOTO_MAIN}')
                         self.device.click(REWARD_GOTO_MAIN)
                         self.get_interval_timer(IDLE).reset()
                         continue
+                if self.appear(GG_NOTRUN, offset=(20, 20)):
+                    self.u2.app_stop(f'{self.gg_package_name}')
+                    self.device.app_start()
+                    self.u2.app_start(f'{self.gg_package_name}')
+                    continue
                 if (count > 2 and self.appear(LOGIN_CHECK, offset=(30, 30)) and LOGIN_CHECK.match_appear_on(self.device.image)) \
                     or self.appear(LOGIN_GAME_UPDATE, offset=(30, 30)):
                     if self._handle_app_login():
