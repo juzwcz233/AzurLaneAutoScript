@@ -18,6 +18,7 @@ OCR_GG_FOLD = Digit(OCR_GG_FOLD, name='OCR_GG_FOLD', letter=(222, 228, 227), thr
 OCR_GG_FOLD_CHECK = Digit(OCR_GG_FOLD_CHECK, name= 'OCR_GG_FOLD_CHECK', letter=(222, 228, 227), threshold=255)
 
 class GGScreenshot(ModuleBase):
+    count = 0
     method = [REWARD_GOTO_MAIN, GOTO_MAIN, MAIN_GOTO_BUILD,
               MAIN_GOTO_BUILD_WHITE, DORM_CHECK, MEOWFFICER_FORT_ENTER,
               ASH_QUIT, GET_ITEMS_1, RPG_HOME]
@@ -40,26 +41,20 @@ class GGScreenshot(ModuleBase):
             out: any GG
         """
         skip_first_screenshot = True
-        appear = False
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
+            if self.appear(self.method[int(self.count)], offset=(20, 20)) and\
+                  self.method[int(self.count)].match_appear_on(self.device.image):
+                self.device.click(GG_ENTER_POS)
+                continue
             if self.appear(GG_CONFIRM, offset=(20, 20)):
                 logger.hr('Enter GG')
                 logger.info('Entered GG')
                 return True
-            if appear:
-                if self.appear(self.method[int(i)], offset=(20, 20)):
-                    self.device.click(GG_ENTER_POS)
-            else:
-                for i in range(len(self.method)):
-                    if self.appear(self.method[int(i)], offset=(20, 20)):
-                        self.device.click(GG_ENTER_POS)
-                        appear = True
-                        break
 
     def enter_gg(self):
         self._enter_gg()
@@ -79,11 +74,16 @@ class GGScreenshot(ModuleBase):
                 GG_APP_ENTER.match_appear_on(self.device.image):
                 logger.info('APP Enter')
                 return True
-            if not self.appear(GG_APP_ENTER, offset=(20, 20), threshold=0.999) and \
+            if not self.appear(GG_APP_ENTER, offset=(20, 20)) and \
                 self.appear(GG_SEARCH_MODE_CONFIRM, offset=(10, 10)) and \
                     GG_SEARCH_MODE_CONFIRM.match_appear_on(self.device.image):
                 logger.info('Select APP')
                 self.device.click(GG_APP_RECHOOSE)
+                continue
+            if self.appear(GG_NOTRUN, offset=(20, 20)):
+                self.device.app_start()
+                self.gg_restart()
+                self.gg_open()
                 continue
 
     def _gg_enter_script(self):
@@ -134,10 +134,8 @@ class GGScreenshot(ModuleBase):
             if self.appear(GG_SCRIPT_START_PROCESS, offset=(20, 20)):
                 return True
             if self.appear_then_click(GG_STOP, offset=(20, 20), interval=1):
-                logger.hr('GG Restart')
-                self.gg_stop()
-                self.gg_push()
-                self.gg_start()
+                self.gg_restart()
+                self.gg_open()
                 self.enter_gg()
                 continue
 
@@ -263,56 +261,61 @@ class GGScreenshot(ModuleBase):
             self.device.adb_push('bin/lua/Multiplier.lua', f'{self.luapath}')
             logger.info('Push success')
 
+    def gg_open(self):
+        skip_first_screenshot = True
+        count = 0
+        while 1:
+            if skip_first_screenshot:
+                skip_first_screenshot = False
+            else:
+                self.device.sleep(0.5)
+                self.device.screenshot()
+            if count > 2 and not (self.appear(GG_START, offset=(20, 20)) and GG_START.match_appear_on(self.device.image)):
+                for i in range(len(self.method)):
+                    if self.appear(self.method[int(i)], offset=(20, 20)) and \
+                        self.method[int(i)].match_appear_on(self.device.image):
+                        self.count = i
+                        return True
+            if self.appear_then_click(GG_SKIP0, offset=(20, 20), interval=1):
+                count += 1
+                continue
+            if self.appear_then_click(GG_SKIP1, offset=(20, 20), interval=1):
+                count += 1
+                continue
+            if self.appear(GG_START, offset=(20, 20)) and GG_START.match_appear_on(self.device.image):
+                self.device.click(GG_START)
+                count += 3
+                continue
+            if self.get_interval_timer(IDLE, interval=3).reached():
+                if IDLE.match_luma(self.device.image, offset=(5, 5)):
+                    logger.info(f'UI additional: {IDLE} -> {REWARD_GOTO_MAIN}')
+                    self.device.click(REWARD_GOTO_MAIN)
+                    self.get_interval_timer(IDLE).reset()
+                    continue
+            if self.appear(GG_NOTRUN, offset=(20, 20)):
+                self.device.app_start()
+                self.gg_restart()
+                continue
+            if (count > 2 and self.appear(LOGIN_CHECK, offset=(30, 30)) and LOGIN_CHECK.match_appear_on(self.device.image)) \
+                or self.appear(LOGIN_GAME_UPDATE, offset=(30, 30)):
+                if self._handle_app_login():
+                    continue
+            if self.appear_then_click(LOGIN_ANNOUNCE, offset=(30, 30), interval=5):
+                continue
+
     def gg_start(self):
-        if self.gg_package_name != 'com.':
-            logger.hr('GG start')
-            self.u2.app_start(f'{self.gg_package_name}')
-            logger.info(f'GG start: {self.gg_package_name}')
-            skip_first_screenshot = True
-            count = 0
-            while 1:
-                if skip_first_screenshot:
-                    skip_first_screenshot = False
-                else:
-                    self.device.sleep(0.5)
-                    self.device.screenshot()
-                if count > 2 and not self.appear(GG_START, offset=(20, 20)):
-                    for i in range(len(self.method)):
-                        if self.appear(self.method[int(i)], offset=(20, 20)):
-                            return True
-                if self.appear_then_click(GG_SKIP0, offset=(20, 20), interval=1):
-                    count += 1
-                    continue
-                if self.appear_then_click(GG_SKIP1, offset=(20, 20), interval=1):
-                    count += 1
-                    continue
-                if self.appear(GG_START, offset=(20, 20)) and GG_START.match_appear_on(self.device.image):
-                    self.device.click(GG_START)
-                    count += 3
-                    continue
-                if self.get_interval_timer(IDLE, interval=3).reached():
-                    if IDLE.match_luma(self.device.image, offset=(5, 5)):
-                        logger.info(f'UI additional: {IDLE} -> {REWARD_GOTO_MAIN}')
-                        self.device.click(REWARD_GOTO_MAIN)
-                        self.get_interval_timer(IDLE).reset()
-                        continue
-                if self.appear(GG_NOTRUN, offset=(20, 20)):
-                    self.u2.app_stop(f'{self.gg_package_name}')
-                    self.device.app_start()
-                    self.u2.app_start(f'{self.gg_package_name}')
-                    continue
-                if (count > 2 and self.appear(LOGIN_CHECK, offset=(30, 30)) and LOGIN_CHECK.match_appear_on(self.device.image)) \
-                    or self.appear(LOGIN_GAME_UPDATE, offset=(30, 30)):
-                    if self._handle_app_login():
-                        continue
-                if self.appear_then_click(LOGIN_ANNOUNCE, offset=(30, 30), interval=5):
-                    continue
+        logger.info(f'GG start: {self.gg_package_name}')
+        self.u2.app_start(f'{self.gg_package_name}')
 
     def gg_stop(self):
-        if self.gg_package_name != 'com.':
-            logger.hr('GG kill')
-            self.u2.app_stop(f'{self.gg_package_name}')
-            logger.info(f'GG stop: {self.gg_package_name}')
+        logger.info(f'GG stop: {self.gg_package_name}')
+        self.u2.app_stop(f'{self.gg_package_name}')
+
+    def gg_restart(self):
+        logger.hr('GG Restart')
+        self.gg_stop()
+        self.device.sleep((1, 2))
+        self.gg_start()
 
     def _handle_app_login(self):
         """
@@ -366,8 +369,12 @@ class GGScreenshot(ModuleBase):
 
     def run(self, factor):
         self.factor = factor
+        if self.gg_package_name == 'com.':
+            logger.critical('GG package name is None, please check your config')
+            exit(1)
         self.gg_push()
         self.gg_start()
+        self.gg_open()
         self.enter_gg()
         self.gg_enter_script()
         self.gg_handle_factor()

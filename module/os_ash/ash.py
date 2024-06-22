@@ -70,8 +70,7 @@ class AshCombat(Combat):
                             self.config.task_delay(minute=0.5)
                             self.config.task_call('Restart')
                             self.config.task_stop()
-                    return 1
-            return True
+                    return True
 
         if self.handle_get_items():
             return True

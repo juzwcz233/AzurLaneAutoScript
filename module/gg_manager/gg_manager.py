@@ -38,7 +38,7 @@ class GGManager(ModuleBase):
                 mode: bool
         """
         if mode:
-            logger.hr('Enable GG', level=2)
+            logger.hr('Enable GG')
             GGScreenshot(self.config, self.device).run(factor=self.factor)
             logger.info(f'[Enabled]{self.gg_enable} [AutoRestart]{self.gg_restart} [CurrentStage]{self.gg_on()}')
         else:
