@@ -157,7 +157,7 @@ class LoginHandler(UI):
     def app_restart(self):
         logger.hr('Game restart')
         self.device.app_stop()
-        from module.gg_manager.gg_manager import GGScreenshot
+        from module.gg_manager.gg_screenshot import GGScreenshot
         GGScreenshot(config=self.config, device=self.device).gg_stop()
         self.device.sleep(2)
         self.device.app_start()
