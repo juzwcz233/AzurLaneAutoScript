@@ -47,7 +47,7 @@ class GGScreenshot(ModuleBase):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear(self.method[int(self.count)], offset=(20, 20)) and\
+            if self.appear(self.method[int(self.count)], offset=(20, 20)) and \
                   self.method[int(self.count)].match_appear_on(self.device.image):
                 self.device.click(GG_ENTER_POS)
                 continue
@@ -81,8 +81,9 @@ class GGScreenshot(ModuleBase):
                 self.device.click(GG_APP_RECHOOSE)
                 continue
             if self.appear(GG_NOTRUN, offset=(20, 20)):
-                self.device.app_start()
                 self.gg_restart()
+                self.device.sleep(0.5)
+                self.device.screenshot()
                 self.gg_open()
                 continue
 
@@ -100,15 +101,15 @@ class GGScreenshot(ModuleBase):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear(GG_SCRIPT_ENTER_CONFIRM, offset=(20, 20), interval=1):
-                self.gg_lua()
-                logger.hr('Lua execute')
-                return True
             if self.appear(GG_SEARCH_MODE_CONFIRM, offset=(10, 10)) and \
                 GG_SEARCH_MODE_CONFIRM.match_appear_on(self.device.image):
                 self.device.click(GG_SCRIPT_ENTER_POS)
                 logger.info('Enter script choose')
                 continue
+            if self.appear(GG_SCRIPT_ENTER_CONFIRM, offset=(20, 20)):
+                self.gg_lua()
+                logger.hr('Lua execute')
+                return True
             if not self.appear(GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.999):
                 self.device.click(GG_TAB_SEARCH_POS)
                 logger.info('Enter search mode')
@@ -123,10 +124,6 @@ class GGScreenshot(ModuleBase):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear(GG_SEARCH_MODE_CONFIRM, offset=(10, 10)) and \
-                GG_SEARCH_MODE_CONFIRM.match_appear_on(self.device.image):
-                self.device.click(GG_SCRIPT_ENTER_POS)
-                logger.info('Enter script choose')
             if self.appear_then_click(GG_SCRIPT_START, offset=(10, 10), interval=1):
                 continue
             if self.appear_then_click(GG_SCRIPT_MENU_A, offset=(20, 20), interval=1):
@@ -270,7 +267,7 @@ class GGScreenshot(ModuleBase):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if count > 2 and not (self.appear(GG_START, offset=(20, 20)) and GG_START.match_appear_on(self.device.image)):
+            if count > 2:
                 for i in range(len(self.method)):
                     if self.appear(self.method[int(i)], offset=(20, 20)) and \
                         self.method[int(i)].match_appear_on(self.device.image):
@@ -293,7 +290,6 @@ class GGScreenshot(ModuleBase):
                     self.get_interval_timer(IDLE).reset()
                     continue
             if self.appear(GG_NOTRUN, offset=(20, 20)):
-                self.device.app_start()
                 self.gg_restart()
                 continue
             if (count > 2 and self.appear(LOGIN_CHECK, offset=(30, 30)) and LOGIN_CHECK.match_appear_on(self.device.image)) \
@@ -313,6 +309,7 @@ class GGScreenshot(ModuleBase):
 
     def gg_restart(self):
         logger.hr('GG Restart')
+        self.device.app_start()
         self.gg_stop()
         self.device.sleep((1, 2))
         self.gg_start()
