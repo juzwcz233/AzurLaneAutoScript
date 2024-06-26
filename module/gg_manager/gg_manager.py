@@ -67,8 +67,7 @@ class GGManager(ModuleBase):
         if self.gg_enable:
             if self.gg_on():
                 GGData(self.config).set_data(target='gg_on', value=False)
-            logger.hr('Load GG config')
-            logger.info(f'[Enabled]{self.gg_enable} [AutoRestart]{self.gg_restart} [CurrentStage]{self.gg_on()}')
+            self.check_config()
 
     def check_status(self, mode=True):
         """
@@ -77,8 +76,7 @@ class GGManager(ModuleBase):
             mode: The multiplier status when finish the check.
         """
         if self.gg_enable:
-            logger.hr('Check GG status')
-            logger.info(f'[Enabled]{self.gg_enable} [AutoRestart]{self.gg_restart} [CurrentStage]{self.gg_on()}')
+            self.check_config()
             enable = mode if self.gg_restart else False
             if enable:
                 if not self.gg_on():
