@@ -54,7 +54,7 @@ class GGManager(ModuleBase):
             bool: If it needs restart first
         """
         if self.gg_restart and self.gg_enable:
-            logger.info('Restart to reset GG status.')
+            logger.info('Restart to reset GG status')
             LoginHandler(self.config, self.device).app_restart()
             return True
         return False
