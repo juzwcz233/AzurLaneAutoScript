@@ -232,7 +232,7 @@ class GGScreenshot(ModuleBase):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear(GG_APP_ENTER, offset=(20, 20)) and \
+            if self.appear(GG_APP_ENTER, offset=(10, 10)) and \
                 GG_APP_ENTER.match_appear_on(self.device.image):
                 return True
             if self.appear_then_click(GG_SCRIPT_END, offset=(20, 20), interval=1):
@@ -336,6 +336,7 @@ class GGScreenshot(ModuleBase):
             logger.critical('GG package name is None, please check your config')
             exit(1)
         self.gg_push()
+        self.gg_stop()
         self.gg_start()
         self.gg_open()
         self.enter_gg()
