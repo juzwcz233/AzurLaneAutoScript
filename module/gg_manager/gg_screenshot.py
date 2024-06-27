@@ -114,10 +114,6 @@ class GGScreenshot(ModuleBase):
                 self.gg_lua()
                 logger.hr('Lua execute')
                 return True
-            if not self.appear(GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.999):
-                self.device.click(GG_TAB_SEARCH_POS)
-                logger.info('Enter search mode')
-                continue
 
     def gg_enter_script(self):
         self._gg_enter_script()
