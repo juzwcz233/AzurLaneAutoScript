@@ -225,18 +225,7 @@ class GGScreenshot(ModuleBase):
             if self.appear(GG_SCRIPT_START_CHECK, offset=(20, 20)):
                 break
         logger.info('Waiting for end')
-
-        while 1:
-            if skip_first_screenshot:
-                skip_first_screenshot = False
-            else:
-                self.device.sleep(0.5)
-                self.device.screenshot()
-            if self.appear(GG_APP_ENTER, offset=(10, 10)) and \
-                GG_APP_ENTER.match_appear_on(self.device.image):
-                return True
-            if self.appear_then_click(GG_SCRIPT_END, offset=(20, 20), interval=1):
-                continue
+        self.wait_until_appear_then_click(GG_SCRIPT_END, offset=(20, 20))
 
     def gg_lua(self):
         if self.path != '' and self.gg_action == 'manual' and self.gg_package_name != 'com.':
