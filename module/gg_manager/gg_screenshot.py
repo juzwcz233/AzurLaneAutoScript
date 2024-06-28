@@ -1,5 +1,10 @@
 import uiautomator2 as u2
-from module.base.timer import Timer
+from module.ocr.ocr import Digit
+from module.logger import logger
+from module.base.base import ModuleBase
+from module.handler.login import LoginHandler
+from module.exception import GameStuckError, GameTooManyClickError
+from module.gg_manager.gg_data import GGData
 from module.handler.assets import *
 from module.gg_manager.assets import *
 from module.ui.assets import *
@@ -8,11 +13,6 @@ from module.meowfficer.assets import *
 from module.os_ash.assets import ASH_QUIT
 from module.raid.assets import RPG_HOME
 from module.combat.assets import GET_ITEMS_1
-from module.ocr.ocr import Digit
-from module.logger import logger
-from module.base.base import ModuleBase
-from module.ui.ui import UI
-from module.gg_manager.gg_data import GGData
 
 OCR_GG_FOLD = Digit(OCR_GG_FOLD, name='OCR_GG_FOLD', letter=(222, 228, 227), threshold=255)
 OCR_GG_FOLD_CHECK = Digit(OCR_GG_FOLD_CHECK, name= 'OCR_GG_FOLD_CHECK', letter=(222, 228, 227), threshold=255)
@@ -66,8 +66,11 @@ class GGScreenshot(ModuleBase):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
-            if self.appear_then_click(GG_APP_CHOOSE0, offset=(20, 20), interval=1) or \
-                self.appear_then_click(GG_APP_CHOOSE1, offset=(20, 20), interval=1):
+            if self.appear(GG_APP_CHOOSE1, offset=(20, 20)):
+                if self.appear_then_click(GG_APP_CHOOSE0, offset=(20, 20), interval=1):
+                    pass
+                else:
+                    self.device.click(GG_APP_CHOOSE1)
                 logger.info('APP Choose')
                 continue
             if self.appear(GG_APP_ENTER, offset=(20, 20)) and \
@@ -85,6 +88,7 @@ class GGScreenshot(ModuleBase):
                 self.device.sleep(0.5)
                 self.device.screenshot()
                 self.gg_open()
+                self._enter_gg()
                 continue
 
     def _gg_enter_script(self):
@@ -110,10 +114,6 @@ class GGScreenshot(ModuleBase):
                 self.gg_lua()
                 logger.hr('Lua execute')
                 return True
-            if not self.appear(GG_SEARCH_MODE_CONFIRM, offset=(10, 10), threshold=0.999):
-                self.device.click(GG_TAB_SEARCH_POS)
-                logger.info('Enter search mode')
-                continue
 
     def gg_enter_script(self):
         self._gg_enter_script()
@@ -225,18 +225,7 @@ class GGScreenshot(ModuleBase):
             if self.appear(GG_SCRIPT_START_CHECK, offset=(20, 20)):
                 break
         logger.info('Waiting for end')
-
-        while 1:
-            if skip_first_screenshot:
-                skip_first_screenshot = False
-            else:
-                self.device.sleep(0.5)
-                self.device.screenshot()
-            if self.appear(GG_APP_ENTER, offset=(20, 20)) and \
-                GG_APP_ENTER.match_appear_on(self.device.image):
-                return True
-            if self.appear_then_click(GG_SCRIPT_END, offset=(20, 20), interval=1):
-                continue
+        self.wait_until_appear_then_click(GG_SCRIPT_END, offset=(20, 20))
 
     def gg_lua(self):
         if self.path != '' and self.gg_action == 'manual' and self.gg_package_name != 'com.':
@@ -294,8 +283,8 @@ class GGScreenshot(ModuleBase):
                 continue
             if (count > 2 and self.appear(LOGIN_CHECK, offset=(30, 30)) and LOGIN_CHECK.match_appear_on(self.device.image)) \
                 or self.appear(LOGIN_GAME_UPDATE, offset=(30, 30)):
-                if self._handle_app_login():
-                    continue
+                self.handle_app_login()
+                continue
             if self.appear_then_click(LOGIN_ANNOUNCE, offset=(30, 30), interval=5):
                 continue
 
@@ -314,55 +303,21 @@ class GGScreenshot(ModuleBase):
         self.device.sleep((1, 2))
         self.gg_start()
 
-    def _handle_app_login(self):
-        """
-        Pages:
-            in: Any page
-            out: page_main
-        """
-        logger.hr('Game login')
-        confirm_timer = Timer(1.5, count=4).start()
-        orientation_timer = Timer(5)
-        login_success = False
-        while 1:
-            # Watch device rotation
-            if not login_success and orientation_timer.reached():
-                # Screen may rotate after starting an app
-                self.device.get_orientation()
-                orientation_timer.reset()
-
-            self.device.screenshot()
-
-            # End
-            if UI(self.config, self.device).is_in_main():
-                if confirm_timer.reached():
-                    logger.info('Login to main confirm')
-                    break
-            else:
-                confirm_timer.reset()
-
-            # Login
-            if self.appear(LOGIN_CHECK, offset=(30, 30), interval=5) and LOGIN_CHECK.match_appear_on(self.device.image):
-                self.device.click(LOGIN_CHECK)
-                if not login_success:
-                    logger.info('Login success')
-                    login_success = True
-            if self.appear_then_click(LOGIN_ANNOUNCE, offset=(30, 30), interval=5):
+    def handle_app_login(self):
+        for _ in range(3):
+            self.device.stuck_record_clear()
+            self.device.click_record_clear()
+            try:
+                LoginHandler(self.config, self.device)._handle_app_login()
+                return True
+            except (GameTooManyClickError, GameStuckError) as e:
+                logger.warning(e)
+                self.device.app_stop()
+                self.device.app_start()
                 continue
-            if self.appear_then_click(LOGIN_ANNOUNCE_2, offset=(30, 30), interval=5):
-                continue
-            if self.appear(EVENT_LIST_CHECK, offset=(30, 30), interval=5):
-                self.device.click(BACK_ARROW)
-                continue
-            # Updates and maintenance
-            if self.appear_then_click(MAINTENANCE_ANNOUNCE, offset=(30, 30), interval=5):
-                continue
-            if self.appear_then_click(LOGIN_GAME_UPDATE, offset=(30, 30), interval=5):
-                continue
-            # Always goto page_main
-            if self.appear_then_click(GOTO_MAIN, offset=(30, 30), interval=5):
-                continue
-        return True
+        logger.critical('Login failed more than 3')
+        logger.critical('Azur Lane server may be under maintenance, or you may lost network connection')
+        raise GameStuckError
 
     def run(self, factor):
         self.factor = factor
@@ -370,6 +325,7 @@ class GGScreenshot(ModuleBase):
             logger.critical('GG package name is None, please check your config')
             exit(1)
         self.gg_push()
+        self.gg_stop()
         self.gg_start()
         self.gg_open()
         self.enter_gg()

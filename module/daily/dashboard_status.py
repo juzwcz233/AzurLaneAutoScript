@@ -1,14 +1,12 @@
 from module.log_res import LogRes
 from module.logger import logger
-from module.base.timer import Timer
 from module.base.utils import *
-from module.ocr.ocr import Ocr, Digit
+from module.ocr.ocr import Digit
 from module.gacha.ui import GachaUI
 from module.shop.ui import ShopUI
-from module.campaign.assets import OCR_EVENT_PT, OCR_COIN, OCR_OIL, OCR_COIN_LIMIT, OCR_OIL_LIMIT
+from module.campaign.assets import OCR_COIN, OCR_OIL, OCR_COIN_LIMIT, OCR_OIL_LIMIT
 from module.shop.assets import SHOP_GEMS, SHOP_MEDAL, SHOP_MERIT, SHOP_GUILD_COINS, SHOP_CORE
 from module.gacha.assets import BUILD_CUBE_COUNT
-from module.raid.raid import pt_ocr
 
 OCR_OIL = Digit(OCR_OIL, name='OCR_OIL', letter=(247, 247, 247), threshold=128)
 OCR_COIN = Digit(OCR_COIN, name='OCR_COIN', letter=(239, 239, 239), threshold=128)
@@ -20,29 +18,6 @@ OCR_SHOP_MEDAL = Digit(SHOP_MEDAL, letter=(239, 239, 239), name='OCR_SHOP_MEDAL'
 OCR_SHOP_MERIT = Digit(SHOP_MERIT, letter=(239, 239, 239), name='OCR_SHOP_MERIT')
 OCR_SHOP_GUILD_COINS = Digit(SHOP_GUILD_COINS, letter=(255, 255, 255), name='OCR_SHOP_GUILD_COINS')
 OCR_SHOP_CORE = Digit(SHOP_CORE, letter=(239, 239, 239), name='OCR_SHOP_CORE')
-
-
-class PtOcr(Ocr):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, lang='azur_lane', alphabet='X0123456789', **kwargs)
-
-    def pre_process(self, image):
-        """
-        Args:
-            image (np.ndarray): Shape (height, width, channel)
-
-        Returns:
-            np.ndarray: Shape (width, height)
-        """
-        # Use MAX(r, g, b)
-        r, g, b = cv2.split(cv2.subtract((255, 255, 255, 0), image))
-        image = cv2.min(cv2.min(r, g), b)
-        # Remove background, 0-192 => 0-255
-        image = cv2.multiply(image, 255 / 192)
-
-        return image.astype(np.uint8)
-
-OCR_PT = PtOcr(OCR_EVENT_PT)
 
 
 class DashboardStatus(ShopUI, GachaUI):
@@ -91,53 +66,6 @@ class DashboardStatus(ShopUI, GachaUI):
         logger.attr('Cube',cube)
         LogRes(self.config).Cube = cube
         self.config.update()
-
-    def _get_pt(self):
-        pt = OCR_PT.ocr(self.device.image)
-        res = re.search(r'X(\d+)', pt)
-        if res:
-            pt = int(res.group(1))
-        else:
-            pt = 0
-            logger.warning(f'Invalid pt result: {pt}')
-        logger.attr('Event_PT', pt)
-        LogRes(self.config).Pt = pt
-        self.config.update()
-
-
-    def get_raid_pt(self):
-        """
-        Returns:
-            int: Raid PT, 0 if raid event is not supported
-
-        Pages:
-            in: page_raid
-        """
-        skip_first_screenshot = True
-        timeout = Timer(1.5, count=5).start()
-        event = self.config.cross_get('Raid.Campaign.Event')
-        ocr = pt_ocr(event)
-        if ocr is not None:
-            # 70000 seems to be a default value, wait
-            while 1:
-                if skip_first_screenshot:
-                    skip_first_screenshot = False
-                else:
-                    self.device.screenshot()
-
-                pt = ocr.ocr(self.device.image)
-                if timeout.reached():
-                    logger.warning('Wait PT timeout, assume it is')
-                    LogRes(self.config).Pt = pt
-                    return pt
-                if pt in [70000, 70001]:
-                    continue
-                else:
-                    LogRes(self.config).Pt = pt
-                    return pt
-        else:
-            logger.info(f'Raid {self.config.Campaign_Event} does not support PT ocr, skip')
-            return 0
 
     def get_merit(self, skip_first_screenshot=True):
         while 1:

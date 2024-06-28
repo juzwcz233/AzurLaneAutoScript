@@ -40,12 +40,11 @@ class GGManager(ModuleBase):
         if mode:
             logger.hr('Enable GG')
             GGScreenshot(self.config, self.device).run(factor=self.factor)
-            logger.info(f'[Enabled]{self.gg_enable} [AutoRestart]{self.gg_restart} [CurrentStage]{self.gg_on()}')
+            self.check_config()
         else:
             self.gg_reset()
 
     def check_config(self):
-        logger.hr('Check GG config')
         logger.info(f'[Enabled]{self.gg_enable} [AutoRestart]{self.gg_restart} [CurrentStage]{self.gg_on()}')
 
     def handle_restart_before_tasks(self) -> bool:
@@ -55,7 +54,7 @@ class GGManager(ModuleBase):
             bool: If it needs restart first
         """
         if self.gg_restart and self.gg_enable:
-            logger.info('Restart to reset GG status.')
+            logger.info('Restart to reset GG status')
             LoginHandler(self.config, self.device).app_restart()
             return True
         return False
@@ -67,8 +66,7 @@ class GGManager(ModuleBase):
         if self.gg_enable:
             if self.gg_on():
                 GGData(self.config).set_data(target='gg_on', value=False)
-            logger.hr('Load GG config')
-            logger.info(f'[Enabled]{self.gg_enable} [AutoRestart]{self.gg_restart} [CurrentStage]{self.gg_on()}')
+            self.check_config()
 
     def check_status(self, mode=True):
         """
@@ -77,8 +75,7 @@ class GGManager(ModuleBase):
             mode: The multiplier status when finish the check.
         """
         if self.gg_enable:
-            logger.hr('Check GG status')
-            logger.info(f'[Enabled]{self.gg_enable} [AutoRestart]{self.gg_restart} [CurrentStage]{self.gg_on()}')
+            self.check_config()
             enable = mode if self.gg_restart else False
             if enable:
                 if not self.gg_on():

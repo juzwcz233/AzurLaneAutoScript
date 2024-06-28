@@ -555,11 +555,9 @@ class AzurLaneAutoScript:
                 del_cached_property(self, 'config')
                 continue
 
-            # Check GG config before a task begins (to reset temporary config), and decide to enable it.
-            GGManager(config=self.config, device=self.device).check_config()
             try:
-                GGManager(config=self.config, device=self.device).check_then_set_gg_status(inflection.underscore(task))
                 check_fail = 0
+                GGManager(config=self.config, device=self.device).check_then_set_gg_status(inflection.underscore(task))
             except GameStuckError:
                 del_cached_property(self, 'config')
                 check_fail += 1

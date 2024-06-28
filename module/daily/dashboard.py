@@ -1,8 +1,5 @@
 from module.logger import logger
-from module.log_res import LogRes
 from module.daily.dashboard_status import DashboardStatus
-from module.ui.page import page_campaign_menu
-from module.ui.assets import CAMPAIGN_MENU_NO_EVENT, EVENT_CHECK, SP_CHECK, RAID_CHECK
 
 class DashboardUpdate(DashboardStatus):
     def dashboard_run(self):
@@ -13,52 +10,8 @@ class DashboardUpdate(DashboardStatus):
         self.get_oilcoingem()
         if self.config.DashboardUpdate_Update:
             self.goto_shop()
-            self.get_event_pt()
         self.ui_goto_main()
         logger.info('Update Dashboard Data Finished')
-
-    def get_event_pt(self):
-        self.ui_goto(page_campaign_menu)
-        self.device.sleep(0.5)
-        self.device.screenshot()
-        pt = 0
-        if self.appear(button=CAMPAIGN_MENU_NO_EVENT, offset=(50, 50)):
-            logger.warning('Event is already closed')
-            logger.attr('Event_PT', pt)
-            LogRes(self.config).Pt = pt
-        else:
-            while 1:
-                self.device.click(button=CAMPAIGN_MENU_NO_EVENT)
-                self.device.sleep(0.5)
-                self.device.screenshot()
-                if self.appear(button=EVENT_CHECK, offset=(50, 50)):
-                    break
-                if self.appear(button=RAID_CHECK, offset=(50, 50)):
-                    break
-                if self.appear(button=SP_CHECK, offset=(50, 50)):
-                    logger.warning('Event is SP, no PT')
-                    LogRes(self.config).Pt = pt
-                    return 1
-                if not self.appear(button=EVENT_CHECK, offset=(50, 50)) and \
-                    not self.appear(button=RAID_CHECK, offset=(50, 50)) and \
-                    not self.appear(button=SP_CHECK, offset=(50, 50)):
-                    logger.warning('Event is no PT')
-                    LogRes(self.config).Pt = pt
-                    return 1
-            
-            skip_first_screenshot = True
-            while 1:
-                if skip_first_screenshot:
-                    skip_first_screenshot = False
-                else:
-                    self.device.sleep(0.5)
-                    self.device.screenshot()
-                if self.appear(button=EVENT_CHECK, offset=(50, 50)):
-                    self._get_pt()
-                    break
-                if self.appear(button=RAID_CHECK, offset=(50, 50)):
-                    self.get_raid_pt()
-                    break
 
     def goto_shop(self):
         self.ui_goto_shop()
