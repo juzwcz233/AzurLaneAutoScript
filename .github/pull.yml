@@ -3,8 +3,8 @@ rules:
   - base: master
     upstream: LmeSzinc:master
     mergeMethod: merge
-  - base: Alas-with-Dashboard
-    upstream: Zuosizhu:master
+  - base: Dashboard
+    upstream: MengNianxiaoyao:Dashboard
     mergeMethod: merge    
   - base: mengnian
     upstream: MengNianxiaoyao:mydev
