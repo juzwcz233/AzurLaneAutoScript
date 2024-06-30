@@ -2,6 +2,7 @@ import uiautomator2 as u2
 from module.ocr.ocr import Digit
 from module.logger import logger
 from module.base.base import ModuleBase
+from module.ui.ui import UI
 from module.handler.login import LoginHandler
 from module.exception import GameStuckError, GameTooManyClickError
 from module.gg_manager.gg_data import GGData
@@ -9,19 +10,13 @@ from module.handler.assets import *
 from module.gg_manager.assets import *
 from module.ui.assets import *
 from module.ui_white.assets import *
-from module.meowfficer.assets import *
-from module.os_ash.assets import ASH_QUIT
-from module.raid.assets import RPG_HOME
-from module.combat.assets import GET_ITEMS_1
 
 OCR_GG_FOLD = Digit(OCR_GG_FOLD, name='OCR_GG_FOLD', letter=(222, 228, 227), threshold=255)
 OCR_GG_FOLD_CHECK = Digit(OCR_GG_FOLD_CHECK, name= 'OCR_GG_FOLD_CHECK', letter=(222, 228, 227), threshold=255)
 
 class GGScreenshot(ModuleBase):
     count = 0
-    method = [REWARD_GOTO_MAIN, GOTO_MAIN, MAIN_GOTO_BUILD,
-              MAIN_GOTO_BUILD_WHITE, DORM_CHECK, MEOWFFICER_FORT_ENTER,
-              ASH_QUIT, GET_ITEMS_1, RPG_HOME]
+    method = [MAIN_GOTO_BUILD, MAIN_GOTO_BUILD_WHITE]
 
     def __init__(self, config, device):
         super().__init__(config, device)
@@ -320,6 +315,7 @@ class GGScreenshot(ModuleBase):
         raise GameStuckError
 
     def run(self, factor):
+        UI(self.config, self.device).ui_goto_main()
         self.factor = factor
         if self.gg_package_name == 'com.':
             logger.critical('GG package name is None, please check your config')
