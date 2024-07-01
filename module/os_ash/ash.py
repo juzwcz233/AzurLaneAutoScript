@@ -66,7 +66,7 @@ class AshCombat(Combat):
                     gg_enable = self.config.cross_get('GGManager.GGManager.Enable', default=True)
                     gg_restart = self.config.cross_get('GGManager.GGManager.RestartEverytime', default=True)
                     if gg_enable and gg_restart:
-                        if GGManager(config=self.config, device=self.device).power_limit('Ash'):
+                        if GGManager(self.config, self.device).power_limit('Ash'):
                             self.config.task_delay(minute=0.5)
                             self.config.task_call('Restart')
                             self.config.task_stop()

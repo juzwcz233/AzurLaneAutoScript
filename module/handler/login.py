@@ -131,7 +131,7 @@ class LoginHandler(UI):
             self.device.click_record_clear()
             try:
                 from module.gg_manager.gg_manager import GGManager
-                GGManager(config=self.config, device=self.device).handle_restart()
+                GGManager(self.config, self.device).handle_restart()
                 self._handle_app_login()
                 return True
             except (GameTooManyClickError, GameStuckError) as e:

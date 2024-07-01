@@ -522,7 +522,7 @@ class AzurLaneAutoScript:
 
         # Try forced task_call restart to reset GG status
         self.checker.wait_until_available()
-        GGManager(config=self.config, device=self.device).handle_restart_before_tasks()
+        GGManager(self.config, self.device).handle_restart_before_tasks()
         check_fail=0
         while 1:
             # Check update event from GUI
@@ -557,7 +557,7 @@ class AzurLaneAutoScript:
 
             try:
                 check_fail = 0
-                GGManager(config=self.config, device=self.device).check_then_set_gg_status(inflection.underscore(task))
+                GGManager(self.config, self.device).check_then_set_gg_status(inflection.underscore(task))
             except GameStuckError:
                 del_cached_property(self, 'config')
                 check_fail += 1

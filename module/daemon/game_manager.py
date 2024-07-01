@@ -8,7 +8,7 @@ class GameManager(LoginHandler):
         logger.hr('Force Stop AzurLane', level=1)
         self.device.app_stop()
         logger.info('Force Stop finished')
-        GGManager(config=self.config, device=self.device).check_config()
+        GGManager(self.config, self.device).check_config()
         if self.config.GameManager_AutoRestart:
             LoginHandler(config=self.config, device=self.device).app_restart()
 
