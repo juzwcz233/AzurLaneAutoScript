@@ -98,15 +98,7 @@ class AzurLaneAutoScript:
             if self.checker.is_available():
                 logger.critical('Game page unknown')
                 self.save_error_log()
-                handle_notify(
-                    self.config.Error_OnePushConfig,
-                    title=f"Alas <{self.config_name}> crashed(崩溃了)",
-                    content=f"<{self.config_name}> GamePageUnknownError(游戏页面未知错误)",
-                )
-                logger.info('Restart to reset Game page in 10 seconds')
-                self.device.sleep(10)
-                LoginHandler(self.config, self.device).app_restart()
-                return False
+                exit(1)
             else:
                 self.checker.wait_until_available()
                 return False
@@ -126,10 +118,6 @@ class AzurLaneAutoScript:
                 title=f"Alas <{self.config_name}> crashed(崩溃了)",
                 content=f"<{self.config_name}> RequestHumanTakeover(需要手动介入)",
             )
-            exit(1)
-        except AutoSearchSetError:
-            logger.critical('Auto search could not be set correctly. Maybe your ships in hard mode are changed.')
-            logger.critical('Request human takeover.')
             exit(1)
         except Exception as e:
             logger.exception(e)
@@ -362,7 +350,7 @@ class AzurLaneAutoScript:
         from module.campaign.run import CampaignRun
         CampaignRun(config=self.config, device=self.device).run(
             name=self.config.Campaign_Name, folder=self.config.Campaign_Event, mode=self.config.Campaign_Mode)
-        
+
     def main2(self):
         from module.campaign.run import CampaignRun
         CampaignRun(config=self.config, device=self.device).run(
@@ -523,7 +511,7 @@ class AzurLaneAutoScript:
         # Try forced task_call restart to reset GG status
         self.checker.wait_until_available()
         GGManager(self.config, self.device).handle_restart_before_tasks()
-        check_fail=0
+        check_fail = 0
         while 1:
             # Check update event from GUI
             if self.stop_event is not None:
@@ -546,17 +534,13 @@ class AzurLaneAutoScript:
             # Init device and change server
             _ = self.device
             # Skip first restart
-            if task == 'Restart':
-                if self.is_first_task:
-                    logger.info('Skip task `Restart` at scheduler start')
-                else:
-                    LoginHandler(self.config, self.device).app_restart()
+            if self.is_first_task and task == 'Restart':
+                logger.info('Skip task `Restart` at scheduler start')
                 self.config.task_delay(server_update=True)
                 del_cached_property(self, 'config')
                 continue
 
             try:
-                check_fail = 0
                 GGManager(self.config, self.device).check_then_set_gg_status(inflection.underscore(task))
             except GameStuckError:
                 del_cached_property(self, 'config')

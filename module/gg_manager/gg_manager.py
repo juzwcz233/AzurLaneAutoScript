@@ -55,7 +55,7 @@ class GGManager(ModuleBase):
         """
         if self.gg_restart and self.gg_enable:
             logger.info('Restart to reset GG status')
-            LoginHandler(self.config, self.device).app_restart()
+            LoginHandler(self.config, self.device).app_restart_gg()
             return True
         return False
 
@@ -89,7 +89,7 @@ class GGManager(ModuleBase):
         """
         if self.gg_enable and self.gg_on():
             logger.hr('Disable GG', level=2)
-            LoginHandler(self.config, self.device).app_restart()
+            LoginHandler(self.config, self.device).app_restart_gg()
             logger.attr('GG', 'Disabled')
 
     def power_limit(self, task=''):

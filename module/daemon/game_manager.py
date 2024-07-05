@@ -10,7 +10,7 @@ class GameManager(LoginHandler):
         logger.info('Force Stop finished')
         GGManager(self.config, self.device).check_config()
         if self.config.GameManager_AutoRestart:
-            LoginHandler(config=self.config, device=self.device).app_restart()
+            LoginHandler(config=self.config, device=self.device).app_restart_gg()
 
 
 if __name__ == '__main__':

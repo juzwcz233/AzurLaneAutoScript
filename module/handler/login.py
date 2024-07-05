@@ -165,6 +165,15 @@ class LoginHandler(UI):
         # self.ensure_no_unfinished_campaign()
         self.config.task_delay(server_update=True)
 
+    def app_restart_gg(self):
+        logger.hr('Game restart')
+        self.device.app_stop()
+        from module.gg_manager.gg_screenshot import GGScreenshot
+        GGScreenshot(config=self.config, device=self.device).gg_stop()
+        self.device.sleep(2)
+        self.device.app_start()
+        self.handle_app_login()
+
     def ensure_no_unfinished_campaign(self, confirm_wait=3):
         """
         Pages:
