@@ -46,6 +46,8 @@ class GGScreenshot(ModuleBase):
                   self.method[int(self.count)].match_appear_on(self.device.image):
                 self.device.click(GG_ENTER_POS)
                 continue
+            if self.appear_then_click(OIL_CLOSE, offset=(20, 20), interval=1):
+                continue
             if self.appear(GG_CONFIRM, offset=(20, 20)):
                 logger.hr('Enter GG')
                 logger.info('Entered GG')
