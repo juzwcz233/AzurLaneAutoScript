@@ -70,10 +70,6 @@ class GGScreenshot(ModuleBase):
                     self.device.click(GG_APP_CHOOSE1)
                 logger.info('APP Choose')
                 continue
-            if self.appear(GG_APP_ENTER, offset=(20, 20)) and \
-                GG_APP_ENTER.match_appear_on(self.device.image):
-                logger.info('APP Enter')
-                return True
             if not self.appear(GG_APP_ENTER, offset=(20, 20)) and \
                 self.appear(GG_SEARCH_MODE_CONFIRM, offset=(10, 10)) and \
                     GG_SEARCH_MODE_CONFIRM.match_appear_on(self.device.image):
@@ -87,6 +83,10 @@ class GGScreenshot(ModuleBase):
                 self.gg_open()
                 self._enter_gg()
                 continue
+            if self.appear(GG_APP_ENTER, offset=(20, 20)) and \
+                GG_APP_ENTER.match_appear_on(self.device.image):
+                logger.info('APP Enter')
+                return True
 
     def _gg_enter_script(self):
         """
@@ -102,6 +102,13 @@ class GGScreenshot(ModuleBase):
             else:
                 self.device.sleep(0.5)
                 self.device.screenshot()
+            if self.appear(GG_APP_CHOOSE1, offset=(20, 20)):
+                if self.appear_then_click(GG_APP_CHOOSE0, offset=(20, 20), interval=1):
+                    pass
+                else:
+                    self.device.click(GG_APP_CHOOSE1)
+                logger.info('APP Choose')
+                continue
             if self.appear(GG_SEARCH_MODE_CONFIRM, offset=(10, 10)) and \
                 GG_SEARCH_MODE_CONFIRM.match_appear_on(self.device.image):
                 self.device.click(GG_SCRIPT_ENTER_POS)
