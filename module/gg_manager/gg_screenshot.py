@@ -160,7 +160,6 @@ class GGScreenshot(ModuleBase):
         ]
         self.wait_until_appear(GG_SCRIPT_START_PROCESS, skip_first_screenshot=True)
         logger.hr('Factor Input')
-        sleep(1)
         if (isinstance(self.factor, int) == True or isinstance(self.factor, float) == True) and (1 <= self.factor <= 10000):
             logger.attr('Factor', self.factor)
             while 1:
