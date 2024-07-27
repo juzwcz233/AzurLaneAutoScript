@@ -46,16 +46,20 @@
       "name": "重啟設定",
       "help": ""
     },
+    "MainNormal": {
+      "name": "主線圖-普通",
+      "help": ""
+    },
+    "MainHard": {
+      "name": "主線圖-困難",
+      "help": ""
+    },
     "Main": {
       "name": "主線圖",
       "help": ""
     },
     "Main2": {
       "name": "主線圖-2",
-      "help": ""
-    },
-    "Main3": {
-      "name": "主線圖-3",
       "help": ""
     },
     "GemsFarming": {
@@ -72,6 +76,10 @@
     },
     "Event2": {
       "name": "活動圖-2",
+      "help": ""
+    },
+    "Event3": {
+      "name": "活動圖-3",
       "help": ""
     },
     "Raid": {
@@ -182,6 +190,10 @@
       "name": "小遊戲",
       "help": "遊戲幣不會溢出時自動領取遊戲幣，有遊戲幣且獎勵沒滿時自動進行小遊戲"
     },
+    "DashboardUpdate": {
+      "name": "更新儀表盤",
+      "help": ""
+    },
     "OpsiGeneral": {
       "name": "通用設定",
       "help": ""
@@ -260,6 +272,10 @@
     },
     "GameManager": {
       "name": "遊戲管理器(未完成)",
+      "help": ""
+    },
+    "GGManager": {
+      "name": "GG管理器",
       "help": ""
     }
   },
@@ -814,9 +830,9 @@
       "help": "達成地圖 100% 通關、達成三星通關、達成安全海域\n或達成安全海域但不打三星後停止",
       "non_stop": "否",
       "100_percent_clear": "100%通關",
+      "threat_safe_without_3_stars": "100%通關 + 安全海域",
       "map_3_stars": "100%通關 + 三星",
-      "threat_safe": "100%通關 + 三星 + 安全海域",
-      "threat_safe_without_3_stars": "100%通關 + 安全海域"
+      "threat_safe": "100%通關 + 三星 + 安全海域"
     },
     "StageIncrease": {
       "name": "達成地圖成就後前往下一關卡，不停止",
@@ -854,7 +870,7 @@
       "diamond": "輪型陣"
     },
     "Fleet1Mode": {
-      "name": "一隊自律模式",
+      "name": "一隊行動模式",
       "help": "",
       "combat_auto": "自律戰鬥",
       "combat_manual": "手動",
@@ -888,7 +904,7 @@
       "diamond": "輪型陣"
     },
     "Fleet2Mode": {
-      "name": "二隊自律模式",
+      "name": "二隊行動模式",
       "help": "",
       "combat_auto": "自律戰鬥",
       "combat_manual": "手動",
@@ -1199,9 +1215,10 @@
     "TaskCall": {
       "name": "物資過低時呼叫任務X",
       "help": "提醒: 玩家需提前設定好被調用的任務，否則將不會作用",
-      "Main": "主線圖",
-      "Main2": "主線圖-2",
-      "Main3": "主線圖-3"
+      "MainNormal": "主線圖-普通",
+      "MainHard": "主線圖-困難",
+      "Main": "主線圖-普通",
+      "Main2": "主線圖-困難"
     }
   },
   "EventDaily": {
@@ -1977,6 +1994,16 @@
       "help": ""
     }
   },
+  "DashboardUpdate": {
+    "_info": {
+      "name": "更新儀表盤",
+      "help": "大世界相關數據不支援更新"
+    },
+    "Update": {
+      "name": "全部更新",
+      "help": "若取消，則僅更新石油、物資、鑽石、魔方"
+    }
+  },
   "Daily": {
     "_info": {
       "name": "每日任務",
@@ -2111,8 +2138,8 @@
       "help": "例如 11-2、12-2、12-4"
     },
     "HardFleet": {
-      "name": "出擊艦隊",
-      "help": "",
+      "name": "Hard.HardFleet.name",
+      "help": "Hard.HardFleet.help",
       "1": "1",
       "2": "2"
     }
@@ -2277,6 +2304,14 @@
       "2": "2",
       "3": "3",
       "4": "4"
+    },
+    "FleetMode": {
+      "name": "行動模式",
+      "help": "",
+      "combat_auto": "自律戰鬥",
+      "combat_manual": "手動",
+      "stand_still_in_the_middle": "中路站樁",
+      "hide_in_bottom_left": "躲左下角"
     },
     "Submarine": {
       "name": "呼叫潛艇",
@@ -2483,7 +2518,14 @@
     },
     "Repository": {
       "name": "反和諧倉庫",
-      "help": "一般不需要修改\n倉庫 https://github.com/LmeSzinc/AzurLaneUncensored\n國內鏡像(預設) https://e.coding.net/llop18870/alas/AzurLaneUncensored.git"
+      "help": "一般不需要修改\n倉庫(預設) https://github.com/LmeSzinc/AzurLaneUncensored"
+    },
+    "Option": {
+      "name": "AzurLaneUncensored.Option.name",
+      "help": "AzurLaneUncensored.Option.help",
+      "all": "all",
+      "main": "main",
+      "only_patch": "only_patch"
     }
   },
   "GameManager": {
@@ -2494,6 +2536,77 @@
     "AutoRestart": {
       "name": "自動登錄",
       "help": "遊戲被強制結束後自動登錄遊戲"
+    }
+  },
+  "GGManager": {
+    "_info": {
+      "name": "GG管理器",
+      "help": "請在舊版UI中將GG懸浮窗遮擋住石油圖標（透明度調至90%以上）"
+    },
+    "Enable": {
+      "name": "啟用倍率",
+      "help": "運行演習、共鬥、Meta時會自動關閉倍率"
+    },
+    "RestartEverytime": {
+      "name": "重啟",
+      "help": "强制開啟，初始化倍率，防止誤操作"
+    },
+    "GGMultiplyingFactor": {
+      "name": "倍率數值",
+      "help": "默認數值200\n建議數值1-1000，亂輸將使用默認倍率運行"
+    },
+    "GGAction": {
+      "name": "倍率檔案選擇",
+      "help": "如爲手動，第一次使用需要指定lua路徑\n手動方式可運行自己的lua，但操作邏輯必須和原版一樣，否則報錯",
+      "auto": "自動",
+      "manual": "手動"
+    },
+    "GGLuapath": {
+      "name": "lua路徑",
+      "help": "填寫lua路徑，如爲自動請勿填入（不會檢查路徑是否正確）"
+    },
+    "GGLuapathRecord": {
+      "name": "lua路徑記錄",
+      "help": "自動勾選，非設備更換、lua路徑修改及倍率操作方式切換請勿取消"
+    },
+    "GGPackageName": {
+      "name": "GG包名",
+      "help": "GG安裝后請自行訪問/Android/data檔案夾查看包名，應是com.一串亂碼"
+    },
+    "GGLowLimit": {
+      "name": "最低戰力閾值",
+      "help": "前排艦隊最低戰力，低於此戰力將不會進行出擊"
+    },
+    "DisabledTask": {
+      "name": "禁用倍率的任務",
+      "help": "GGManager.DisabledTask.help",
+      "disable_guild_and_dangerous": "禁用大艦隊及敏感任務",
+      "disable_all_dangerous_task": "禁用敏感任務",
+      "disable_meta_and_exercise": "禁用Meta和演習",
+      "disable_exercise": "禁用演習",
+      "enable_all": "百無禁忌"
+    }
+  },
+  "PowerLimit": {
+    "_info": {
+      "name": "戰力限制",
+      "help": "運行敏感項目前的最後一道保險，若前排戰力高於此值強制重啟"
+    },
+    "Exercise": {
+      "name": "演習",
+      "help": ""
+    },
+    "Raid": {
+      "name": "共鬥",
+      "help": ""
+    },
+    "Ash": {
+      "name": "餘燼信標",
+      "help": ""
+    },
+    "Coalition": {
+      "name": "極地風暴",
+      "help": ""
     }
   },
   "Storage": {
@@ -2507,6 +2620,10 @@
     }
   },
   "Gui": {
+    "Login": {
+      "Login": "請在下面登錄",
+      "LoginError": "密碼錯誤"
+    },
     "Aside": {
       "Install": "安裝",
       "Home": "主頁",
@@ -2520,6 +2637,8 @@
       "Stop": "停止",
       "ScrollON": "自動滾動 開",
       "ScrollOFF": "自動滾動 關",
+      "DashboardON": "開",
+      "DashboardOFF": "關",
       "ClearLog": "清空日誌",
       "Setting": "設定",
       "CheckUpdate": "檢查更新",
@@ -2531,7 +2650,9 @@
       "DisableTranslateMode": "點擊這裡關閉翻譯模式",
       "ConfigSaved": "設定已儲存",
       "AlasIsRunning": "調度器已在執行中",
-      "ClickToUpdate": "有更新可用，點擊這裡進行更新"
+      "ClickToUpdate": "有更新可用，點擊這裡進行更新",
+      "AlasRestart": "Gui.Toast.AlasRestart",
+      "ReloadEnabled": "Gui.Toast.ReloadEnabled"
     },
     "Status": {
       "Running": "執行中",
@@ -2548,15 +2669,39 @@
       "Translate": "翻譯",
       "Update": "更新器",
       "Remote": "遠程控制",
-      "Utils": "工具"
+      "Utils": "工具",
+      "RaiseException": "抛出異常",
+      "ForceRestart": "强制重啟"
     },
     "Overview": {
       "Scheduler": "調度器",
+      "Dashboard": "儀表盤",
       "Log": "日誌",
       "Running": "執行中",
       "Pending": "佇列中",
       "Waiting": "等待中",
       "NoTask": "無任務"
+    },
+    "Dashboard": {
+      "TimeError": "時間錯誤",
+      "JustNow": "剛剛",
+      "MinutesAgo": "分鐘前",
+      "HoursAgo": "小時前",
+      "DaysAgo": "天前",
+      "LongTimeAgo": "很久之前",
+      "NoData": "無數據",
+      "Oil": "石油",
+      "Coin": "物資",
+      "Gem": "鑽石",
+      "Cube": "魔方",
+      "Pt": "活動PT",
+      "YellowCoin": "大世界黃幣",
+      "PurpleCoin": "大世界紫幣",
+      "ActionPoint": "行動力",
+      "Merit": "功勳",
+      "Medal": "勳章",
+      "Core": "覈心數據",
+      "GuildCoin": "艦隊幣"
     },
     "AddAlas": {
       "PopupTitle": "添加新的設定",
