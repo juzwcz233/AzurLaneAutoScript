@@ -25,8 +25,8 @@ class ManualConfig:
     > RaidDaily > CoalitionSp > WarArchives > MaritimeEscort
     > Event > Event2 > Event3 > Raid > Coalition > MainNormal > MainHard > Main > Main2
     > OpsiMeowfficerFarming
-    > GemsFarming
     > OpsiHazard1Leveling
+    > GemsFarming
     """
 
     """
