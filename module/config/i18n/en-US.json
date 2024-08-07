@@ -1167,6 +1167,20 @@
     "CommissionLimit": {
       "name": "Prevent Too Many Urgent Commissions",
       "help": "When running 7x24, prevent having a lot of urgent commissions and not being able to complete daily commissions. It is recommended to select only short-terms and high-yields in the commission filter"
+    },
+    "HardVanguardIndex": {
+      "name": "GemsFarming.HardVanguardIndex.name",
+      "help": "GemsFarming.HardVanguardIndex.help",
+      "0": "0",
+      "1": "1",
+      "2": "2"
+    },
+    "HardFlagshipIndex": {
+      "name": "GemsFarming.HardFlagshipIndex.name",
+      "help": "GemsFarming.HardFlagshipIndex.help",
+      "0": "0",
+      "1": "1",
+      "2": "2"
     }
   },
   "CampaignStorage": {

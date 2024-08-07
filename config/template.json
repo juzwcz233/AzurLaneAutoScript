@@ -313,7 +313,9 @@
       "CommonCV": "any",
       "ChangeVanguard": "ship",
       "CommonDD": "any",
-      "CommissionLimit": true
+      "CommissionLimit": true,
+      "HardVanguardIndex": 0,
+      "HardFlagshipIndex": 0
     },
     "Campaign": {
       "Name": "12-4",

@@ -1627,6 +1627,24 @@
       "CommissionLimit": {
         "type": "checkbox",
         "value": true
+      },
+      "HardVanguardIndex": {
+        "type": "select",
+        "value": 0,
+        "option": [
+          0,
+          1,
+          2
+        ]
+      },
+      "HardFlagshipIndex": {
+        "type": "select",
+        "value": 0,
+        "option": [
+          0,
+          1,
+          2
+        ]
       }
     },
     "Campaign": {
