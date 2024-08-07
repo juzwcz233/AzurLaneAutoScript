@@ -82,6 +82,8 @@ class GemsEmotion(Emotion):
 
 class GemsCampaignOverride(CampaignBase):
 
+    hard_not_satisfied = CampaignEnd('Fleet click error')
+
     def handle_combat_low_emotion(self):
         """
         Overwrite info_handler.handle_combat_low_emotion()
@@ -639,6 +641,11 @@ class GemsFarming(CampaignRun, FleetEquipment, Dock):
             except CampaignEnd as e:
                 if e.args[0] == 'Emotion withdraw' or e.args[0] == 'Emotion control':
                     self._trigger_emotion = True
+                elif e.args[0] == 'Fleet click error':
+                    if self.is_ship_in_use(0):
+                        raise RequestHumanTakeover
+                    else:
+                        self._trigger_emotion = True
                 else:
                     raise e
 
