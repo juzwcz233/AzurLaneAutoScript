@@ -330,7 +330,8 @@ class OperationSiren(OSMap):
             logger.attr('Task cooling down', cd)
             # At the last day of every month, OpsiObscure and OpsiAbyssal are scheduled frequently
             # Don't schedule after them
-            if cd is not None:
+            remain = get_os_reset_remain()
+            if cd is not None and remain > 0:
                 logger.info(f'Having task cooling down, delay OpsiMeowfficerFarming after it')
                 self.config.task_delay(target=cd.next_run)
                 self.config.task_stop()
