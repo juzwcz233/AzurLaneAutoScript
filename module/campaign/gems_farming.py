@@ -378,6 +378,7 @@ class GemsFarming(CampaignRun, FleetEquipment, Dock):
         if self.change_vanguard_equip:
             logger.hr('Record vanguard equipment', level=2)
             self.fleet_enter_ship(FLEET_DETAIL_ENTER)
+            self.ship_equipment_record_image()
             self.ship_equipment_take_off()
             self.fleet_back()
 
@@ -387,7 +388,8 @@ class GemsFarming(CampaignRun, FleetEquipment, Dock):
         if self.change_vanguard_equip:
             logger.hr('Equip vanguard equipment', level=2)
             self.fleet_enter_ship(FLEET_DETAIL_ENTER)
-            self.ship_equipment_take_on_preset(1)
+            self.ship_equipment_take_off()
+            self.ship_equipment_take_on_image()
             self.fleet_back()
 
         return success
