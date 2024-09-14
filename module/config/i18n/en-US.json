@@ -1171,6 +1171,42 @@
     "CommissionLimit": {
       "name": "Prevent Too Many Urgent Commissions",
       "help": "When running 7x24, prevent having a lot of urgent commissions and not being able to complete daily commissions. It is recommended to select only short-terms and high-yields in the commission filter"
+    },
+    "HardVanguardIndex": {
+      "name": "GemsFarming.HardVanguardIndex.name",
+      "help": "GemsFarming.HardVanguardIndex.help",
+      "0": "0",
+      "1": "1",
+      "2": "2"
+    },
+    "HardFlagshipIndex": {
+      "name": "GemsFarming.HardFlagshipIndex.name",
+      "help": "GemsFarming.HardFlagshipIndex.help",
+      "0": "0",
+      "1": "1",
+      "2": "2"
+    }
+  },
+  "CampaignStorage": {
+    "_info": {
+      "name": "CampaignStorage._info.name",
+      "help": "CampaignStorage._info.help"
+    },
+    "Oil": {
+      "name": "Oil",
+      "help": ""
+    },
+    "Coin": {
+      "name": "Coin",
+      "help": ""
+    },
+    "Gem": {
+      "name": "Gem",
+      "help": ""
+    },
+    "Pt": {
+      "name": "Event Pt",
+      "help": ""
     }
   },
   "EventGeneral": {
@@ -1981,6 +2017,16 @@
       "help": ""
     }
   },
+  "GachaStorage": {
+    "_info": {
+      "name": "GachaStorage._info.name",
+      "help": "GachaStorage._info.help"
+    },
+    "Cube": {
+      "name": "Cube",
+      "help": ""
+    }
+  },
   "Daily": {
     "_info": {
       "name": "Daily Settings",
@@ -2240,7 +2286,8 @@
       "name": "META Battle",
       "help": "",
       "current": "Current",
-      "current_dossier": "Current + Dossier"
+      "current_dossier": "Current + Dossier",
+      "dossier": "dossier"
     },
     "OneHitMode": {
       "name": "One Hit Mode",
@@ -2432,6 +2479,28 @@
       "0": "No Specification",
       "44": "44 | West Continental Shelf D",
       "22": "22 | NA Ocean SW Sector B"
+    },
+    "SolveScanningDevice": {
+      "name": "OpsiHazard1Leveling.SolveScanningDevice.name",
+      "help": "OpsiHazard1Leveling.SolveScanningDevice.help"
+    }
+  },
+  "OpsiStorage": {
+    "_info": {
+      "name": "OpsiStorage._info.name",
+      "help": "OpsiStorage._info.help"
+    },
+    "YellowCoin": {
+      "name": "Operation Supply Coin",
+      "help": ""
+    },
+    "PurpleCoin": {
+      "name": "Special Item Token",
+      "help": ""
+    },
+    "ActionPoint": {
+      "name": "Action Point",
+      "help": ""
     }
   },
   "Daemon": {
@@ -2498,6 +2567,75 @@
     "AutoRestart": {
       "name": "Automatic Login",
       "help": "Log back into the game when the game has been ended."
+    }
+  },
+  "GGHandler": {
+    "_info": {
+      "name": "GGHandler._info.name",
+      "help": "GGHandler._info.help"
+    },
+    "Enabled": {
+      "name": "GGHandler.Enabled.name",
+      "help": "GGHandler.Enabled.help"
+    },
+    "GGMethod": {
+      "name": "GGHandler.GGMethod.name",
+      "help": "GGHandler.GGMethod.help",
+      "u2": "u2"
+    },
+    "RestartATX": {
+      "name": "GGHandler.RestartATX.name",
+      "help": "GGHandler.RestartATX.help"
+    },
+    "GGPackageName": {
+      "name": "GGHandler.GGPackageName.name",
+      "help": "GGHandler.GGPackageName.help"
+    },
+    "AutoRestartGG": {
+      "name": "GGHandler.AutoRestartGG.name",
+      "help": "GGHandler.AutoRestartGG.help"
+    },
+    "RestartEverytime": {
+      "name": "GGHandler.RestartEverytime.name",
+      "help": "GGHandler.RestartEverytime.help"
+    },
+    "RepushLua": {
+      "name": "GGHandler.RepushLua.name",
+      "help": "GGHandler.RepushLua.help"
+    },
+    "GGMultiplyingFactor": {
+      "name": "GGHandler.GGMultiplyingFactor.name",
+      "help": "GGHandler.GGMultiplyingFactor.help"
+    },
+    "Timeout": {
+      "name": "GGHandler.Timeout.name",
+      "help": "GGHandler.Timeout.help"
+    },
+    "DisabledTask": {
+      "name": "GGHandler.DisabledTask.name",
+      "help": "GGHandler.DisabledTask.help",
+      "disable_all_dangerous_task": "disable_all_dangerous_task",
+      "disable_guild_and_dangerous": "disable_guild_and_dangerous",
+      "disable_exercise": "disable_exercise",
+      "enable_all": "enable_all"
+    }
+  },
+  "PowerLimit": {
+    "_info": {
+      "name": "PowerLimit._info.name",
+      "help": "PowerLimit._info.help"
+    },
+    "Exercise": {
+      "name": "PowerLimit.Exercise.name",
+      "help": "PowerLimit.Exercise.help"
+    },
+    "Raid": {
+      "name": "PowerLimit.Raid.name",
+      "help": "PowerLimit.Raid.help"
+    },
+    "Ash": {
+      "name": "PowerLimit.Ash.name",
+      "help": "PowerLimit.Ash.help"
     }
   },
   "Storage": {
@@ -2624,6 +2762,15 @@
       "Clear": "Clear",
       "EnterPassword": "Enter password",
       "ChooseFile": "Choose file"
+    },
+    "Dashboard": {
+      "NoData": "no data",
+      "TimeError": "time error",
+      "JustNow": "just now",
+      "MinutesAgo": "{time}min ago",
+      "HoursAgo": "{time}h ago",
+      "DaysAgo": "{time}d ago",
+      "LongTimeAgo": "long time ago"
     }
   }
 }

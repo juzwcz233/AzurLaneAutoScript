@@ -153,6 +153,14 @@ class GeneratedConfig:
     GemsFarming_ChangeVanguard = 'ship'  # disabled, ship, ship_equip
     GemsFarming_CommonDD = 'any'  # any, favourite, aulick_or_foote, cassin_or_downes, z20_or_z21
     GemsFarming_CommissionLimit = True
+    GemsFarming_HardVanguardIndex = 0  # 0, 1, 2
+    GemsFarming_HardFlagshipIndex = 0  # 0, 1, 2
+
+    # Group `CampaignStorage`
+    CampaignStorage_Oil = {}
+    CampaignStorage_Coin = {}
+    CampaignStorage_Gem = {}
+    CampaignStorage_Pt = {}
 
     # Group `EventGeneral`
     EventGeneral_PtLimit = 0
@@ -327,6 +335,9 @@ class GeneratedConfig:
     # Group `Minigame`
     Minigame_Collect = False
 
+    # Group `GachaStorage`
+    GachaStorage_Cube = {}
+
     # Group `Daily`
     Daily_UseDailySkip = True
     Daily_EscortMission = 'first'  # skip, first, second, third
@@ -371,7 +382,7 @@ class GeneratedConfig:
     OpsiGeneral_AkashiShopFilter = 'ActionPoint > PurpleCoins'
 
     # Group `OpsiAshBeacon`
-    OpsiAshBeacon_AttackMode = 'current'  # current, current_dossier
+    OpsiAshBeacon_AttackMode = 'current'  # current, current_dossier, dossier
     OpsiAshBeacon_OneHitMode = True
     OpsiAshBeacon_DossierAutoAttackMode = False
     OpsiAshBeacon_RequestAssist = True
@@ -421,6 +432,12 @@ class GeneratedConfig:
 
     # Group `OpsiHazard1Leveling`
     OpsiHazard1Leveling_TargetZone = 0  # 0, 44, 22
+    OpsiHazard1Leveling_SolveScanningDevice = False
+
+    # Group `OpsiStorage`
+    OpsiStorage_YellowCoin = {}
+    OpsiStorage_PurpleCoin = {}
+    OpsiStorage_ActionPoint = {}
 
     # Group `Daemon`
     Daemon_EnterMap = True
@@ -438,6 +455,23 @@ class GeneratedConfig:
 
     # Group `GameManager`
     GameManager_AutoRestart = True
+
+    # Group `GGHandler`
+    GGHandler_Enabled = False
+    GGHandler_GGMethod = 'u2'  # u2
+    GGHandler_RestartATX = False
+    GGHandler_GGPackageName = 'com.'
+    GGHandler_AutoRestartGG = False
+    GGHandler_RestartEverytime = True
+    GGHandler_RepushLua = True
+    GGHandler_GGMultiplyingFactor = 200
+    GGHandler_Timeout = 120
+    GGHandler_DisabledTask = 'disable_all_dangerous_task'  # disable_all_dangerous_task, disable_guild_and_dangerous, disable_exercise, enable_all
+
+    # Group `PowerLimit`
+    PowerLimit_Exercise = 16500
+    PowerLimit_Raid = 16500
+    PowerLimit_Ash = 16500
 
     # Group `Storage`
     Storage_Storage = {}

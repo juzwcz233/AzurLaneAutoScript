@@ -4,11 +4,14 @@ import operator
 import threading
 
 import pywebio
+from module.base.decorator import cached_property, del_cached_property
 
 from module.base.filter import Filter
 from module.config.config_generated import GeneratedConfig
 from module.config.config_manual import ManualConfig, OutputConfig
 from module.config.config_updater import ConfigUpdater
+from module.config.stored.classes import iter_attribute
+from module.config.stored.stored_generated import StoredGenerated
 from module.config.watcher import ConfigWatcher
 from module.config.utils import *
 from module.exception import RequestHumanTakeover, ScriptError
@@ -198,6 +201,15 @@ class AzurLaneConfig(ConfigUpdater, ManualConfig, GeneratedConfig, ConfigWatcher
     def is_actual_task(self):
         return self.task.command.lower() not in ['alas', 'template']
 
+    @cached_property
+    def stored(self) -> StoredGenerated:
+        stored = StoredGenerated()
+        # Bind config
+        for _, value in iter_attribute(stored):
+            value._bind(self)
+            del_cached_property(value, '_stored')
+        return stored
+
     def get_next_task(self):
         """
         Calculate tasks, set pending_task and waiting_task
@@ -220,7 +232,12 @@ class AzurLaneConfig(ConfigUpdater, ManualConfig, GeneratedConfig, ConfigWatcher
                 waiting.append(func)
 
         f = Filter(regex=r"(.*)", attr=["command"])
-        f.load(self.SCHEDULER_PRIORITY)
+        gfcv = self.cross_get(keys='GemsFarming.GemsFarming.ChangeVanguard', default='ship') != 'disabled'
+        gfcl = self.cross_get(keys='GemsFarming.GemsFarming.CommissionLimit', default=False)
+        if gfcl or not gfcv:
+            f.load(self.SCHEDULER_PRIORITY_GEMS)
+        else:
+            f.load(self.SCHEDULER_PRIORITY)
         if pending:
             pending = f.apply(pending)
         if waiting:
@@ -293,25 +310,6 @@ class AzurLaneConfig(ConfigUpdater, ManualConfig, GeneratedConfig, ConfigWatcher
                 )
                 if isinstance(next_run, datetime) and next_run > limit:
                     deep_set(self.data, keys=f"{task}.Scheduler.NextRun", value=now)
-
-        for task in ["Commission", "Research", "Reward"]:
-            if not self.is_task_enabled(task):
-                self.modified[f"{task}.Scheduler.Enable"] = True
-        force_enable = list
-
-        force_enable(
-            [
-                "Commission",
-                "Research",
-                "Reward",
-            ]
-        )
-        limit_next_run(["Commission", "Reward"], limit=now + timedelta(hours=12, seconds=-1))
-        limit_next_run(["Research"], limit=now + timedelta(hours=24, seconds=-1))
-        limit_next_run(["OpsiExplore", "OpsiCrossMonth", "OpsiVoucher", "OpsiMonthBoss", "OpsiShop"],
-                       limit=now + timedelta(days=31, seconds=-1))
-        limit_next_run(["OpsiArchive"], limit=now + timedelta(days=7, seconds=-1))
-        limit_next_run(self.args.keys(), limit=now + timedelta(hours=24, seconds=-1))
 
         """
         Override anything you want.

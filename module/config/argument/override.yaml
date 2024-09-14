@@ -6,14 +6,9 @@
 
 Restart:
   Scheduler:
-    Enable:
-      type: state
-      value: true
-      option: [ true, ]
-      option_bold: [ true, ]
     SuccessInterval: 0
     FailureInterval: 0
-    ServerUpdate: 00:00
+    ServerUpdate: 23:50, 04:00
 
 # ==================== Farm ====================
 
@@ -36,7 +31,6 @@ GemsFarming:
     Use2xBook: false
     AmbushEvade: true
   StopCondition:
-    RunCount: 0
     MapAchievement: non_stop
     StageIncrease: false
     GetNewShip: false
@@ -46,6 +40,26 @@ GemsFarming:
       display: display
       value: fleet1_all_fleet2_standby
       option: [ fleet1_all_fleet2_standby, fleet1_standby_fleet2_all ]
+  Submarine:
+    Mode:
+      display: display
+      value: do_not_use
+      option: [ do_not_use, hunt_only ]
+      option_bold: [ do_not_use, hunt_only ]
+    AutoSearchMode:
+      type: state
+      value: sub_standby
+      option: [ sub_standby, ]
+      option_bold: [ sub_standby, ]
+    DistanceToBoss: '2_grid_to_boss'
+  Emotion:
+    Mode: calculate
+    Fleet1Control: prevent_red_face
+    Fleet1Recover: not_in_dormitory
+    Fleet1Oath: false
+    Fleet2Control: prevent_red_face
+    Fleet2Recover: not_in_dormitory
+    Fleet2Oath: false
 
 # ==================== Event ====================
 
@@ -267,11 +281,6 @@ CoalitionSp:
 
 Commission:
   Scheduler:
-    Enable:
-      type: lock
-      value: true
-      option: [ true, ]
-      option_bold: [ true, ]
     SuccessInterval: 30-60
     FailureInterval: 30-60
     ServerUpdate: 00:00
@@ -282,11 +291,6 @@ Tactical:
     ServerUpdate: 00:00
 Research:
   Scheduler:
-    Enable:
-      type: lock
-      value: true
-      option: [ true, ]
-      option_bold: [ true, ]
     SuccessInterval: 30-60
     FailureInterval: 30-60
     ServerUpdate: 00:00
@@ -307,11 +311,6 @@ Guild:
     ServerUpdate: 00:00, 06:00, 12:00, 18:00, 21:00
 Reward:
   Scheduler:
-    Enable:
-      type: lock
-      value: true
-      option: [ true, ]
-      option_bold: [ true, ]
     SuccessInterval: 120-240
     FailureInterval: 120-240
     ServerUpdate: 00:00

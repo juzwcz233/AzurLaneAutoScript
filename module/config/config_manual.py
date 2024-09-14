@@ -12,20 +12,43 @@ class ManualConfig:
     Restart
     > OpsiCrossMonth
     > Commission > Tactical > Research
-    > Exercise
-    > Dorm > Meowfficer > Guild > Gacha
-    > Reward
-    > ShopFrequent > ShopOnce > Shipyard > Freebies > Minigame
+    > Dorm > Meowfficer > Gacha
+    > ShopFrequent > ShopOnce > Shipyard > Freebies
     > OpsiExplore
-    > OpsiAshBeacon
-    > OpsiDaily > OpsiShop > OpsiVoucher
-    > OpsiAbyssal > OpsiStronghold > OpsiObscure > OpsiArchive
-    > Daily > Hard > OpsiAshBeacon > OpsiAshAssist  > OpsiMonthBoss
+    > OpsiDaily > OpsiAshBeacon 
+    > Exercise > OpsiAshAssist > Guild > Reward
+    > Daily > Hard > Minigame
     > Sos > EventSp > EventA > EventB > EventC > EventD
     > RaidDaily > CoalitionSp > WarArchives > MaritimeEscort
-    > Event > Event2 > Raid > Coalition > Main > Main2 > Main3
+    > OpsiShop > OpsiVoucher
+    > OpsiAbyssal > OpsiStronghold > OpsiObscure > OpsiArchive
+    > OpsiMonthBoss
+    > Main > Main2 > Main3
+    > Event > Event2 > Raid > Coalition
     > OpsiMeowfficerFarming
     > GemsFarming
+    > OpsiHazard1Leveling
+    """
+
+    SCHEDULER_PRIORITY_GEMS = """
+    Restart
+    > OpsiCrossMonth
+    > Commission > Tactical > Research
+    > Dorm > Meowfficer > Gacha
+    > ShopFrequent > ShopOnce > Shipyard > Freebies
+    > OpsiExplore
+    > OpsiDaily > OpsiAshBeacon 
+    > Exercise > OpsiAshAssist > Guild > Reward
+    > Daily > Hard > Minigame
+    > Sos > EventSp > EventA > EventB > EventC > EventD
+    > RaidDaily > CoalitionSp > WarArchives > MaritimeEscort
+    > OpsiShop > OpsiVoucher
+    > OpsiAbyssal > OpsiStronghold > OpsiObscure > OpsiArchive
+    > OpsiMonthBoss
+    > GemsFarming
+    > Main > Main2 > Main3
+    > Event > Event2 > Raid > Coalition
+    > OpsiMeowfficerFarming
     > OpsiHazard1Leveling
     """
 
@@ -323,9 +346,9 @@ class ManualConfig:
     """
     OS_ACTION_POINT_BOX_USE = True
     OS_ACTION_POINT_PRESERVE = 0
-    OS_CL1_YELLOW_COINS_PRESERVE = 100000
-    OS_NORMAL_YELLOW_COINS_PRESERVE = 35000
-    OS_NORMAL_PURPLE_COINS_PRESERVE = 100
+    OS_CL1_YELLOW_COINS_PRESERVE = 20000
+    OS_NORMAL_YELLOW_COINS_PRESERVE = 20000
+    OS_NORMAL_PURPLE_COINS_PRESERVE = 50
 
     """
     module.os.globe_detection
@@ -356,6 +379,7 @@ class ManualConfig:
     """
     DOCK_FULL_TRIGGERED = False
     GET_SHIP_TRIGGERED = False
+    RETIRE_KEEP_COMMON_CV = True
     COMMON_CV_THRESHOLD = 0.9
 
     """

@@ -61,6 +61,8 @@ Farm:
       - Campaign
       - StopCondition
       - Fleet
+      - Submarine
+      - Emotion
 
 # ==================== Event ====================
 
@@ -71,6 +73,7 @@ Event:
     EventGeneral:
       - EventGeneral
       - TaskBalancer
+      - CampaignStorage
     Event:
       - Scheduler
       - Campaign
@@ -247,6 +250,7 @@ DailyMission:
     Gacha:
       - Scheduler
       - Gacha
+      - GachaStorage
     Freebies:
       - Scheduler
       - BattlePass
@@ -264,6 +268,7 @@ Opsi:
   tasks:
     OpsiGeneral:
       - OpsiGeneral
+      - OpsiStorage
     OpsiAshBeacon:
       - Scheduler
       - OpsiAshBeacon
@@ -330,3 +335,5 @@ Tool:
       - AzurLaneUncensored
     GameManager:
       - GameManager
+      - GGHandler
+      - PowerLimit

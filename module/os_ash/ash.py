@@ -49,8 +49,14 @@ class AshCombat(Combat):
         return False
 
     def handle_battle_preparation(self):
-        if super().handle_battle_preparation():
-            return True
+        if self.appear(BATTLE_PREPARATION, offset=(20, 20)):
+            self.device.sleep(0.5)
+            self.device.screenshot()
+            # Power limit check
+            from module.gg_handler.gg_handler import GGHandler
+            GGHandler(config=self.config, device=self.device).power_limit('Ash')
+            if super().handle_battle_preparation():
+                return True
 
         if self.appear_then_click(ASH_START, offset=(30, 30), interval=2):
             return True
@@ -120,8 +126,9 @@ class OSAsh(UI, MapEventHandler):
     def _support_call_ash_beacon_task(self):
         # AshBeacon next run
         next_run = self.config.cross_get(keys="OpsiAshBeacon.Scheduler.NextRun", default=DEFAULT_TIME)
+        attack_mode = self.config.cross_get(keys="OpsiAshBeacon.OpsiAshBeacon.AttackMode", default='current')
         # Between the next execution time and the present time is more than 30 minutes
-        if next_run - datetime.now() > timedelta(minutes=30):
+        if attack_mode != 'dossier' and next_run - datetime.now() > timedelta(minutes=30):
             return True
         return False
 

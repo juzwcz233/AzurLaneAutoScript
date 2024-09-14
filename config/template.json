@@ -71,7 +71,7 @@
       "Command": "Restart",
       "SuccessInterval": 0,
       "FailureInterval": 0,
-      "ServerUpdate": "00:00"
+      "ServerUpdate": "23:50, 04:00"
     },
     "Storage": {
       "Storage": {}
@@ -313,7 +313,9 @@
       "CommonCV": "any",
       "ChangeVanguard": "ship",
       "CommonDD": "any",
-      "CommissionLimit": true
+      "CommissionLimit": true,
+      "HardVanguardIndex": 0,
+      "HardFlagshipIndex": 0
     },
     "Campaign": {
       "Name": "12-4",
@@ -344,6 +346,25 @@
       "Fleet2Step": 2,
       "FleetOrder": "fleet1_all_fleet2_standby"
     },
+    "Submarine": {
+      "Fleet": 0,
+      "Mode": "do_not_use",
+      "AutoSearchMode": "sub_standby",
+      "DistanceToBoss": "2_grid_to_boss"
+    },
+    "Emotion": {
+      "Mode": "calculate",
+      "Fleet1Value": 119,
+      "Fleet1Record": "2020-01-01 00:00:00",
+      "Fleet1Control": "prevent_red_face",
+      "Fleet1Recover": "not_in_dormitory",
+      "Fleet1Oath": false,
+      "Fleet2Value": 119,
+      "Fleet2Record": "2020-01-01 00:00:00",
+      "Fleet2Control": "prevent_red_face",
+      "Fleet2Recover": "not_in_dormitory",
+      "Fleet2Oath": false
+    },
     "Storage": {
       "Storage": {}
     }
@@ -357,6 +378,12 @@
       "Enable": false,
       "CoinLimit": 10000,
       "TaskCall": "Main"
+    },
+    "CampaignStorage": {
+      "Oil": {},
+      "Coin": {},
+      "Gem": {},
+      "Pt": {}
     },
     "Storage": {
       "Storage": {}
@@ -1197,7 +1224,7 @@
   },
   "Tactical": {
     "Scheduler": {
-      "Enable": true,
+      "Enable": false,
       "NextRun": "2020-01-01 00:00:00",
       "Command": "Tactical",
       "SuccessInterval": "30-60",
@@ -1225,7 +1252,7 @@
   },
   "Research": {
     "Scheduler": {
-      "Enable": true,
+      "Enable": false,
       "NextRun": "2020-01-01 00:00:00",
       "Command": "Research",
       "SuccessInterval": "30-60",
@@ -1246,7 +1273,7 @@
   },
   "Dorm": {
     "Scheduler": {
-      "Enable": true,
+      "Enable": false,
       "NextRun": "2020-01-01 00:00:00",
       "Command": "Dorm",
       "SuccessInterval": 278,
@@ -1269,7 +1296,7 @@
   },
   "Meowfficer": {
     "Scheduler": {
-      "Enable": true,
+      "Enable": false,
       "NextRun": "2020-01-01 00:00:00",
       "Command": "Meowfficer",
       "SuccessInterval": 30,
@@ -1293,7 +1320,7 @@
   },
   "Guild": {
     "Scheduler": {
-      "Enable": true,
+      "Enable": false,
       "NextRun": "2020-01-01 00:00:00",
       "Command": "Guild",
       "SuccessInterval": 30,
@@ -1319,7 +1346,7 @@
   },
   "Reward": {
     "Scheduler": {
-      "Enable": true,
+      "Enable": false,
       "NextRun": "2020-01-01 00:00:00",
       "Command": "Reward",
       "SuccessInterval": "120-240",
@@ -1510,13 +1537,16 @@
       "UseTicket": true,
       "UseDrill": false
     },
+    "GachaStorage": {
+      "Cube": {}
+    },
     "Storage": {
       "Storage": {}
     }
   },
   "Freebies": {
     "Scheduler": {
-      "Enable": true,
+      "Enable": false,
       "NextRun": "2020-01-01 00:00:00",
       "Command": "Freebies",
       "SuccessInterval": 30,
@@ -1565,6 +1595,11 @@
       "RepairThreshold": 0.4,
       "DoRandomMapEvent": true,
       "AkashiShopFilter": "ActionPoint > PurpleCoins"
+    },
+    "OpsiStorage": {
+      "YellowCoin": {},
+      "PurpleCoin": {},
+      "ActionPoint": {}
     },
     "Storage": {
       "Storage": {}
@@ -1810,7 +1845,8 @@
       "ServerUpdate": "00:00, 12:00"
     },
     "OpsiHazard1Leveling": {
-      "TargetZone": 0
+      "TargetZone": 0,
+      "SolveScanningDevice": false
     },
     "OpsiFleet": {
       "Fleet": 1,
@@ -1870,6 +1906,23 @@
   "GameManager": {
     "GameManager": {
       "AutoRestart": true
+    },
+    "GGHandler": {
+      "Enabled": false,
+      "GGMethod": "u2",
+      "RestartATX": false,
+      "GGPackageName": "com.",
+      "AutoRestartGG": false,
+      "RestartEverytime": true,
+      "RepushLua": true,
+      "GGMultiplyingFactor": 200,
+      "Timeout": 120,
+      "DisabledTask": "disable_all_dangerous_task"
+    },
+    "PowerLimit": {
+      "Exercise": 16500,
+      "Raid": 16500,
+      "Ash": 16500
     },
     "Storage": {
       "Storage": {}

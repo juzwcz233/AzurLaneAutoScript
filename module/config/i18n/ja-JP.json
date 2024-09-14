@@ -1171,6 +1171,42 @@
     "CommissionLimit": {
       "name": "GemsFarming.CommissionLimit.name",
       "help": "GemsFarming.CommissionLimit.help"
+    },
+    "HardVanguardIndex": {
+      "name": "GemsFarming.HardVanguardIndex.name",
+      "help": "GemsFarming.HardVanguardIndex.help",
+      "0": "0",
+      "1": "1",
+      "2": "2"
+    },
+    "HardFlagshipIndex": {
+      "name": "GemsFarming.HardFlagshipIndex.name",
+      "help": "GemsFarming.HardFlagshipIndex.help",
+      "0": "0",
+      "1": "1",
+      "2": "2"
+    }
+  },
+  "CampaignStorage": {
+    "_info": {
+      "name": "CampaignStorage._info.name",
+      "help": "CampaignStorage._info.help"
+    },
+    "Oil": {
+      "name": "CampaignStorage.Oil.name",
+      "help": "CampaignStorage.Oil.help"
+    },
+    "Coin": {
+      "name": "CampaignStorage.Coin.name",
+      "help": "CampaignStorage.Coin.help"
+    },
+    "Gem": {
+      "name": "CampaignStorage.Gem.name",
+      "help": "CampaignStorage.Gem.help"
+    },
+    "Pt": {
+      "name": "CampaignStorage.Pt.name",
+      "help": "CampaignStorage.Pt.help"
     }
   },
   "EventGeneral": {
@@ -1981,6 +2017,16 @@
       "help": "Minigame.Collect.help"
     }
   },
+  "GachaStorage": {
+    "_info": {
+      "name": "GachaStorage._info.name",
+      "help": "GachaStorage._info.help"
+    },
+    "Cube": {
+      "name": "GachaStorage.Cube.name",
+      "help": "GachaStorage.Cube.help"
+    }
+  },
   "Daily": {
     "_info": {
       "name": "Daily._info.name",
@@ -2240,7 +2286,8 @@
       "name": "OpsiAshBeacon.AttackMode.name",
       "help": "OpsiAshBeacon.AttackMode.help",
       "current": "current",
-      "current_dossier": "current_dossier"
+      "current_dossier": "current_dossier",
+      "dossier": "dossier"
     },
     "OneHitMode": {
       "name": "OpsiAshBeacon.OneHitMode.name",
@@ -2432,6 +2479,28 @@
       "0": "0",
       "44": "44",
       "22": "22"
+    },
+    "SolveScanningDevice": {
+      "name": "OpsiHazard1Leveling.SolveScanningDevice.name",
+      "help": "OpsiHazard1Leveling.SolveScanningDevice.help"
+    }
+  },
+  "OpsiStorage": {
+    "_info": {
+      "name": "OpsiStorage._info.name",
+      "help": "OpsiStorage._info.help"
+    },
+    "YellowCoin": {
+      "name": "OpsiStorage.YellowCoin.name",
+      "help": "OpsiStorage.YellowCoin.help"
+    },
+    "PurpleCoin": {
+      "name": "OpsiStorage.PurpleCoin.name",
+      "help": "OpsiStorage.PurpleCoin.help"
+    },
+    "ActionPoint": {
+      "name": "OpsiStorage.ActionPoint.name",
+      "help": "OpsiStorage.ActionPoint.help"
     }
   },
   "Daemon": {
@@ -2498,6 +2567,75 @@
     "AutoRestart": {
       "name": "GameManager.AutoRestart.name",
       "help": "GameManager.AutoRestart.help"
+    }
+  },
+  "GGHandler": {
+    "_info": {
+      "name": "GGHandler._info.name",
+      "help": "GGHandler._info.help"
+    },
+    "Enabled": {
+      "name": "GGHandler.Enabled.name",
+      "help": "GGHandler.Enabled.help"
+    },
+    "GGMethod": {
+      "name": "GGHandler.GGMethod.name",
+      "help": "GGHandler.GGMethod.help",
+      "u2": "u2"
+    },
+    "RestartATX": {
+      "name": "GGHandler.RestartATX.name",
+      "help": "GGHandler.RestartATX.help"
+    },
+    "GGPackageName": {
+      "name": "GGHandler.GGPackageName.name",
+      "help": "GGHandler.GGPackageName.help"
+    },
+    "AutoRestartGG": {
+      "name": "GGHandler.AutoRestartGG.name",
+      "help": "GGHandler.AutoRestartGG.help"
+    },
+    "RestartEverytime": {
+      "name": "GGHandler.RestartEverytime.name",
+      "help": "GGHandler.RestartEverytime.help"
+    },
+    "RepushLua": {
+      "name": "GGHandler.RepushLua.name",
+      "help": "GGHandler.RepushLua.help"
+    },
+    "GGMultiplyingFactor": {
+      "name": "GGHandler.GGMultiplyingFactor.name",
+      "help": "GGHandler.GGMultiplyingFactor.help"
+    },
+    "Timeout": {
+      "name": "GGHandler.Timeout.name",
+      "help": "GGHandler.Timeout.help"
+    },
+    "DisabledTask": {
+      "name": "GGHandler.DisabledTask.name",
+      "help": "GGHandler.DisabledTask.help",
+      "disable_all_dangerous_task": "disable_all_dangerous_task",
+      "disable_guild_and_dangerous": "disable_guild_and_dangerous",
+      "disable_exercise": "disable_exercise",
+      "enable_all": "enable_all"
+    }
+  },
+  "PowerLimit": {
+    "_info": {
+      "name": "PowerLimit._info.name",
+      "help": "PowerLimit._info.help"
+    },
+    "Exercise": {
+      "name": "PowerLimit.Exercise.name",
+      "help": "PowerLimit.Exercise.help"
+    },
+    "Raid": {
+      "name": "PowerLimit.Raid.name",
+      "help": "PowerLimit.Raid.help"
+    },
+    "Ash": {
+      "name": "PowerLimit.Ash.name",
+      "help": "PowerLimit.Ash.help"
     }
   },
   "Storage": {
@@ -2624,6 +2762,15 @@
       "Clear": "消除",
       "EnterPassword": "パスワードを入力してください",
       "ChooseFile": "ファイルを選択してください"
+    },
+    "Dashboard": {
+      "NoData": "Gui.Dashboard.NoData",
+      "TimeError": "Gui.Dashboard.TimeError",
+      "JustNow": "Gui.Dashboard.JustNow",
+      "MinutesAgo": "Gui.Dashboard.MinutesAgo",
+      "HoursAgo": "Gui.Dashboard.HoursAgo",
+      "DaysAgo": "Gui.Dashboard.DaysAgo",
+      "LongTimeAgo": "Gui.Dashboard.LongTimeAgo"
     }
   }
 }

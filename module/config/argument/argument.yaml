@@ -279,6 +279,29 @@ GemsFarming:
     value: any
     option: [ any, favourite, aulick_or_foote , cassin_or_downes, z20_or_z21 ]
   CommissionLimit: true
+  HardVanguardIndex:
+    value: 0
+    option: [ 0, 1, 2 ]
+  HardFlagshipIndex:
+    value: 0
+    option: [ 0, 1, 2 ]
+CampaignStorage:
+  Oil:
+    stored: StoredOil
+    order: 1
+    color: "#000000"
+  Coin:
+    stored: StoredCoin
+    order: 2
+    color: "#FFAA33"
+  Gem:
+    stored: StoredInt
+    order: 3
+    color: "#FF3333"
+  Pt:
+    stored: StoredInt
+    order: 4
+    color: "#00BFFF"
 
 # ==================== Event ====================
 
@@ -312,7 +335,6 @@ Coalition:
   Fleet:
     value: single
     option: [ single, multi ]
-
 
 # ==================== Reward ====================
 
@@ -574,6 +596,12 @@ SupplyPack:
     option: [ 0, 1, 2, 3, 4, 5, 6 ]
 Minigame:
   Collect: false
+GachaStorage:
+  Cube:
+    stored: StoredInt
+    order: 5
+    color: "#33FFFF"
+
 # ==================== Daily ====================
 
 Daily:
@@ -656,7 +684,7 @@ OpsiGeneral:
 OpsiAshBeacon:
   AttackMode:
     value: current
-    option: [ current, current_dossier ]
+    option: [ current, current_dossier, dossier ]
   OneHitMode: true
   DossierAutoAttackMode: false
   RequestAssist: true
@@ -716,6 +744,20 @@ OpsiHazard1Leveling:
   TargetZone:
     value: 0
     option: [ 0, 44, 22 ]
+  SolveScanningDevice: false
+OpsiStorage:
+  YellowCoin:
+    stored: StoredInt
+    order: 7
+    color: "#FF8800"
+  PurpleCoin:
+    stored: StoredInt
+    order: 8
+    color: "#7700BB"
+  ActionPoint:
+    stored: StoredActionPoint
+    order: 6
+    color: "#008000"
 
 # ==================== Tools ====================
 
@@ -743,3 +785,31 @@ AzurLaneUncensored:
     display: disabled
 GameManager:
   AutoRestart: true
+
+
+GGHandler:
+  Enabled: false
+  GGMethod:
+    value: u2
+    option: [ u2 ]
+  RestartATX: false
+  GGPackageName: com.
+  AutoRestartGG: false
+  RestartEverytime:
+    value: true
+    display: disabled
+  RepushLua: true
+  GGMultiplyingFactor: 200
+  Timeout: 120
+  DisabledTask:
+    value: disable_all_dangerous_task
+    option: [
+      disable_all_dangerous_task,
+      disable_guild_and_dangerous,
+      disable_exercise,
+      enable_all,
+    ]
+PowerLimit:
+  Exercise: 16500
+  Raid: 16500
+  Ash: 16500

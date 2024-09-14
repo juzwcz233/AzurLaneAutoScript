@@ -3,12 +3,13 @@ import importlib
 import os
 import random
 import re
+from alas import AzurLaneAutoScript
 
 from module.campaign.campaign_base import CampaignBase
 from module.campaign.campaign_event import CampaignEvent
 from module.campaign.campaign_ui import MODE_SWITCH_1
 from module.config.config import AzurLaneConfig
-from module.exception import CampaignEnd, RequestHumanTakeover, ScriptEnd
+from module.exception import CampaignEnd, RequestHumanTakeover, ScriptEnd, CombatFail
 from module.handler.fast_forward import map_files, to_map_file_name
 from module.logger import logger
 from module.notify import handle_notify
@@ -72,65 +73,63 @@ class CampaignRun(CampaignEvent):
         Returns:
             bool: If triggered a stop condition.
         """
-        # Run count limit
-        if self.run_limit and self.config.StopCondition_RunCount <= 0:
-            logger.hr('Triggered stop condition: Run count')
-            self.config.StopCondition_RunCount = 0
-            self.config.Scheduler_Enable = False
-            handle_notify(
-                self.config.Error_OnePushConfig,
-                title=f"Alas <{self.config.config_name}> campaign finished",
-                content=f"<{self.config.config_name}> {self.name} reached run count limit"
-            )
-            return True
-        # Lv120 limit
-        if self.config.StopCondition_ReachLevel and self.campaign.config.LV_TRIGGERED:
-            logger.hr(f'Triggered stop condition: Reach level {self.config.StopCondition_ReachLevel}')
-            self.config.Scheduler_Enable = False
-            handle_notify(
-                self.config.Error_OnePushConfig,
-                title=f"Alas <{self.config.config_name}> campaign finished",
-                content=f"<{self.config.config_name}> {self.name} reached level limit"
-            )
-            return True
-        # Oil limit
-        if oil_check:
-            if self.get_oil() < max(500, self.config.StopCondition_OilLimit):
-                logger.hr('Triggered stop condition: Oil limit')
+        with self.config.multi_set():
+            # Run count limit
+            if self.run_limit and self.config.StopCondition_RunCount <= 0:
+                logger.hr('Triggered stop condition: Run count')
+                self.config.StopCondition_RunCount = 0
+                self.config.Scheduler_Enable = False
+                return True
+            # Lv120 limit
+            if self.config.StopCondition_ReachLevel and self.campaign.config.LV_TRIGGERED:
+                logger.hr(f'Triggered stop condition: Reach level {self.config.StopCondition_ReachLevel}')
+                self.config.Scheduler_Enable = False
+                handle_notify(
+                    self.config.Error_OnePushConfig,
+                    title=f"Alas <{self.config.config_name}> campaign finished",
+                    content=f"<{self.config.config_name}> {self.name} reached level limit"
+                )
+                return True
+            # Oil limit
+            if oil_check:
+                self.status_get_gems()
+                self.get_coin()
+                if self.get_oil() < max(500, self.config.StopCondition_OilLimit):
+                    logger.hr('Triggered stop condition: Oil limit')
+                    self.config.task_delay(minute=(120, 240))
+                    return True
+            # Auto search oil limit
+            if self.campaign.auto_search_oil_limit_triggered:
+                logger.hr('Triggered stop condition: Auto search oil limit')
                 self.config.task_delay(minute=(120, 240))
                 return True
-        # Auto search oil limit
-        if self.campaign.auto_search_oil_limit_triggered:
-            logger.hr('Triggered stop condition: Auto search oil limit')
-            self.config.task_delay(minute=(120, 240))
-            return True
-        # If Get a New Ship
-        if self.config.StopCondition_GetNewShip and self.campaign.config.GET_SHIP_TRIGGERED:
-            logger.hr('Triggered stop condition: Get new ship')
-            self.config.Scheduler_Enable = False
-            handle_notify(
-                self.config.Error_OnePushConfig,
-                title=f"Alas <{self.config.config_name}> campaign finished",
-                content=f"<{self.config.config_name}> {self.name} got new ship"
-            )
-            return True
-        # Event limit
-        if oil_check and self.campaign.event_pt_limit_triggered():
-            logger.hr('Triggered stop condition: Event PT limit')
-            return True
-        # Auto search TaskBalancer
-        if self.config.TaskBalancer_Enable and self.campaign.auto_search_coin_limit_triggered:
-            logger.hr('Triggered stop condition: Auto search coin limit')
-            self.handle_task_balancer()
-            return True
-        # TaskBalancer
-        if oil_check and self.run_count >= 1:
-            if self.config.TaskBalancer_Enable and self.triggered_task_balancer():
-                logger.hr('Triggered stop condition: Coin limit')
+            # If Get a New Ship
+            if self.config.StopCondition_GetNewShip and self.campaign.config.GET_SHIP_TRIGGERED:
+                logger.hr('Triggered stop condition: Get new ship')
+                self.config.Scheduler_Enable = False
+                handle_notify(
+                    self.config.Error_OnePushConfig,
+                    title=f"Alas <{self.config.config_name}> campaign finished",
+                    content=f"<{self.config.config_name}> {self.name} got new ship"
+                )
+                return True
+            # Event limit
+            if oil_check and self.campaign.event_pt_limit_triggered():
+                logger.hr('Triggered stop condition: Event PT limit')
+                return True
+            # Auto search TaskBalancer
+            if self.config.TaskBalancer_Enable and self.campaign.auto_search_coin_limit_triggered:
+                logger.hr('Triggered stop condition: Auto search coin limit')
                 self.handle_task_balancer()
                 return True
+            # TaskBalancer
+            if oil_check and self.run_count >= 1:
+                if self.config.TaskBalancer_Enable and self.triggered_task_balancer():
+                    logger.hr('Triggered stop condition: Coin limit')
+                    self.handle_task_balancer()
+                    return True
 
-        return False
+            return False
 
     def _triggered_app_restart(self):
         """
@@ -317,7 +316,7 @@ class CampaignRun(CampaignEvent):
         Pages:
             in: page_campaign
         """
-        if self.campaign.commission_notice_show_at_campaign():
+        if self.campaign.commission_notice_show_at_campaign() and self.config.is_task_enabled('Commission'):
             logger.info('Commission notice found')
             self.config.task_call('Commission', force_call=True)
             self.config.task_stop('Commission notice found')
@@ -335,6 +334,7 @@ class CampaignRun(CampaignEvent):
         self.load_campaign(name, folder=folder)
         self.run_count = 0
         self.run_limit = self.config.StopCondition_RunCount
+        fail_count = 0
         while 1:
             # End
             if total and self.run_count >= total:
@@ -395,6 +395,17 @@ class CampaignRun(CampaignEvent):
                 logger.hr('Script end')
                 logger.info(str(e))
                 break
+            except CombatFail:
+                logger.hr('Combat fail')
+                fail_count += 1
+                if fail_count >= 3:
+                    logger.error('Combat fail for successive 3 times')
+                    AzurLaneAutoScript.save_error_log(self)
+                    self.device.screenshot()
+                    self.config.Scheduler_Enable = False
+                    self.config.task_stop()
+            else:
+                fail_count = 0
 
             # After run
             self.run_count += 1

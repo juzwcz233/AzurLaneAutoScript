@@ -1171,6 +1171,42 @@
     "CommissionLimit": {
       "name": "防止緊急委託數量過多",
       "help": "在7x24運行時防止緊急委託數量過多做不完每日委託，建議在委託過濾器僅選擇短時長高收益委託"
+    },
+    "HardVanguardIndex": {
+      "name": "GemsFarming.HardVanguardIndex.name",
+      "help": "GemsFarming.HardVanguardIndex.help",
+      "0": "0",
+      "1": "1",
+      "2": "2"
+    },
+    "HardFlagshipIndex": {
+      "name": "GemsFarming.HardFlagshipIndex.name",
+      "help": "GemsFarming.HardFlagshipIndex.help",
+      "0": "0",
+      "1": "1",
+      "2": "2"
+    }
+  },
+  "CampaignStorage": {
+    "_info": {
+      "name": "CampaignStorage._info.name",
+      "help": "CampaignStorage._info.help"
+    },
+    "Oil": {
+      "name": "石油",
+      "help": ""
+    },
+    "Coin": {
+      "name": "物資",
+      "help": ""
+    },
+    "Gem": {
+      "name": "鑽石",
+      "help": ""
+    },
+    "Pt": {
+      "name": "活動PT",
+      "help": ""
     }
   },
   "EventGeneral": {
@@ -1981,6 +2017,16 @@
       "help": ""
     }
   },
+  "GachaStorage": {
+    "_info": {
+      "name": "GachaStorage._info.name",
+      "help": "GachaStorage._info.help"
+    },
+    "Cube": {
+      "name": "魔方",
+      "help": ""
+    }
+  },
   "Daily": {
     "_info": {
       "name": "每日任務",
@@ -2240,7 +2286,8 @@
       "name": "META作戰",
       "help": "",
       "current": "當期",
-      "current_dossier": "當期 + 檔案"
+      "current_dossier": "當期 + 檔案",
+      "dossier": "dossier"
     },
     "OneHitMode": {
       "name": "一擊即走",
@@ -2432,6 +2479,28 @@
       "0": "不指定",
       "44": "44 | 西大陸棚D",
       "22": "22 | NA海域西南B"
+    },
+    "SolveScanningDevice": {
+      "name": "OpsiHazard1Leveling.SolveScanningDevice.name",
+      "help": "OpsiHazard1Leveling.SolveScanningDevice.help"
+    }
+  },
+  "OpsiStorage": {
+    "_info": {
+      "name": "OpsiStorage._info.name",
+      "help": "OpsiStorage._info.help"
+    },
+    "YellowCoin": {
+      "name": "大世界黃幣",
+      "help": ""
+    },
+    "PurpleCoin": {
+      "name": "大世界紫幣",
+      "help": ""
+    },
+    "ActionPoint": {
+      "name": "行動力",
+      "help": ""
     }
   },
   "Daemon": {
@@ -2498,6 +2567,75 @@
     "AutoRestart": {
       "name": "自動登錄",
       "help": "遊戲被強制結束後自動登錄遊戲"
+    }
+  },
+  "GGHandler": {
+    "_info": {
+      "name": "GGHandler._info.name",
+      "help": "GGHandler._info.help"
+    },
+    "Enabled": {
+      "name": "GGHandler.Enabled.name",
+      "help": "GGHandler.Enabled.help"
+    },
+    "GGMethod": {
+      "name": "GGHandler.GGMethod.name",
+      "help": "GGHandler.GGMethod.help",
+      "u2": "u2"
+    },
+    "RestartATX": {
+      "name": "GGHandler.RestartATX.name",
+      "help": "GGHandler.RestartATX.help"
+    },
+    "GGPackageName": {
+      "name": "GGHandler.GGPackageName.name",
+      "help": "GGHandler.GGPackageName.help"
+    },
+    "AutoRestartGG": {
+      "name": "GGHandler.AutoRestartGG.name",
+      "help": "GGHandler.AutoRestartGG.help"
+    },
+    "RestartEverytime": {
+      "name": "GGHandler.RestartEverytime.name",
+      "help": "GGHandler.RestartEverytime.help"
+    },
+    "RepushLua": {
+      "name": "GGHandler.RepushLua.name",
+      "help": "GGHandler.RepushLua.help"
+    },
+    "GGMultiplyingFactor": {
+      "name": "GGHandler.GGMultiplyingFactor.name",
+      "help": "GGHandler.GGMultiplyingFactor.help"
+    },
+    "Timeout": {
+      "name": "GGHandler.Timeout.name",
+      "help": "GGHandler.Timeout.help"
+    },
+    "DisabledTask": {
+      "name": "GGHandler.DisabledTask.name",
+      "help": "GGHandler.DisabledTask.help",
+      "disable_all_dangerous_task": "disable_all_dangerous_task",
+      "disable_guild_and_dangerous": "disable_guild_and_dangerous",
+      "disable_exercise": "disable_exercise",
+      "enable_all": "enable_all"
+    }
+  },
+  "PowerLimit": {
+    "_info": {
+      "name": "PowerLimit._info.name",
+      "help": "PowerLimit._info.help"
+    },
+    "Exercise": {
+      "name": "PowerLimit.Exercise.name",
+      "help": "PowerLimit.Exercise.help"
+    },
+    "Raid": {
+      "name": "PowerLimit.Raid.name",
+      "help": "PowerLimit.Raid.help"
+    },
+    "Ash": {
+      "name": "PowerLimit.Ash.name",
+      "help": "PowerLimit.Ash.help"
     }
   },
   "Storage": {
@@ -2624,6 +2762,15 @@
       "Clear": "清除",
       "EnterPassword": "輸入密碼",
       "ChooseFile": "選擇檔案"
+    },
+    "Dashboard": {
+      "NoData": "無數據",
+      "TimeError": "時間錯誤",
+      "JustNow": "剛剛",
+      "MinutesAgo": "{time}分鐘前",
+      "HoursAgo": "{time}小時前",
+      "DaysAgo": "{time}天前",
+      "LongTimeAgo": "很久以前"
     }
   }
 }
