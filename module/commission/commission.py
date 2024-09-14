@@ -600,11 +600,11 @@ class RewardCommission(UI, InfoHandler):
             daily = self.daily.select(category_str='daily', status='pending').count
             filtered_urgent = self.comm_choose.intersect_by_eq(self.urgent.select(status='pending')).count
             logger.info(f'Daily commission: {daily}, filtered_urgent: {filtered_urgent}')
-            if daily > 0 and filtered_urgent >= 1:
+            if daily > 0 and filtered_urgent >= 5:
                 logger.info('Having daily commissions to do, delay task `GemsFarming`')
                 self.config.task_delay(
                     minute=120, target=future_finish if len(future_finish) else None, task='GemsFarming')
-            elif filtered_urgent >= 4:
+            elif filtered_urgent >= 10:
                 logger.info('Having too many urgent commissions, delay task `GemsFarming`')
                 self.config.task_delay(
                     minute=120, target=future_finish if len(future_finish) else None, task='GemsFarming')
