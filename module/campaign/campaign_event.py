@@ -24,10 +24,10 @@ class CampaignEvent(CampaignStatus):
                 self.config.cross_set(keys=keys, value=False)
 
             for task in ['GemsFarming']:
-                name = self.config.cross_get(keys=f'{task}.Campaign.Name', default='15-1')
+                name = self.config.cross_get(keys=f'{task}.Campaign.Name', default='3-4')
                 if not self.stage_is_main(name):
-                    logger.info(f'Reset GemsFarming to 15-1')
-                    self.config.cross_set(keys=f'{task}.Campaign.Name', value='15-1')
+                    logger.info(f'Reset GemsFarming to 3-4')
+                    self.config.cross_set(keys=f'{task}.Campaign.Name', value='3-4')
                     self.config.cross_set(keys=f'{task}.Campaign.Event', value='campaign_main')
 
             logger.info(f'Reset event time limit')
