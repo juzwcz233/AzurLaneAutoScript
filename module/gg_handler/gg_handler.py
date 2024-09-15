@@ -221,7 +221,7 @@ class GGHandler:
             'exercise'
         ]
         _group_meta = [
-            # 'opsi_ash_beacon',
+            'opsi_ash_beacon',
             'opsi_ash_assist'
         ]
         _group_raid = [
@@ -234,7 +234,7 @@ class GGHandler:
             'guild'
         ]
         _group_enabled = [
-            'opsi_ash_beacon',
+            #'opsi_ash_beacon',
             'hard',
             'sos',
             'war_archives',
