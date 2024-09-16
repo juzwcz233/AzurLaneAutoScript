@@ -12,43 +12,41 @@ class ManualConfig:
     Restart
     > OpsiCrossMonth
     > Commission > Tactical > Research
-    > Dorm > Meowfficer > Gacha
-    > ShopFrequent > ShopOnce > Shipyard > Freebies
+    > Exercise
+    > Dorm > Meowfficer > Guild > Gacha
+    > Reward
+    > ShopFrequent > ShopOnce > Shipyard > Freebies > Minigame
     > OpsiExplore
-    > OpsiDaily > OpsiAshBeacon 
-    > Exercise > OpsiAshAssist > Guild > Reward
-    > Daily > Hard > Minigame
+    > OpsiAshBeacon
+    > OpsiDaily > OpsiShop > OpsiVoucher
+    > OpsiAbyssal > OpsiStronghold > OpsiObscure > OpsiArchive
+    > Daily > Hard > OpsiAshBeacon > OpsiAshAssist  > OpsiMonthBoss
     > Sos > EventSp > EventA > EventB > EventC > EventD
     > RaidDaily > CoalitionSp > WarArchives > MaritimeEscort
-    > OpsiShop > OpsiVoucher
-    > OpsiAbyssal > OpsiStronghold > OpsiObscure > OpsiArchive
-    > OpsiMonthBoss
-    > Main > Main2 > Main3
-    > Event > Event2 > Raid > Coalition
+    > Event > Event2 > Raid > Coalition > Main > Main2 > Main3
     > OpsiMeowfficerFarming
-    > GemsFarming
     > OpsiHazard1Leveling
+    > GemsFarming
     """
 
     SCHEDULER_PRIORITY_GEMS = """
     Restart
     > OpsiCrossMonth
     > Commission > Tactical > Research
-    > Dorm > Meowfficer > Gacha
-    > ShopFrequent > ShopOnce > Shipyard > Freebies
+    > Exercise
+    > Dorm > Meowfficer > Guild > Gacha
+    > Reward
+    > ShopFrequent > ShopOnce > Shipyard > Freebies > Minigame
     > OpsiExplore
-    > OpsiDaily > OpsiAshBeacon 
-    > Exercise > OpsiAshAssist > Guild > Reward
-    > Daily > Hard > Minigame
+    > OpsiAshBeacon
+    > OpsiDaily > OpsiShop > OpsiVoucher
+    > OpsiAbyssal > OpsiStronghold > OpsiObscure > OpsiArchive
+    > Daily > Hard > OpsiAshBeacon > OpsiAshAssist  > OpsiMonthBoss
     > Sos > EventSp > EventA > EventB > EventC > EventD
     > RaidDaily > CoalitionSp > WarArchives > MaritimeEscort
-    > OpsiShop > OpsiVoucher
-    > OpsiAbyssal > OpsiStronghold > OpsiObscure > OpsiArchive
-    > OpsiMonthBoss
-    > GemsFarming
-    > Main > Main2 > Main3
-    > Event > Event2 > Raid > Coalition
+    > Event > Event2 > Raid > Coalition > Main > Main2 > Main3
     > OpsiMeowfficerFarming
+    > GemsFarming
     > OpsiHazard1Leveling
     """
 
