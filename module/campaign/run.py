@@ -7,6 +7,7 @@ from alas import AzurLaneAutoScript
 
 from module.campaign.campaign_base import CampaignBase
 from module.campaign.campaign_event import CampaignEvent
+from module.shop.shop_status import ShopStatus
 from module.campaign.campaign_ui import MODE_SWITCH_1
 from module.config.config import AzurLaneConfig
 from module.exception import CampaignEnd, RequestHumanTakeover, ScriptEnd, CombatFail
@@ -16,7 +17,7 @@ from module.notify import handle_notify
 from module.ui.page import page_campaign
 
 
-class CampaignRun(CampaignEvent):
+class CampaignRun(CampaignEvent, ShopStatus):
     folder: str
     name: str
     stage: str
@@ -91,7 +92,10 @@ class CampaignRun(CampaignEvent):
             return True
         # Oil limit
         if oil_check:
-            if self.get_oil() < max(500, self.config.StopCondition_OilLimit):
+            self.status_get_gems()
+            self.get_coin()
+            _oil = self.get_oil()
+            if _oil < max(500, self.config.StopCondition_OilLimit):
                 logger.hr('Triggered stop condition: Oil limit')
                 self.config.task_delay(minute=(120, 240))
                 return True
@@ -383,6 +387,11 @@ class CampaignRun(CampaignEvent):
             if self.triggered_stop_condition(oil_check=not self.campaign.is_in_auto_search_menu()):
                 break
 
+            # Update config
+            if len(self.config.modified):
+                logger.info('Updating config for dashboard')
+                self.config.update()
+
             # Run
             self.device.stuck_record_clear()
             self.device.click_record_clear()
@@ -404,6 +413,10 @@ class CampaignRun(CampaignEvent):
             else:
                 fail_count = 0
 
+            # Update config
+            if len(self.campaign.config.modified):
+                logger.info('Updating config for dashboard')
+                self.campaign.config.update()
             # After run
             self.run_count += 1
             if self.config.StopCondition_RunCount:
