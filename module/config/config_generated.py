@@ -157,12 +157,6 @@ class GeneratedConfig:
     GemsFarming_HardVanguardIndex = 0  # 0, 1, 2
     GemsFarming_HardFlagshipIndex = 0  # 0, 1, 2
 
-    # Group `CampaignStorage`
-    CampaignStorage_Oil = {}
-    CampaignStorage_Coin = {}
-    CampaignStorage_Gem = {}
-    CampaignStorage_Pt = {}
-
     # Group `EventGeneral`
     EventGeneral_PtLimit = 0
     EventGeneral_TimeLimit = datetime.datetime(2020, 1, 1, 0, 0)
@@ -336,9 +330,6 @@ class GeneratedConfig:
     # Group `Minigame`
     Minigame_Collect = False
 
-    # Group `GachaStorage`
-    GachaStorage_Cube = {}
-
     # Group `Daily`
     Daily_UseDailySkip = True
     Daily_EscortMission = 'first'  # skip, first, second, third
@@ -435,11 +426,6 @@ class GeneratedConfig:
     # Group `OpsiHazard1Leveling`
     OpsiHazard1Leveling_TargetZone = 0  # 0, 44, 22
     OpsiHazard1Leveling_SolveScanningDevice = False
-
-    # Group `OpsiStorage`
-    OpsiStorage_YellowCoin = {}
-    OpsiStorage_PurpleCoin = {}
-    OpsiStorage_ActionPoint = {}
 
     # Group `Daemon`
     Daemon_EnterMap = True
