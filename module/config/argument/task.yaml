@@ -294,6 +294,7 @@ Opsi:
       - Scheduler
       - OpsiAbyssal
       - OpsiFleetFilter
+      - OpsiFleet
     OpsiArchive:
       - Scheduler
       - OpsiFleet
@@ -301,6 +302,7 @@ Opsi:
       - Scheduler
       - OpsiStronghold
       - OpsiFleetFilter
+      - OpsiFleet
     OpsiMonthBoss:
       - Scheduler
       - OpsiMonthBoss

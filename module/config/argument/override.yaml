@@ -408,6 +408,9 @@ OpsiAbyssal:
     SuccessInterval: 60
     FailureInterval: 60
     ServerUpdate: 00:00, 12:00
+  OpsiFleet:
+    Fleet: 1
+    Submarine: true
 OpsiArchive:
   Scheduler:
     SuccessInterval: 60
@@ -418,6 +421,9 @@ OpsiStronghold:
     SuccessInterval: 60
     FailureInterval: 60
     ServerUpdate: 00:00
+  OpsiFleet:
+    Fleet: 1
+    Submarine: true
 OpsiMeowfficerFarming:
   Scheduler:
     SuccessInterval: 30
