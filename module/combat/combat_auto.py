@@ -15,25 +15,26 @@ class CombatAuto(ModuleBase):
 
     def ui_category(self):
         if self.appear(PAUSE, offset=(20, 20)):
-            return Classical
+            return 1
         if self.appear(PAUSE_Iridescent_Fantasy, offset=(20, 20)):
-            return ridescent_Fantasy
+            return 2
         if self.appear(PAUSE_New, offset=(20, 20)):
-            return New
-        
+            return 3
+    
 
     def combat_joystick_appear(self) -> bool:
         """
         If joystick appear, combat is under manual mode.
         """
-        if ui_category() == "Classical"
+        ui = ui_category()
+        if ui == 1
             if self.appear(COMBAT_AUTO, offset=(20, 20)):
                 return True
             if self.appear(COMBAT_AUTO_133, offset=(20, 20)):
                 return True
             if self.appear(COMBAT_AUTO_150, offset=(20, 20)):
                 return True
-        if ui_category() == "ridescent_Fantasy" 
+        if ui == 2 
             if self.appear(COMBAT_AUTO_Iridescent_Fantasy, offset=(20, 20)):
                 return True
             if self.appear(COMBAT_AUTO_Iridescent_Fantasy_133, offset=(20, 20)):
