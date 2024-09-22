@@ -27,14 +27,14 @@ class CombatAuto(ModuleBase):
         If joystick appear, combat is under manual mode.
         """
         ui = ui_category()
-        if ui == 1
+        if ui == 1:
             if self.appear(COMBAT_AUTO, offset=(20, 20)):
                 return True
             if self.appear(COMBAT_AUTO_133, offset=(20, 20)):
                 return True
             if self.appear(COMBAT_AUTO_150, offset=(20, 20)):
                 return True
-        if ui == 2 
+        if ui == 2: 
             if self.appear(COMBAT_AUTO_Iridescent_Fantasy, offset=(20, 20)):
                 return True
             if self.appear(COMBAT_AUTO_Iridescent_Fantasy_133, offset=(20, 20)):
