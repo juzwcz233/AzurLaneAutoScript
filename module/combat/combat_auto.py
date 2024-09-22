@@ -1,6 +1,7 @@
 from module.base.base import ModuleBase
 from module.base.timer import Timer
 from module.combat.assets import *
+from module.combat_ui.assets import *
 from module.logger import logger
 
 
@@ -11,20 +12,32 @@ class CombatAuto(ModuleBase):
     auto_mode_switched = False
     auto_mode_click_timer = Timer(5)
 
+
+    def ui_category(self):
+        if self.appear(PAUSE, offset=(20, 20)):
+            return Classical
+        if self.appear(PAUSE_Iridescent_Fantasy, offset=(20, 20)):
+            return ridescent_Fantasy
+        if self.appear(PAUSE_New, offset=(20, 20)):
+            return New
+        
+
     def combat_joystick_appear(self) -> bool:
         """
         If joystick appear, combat is under manual mode.
         """
-        if self.appear(COMBAT_AUTO, offset=(20, 20)):
-            return True
-        if self.appear(COMBAT_AUTO_133, offset=(20, 20)):
-            return True
-        if self.appear(COMBAT_AUTO_150, offset=(20, 20)):
-            return True
-        if self.appear(COMBAT_AUTO_Iridescent_Fantasy, offset=(20, 20)):
-            return True
-        if self.appear(COMBAT_AUTO_Iridescent_Fantasy_133, offset=(20, 20)):
-            return True
+        if ui_category() == "Classical"
+            if self.appear(COMBAT_AUTO, offset=(20, 20)):
+                return True
+            if self.appear(COMBAT_AUTO_133, offset=(20, 20)):
+                return True
+            if self.appear(COMBAT_AUTO_150, offset=(20, 20)):
+                return True
+        if ui_category() == "ridescent_Fantasy" 
+            if self.appear(COMBAT_AUTO_Iridescent_Fantasy, offset=(20, 20)):
+                return True
+            if self.appear(COMBAT_AUTO_Iridescent_Fantasy_133, offset=(20, 20)):
+                return True
         return False
 
     def combat_auto_reset(self):
