@@ -1,7 +1,6 @@
 from module.base.base import ModuleBase
 from module.base.timer import Timer
 from module.combat.assets import *
-from module.combat.combat_auto import ui
 from module.combat_ui.assets import *
 from module.logger import logger
 
