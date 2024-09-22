@@ -1,6 +1,7 @@
 from module.base.base import ModuleBase
 from module.base.timer import Timer
 from module.combat.assets import *
+from module.combat.combat_auto import ui
 from module.combat_ui.assets import *
 from module.logger import logger
 
@@ -13,23 +14,21 @@ class CombatAuto(ModuleBase):
     auto_mode_click_timer = Timer(5)
 
 
-    def ui_category(self) -> bool:
+    def ui_category(self):
         if self.appear(PAUSE, offset=(20, 20)):
-            ui = Classical
-            return True
+            return Classical
         if self.appear(PAUSE_Iridescent_Fantasy, offset=(20, 20)):
-            ui = Iridescent_Fantasy
-            return True
+            return Iridescent_Fantasy
         if self.appear(PAUSE_New, offset=(20, 20)):
             return True
         return False
     
-
     def combat_joystick_appear(self) -> bool:
         """
         If joystick appear, combat is under manual mode.
         """
-        if ui == Classical:
+        ui = ui_category(self)
+        if  ui == Classical:
             if self.appear(COMBAT_AUTO, offset=(20, 20)):
                 return True
             if self.appear(COMBAT_AUTO_133, offset=(20, 20)):
