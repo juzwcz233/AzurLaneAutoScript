@@ -13,7 +13,7 @@ class CombatAuto(ModuleBase):
     auto_mode_click_timer = Timer(5)
 
 
-    def ui_category(self)
+    def ui_category(self):
         if self.appear(PAUSE, offset=(20, 20)):
             return "Classical"
         if self.appear(PAUSE_Iridescent_Fantasy, offset=(20, 20)):
