@@ -1,6 +1,6 @@
 from module.base.base import ModuleBase
 from module.base.timer import Timer
-from module.combat.assets import COMBAT_AUTO, COMBAT_AUTO_133, COMBAT_AUTO_150, COMBAT_AUTO_SWITCH
+from module.combat.assets import *
 from module.logger import logger
 
 
