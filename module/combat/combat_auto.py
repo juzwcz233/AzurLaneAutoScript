@@ -21,6 +21,10 @@ class CombatAuto(ModuleBase):
             return True
         if self.appear(COMBAT_AUTO_150, offset=(20, 20)):
             return True
+        if self.appear(COMBAT_AUTO_Iridescent_Fantasy, offset=(20, 20)):
+                return True
+        if self.appear(COMBAT_AUTO_Iridescent_Fantasy_133, offset=(20, 20)):
+                return True
         return False
 
     def combat_auto_reset(self):
