@@ -12,8 +12,6 @@ from module.ocr.ocr import Digit, Ocr
 from module.ui.ui import UI
 from module.log_res.log_res import LogRes
 
-OCR_COIN = Digit(OCR_COIN, name='OCR_COIN', letter=(239, 239, 239), threshold=128)
-
 
 class PtOcr(Ocr):
     def __init__(self, *args, **kwargs):
