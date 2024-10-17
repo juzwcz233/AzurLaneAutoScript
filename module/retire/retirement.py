@@ -551,24 +551,30 @@ class Retirement(Enhancement, QuickRetireSettingHandler):
         else:
             return None
 
-    def retirement_get_common_rarity_cv(self, skip_first_screenshot=False):
-        button = self.retirement_get_common_rarity_cv_in_page()
-        if button is not None:
-            return button
+    def retirement_get_common_rarity_cv(self):
+        """
+        Returns:
+            Button:
+        """
+        if self.config.GemsFarming_CommonCV == 'any':
+            common_cv_names = ['BOGUE', 'HERMES', 'LANGLEY', 'RANGER']
+        else:
+            common_cv_names = [self.config.GemsFarming_CommonCV.upper()]
 
-        for _ in range(7):
-            if not RETIRE_CONFIRM_SCROLL.appear(main=self):
-                logger.info('Scroll bar disappeared, stop')
-                break
-            RETIRE_CONFIRM_SCROLL.next_page(main=self)
-            button = self.retirement_get_common_rarity_cv_in_page()
-            if button is not None:
-                return button
-            if RETIRE_CONFIRM_SCROLL.at_bottom(main=self):
-                logger.info('Scroll bar reached end, stop')
-                break
-
-        return button
+        buttons = []
+        for name in common_cv_names:
+            template = globals()[f'TEMPLATE_{name}']
+            buttons.extend(template.match_multi(
+                self.device.image,
+                scaling=1.09,
+                name=f'TEMPLATE_{name}_RETIRE'))
+        if buttons:
+            first_line = [b for b in buttons if area_in_area(b.area, (205, 121, 1074, 337))]
+            if first_line:
+                return min(first_line, key=lambda b: b.area[0])
+            return min(buttons, key=lambda b: b.area[0])
+        else:
+            return None
 
     def keep_one_common_cv(self):
         button = self.retirement_get_common_rarity_cv()
