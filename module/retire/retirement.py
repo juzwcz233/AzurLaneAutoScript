@@ -522,10 +522,6 @@ class Retirement(Enhancement, QuickRetireSettingHandler):
                 count += 1
                 continue
 
-            if retire_coin_timer.reached() and not self.appear(RETIRE_COIN, threshold=0.97):
-                return True
-        return False
-
     def retirement_get_common_rarity_cv(self):
         """
         Returns:
