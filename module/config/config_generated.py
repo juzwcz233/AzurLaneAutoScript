@@ -507,6 +507,16 @@ class GeneratedConfig:
 
     # Group `GameManager`
     GameManager_AutoRestart = True
+        
+    # Group `AutoRestart`
+    AutoRestart_Enabled = True
+    AutoRestart_AttemptsToRestart = 5
+    AutoRestart_NotifyWhenAutoRestart = False
+    # Group `InstanceRestart`
+    InstanceRestart_Enabled = False
+    InstanceRestart_AttemptsToRestart = 5
+    InstanceRestart_NotifyWhenAutoRestart = False
+    InstanceRestart_HasRestarted = 0
 
     # Group `GGHandler`
     GGHandler_Enabled = False
