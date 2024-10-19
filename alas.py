@@ -604,9 +604,12 @@ class AzurLaneAutoScript:
                         continue
                     else:
                         logger.critical('GGHandler before task failed')
+                        handle_notify(
                             self.config.Error_OnePushConfig,
                             title=f"Alas <{self.config_name}> crashed",
                             content=f"<{self.config_name}> RequestHumanTakeover\nGGHandler before task failed",
+                        )
+                        exit(1)
                 else:
                     check_fail = 0
 
