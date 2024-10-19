@@ -592,23 +592,23 @@ class AzurLaneAutoScript:
             _ = self.device
             self.device.config = self.config
             # Skip first restart
-            if task == 'Restart':
-                if self.is_first_task:
-                    logger.info('Skip task `Restart` at scheduler start')
+            if task != 'Restart':
+                try:
+                    gg_handler = GGHandler(config=self.config, device=self.device)
+                    gg_handler.check_config()
+                    gg_handler.check_then_set_gg_status(inflection.underscore(task))
+                except GameStuckError:
+                    del_cached_property(self, 'config')
+                    check_fail += 1
+                    if check_fail <= 3:
+                        continue
+                    else:
+                        logger.critical('GGHandler before task failed')
+                            self.config.Error_OnePushConfig,
+                            title=f"Alas <{self.config_name}> crashed",
+                            content=f"<{self.config_name}> RequestHumanTakeover\nGGHandler before task failed",
                 else:
-                    from module.handler.login import LoginHandler
-                    try:
-                        LoginHandler(self.config, self.device).app_restart()
-                    except RequestHumanTakeover:
-                        handle_notify(
-                        self.config.Error_OnePushConfig,
-                        title=f"Alas <{self.config_name}> crashed",
-                        content=f"<{self.config_name}> RequestHumanTakeover",
-                        )
-                        exit(1)
-                self.config.task_delay(server_update=True)
-                del_cached_property(self, 'config')
-                continue
+                    check_fail = 0
 
 
             # Run
