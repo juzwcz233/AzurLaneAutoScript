@@ -810,6 +810,30 @@ AzurLaneUncensored:
     display: disabled
 GameManager:
   AutoRestart: true
+  # ==================== AutoRestart ====================
+AutoRestart:
+  Enabled:
+    type: checkbox
+    value: True
+  AttemptsToRestart:
+    type: input
+    value: 5
+  NotifyWhenAutoRestart:
+    type: checkbox
+    value: false
+InstanceRestart:
+  Enabled:
+    type: checkbox
+    value: false
+  AttemptsToRestart:
+    type: input
+    value: 5
+  NotifyWhenAutoRestart:
+    type: checkbox
+    value: false
+  HasRestarted:
+    value: 0
+    display: hide
 
 
 GGHandler:
