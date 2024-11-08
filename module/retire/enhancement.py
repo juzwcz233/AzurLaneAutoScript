@@ -1,5 +1,6 @@
 from random import choice
 
+import module.config.server as server
 from module.base.timer import Timer
 from module.combat.assets import GET_ITEMS_1
 from module.exception import GameStuckError, ScriptError
@@ -9,8 +10,12 @@ from module.retire.assets import *
 from module.retire.dock import CARD_GRIDS, Dock
 
 VALID_SHIP_TYPES = ['dd', 'ss', 'cl', 'ca', 'bb', 'cv', 'repair', 'others']
-OCR_DOCK_AMOUNT = DigitCounter(
-    DOCK_AMOUNT, letter=(255, 255, 255), threshold=192)
+if server.server != 'jp':
+    OCR_DOCK_AMOUNT = DigitCounter(
+        DOCK_AMOUNT, letter=(255, 255, 255), threshold=192)
+else:
+    OCR_DOCK_AMOUNT = DigitCounter(
+        DOCK_AMOUNT, letter=(201, 201, 201), threshold=192)
 
 
 class Enhancement(Dock):
@@ -220,9 +225,12 @@ class Enhancement(Dock):
             if state == "state_enhance_check":
                 # Avoid too_many_click exception caused by multiple tries without material
                 if state_list[-2:] == ["state_enhance_recommend", "state_enhance_fail"]:
-                    if len(self.device.click_record):
-                        while self.device.click_record[-1] in ['ENHANCE_RECOMMEND', 'SHIP_SWIPE']:
-                            self.device.click_record.pop()
+                    while self.device.click_record and (self.device.click_record[-1] in ['ENHANCE_RECOMMEND', 'SHIP_SWIPE']):
+                        self.device.click_record.pop()
+                # Avoid too_many_click exception caused by enhancement failure on in-battle ships
+                elif state_list[-3:] == ["state_enhance_attempt", "state_enhance_confirm", "state_enhance_fail"]:
+                    while self.device.click_record and (self.device.click_record[-1] in ['ENHANCE_RECOMMEND', 'SHIP_SWIPE', 'ENHANCE_CONFIRM']):
+                        self.device.click_record.pop()
                 state_list.clear()
             state_list.append(state)
             if len(state_list) > 30:

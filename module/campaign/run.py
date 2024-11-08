@@ -213,6 +213,7 @@ class CampaignRun(CampaignEvent):
         if folder in [
             'event_20211125_cn',
             'event_20231026_cn',
+            'event_20241024_cn',
         ]:
             name = convert.get(name, name)
         # Convert between A/B/C/D and T/HT
@@ -241,6 +242,7 @@ class CampaignRun(CampaignEvent):
             'event_20231123_cn',
             'event_20240725_cn',
             'event_20240829_cn',
+            'event_20241024_cn',
         ]:
             name = convert.get(name, name)
         else:
@@ -367,7 +369,7 @@ class CampaignRun(CampaignEvent):
                     logger.info('In auto search menu, skip ensure_campaign_ui.')
                 else:
                     logger.info('In auto search menu, closing.')
-                    self.campaign.ensure_auto_search_exit()
+                    # Because event_20240725 task balancer delete self.campaign.ensure_auto_search_exit()
                     self.campaign.ensure_campaign_ui(name=self.stage, mode=mode)
             else:
                 self.campaign.ensure_campaign_ui(name=self.stage, mode=mode)
