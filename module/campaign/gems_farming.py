@@ -340,14 +340,13 @@ class GemsFarming(CampaignRun, Dock, FleetEquipment, GemsEquipmentHandler):
         else:
             logger.error(f'Invalid CommonDD setting: {self.config.GemsFarming_CommonDD}')
             raise ScriptError('Invalid GemsFarming_CommonDD')
-        self.wait_until_appear_then_click(REMOVE_SHIP)
+        if self.hard_mode:
+            self.wait_until_appear_then_click(REMOVE_SHIP)
 
-        self._fleet_detail_enter()
-        self.ui_click(self.FLEET_ENTER_FLAGSHIP,
-                      appear_button=self.page_fleet_check_button, check_button=DOCK_CHECK, skip_first_screenshot=True)
-        if deep_get(self.config.data, "GameManager.ChangeShip.Enable") \
-                and deep_get(self.config.data, "GemsFarming.Campaign.Name").upper() in ["C1", "C2", "C3", "D1",
-                                                                                        "D2", "D3"]:
+            self._fleet_detail_enter()
+            self.ui_click(self.FLEET_ENTER_FLAGSHIP,
+                          appear_button=self.page_fleet_check_button, check_button=DOCK_CHECK,
+                          skip_first_screenshot=True)
             self.dock_filter_set(
                 index=deep_get(self.config.data, "GameManager.ChangeShip.TargetType").lower(), rarity='common',
                 extra='enhanceable', sort='total')
