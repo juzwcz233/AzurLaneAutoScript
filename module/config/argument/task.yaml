@@ -337,3 +337,4 @@ Tool:
       - GameManager
       - GGHandler
       - PowerLimit
+      - ChangeShip

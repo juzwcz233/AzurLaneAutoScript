@@ -7,6 +7,7 @@ from module.base.decorator import cached_property
 from module.base.timer import Timer
 from module.base.utils import get_color
 from module.campaign.campaign_base import CampaignBase
+from module.campaign.assets import REMOVE_SHIP
 from module.campaign.run import CampaignRun
 from module.combat.assets import BATTLE_PREPARATION
 from module.combat.emotion import Emotion, FleetEmotion
@@ -27,6 +28,7 @@ from module.retire.assets import (
 from module.retire.dock import Dock, CARD_GRIDS
 from module.retire.scanner import ShipScanner
 from module.ui.assets import BACK_ARROW
+from module.config.config import deep_get
 from module.ui.page import page_fleet
 
 SIM_VALUE = 0.92
@@ -338,8 +340,20 @@ class GemsFarming(CampaignRun, Dock, FleetEquipment, GemsEquipmentHandler):
         else:
             logger.error(f'Invalid CommonDD setting: {self.config.GemsFarming_CommonDD}')
             raise ScriptError('Invalid GemsFarming_CommonDD')
-        self.dock_filter_set(
-            index='dd', rarity='common', faction=faction, extra='can_limit_break')
+        self.wait_until_appear_then_click(REMOVE_SHIP)
+
+        self._fleet_detail_enter()
+        self.ui_click(self.FLEET_ENTER_FLAGSHIP,
+                      appear_button=self.page_fleet_check_button, check_button=DOCK_CHECK, skip_first_screenshot=True)
+        if deep_get(self.config.data, "GameManager.ChangeShip.Enable") \
+                and deep_get(self.config.data, "GemsFarming.Campaign.Name").upper() in ["C1", "C2", "C3", "D1",
+                                                                                        "D2", "D3"]:
+            self.dock_filter_set(
+                index=deep_get(self.config.data, "GameManager.ChangeShip.TargetType").lower(), rarity='common',
+                extra='enhanceable', sort='total')
+        else:
+            self.dock_filter_set(
+                index='cv', rarity='common', extra='enhanceable', sort='total')
         self.dock_favourite_set(False)
 
         ships = self.get_common_rarity_dd()
