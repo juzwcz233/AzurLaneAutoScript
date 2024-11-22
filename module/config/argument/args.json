@@ -1,4 +1,206 @@
 {
+  "Dashboard": {
+    "Oil": {
+      "Value": {
+        "type": "input",
+        "value": 0
+      },
+      "Limit": {
+        "type": "input",
+        "value": 0
+      },
+      "Color": {
+        "type": "input",
+        "value": "^000000"
+      },
+      "Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      }
+    },
+    "Coin": {
+      "Value": {
+        "type": "input",
+        "value": 0
+      },
+      "Limit": {
+        "type": "input",
+        "value": 0
+      },
+      "Color": {
+        "type": "input",
+        "value": "^FFAA33"
+      },
+      "Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      }
+    },
+    "Gem": {
+      "Value": {
+        "type": "input",
+        "value": 0
+      },
+      "Color": {
+        "type": "input",
+        "value": "^FF3333"
+      },
+      "Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      }
+    },
+    "Pt": {
+      "Value": {
+        "type": "input",
+        "value": 0
+      },
+      "Color": {
+        "type": "input",
+        "value": "^00BFFF"
+      },
+      "Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      }
+    },
+    "Cube": {
+      "Value": {
+        "type": "input",
+        "value": 0
+      },
+      "Color": {
+        "type": "input",
+        "value": "^33FFFF"
+      },
+      "Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      }
+    },
+    "ActionPoint": {
+      "Value": {
+        "type": "input",
+        "value": 0
+      },
+      "Total": {
+        "type": "input",
+        "value": 0
+      },
+      "Color": {
+        "type": "input",
+        "value": "^0000FF"
+      },
+      "Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      }
+    },
+    "YellowCoin": {
+      "Value": {
+        "type": "input",
+        "value": 0
+      },
+      "Color": {
+        "type": "input",
+        "value": "^FF8800"
+      },
+      "Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      }
+    },
+    "PurpleCoin": {
+      "Value": {
+        "type": "input",
+        "value": 0
+      },
+      "Color": {
+        "type": "input",
+        "value": "^7700BB"
+      },
+      "Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      }
+    },
+    "Core": {
+      "Value": {
+        "type": "input",
+        "value": 0
+      },
+      "Color": {
+        "type": "input",
+        "value": "^AAAAAA"
+      },
+      "Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      }
+    },
+    "Medal": {
+      "Value": {
+        "type": "input",
+        "value": 0
+      },
+      "Color": {
+        "type": "input",
+        "value": "^FFDD00"
+      },
+      "Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      }
+    },
+    "Merit": {
+      "Value": {
+        "type": "input",
+        "value": 0
+      },
+      "Color": {
+        "type": "input",
+        "value": "^FFFF00"
+      },
+      "Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      }
+    },
+    "GuildCoin": {
+      "Value": {
+        "type": "input",
+        "value": 0
+      },
+      "Color": {
+        "type": "input",
+        "value": "^AAAAAA"
+      },
+      "Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
   "Alas": {
     "Emulator": {
       "Serial": {
@@ -376,13 +578,11 @@
   "Restart": {
     "Scheduler": {
       "Enable": {
-        "type": "state",
+        "type": "checkbox",
         "value": true,
         "option": [
-          true
-        ],
-        "option_bold": [
-          true
+          true,
+          false
         ]
       },
       "NextRun": {
@@ -409,6 +609,20 @@
         "type": "input",
         "value": "00:00",
         "display": "hide"
+      }
+    },
+    "AutoRestart": {
+      "Enabled": {
+        "type": "checkbox",
+        "value": true
+      },
+      "AttemptsToRestart": {
+        "type": "input",
+        "value": 5
+      },
+      "NotifyWhenAutoRestart": {
+        "type": "checkbox",
+        "value": false
       }
     },
     "Storage": {
@@ -1627,9 +1841,32 @@
           "z20_or_z21"
         ]
       },
+      "EquipmentCode": {
+        "type": "textarea",
+        "value": "DD: null\nbogue: null\nhermes: null\nlangley: null\nranger: null",
+        "mode": "yaml"
+      },
       "CommissionLimit": {
         "type": "checkbox",
         "value": true
+      },
+      "HardVanguardIndex": {
+        "type": "select",
+        "value": 0,
+        "option": [
+          0,
+          1,
+          2
+        ]
+      },
+      "HardFlagshipIndex": {
+        "type": "select",
+        "value": 0,
+        "option": [
+          0,
+          1,
+          2
+        ]
       }
     },
     "Campaign": {
@@ -1710,17 +1947,16 @@
           "event_20240815_cn",
           "event_20240829_cn",
           "event_20240912_cn",
-          "event_20241024_cn",
-          "event_20241121_cn"
+          "event_20241024_cn"
         ],
         "display": "hide",
         "option_bold": [
-          "event_20240229_cn",
-          "event_20241121_cn"
+          "event_20220915_cn",
+          "event_20240229_cn"
         ],
-        "cn": "event_20241121_cn",
-        "en": "event_20241121_cn",
-        "jp": "event_20241121_cn",
+        "cn": "event_20220915_cn",
+        "en": "event_20220915_cn",
+        "jp": "event_20220915_cn",
         "tw": "event_20240229_cn"
       },
       "Mode": {
@@ -1764,8 +2000,7 @@
       },
       "RunCount": {
         "type": "input",
-        "value": 0,
-        "display": "hide"
+        "value": 0
       },
       "MapAchievement": {
         "type": "select",
@@ -1889,6 +2124,135 @@
         "display": "display"
       }
     },
+    "Submarine": {
+      "Fleet": {
+        "type": "select",
+        "value": 0,
+        "option": [
+          0,
+          1,
+          2
+        ]
+      },
+      "Mode": {
+        "type": "select",
+        "value": "do_not_use",
+        "option": [
+          "do_not_use",
+          "hunt_only"
+        ],
+        "display": "display",
+        "option_bold": [
+          "do_not_use",
+          "hunt_only"
+        ]
+      },
+      "AutoSearchMode": {
+        "type": "state",
+        "value": "sub_standby",
+        "option": [
+          "sub_standby"
+        ],
+        "option_bold": [
+          "sub_standby"
+        ]
+      },
+      "DistanceToBoss": {
+        "type": "select",
+        "value": "2_grid_to_boss",
+        "option": [
+          "to_boss_position",
+          "1_grid_to_boss",
+          "2_grid_to_boss",
+          "use_open_ocean_support"
+        ],
+        "display": "hide"
+      }
+    },
+    "Emotion": {
+      "Mode": {
+        "type": "select",
+        "value": "calculate",
+        "option": [
+          "calculate",
+          "ignore",
+          "calculate_ignore"
+        ],
+        "display": "hide"
+      },
+      "Fleet1Value": {
+        "type": "input",
+        "value": 119
+      },
+      "Fleet1Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime",
+        "display": "disabled"
+      },
+      "Fleet1Control": {
+        "type": "select",
+        "value": "prevent_red_face",
+        "option": [
+          "keep_exp_bonus",
+          "prevent_green_face",
+          "prevent_yellow_face",
+          "prevent_red_face"
+        ],
+        "display": "hide"
+      },
+      "Fleet1Recover": {
+        "type": "select",
+        "value": "not_in_dormitory",
+        "option": [
+          "not_in_dormitory",
+          "dormitory_floor_1",
+          "dormitory_floor_2"
+        ],
+        "display": "hide"
+      },
+      "Fleet1Oath": {
+        "type": "checkbox",
+        "value": false,
+        "display": "hide"
+      },
+      "Fleet2Value": {
+        "type": "input",
+        "value": 119
+      },
+      "Fleet2Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime",
+        "display": "disabled"
+      },
+      "Fleet2Control": {
+        "type": "select",
+        "value": "prevent_red_face",
+        "option": [
+          "keep_exp_bonus",
+          "prevent_green_face",
+          "prevent_yellow_face",
+          "prevent_red_face"
+        ],
+        "display": "hide"
+      },
+      "Fleet2Recover": {
+        "type": "select",
+        "value": "not_in_dormitory",
+        "option": [
+          "not_in_dormitory",
+          "dormitory_floor_1",
+          "dormitory_floor_2"
+        ],
+        "display": "hide"
+      },
+      "Fleet2Oath": {
+        "type": "checkbox",
+        "value": false,
+        "display": "hide"
+      }
+    },
     "Storage": {
       "Storage": {
         "type": "storage",
@@ -1980,7 +2344,7 @@
         "value": "12-4"
       },
       "Event": {
-        "type": "state",
+        "type": "select",
         "value": "campaign_main",
         "option": [
           "event_20200227_cn",
@@ -2052,16 +2416,15 @@
           "event_20240815_cn",
           "event_20240829_cn",
           "event_20240912_cn",
-          "event_20241024_cn",
-          "event_20241121_cn"
+          "event_20241024_cn"
         ],
         "option_bold": [
-          "event_20240229_cn",
-          "event_20241121_cn"
+          "event_20220915_cn",
+          "event_20240229_cn"
         ],
-        "cn": "event_20241121_cn",
-        "en": "event_20241121_cn",
-        "jp": "event_20241121_cn",
+        "cn": "event_20220915_cn",
+        "en": "event_20220915_cn",
+        "jp": "event_20220915_cn",
         "tw": "event_20240229_cn"
       },
       "Mode": {
@@ -2436,7 +2799,7 @@
         "value": "12-4"
       },
       "Event": {
-        "type": "state",
+        "type": "select",
         "value": "campaign_main",
         "option": [
           "event_20200227_cn",
@@ -2508,16 +2871,15 @@
           "event_20240815_cn",
           "event_20240829_cn",
           "event_20240912_cn",
-          "event_20241024_cn",
-          "event_20241121_cn"
+          "event_20241024_cn"
         ],
         "option_bold": [
-          "event_20240229_cn",
-          "event_20241121_cn"
+          "event_20220915_cn",
+          "event_20240229_cn"
         ],
-        "cn": "event_20241121_cn",
-        "en": "event_20241121_cn",
-        "jp": "event_20241121_cn",
+        "cn": "event_20220915_cn",
+        "en": "event_20220915_cn",
+        "jp": "event_20220915_cn",
         "tw": "event_20240229_cn"
       },
       "Mode": {
@@ -2909,7 +3271,7 @@
         "display": "hide"
       },
       "Event": {
-        "type": "state",
+        "type": "select",
         "value": "campaign_main",
         "option": [
           "raid_20200624",
@@ -3135,7 +3497,7 @@
         "display": "hide"
       },
       "Event": {
-        "type": "state",
+        "type": "select",
         "value": "campaign_main",
         "option": [
           "coalition_20230323",
@@ -3854,7 +4216,7 @@
         "display": "hide"
       },
       "Event": {
-        "type": "state",
+        "type": "select",
         "value": "campaign_main",
         "option": [
           "event_20200227_cn",
@@ -3926,16 +4288,15 @@
           "event_20240815_cn",
           "event_20240829_cn",
           "event_20240912_cn",
-          "event_20241024_cn",
-          "event_20241121_cn"
+          "event_20241024_cn"
         ],
         "option_bold": [
-          "event_20240229_cn",
-          "event_20241121_cn"
+          "event_20220915_cn",
+          "event_20240229_cn"
         ],
-        "cn": "event_20241121_cn",
-        "en": "event_20241121_cn",
-        "jp": "event_20241121_cn",
+        "cn": "event_20220915_cn",
+        "en": "event_20220915_cn",
+        "jp": "event_20220915_cn",
         "tw": "event_20240229_cn"
       },
       "Mode": {
@@ -4327,7 +4688,7 @@
         "display": "hide"
       },
       "Event": {
-        "type": "state",
+        "type": "select",
         "value": "campaign_main",
         "option": [
           "event_20200227_cn",
@@ -4399,16 +4760,15 @@
           "event_20240815_cn",
           "event_20240829_cn",
           "event_20240912_cn",
-          "event_20241024_cn",
-          "event_20241121_cn"
+          "event_20241024_cn"
         ],
         "option_bold": [
-          "event_20240229_cn",
-          "event_20241121_cn"
+          "event_20220915_cn",
+          "event_20240229_cn"
         ],
-        "cn": "event_20241121_cn",
-        "en": "event_20241121_cn",
-        "jp": "event_20241121_cn",
+        "cn": "event_20220915_cn",
+        "en": "event_20220915_cn",
+        "jp": "event_20220915_cn",
         "tw": "event_20240229_cn"
       },
       "Mode": {
@@ -4800,7 +5160,7 @@
         "display": "hide"
       },
       "Event": {
-        "type": "state",
+        "type": "select",
         "value": "campaign_main",
         "option": [
           "event_20200227_cn",
@@ -4872,16 +5232,15 @@
           "event_20240815_cn",
           "event_20240829_cn",
           "event_20240912_cn",
-          "event_20241024_cn",
-          "event_20241121_cn"
+          "event_20241024_cn"
         ],
         "option_bold": [
-          "event_20240229_cn",
-          "event_20241121_cn"
+          "event_20220915_cn",
+          "event_20240229_cn"
         ],
-        "cn": "event_20241121_cn",
-        "en": "event_20241121_cn",
-        "jp": "event_20241121_cn",
+        "cn": "event_20220915_cn",
+        "en": "event_20220915_cn",
+        "jp": "event_20220915_cn",
         "tw": "event_20240229_cn"
       },
       "Mode": {
@@ -5273,7 +5632,7 @@
         "display": "hide"
       },
       "Event": {
-        "type": "state",
+        "type": "select",
         "value": "campaign_main",
         "option": [
           "event_20200227_cn",
@@ -5345,16 +5704,15 @@
           "event_20240815_cn",
           "event_20240829_cn",
           "event_20240912_cn",
-          "event_20241024_cn",
-          "event_20241121_cn"
+          "event_20241024_cn"
         ],
         "option_bold": [
-          "event_20240229_cn",
-          "event_20241121_cn"
+          "event_20220915_cn",
+          "event_20240229_cn"
         ],
-        "cn": "event_20241121_cn",
-        "en": "event_20241121_cn",
-        "jp": "event_20241121_cn",
+        "cn": "event_20220915_cn",
+        "en": "event_20220915_cn",
+        "jp": "event_20220915_cn",
         "tw": "event_20240229_cn"
       },
       "Mode": {
@@ -5736,7 +6094,7 @@
         "display": "hide"
       },
       "Event": {
-        "type": "state",
+        "type": "select",
         "value": "campaign_main",
         "option": [
           "event_20200227_cn",
@@ -5808,16 +6166,15 @@
           "event_20240815_cn",
           "event_20240829_cn",
           "event_20240912_cn",
-          "event_20241024_cn",
-          "event_20241121_cn"
+          "event_20241024_cn"
         ],
         "option_bold": [
-          "event_20240229_cn",
-          "event_20241121_cn"
+          "event_20220915_cn",
+          "event_20240229_cn"
         ],
-        "cn": "event_20241121_cn",
-        "en": "event_20241121_cn",
-        "jp": "event_20241121_cn",
+        "cn": "event_20220915_cn",
+        "en": "event_20220915_cn",
+        "jp": "event_20220915_cn",
         "tw": "event_20240229_cn"
       },
       "Mode": {
@@ -6206,7 +6563,7 @@
         "display": "hide"
       },
       "Event": {
-        "type": "state",
+        "type": "select",
         "value": "campaign_main",
         "option": [
           "raid_20200624",
@@ -6433,7 +6790,7 @@
         "display": "hide"
       },
       "Event": {
-        "type": "state",
+        "type": "select",
         "value": "campaign_main",
         "option": [
           "coalition_20230323",
@@ -6633,13 +6990,11 @@
   "Commission": {
     "Scheduler": {
       "Enable": {
-        "type": "lock",
+        "type": "checkbox",
         "value": true,
         "option": [
-          true
-        ],
-        "option_bold": [
-          true
+          true,
+          false
         ]
       },
       "NextRun": {
@@ -6703,7 +7058,7 @@
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": true,
+        "value": false,
         "option": [
           true,
           false
@@ -6796,13 +7151,11 @@
   "Research": {
     "Scheduler": {
       "Enable": {
-        "type": "lock",
-        "value": true,
+        "type": "checkbox",
+        "value": false,
         "option": [
-          true
-        ],
-        "option_bold": [
-          true
+          true,
+          false
         ]
       },
       "NextRun": {
@@ -6910,7 +7263,7 @@
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": true,
+        "value": false,
         "option": [
           true,
           false
@@ -6988,7 +7341,7 @@
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": true,
+        "value": false,
         "option": [
           true,
           false
@@ -7073,7 +7426,7 @@
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": true,
+        "value": false,
         "option": [
           true,
           false
@@ -7157,13 +7510,11 @@
   "Reward": {
     "Scheduler": {
       "Enable": {
-        "type": "lock",
-        "value": true,
+        "type": "checkbox",
+        "value": false,
         "option": [
-          true
-        ],
-        "option_bold": [
-          true
+          true,
+          false
         ]
       },
       "NextRun": {
@@ -7615,8 +7966,8 @@
         "value": false
       },
       "ConsumeCoins": {
-        "type": "checkbox",
-        "value": false
+        "type": "input",
+        "value": 550000
       },
       "Filter": {
         "type": "textarea",
@@ -8092,7 +8443,7 @@
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": true,
+        "value": false,
         "option": [
           true,
           false
@@ -8317,7 +8668,8 @@
         "value": "current",
         "option": [
           "current",
-          "current_dossier"
+          "current_dossier",
+          "dossier"
         ]
       },
       "OneHitMode": {
@@ -8456,6 +8808,16 @@
           2,
           3,
           4
+        ]
+      },
+      "FleetMode": {
+        "type": "select",
+        "value": "combat_auto",
+        "option": [
+          "combat_auto",
+          "combat_manual",
+          "stand_still_in_the_middle",
+          "hide_in_bottom_left"
         ]
       },
       "Submarine": {
@@ -8642,6 +9004,16 @@
           4
         ]
       },
+      "FleetMode": {
+        "type": "select",
+        "value": "combat_auto",
+        "option": [
+          "combat_auto",
+          "combat_manual",
+          "stand_still_in_the_middle",
+          "hide_in_bottom_left"
+        ]
+      },
       "Submarine": {
         "type": "checkbox",
         "value": false
@@ -8709,6 +9081,16 @@
           4
         ]
       },
+      "FleetMode": {
+        "type": "select",
+        "value": "combat_auto",
+        "option": [
+          "combat_auto",
+          "combat_manual",
+          "stand_still_in_the_middle",
+          "hide_in_bottom_left"
+        ]
+      },
       "Submarine": {
         "type": "checkbox",
         "value": false
@@ -8771,6 +9153,34 @@
         "value": "Fleet-4 > CallSubmarine > Fleet-2 > Fleet-3 > Fleet-1"
       }
     },
+    "OpsiFleet": {
+      "Fleet": {
+        "type": "select",
+        "value": 1,
+        "option": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "display": "hide"
+      },
+      "FleetMode": {
+        "type": "select",
+        "value": "combat_auto",
+        "option": [
+          "combat_auto",
+          "combat_manual",
+          "stand_still_in_the_middle",
+          "hide_in_bottom_left"
+        ]
+      },
+      "Submarine": {
+        "type": "checkbox",
+        "value": true,
+        "display": "hide"
+      }
+    },
     "Storage": {
       "Storage": {
         "type": "storage",
@@ -8825,6 +9235,16 @@
           2,
           3,
           4
+        ]
+      },
+      "FleetMode": {
+        "type": "select",
+        "value": "combat_auto",
+        "option": [
+          "combat_auto",
+          "combat_manual",
+          "stand_still_in_the_middle",
+          "hide_in_bottom_left"
         ]
       },
       "Submarine": {
@@ -8887,6 +9307,34 @@
       "Filter": {
         "type": "textarea",
         "value": "Fleet-4 > CallSubmarine > Fleet-2 > Fleet-3 > Fleet-1"
+      }
+    },
+    "OpsiFleet": {
+      "Fleet": {
+        "type": "select",
+        "value": 1,
+        "option": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "display": "hide"
+      },
+      "FleetMode": {
+        "type": "select",
+        "value": "combat_auto",
+        "option": [
+          "combat_auto",
+          "combat_manual",
+          "stand_still_in_the_middle",
+          "hide_in_bottom_left"
+        ]
+      },
+      "Submarine": {
+        "type": "checkbox",
+        "value": true,
+        "display": "hide"
       }
     },
     "Storage": {
@@ -9035,6 +9483,16 @@
           4
         ]
       },
+      "FleetMode": {
+        "type": "select",
+        "value": "combat_auto",
+        "option": [
+          "combat_auto",
+          "combat_manual",
+          "stand_still_in_the_middle",
+          "hide_in_bottom_left"
+        ]
+      },
       "Submarine": {
         "type": "checkbox",
         "value": false
@@ -9094,6 +9552,10 @@
           44,
           22
         ]
+      },
+      "SolveScanningDevice": {
+        "type": "checkbox",
+        "value": false
       }
     },
     "OpsiFleet": {
@@ -9105,6 +9567,16 @@
           2,
           3,
           4
+        ]
+      },
+      "FleetMode": {
+        "type": "select",
+        "value": "combat_auto",
+        "option": [
+          "combat_auto",
+          "combat_manual",
+          "stand_still_in_the_middle",
+          "hide_in_bottom_left"
         ]
       },
       "Submarine": {
@@ -9257,6 +9729,94 @@
       "AutoRestart": {
         "type": "checkbox",
         "value": true
+      }
+    },
+    "GGHandler": {
+      "Enabled": {
+        "type": "checkbox",
+        "value": false
+      },
+      "GGMethod": {
+        "type": "select",
+        "value": "u2",
+        "option": [
+          "u2"
+        ]
+      },
+      "RestartATX": {
+        "type": "checkbox",
+        "value": false
+      },
+      "GGPackageName": {
+        "type": "input",
+        "value": "com."
+      },
+      "AutoRestartGG": {
+        "type": "checkbox",
+        "value": false
+      },
+      "RestartEverytime": {
+        "type": "checkbox",
+        "value": true,
+        "display": "disabled"
+      },
+      "RepushLua": {
+        "type": "checkbox",
+        "value": true
+      },
+      "GGMultiplyingFactor": {
+        "type": "input",
+        "value": 200
+      },
+      "Timeout": {
+        "type": "input",
+        "value": 120
+      },
+      "DisabledTask": {
+        "type": "select",
+        "value": "disable_all_dangerous_task",
+        "option": [
+          "disable_all_dangerous_task",
+          "disable_guild_and_dangerous",
+          "disable_exercise",
+          "enable_all"
+        ]
+      }
+    },
+    "PowerLimit": {
+      "Exercise": {
+        "type": "input",
+        "value": 16500
+      },
+      "Raid": {
+        "type": "input",
+        "value": 16500
+      },
+      "Ash": {
+        "type": "input",
+        "value": 16500
+      }
+    },
+    "ChangeShip": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false
+      },
+      "PushLua": {
+        "type": "checkbox",
+        "value": false
+      },
+      "TargetType": {
+        "type": "select",
+        "value": "BB",
+        "option": [
+          "CV",
+          "BB"
+        ]
+      },
+      "ShipData": {
+        "type": "textarea",
+        "value": "106021;1;6\n107041;1;6\n206011;1;6\n107011;1;6\n"
       }
     },
     "Storage": {
