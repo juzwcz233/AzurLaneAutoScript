@@ -77,3 +77,20 @@ class CampaignBase(CampaignBase_):
             self.campaign_ensure_chapter(index=chapter)
         else:
             logger.warning(f'Unknown campaign chapter: {name}')
+
+    def _campaign_get_chapter_index(self, name):
+        """
+        Args:
+            name (str, int):
+        Returns:
+            int
+        """
+        if name == 't':
+            return 1
+        if name == 'ttl':
+            return 2
+        if name == 'ex_sp':
+            return 3
+        if name == 'ex_ex':
+            return 4
+        return super(CampaignBase, CampaignBase)._campaign_get_chapter_index(name)
