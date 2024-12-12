@@ -520,7 +520,7 @@ class Retirement(Enhancement, QuickRetireSettingHandler):
                 count += 1
                 continue
 
-    def retirement_get_common_rarity_cv(self):
+    def retirement_get_common_rarity_cv_in_page(self):
         """
         Returns:
             Button:
