@@ -116,7 +116,7 @@ class Retirement(Enhancement, QuickRetireSettingHandler):
                     self.interval_reset([SHIP_CONFIRM, SHIP_CONFIRM_2])
                     continue
             if self.match_template_color(SHIP_CONFIRM_2, offset=(30, 30), interval=2):
-                if self.retire_keep_common_cv and not self._have_kept_cv:
+                if self.config.RETIRE_KEEP_COMMON_CV and not self._have_kept_cv:
                     self.keep_one_common_cv()
                 self.device.click(SHIP_CONFIRM_2)
                 # GET_ITEMS_1 is going to appear, avoid re-entering ship confirm
