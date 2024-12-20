@@ -103,11 +103,6 @@ class Retirement(Enhancement, QuickRetireSettingHandler):
                 timeout.reset()
 
             # Click
-            if self.match_template_color(SHIP_CONFIRM, offset=(30, 30), interval=2):
-                self.device.click(SHIP_CONFIRM)
-                continue
-            if self.appear(SHIP_CONFIRM_2, offset=(30, 30), interval=2):
-                if self.config.RETIRE_KEEP_COMMON_CV and not self._have_kept_cv:
             # Ship confirm, order by display hierarchy
             if self._unable_to_enhance \
                     or self.config.OldRetire_SR \
