@@ -25,9 +25,9 @@ class CombatAuto(ModuleBase):
             return True
         if self.appear(COMBAT_AUTO_Iridescent_Fantasy_133, offset=(20, 20)):
             return True
-        if self.appear(COMBAT_AUTO_Christmas, offset=(20, 20)):
+        if self.appear(COMBAT_AUTO_Christmas, offset=(10, 10)):
             return True
-        if self.appear(COMBAT_AUTO_Christmas_133, offset=(20, 20)):
+        if self.appear(COMBAT_AUTO_Christmas_133, offset=(10, 10)):
             return True
         return False
 
