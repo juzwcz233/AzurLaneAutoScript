@@ -141,13 +141,13 @@ class Retirement(Enhancement, QuickRetireSettingHandler):
 
     def retirement_appear(self):
         return self.appear(RETIRE_APPEAR_1, offset=30) \
-            and self.appear(RETIRE_APPEAR_2, offset=30) \
-            and self.appear(RETIRE_APPEAR_3, offset=30)
+               and self.appear(RETIRE_APPEAR_2, offset=30) \
+               and self.appear(RETIRE_APPEAR_3, offset=30)
 
     def _retirement_quit(self):
         def check_func():
             return not self.appear(IN_RETIREMENT_CHECK, offset=(20, 20)) \
-                and not self.appear(DOCK_CHECK, offset=(20, 20))
+                   and not self.appear(DOCK_CHECK, offset=(20, 20))
 
         self.ui_back(check_button=check_func, skip_first_screenshot=True)
 
@@ -249,7 +249,11 @@ class Retirement(Enhancement, QuickRetireSettingHandler):
     def retire_ships_one_click(self):
         logger.hr('Retirement')
         logger.info('Using one click retirement.')
-        self.dock_favourite_set(False)
+        # No need to wait, one-click-retire doesn't need to check dock
+        self.dock_favourite_set(wait_loading=False)
+        self.dock_sort_method_dsc_set(wait_loading=False)
+        end = False
+        total = 0
 
         if self.config.is_task_enabled('GemsFarming'):
             self._have_kept_cv = False
@@ -259,12 +263,38 @@ class Retirement(Enhancement, QuickRetireSettingHandler):
         while 1:
             self.handle_info_bar()
 
-            end, failed = self.retire_click_one_click()
-            if failed:
-                total = 10
+            # ONE_CLICK_RETIREMENT -> SHIP_CONFIRM_2 or info_bar_count
+            skip_first_screenshot = True
+            click_count = 0
+            while 1:
+                if skip_first_screenshot:
+                    skip_first_screenshot = False
+                else:
+                    self.device.screenshot()
+                # End
+                if self.appear(SHIP_CONFIRM_2, offset=(30, 30)):
+                    break
+                if self.info_bar_count():
+                    logger.info('No more ships to retire.')
+                    end = True
+                    break
 
+                # Click
+                if click_count >= 7:
+                    logger.warning('Failed to select ships using ONE_CLICK_RETIREMENT after 7 trial, '
+                                   'probably because game bugged, a re-enter should fix it')
+                    # Mark as retire finished, higher level will call retires
+                    end = True
+                    total = 10
+                    break
+                elif self.appear_then_click(ONE_CLICK_RETIREMENT, offset=(20, 20), interval=2):
+                    click_count += 1
+                    continue
+
+            # info_bar_count
             if end:
                 break
+            # SHIP_CONFIRM_2 -> IN_RETIREMENT_CHECK
             self._retirement_confirm()
             total += 10
             # if total >= amount:
@@ -299,10 +329,11 @@ class Retirement(Enhancement, QuickRetireSettingHandler):
             'SSR': 'super_rare'
         }
         _rarity = [correspond_name[i] for i in rarity]
-        self.dock_filter_set(sort='level', index='all',
-                             faction='all', rarity=_rarity, extra='no_limit')
-        self.dock_sort_method_dsc_set(False)
-        self.dock_favourite_set(False)
+        self.dock_sort_method_dsc_set(False, wait_loading=False)
+        self.dock_favourite_set(False, wait_loading=False)
+        self.dock_filter_set(
+            sort='level', index='all', faction='all', rarity=_rarity, extra='no_limit')
+
         total = 0
 
         if self.config.RETIRE_KEEP_COMMON_CV:
@@ -328,7 +359,7 @@ class Retirement(Enhancement, QuickRetireSettingHandler):
             self.handle_dock_cards_loading()
             continue
 
-        self.dock_sort_method_dsc_set(True)
+        self.dock_sort_method_dsc_set(True, wait_loading=False)
         self.dock_filter_set()
         logger.info(f'Total retired: {total}')
         return total
@@ -346,8 +377,9 @@ class Retirement(Enhancement, QuickRetireSettingHandler):
             logger.info('Not in GemsFarming, skip')
             return 0
 
+        self.dock_favourite_set(wait_loading=False)
+        self.dock_sort_method_dsc_set(wait_loading=False)
         self.dock_filter_set(index='cv', rarity='common', extra='not_level_max', sort='level')
-        self.dock_favourite_set(False)
 
         scanner = ShipScanner(
             rarity='common', fleet=0, status='free', level=(20, 40))
@@ -377,14 +409,19 @@ class Retirement(Enhancement, QuickRetireSettingHandler):
                     ships.sort(key=lambda s: -s.level)
                     ships = ships[:-1]
 
-            for ship in ships[:10]:
+            for ship in ships:
                 self.device.click(ship.button)
                 self.device.sleep((0.1, 0.15))
                 total += 1
 
             self._retirement_confirm()
 
+            # Quick exit if there's only a few CV to retire
+            if len(ships) < 10:
+                break
+
         self._have_kept_cv = _
+        # No need to wait, retire finished, just about to exit
         self.dock_filter_set(wait_loading=False)
 
         return total
@@ -461,6 +498,7 @@ class Retirement(Enhancement, QuickRetireSettingHandler):
             if not total:
                 logger.warning(
                     'No ship retired, trying to reset dock filter and disable favourite, then retire again')
+                self.dock_favourite_set(False, wait_loading=False)
                 self.dock_filter_set()
                 total = self.retire_ships_one_click()
             if self.server_support_quick_retire_setting_fallback():
