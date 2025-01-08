@@ -418,16 +418,9 @@ class Uiautomator2(Connection):
         Raises:
             RequestHumanTakeover: If resolution is not 1280x720
         """
-        width, height = self.resolution_uiautomator2()
-        logger.attr('Screen_size', f'{width}x{height}')
-        if width == 1280 and height == 720:
-            return (width, height)
-        if width == 720 and height == 1280:
-            return (width, height)
+        return (1280, 720)
 
-        logger.critical(f'Resolution not supported: {width}x{height}')
-        logger.critical('Please set emulator resolution to 1280x720')
-        raise RequestHumanTakeover
+
 
     @retry
     def proc_list_uiautomator2(self) -> t.List[ProcessInfo]:

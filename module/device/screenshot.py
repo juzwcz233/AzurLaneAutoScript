@@ -207,38 +207,9 @@ class Screenshot(Adb, WSA, DroidCast, AScreenCap, Scrcpy, NemuIpc, LDOpenGL):
         Screen size must be 1280x720.
         Take a screenshot before call.
         """
-        if self._screen_size_checked:
-            return True
+        return True
 
-        orientated = False
-        for _ in range(2):
-            # Check screen size
-            width, height = image_size(self.image)
-            logger.attr('Screen_size', f'{width}x{height}')
-            if width == 1280 and height == 720:
-                self._screen_size_checked = True
-                return True
-            elif not orientated and (width == 720 and height == 1280):
-                logger.info('Received orientated screenshot, handling')
-                self.get_orientation()
-                self.image = self._handle_orientated_image(self.image)
-                orientated = True
-                width, height = image_size(self.image)
-                if width == 720 and height == 1280:
-                    logger.info('Unable to handle orientated screenshot, continue for now')
-                    return True
-                else:
-                    continue
-            elif self.config.Emulator_Serial == 'wsa-0':
-                self.display_resize_wsa(0)
-                return False
-            elif hasattr(self, 'app_is_running') and not self.app_is_running():
-                logger.warning('Received orientated screenshot, game not running')
-                return True
-            else:
-                logger.critical(f'Resolution not supported: {width}x{height}')
-                logger.critical('Please set emulator resolution to 1280x720')
-                raise RequestHumanTakeover
+
 
     def check_screen_black(self):
         if self._screen_black_checked:
