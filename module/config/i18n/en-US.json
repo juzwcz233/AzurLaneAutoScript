@@ -2087,7 +2087,8 @@
       "name": "Research Series",
       "help": "",
       "2": "DR2",
-      "3": "DR3"
+      "3": "DR3",
+      "4": "DR4"
     },
     "ShipIndex": {
       "name": "Ship Index",
@@ -2120,7 +2121,8 @@
       "1": "PR1",
       "2": "PR2",
       "3": "PR3",
-      "4": "PR4"
+      "4": "PR4",
+      "5": "PR5"
     },
     "ShipIndex": {
       "name": "Ship Index",
