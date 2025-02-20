@@ -181,6 +181,10 @@
         "type": "checkbox",
         "value": true
       },
+      "StrictRestart": {
+        "type": "checkbox",
+        "value": false
+      },
       "OnePushConfig": {
         "type": "textarea",
         "value": "provider: null",
@@ -708,6 +712,10 @@
         "type": "checkbox",
         "value": false
       },
+      "Fleet1Onsen": {
+        "type": "checkbox",
+        "value": false
+      },
       "Fleet2Value": {
         "type": "input",
         "value": 119
@@ -738,6 +746,10 @@
         ]
       },
       "Fleet2Oath": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Fleet2Onsen": {
         "type": "checkbox",
         "value": false
       }
@@ -1085,6 +1097,10 @@
         "type": "checkbox",
         "value": false
       },
+      "Fleet1Onsen": {
+        "type": "checkbox",
+        "value": false
+      },
       "Fleet2Value": {
         "type": "input",
         "value": 119
@@ -1115,6 +1131,10 @@
         ]
       },
       "Fleet2Oath": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Fleet2Onsen": {
         "type": "checkbox",
         "value": false
       }
@@ -1462,6 +1482,10 @@
         "type": "checkbox",
         "value": false
       },
+      "Fleet1Onsen": {
+        "type": "checkbox",
+        "value": false
+      },
       "Fleet2Value": {
         "type": "input",
         "value": 119
@@ -1492,6 +1516,10 @@
         ]
       },
       "Fleet2Oath": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Fleet2Onsen": {
         "type": "checkbox",
         "value": false
       }
@@ -1589,7 +1617,7 @@
     "GemsFarming": {
       "ChangeFlagship": {
         "type": "select",
-        "value": "ship",
+        "value": "ship_equip",
         "option": [
           "ship",
           "ship_equip"
@@ -1600,15 +1628,20 @@
         "value": "any",
         "option": [
           "any",
+          "eagle",
           "langley",
           "bogue",
           "ranger",
           "hermes"
         ]
       },
+      "CommonCVFilter": {
+        "type": "textarea",
+        "value": "bogue > ranger > langley > hermes"
+      },
       "ChangeVanguard": {
         "type": "select",
-        "value": "ship",
+        "value": "ship_equip",
         "option": [
           "disabled",
           "ship",
@@ -1623,12 +1656,30 @@
           "favourite",
           "aulick_or_foote",
           "cassin_or_downes",
-          "z20_or_z21"
+          "z20_or_z21",
+          "DDG"
         ]
+      },
+      "EquipmentCode": {
+        "type": "textarea",
+        "value": "DD: null\nbogue: null\nhermes: null\nlangley: null\nranger: null",
+        "mode": "yaml"
+      },
+      "ALLowHighFlagshipLevel": {
+        "type": "checkbox",
+        "value": false
+      },
+      "ALLowLowVanguardLevel": {
+        "type": "checkbox",
+        "value": false
+      },
+      "DelayTaskIFNoFlagship": {
+        "type": "checkbox",
+        "value": false
       },
       "CommissionLimit": {
         "type": "checkbox",
-        "value": true
+        "value": false
       }
     },
     "Campaign": {
@@ -1887,6 +1938,94 @@
           "fleet1_standby_fleet2_all"
         ],
         "display": "display"
+      }
+    },
+    "Emotion": {
+      "Mode": {
+        "type": "select",
+        "value": "calculate_ignore",
+        "option": [
+          "calculate",
+          "ignore",
+          "calculate_ignore"
+        ],
+        "display": "hide"
+      },
+      "Fleet1Value": {
+        "type": "input",
+        "value": 119
+      },
+      "Fleet1Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime",
+        "display": "disabled"
+      },
+      "Fleet1Control": {
+        "type": "select",
+        "value": "prevent_red_face",
+        "option": [
+          "keep_exp_bonus",
+          "prevent_green_face",
+          "prevent_yellow_face",
+          "prevent_red_face"
+        ],
+        "display": "hide"
+      },
+      "Fleet1Recover": {
+        "type": "select",
+        "value": "not_in_dormitory",
+        "option": [
+          "not_in_dormitory",
+          "dormitory_floor_1",
+          "dormitory_floor_2"
+        ]
+      },
+      "Fleet1Oath": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Fleet1Onsen": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Fleet2Value": {
+        "type": "input",
+        "value": 119
+      },
+      "Fleet2Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime",
+        "display": "disabled"
+      },
+      "Fleet2Control": {
+        "type": "select",
+        "value": "prevent_red_face",
+        "option": [
+          "keep_exp_bonus",
+          "prevent_green_face",
+          "prevent_yellow_face",
+          "prevent_red_face"
+        ],
+        "display": "hide"
+      },
+      "Fleet2Recover": {
+        "type": "select",
+        "value": "not_in_dormitory",
+        "option": [
+          "not_in_dormitory",
+          "dormitory_floor_1",
+          "dormitory_floor_2"
+        ]
+      },
+      "Fleet2Oath": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Fleet2Onsen": {
+        "type": "checkbox",
+        "value": false
       }
     },
     "Storage": {
@@ -2307,6 +2446,10 @@
         "type": "checkbox",
         "value": false
       },
+      "Fleet1Onsen": {
+        "type": "checkbox",
+        "value": false
+      },
       "Fleet2Value": {
         "type": "input",
         "value": 119
@@ -2337,6 +2480,10 @@
         ]
       },
       "Fleet2Oath": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Fleet2Onsen": {
         "type": "checkbox",
         "value": false
       }
@@ -2764,6 +2911,10 @@
         "type": "checkbox",
         "value": false
       },
+      "Fleet1Onsen": {
+        "type": "checkbox",
+        "value": false
+      },
       "Fleet2Value": {
         "type": "input",
         "value": 119
@@ -2794,6 +2945,10 @@
         ]
       },
       "Fleet2Oath": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Fleet2Onsen": {
         "type": "checkbox",
         "value": false
       }
@@ -3048,6 +3203,10 @@
         "type": "checkbox",
         "value": false
       },
+      "Fleet1Onsen": {
+        "type": "checkbox",
+        "value": false
+      },
       "Fleet2Value": {
         "type": "input",
         "value": 119,
@@ -3081,6 +3240,11 @@
         "display": "hide"
       },
       "Fleet2Oath": {
+        "type": "checkbox",
+        "value": false,
+        "display": "hide"
+      },
+      "Fleet2Onsen": {
         "type": "checkbox",
         "value": false,
         "display": "hide"
@@ -3287,6 +3451,10 @@
         "type": "checkbox",
         "value": false
       },
+      "Fleet1Onsen": {
+        "type": "checkbox",
+        "value": false
+      },
       "Fleet2Value": {
         "type": "input",
         "value": 119,
@@ -3320,6 +3488,11 @@
         "display": "hide"
       },
       "Fleet2Oath": {
+        "type": "checkbox",
+        "value": false,
+        "display": "hide"
+      },
+      "Fleet2Onsen": {
         "type": "checkbox",
         "value": false,
         "display": "hide"
@@ -3717,6 +3890,10 @@
         "type": "checkbox",
         "value": false
       },
+      "Fleet1Onsen": {
+        "type": "checkbox",
+        "value": false
+      },
       "Fleet2Value": {
         "type": "input",
         "value": 119
@@ -3747,6 +3924,10 @@
         ]
       },
       "Fleet2Oath": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Fleet2Onsen": {
         "type": "checkbox",
         "value": false
       }
@@ -4191,6 +4372,10 @@
         "type": "checkbox",
         "value": false
       },
+      "Fleet1Onsen": {
+        "type": "checkbox",
+        "value": false
+      },
       "Fleet2Value": {
         "type": "input",
         "value": 119
@@ -4221,6 +4406,10 @@
         ]
       },
       "Fleet2Oath": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Fleet2Onsen": {
         "type": "checkbox",
         "value": false
       }
@@ -4665,6 +4854,10 @@
         "type": "checkbox",
         "value": false
       },
+      "Fleet1Onsen": {
+        "type": "checkbox",
+        "value": false
+      },
       "Fleet2Value": {
         "type": "input",
         "value": 119
@@ -4695,6 +4888,10 @@
         ]
       },
       "Fleet2Oath": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Fleet2Onsen": {
         "type": "checkbox",
         "value": false
       }
@@ -5139,6 +5336,10 @@
         "type": "checkbox",
         "value": false
       },
+      "Fleet1Onsen": {
+        "type": "checkbox",
+        "value": false
+      },
       "Fleet2Value": {
         "type": "input",
         "value": 119
@@ -5169,6 +5370,10 @@
         ]
       },
       "Fleet2Oath": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Fleet2Onsen": {
         "type": "checkbox",
         "value": false
       }
@@ -5613,6 +5818,10 @@
         "type": "checkbox",
         "value": false
       },
+      "Fleet1Onsen": {
+        "type": "checkbox",
+        "value": false
+      },
       "Fleet2Value": {
         "type": "input",
         "value": 119
@@ -5643,6 +5852,10 @@
         ]
       },
       "Fleet2Oath": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Fleet2Onsen": {
         "type": "checkbox",
         "value": false
       }
@@ -6078,6 +6291,10 @@
         "type": "checkbox",
         "value": false
       },
+      "Fleet1Onsen": {
+        "type": "checkbox",
+        "value": false
+      },
       "Fleet2Value": {
         "type": "input",
         "value": 119
@@ -6108,6 +6325,10 @@
         ]
       },
       "Fleet2Oath": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Fleet2Onsen": {
         "type": "checkbox",
         "value": false
       }
@@ -6353,6 +6574,10 @@
         "type": "checkbox",
         "value": false
       },
+      "Fleet1Onsen": {
+        "type": "checkbox",
+        "value": false
+      },
       "Fleet2Value": {
         "type": "input",
         "value": 119,
@@ -6386,6 +6611,11 @@
         "display": "hide"
       },
       "Fleet2Oath": {
+        "type": "checkbox",
+        "value": false,
+        "display": "hide"
+      },
+      "Fleet2Onsen": {
         "type": "checkbox",
         "value": false,
         "display": "hide"
@@ -6593,6 +6823,10 @@
         "type": "checkbox",
         "value": false
       },
+      "Fleet1Onsen": {
+        "type": "checkbox",
+        "value": false
+      },
       "Fleet2Value": {
         "type": "input",
         "value": 119,
@@ -6626,6 +6860,11 @@
         "display": "hide"
       },
       "Fleet2Oath": {
+        "type": "checkbox",
+        "value": false,
+        "display": "hide"
+      },
+      "Fleet2Onsen": {
         "type": "checkbox",
         "value": false,
         "display": "hide"
@@ -6713,7 +6952,7 @@
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": true,
+        "value": false,
         "option": [
           true,
           false
@@ -6920,7 +7159,7 @@
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": true,
+        "value": false,
         "option": [
           true,
           false
@@ -6998,7 +7237,7 @@
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": true,
+        "value": false,
         "option": [
           true,
           false
@@ -7083,7 +7322,7 @@
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": true,
+        "value": false,
         "option": [
           true,
           false
@@ -7221,7 +7460,7 @@
       },
       "CollectWeeklyMission": {
         "type": "checkbox",
-        "value": true
+        "value": false
       }
     },
     "Storage": {
@@ -7277,6 +7516,10 @@
           "level120",
           "level125"
         ]
+      },
+      "Favourite": {
+        "type": "checkbox",
+        "value": false
       }
     },
     "Storage": {
@@ -7575,6 +7818,18 @@
       }
     },
     "Exercise": {
+      "DelayUntilHoursBeforeNextUpdate": {
+        "type": "select",
+        "value": 12,
+        "option": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          12
+        ]
+      },
       "OpponentChooseMode": {
         "type": "select",
         "value": "max_exp",
@@ -8159,7 +8414,7 @@
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": true,
+        "value": false,
         "option": [
           true,
           false
@@ -8590,6 +8845,10 @@
       "CustomFilter": {
         "type": "textarea",
         "value": "LoggerAbyssalT6 > LoggerAbyssalT5 > LoggerObscure > LoggerAbyssalT4 > ActionPoint > PurpleCoins\n> GearDesignPlanT3 > PlateRandomT4 > DevelopmentMaterialT3 > GearDesignPlanT2 > GearPart\n> OrdnanceTestingReportT3 > OrdnanceTestingReportT2 > DevelopmentMaterialT2 > OrdnanceTestingReportT1\n> METARedBook > CrystallizedHeatResistantSteel > NanoceramicAlloy > NeuroplasticProstheticArm > SupercavitationGenerator"
+      },
+      "DisableBeforeDate": {
+        "type": "input",
+        "value": 0
       }
     },
     "Storage": {
@@ -9161,6 +9420,14 @@
           44,
           22
         ]
+      },
+      "OperationCoinsPreserve": {
+        "type": "input",
+        "value": 100000
+      },
+      "DoScanningDevice": {
+        "type": "checkbox",
+        "value": false
       }
     },
     "OpsiFleet": {
@@ -9324,6 +9591,220 @@
       "AutoRestart": {
         "type": "checkbox",
         "value": true
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
+  "Dashboard": {
+    "Oil": {
+      "Value": {
+        "type": "input",
+        "value": 0
+      },
+      "Limit": {
+        "type": "input",
+        "value": 0
+      },
+      "Color": {
+        "type": "input",
+        "value": "^000000",
+        "display": "hide"
+      },
+      "Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      }
+    },
+    "Coin": {
+      "Value": {
+        "type": "input",
+        "value": 0
+      },
+      "Limit": {
+        "type": "input",
+        "value": 0
+      },
+      "Color": {
+        "type": "input",
+        "value": "^FFAA33",
+        "display": "hide"
+      },
+      "Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      }
+    },
+    "Gem": {
+      "Value": {
+        "type": "input",
+        "value": 0
+      },
+      "Color": {
+        "type": "input",
+        "value": "^FF3333",
+        "display": "hide"
+      },
+      "Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      }
+    },
+    "Pt": {
+      "Value": {
+        "type": "input",
+        "value": 0
+      },
+      "Color": {
+        "type": "input",
+        "value": "^00BFFF",
+        "display": "hide"
+      },
+      "Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      }
+    },
+    "Cube": {
+      "Value": {
+        "type": "input",
+        "value": 0
+      },
+      "Color": {
+        "type": "input",
+        "value": "^33FFFF",
+        "display": "hide"
+      },
+      "Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      }
+    },
+    "ActionPoint": {
+      "Value": {
+        "type": "input",
+        "value": 0
+      },
+      "Total": {
+        "type": "input",
+        "value": 0
+      },
+      "Color": {
+        "type": "input",
+        "value": "^0000FF",
+        "display": "hide"
+      },
+      "Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      }
+    },
+    "YellowCoin": {
+      "Value": {
+        "type": "input",
+        "value": 0
+      },
+      "Color": {
+        "type": "input",
+        "value": "^FF8800",
+        "display": "hide"
+      },
+      "Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      }
+    },
+    "PurpleCoin": {
+      "Value": {
+        "type": "input",
+        "value": 0
+      },
+      "Color": {
+        "type": "input",
+        "value": "^7700BB",
+        "display": "hide"
+      },
+      "Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      }
+    },
+    "Core": {
+      "Value": {
+        "type": "input",
+        "value": 0
+      },
+      "Color": {
+        "type": "input",
+        "value": "^AAAAAA",
+        "display": "hide"
+      },
+      "Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      }
+    },
+    "Medal": {
+      "Value": {
+        "type": "input",
+        "value": 0
+      },
+      "Color": {
+        "type": "input",
+        "value": "^FFDD00",
+        "display": "hide"
+      },
+      "Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      }
+    },
+    "Merit": {
+      "Value": {
+        "type": "input",
+        "value": 0
+      },
+      "Color": {
+        "type": "input",
+        "value": "^FFFF00",
+        "display": "hide"
+      },
+      "Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      }
+    },
+    "GuildCoin": {
+      "Value": {
+        "type": "input",
+        "value": 0
+      },
+      "Color": {
+        "type": "input",
+        "value": "^AAAAAA",
+        "display": "hide"
+      },
+      "Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
       }
     },
     "Storage": {
