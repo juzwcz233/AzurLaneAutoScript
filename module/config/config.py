@@ -220,7 +220,7 @@ class AzurLaneConfig(ConfigUpdater, ManualConfig, GeneratedConfig, ConfigWatcher
                 waiting.append(func)
 
         f = Filter(regex=r"(.*)", attr=["command"])
-        gfcl = self.cross_get(keys='OpsiHazard1Leveling.OpsiHazard1Leveling.HigherPriority', default=False)
+        gfcl = self.cross_get(keys='OpsiHazard1Leveling.HigherPriority', default=False)
         if gfcl:
             f.load(self.SCHEDULER_PRIORITY_GEMS)
         else:
