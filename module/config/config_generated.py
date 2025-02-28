@@ -157,6 +157,8 @@ class GeneratedConfig:
     GemsFarming_ChangeVanguard = 'ship_equip'  # disabled, ship, ship_equip
     GemsFarming_CommonDD = 'any'  # any, favourite, aulick_or_foote, cassin_or_downes, z20_or_z21, DDG
     GemsFarming_EquipmentCode = 'DD: null\nbogue: null\nhermes: null\nlangley: null\nranger: null'
+    GemsFarming_HardVanguardIndex = 0  # 0, 1, 2
+    GemsFarming_HardFlagshipIndex = 0  # 0, 1, 2
     GemsFarming_ALLowHighFlagshipLevel = False
     GemsFarming_ALLowLowVanguardLevel = False
     GemsFarming_DelayTaskIFNoFlagship = True

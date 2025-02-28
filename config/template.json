@@ -322,6 +322,8 @@
       "ChangeVanguard": "ship_equip",
       "CommonDD": "any",
       "EquipmentCode": "DD: null\nbogue: null\nhermes: null\nlangley: null\nranger: null",
+      "HardVanguardIndex": 0,
+      "HardFlagshipIndex": 0,
       "ALLowHighFlagshipLevel": false,
       "ALLowLowVanguardLevel": false,
       "DelayTaskIFNoFlagship": true,
