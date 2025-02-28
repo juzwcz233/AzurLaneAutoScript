@@ -291,12 +291,6 @@ GemsFarming:
       hermes: null
       langley: null
       ranger: null
-  HardVanguardIndex:
-    value: 0
-    option: [ 0, 1, 2 ]
-  HardFlagshipIndex:
-    value: 0
-    option: [ 0, 1, 2 ]
   ALLowHighFlagshipLevel: false
   ALLowLowVanguardLevel: false
   DelayTaskIFNoFlagship: true

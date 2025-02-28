@@ -127,10 +127,7 @@ class FleetOperator:
             stage = self.main.config.Campaign_Name
             logger.critical(f'Stage "{stage}" is a hard mode, '
                             f'please prepare your fleet "{str(self)}" in game before running Alas')
-            if hasattr(self.main, 'hard_not_satisfied'):
-                raise self.main.hard_not_satisfied
-            else:
-                raise RequestHumanTakeover
+            raise RequestHumanTakeover('Hard not satisfied', str(self))
 
     def clear(self, skip_first_screenshot=True):
         """
@@ -277,7 +274,6 @@ class FleetOperator:
 class FleetPreparation(InfoHandler):
     map_fleet_checked = False
     map_is_hard_mode = False
-    hard_not_satisfied = RequestHumanTakeover
 
     def fleet_preparation(self):
         """Change fleets.

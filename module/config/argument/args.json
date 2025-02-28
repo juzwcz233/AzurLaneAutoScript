@@ -1665,24 +1665,6 @@
         "value": "DD: null\nbogue: null\nhermes: null\nlangley: null\nranger: null",
         "mode": "yaml"
       },
-      "HardVanguardIndex": {
-        "type": "select",
-        "value": 0,
-        "option": [
-          0,
-          1,
-          2
-        ]
-      },
-      "HardFlagshipIndex": {
-        "type": "select",
-        "value": 0,
-        "option": [
-          0,
-          1,
-          2
-        ]
-      },
       "ALLowHighFlagshipLevel": {
         "type": "checkbox",
         "value": false
