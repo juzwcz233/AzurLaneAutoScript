@@ -1,6 +1,6 @@
 from module.base.base import ModuleBase
 from module.base.timer import Timer
-from module.combat.assets import COMBAT_AUTO, COMBAT_AUTO_133, COMBAT_AUTO_150, COMBAT_AUTO_SWITCH
+from module.combat.assets import *
 from module.logger import logger
 
 
@@ -20,6 +20,10 @@ class CombatAuto(ModuleBase):
         if self.appear(COMBAT_AUTO_133, offset=(20, 20)):
             return True
         if self.appear(COMBAT_AUTO_150, offset=(20, 20)):
+            return True
+        if self.appear(COMBAT_AUTO_Christmas, offset=(20, 20)):
+            return True
+        if self.appear(COMBAT_AUTO_Christmas_133, offset=(20, 20)):
             return True
         return False
 
