@@ -1,3 +1,4 @@
+from module.base.timer import Timer
 import inflection
 from module.base.button import ButtonGrid
 from module.base.decorator import cached_property
