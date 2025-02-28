@@ -255,7 +255,7 @@ class GemsFarming(CampaignRun, GemsEquipmentHandler, Retirement):
     def _fleet_back_hard(self):
         self.ui_back(self.page_fleet_check_button)
 
-        def goto_fleet_hard(self):
+    def goto_fleet_hard(self):
         if self.appear(FLEET_PREPARATION, offset=(20, 50)):
             return
         if self.campaign.is_in_auto_search_menu():
