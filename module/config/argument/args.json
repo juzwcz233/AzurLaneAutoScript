@@ -1675,7 +1675,7 @@
       },
       "DelayTaskIFNoFlagship": {
         "type": "checkbox",
-        "value": false
+        "value": true
       },
       "CommissionLimit": {
         "type": "checkbox",
@@ -8780,6 +8780,16 @@
           4
         ]
       },
+      "FleetMode": {
+        "type": "select",
+        "value": "combat_auto",
+        "option": [
+          "combat_auto",
+          "combat_manual",
+          "stand_still_in_the_middle",
+          "hide_in_bottom_left"
+        ]
+      },
       "Submarine": {
         "type": "checkbox",
         "value": false
@@ -8968,6 +8978,16 @@
           4
         ]
       },
+      "FleetMode": {
+        "type": "select",
+        "value": "combat_auto",
+        "option": [
+          "combat_auto",
+          "combat_manual",
+          "stand_still_in_the_middle",
+          "hide_in_bottom_left"
+        ]
+      },
       "Submarine": {
         "type": "checkbox",
         "value": false
@@ -9033,6 +9053,16 @@
           2,
           3,
           4
+        ]
+      },
+      "FleetMode": {
+        "type": "select",
+        "value": "combat_auto",
+        "option": [
+          "combat_auto",
+          "combat_manual",
+          "stand_still_in_the_middle",
+          "hide_in_bottom_left"
         ]
       },
       "Submarine": {
@@ -9153,6 +9183,16 @@
           4
         ]
       },
+      "FleetMode": {
+        "type": "select",
+        "value": "combat_auto",
+        "option": [
+          "combat_auto",
+          "combat_manual",
+          "stand_still_in_the_middle",
+          "hide_in_bottom_left"
+        ]
+      },
       "Submarine": {
         "type": "checkbox",
         "value": false
@@ -9213,6 +9253,34 @@
       "Filter": {
         "type": "textarea",
         "value": "Fleet-4 > CallSubmarine > Fleet-2 > Fleet-3 > Fleet-1"
+      }
+    },
+    "OpsiFleet": {
+      "Fleet": {
+        "type": "select",
+        "value": 1,
+        "option": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "display": "hide"
+      },
+      "FleetMode": {
+        "type": "select",
+        "value": "combat_auto",
+        "option": [
+          "combat_auto",
+          "combat_manual",
+          "stand_still_in_the_middle",
+          "hide_in_bottom_left"
+        ]
+      },
+      "Submarine": {
+        "type": "checkbox",
+        "value": true,
+        "display": "hide"
       }
     },
     "Storage": {
@@ -9361,6 +9429,16 @@
           4
         ]
       },
+      "FleetMode": {
+        "type": "select",
+        "value": "combat_auto",
+        "option": [
+          "combat_auto",
+          "combat_manual",
+          "stand_still_in_the_middle",
+          "hide_in_bottom_left"
+        ]
+      },
       "Submarine": {
         "type": "checkbox",
         "value": false
@@ -9445,6 +9523,16 @@
           2,
           3,
           4
+        ]
+      },
+      "FleetMode": {
+        "type": "select",
+        "value": "combat_auto",
+        "option": [
+          "combat_auto",
+          "combat_manual",
+          "stand_still_in_the_middle",
+          "hide_in_bottom_left"
         ]
       },
       "Submarine": {
@@ -9597,6 +9685,72 @@
       "AutoRestart": {
         "type": "checkbox",
         "value": true
+      }
+    },
+    "GGHandler": {
+      "Enabled": {
+        "type": "checkbox",
+        "value": false
+      },
+      "GGMethod": {
+        "type": "select",
+        "value": "u2",
+        "option": [
+          "u2"
+        ]
+      },
+      "RestartATX": {
+        "type": "checkbox",
+        "value": false
+      },
+      "GGPackageName": {
+        "type": "input",
+        "value": "com."
+      },
+      "AutoRestartGG": {
+        "type": "checkbox",
+        "value": false
+      },
+      "RestartEverytime": {
+        "type": "checkbox",
+        "value": true,
+        "display": "disabled"
+      },
+      "RepushLua": {
+        "type": "checkbox",
+        "value": true
+      },
+      "GGMultiplyingFactor": {
+        "type": "input",
+        "value": 200
+      },
+      "Timeout": {
+        "type": "input",
+        "value": 120
+      },
+      "DisabledTask": {
+        "type": "select",
+        "value": "disable_all_dangerous_task",
+        "option": [
+          "disable_all_dangerous_task",
+          "disable_guild_and_dangerous",
+          "disable_exercise",
+          "enable_all"
+        ]
+      }
+    },
+    "PowerLimit": {
+      "Exercise": {
+        "type": "input",
+        "value": 16500
+      },
+      "Raid": {
+        "type": "input",
+        "value": 16500
+      },
+      "Ash": {
+        "type": "input",
+        "value": 16500
       }
     },
     "Storage": {
