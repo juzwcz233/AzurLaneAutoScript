@@ -287,7 +287,7 @@ class GGHandler:
             _enabled = _group_enabled + _group_gems_farming
         else:  # _disabled_task == 'disable_all_dangerous_task':
             _disabled += _group_exercise + _group_meta + _group_raid
-            _enabled = _group_enabled + _group_personal_choice
+            _enabled = _group_enabled + _group_personal_choice + _group_gems_farming
 
         if task in _disabled:
             self.check_status(False)
