@@ -263,26 +263,28 @@ class GGHandler:
             'main3',
             'event',
             'event2',
-            'gems_farming',
             'c72_mystery_farming',
             'c122_medium_leveling',
             'c124_large_leveling',
+        ]
+        _group_gems_farming = [
+            'gems_farming',
         ]
 
         # Handle ignorance
 
         if _disabled_task == 'disable_meta_and_exercise':
             _disabled += _group_exercise + _group_meta
-            _enabled = _group_enabled + _group_raid + _group_personal_choice
+            _enabled = _group_enabled + _group_raid + _group_personal_choice + _group_gems_farming
         elif _disabled_task == 'disable_exercise':
             _disabled += _group_exercise
-            _enabled = _group_enabled + _group_personal_choice + _group_raid + _group_meta
+            _enabled = _group_enabled + _group_personal_choice + _group_raid + _group_meta + _group_gems_farming
         elif _disabled_task == 'enable_all':
-            _enabled = _group_enabled + _group_personal_choice + _group_raid + _group_meta + _group_exercise
-            # _disabled = []
+            _enabled = _group_gems_farming
+            _disabled = _group_enabled + _group_personal_choice + _group_raid + _group_meta + _group_exercise
         elif _disabled_task == 'disable_guild_and_dangerous':
             _disabled += _group_exercise + _group_meta + _group_raid + _group_personal_choice
-            _enabled = _group_enabled
+            _enabled = _group_enabled + _group_gems_farming
         else:  # _disabled_task == 'disable_all_dangerous_task':
             _disabled += _group_exercise + _group_meta + _group_raid
             _enabled = _group_enabled + _group_personal_choice
