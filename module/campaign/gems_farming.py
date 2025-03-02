@@ -331,16 +331,16 @@ class GemsFarming(CampaignRun, GemsEquipmentHandler, Retirement):
 
         if self.config.GemsFarming_ALLowHighFlagshipLevel:
             if self.config.SERVER in ['cn']:
-                max_level = 100
+                max_level = 25
             else:
                 max_level = 70
             min_level = max_level
         else:
-            max_level = lv
+            max_level = 1
             min_level = 1
         emotion_lower_bound = 0 if emotion == 0 else self.emotion_lower_bound
         scanner = ShipScanner(
-            level=(min_level, max_level), emotion=(emotion_lower_bound, 150), fleet=self.fleet_to_attack, status='free')
+            level=(min_level, max_level), emotion=(100, 150), fleet=self.fleet_to_attack, status='free')
         scanner.disable('rarity')
 
         if self.config.GemsFarming_CommonCV in ['any', 'eagle']:
