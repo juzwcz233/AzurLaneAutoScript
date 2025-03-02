@@ -334,9 +334,9 @@ class GemsFarming(CampaignRun, GemsEquipmentHandler, Retirement):
                 max_level = 25
             else:
                 max_level = 70
-            min_level = max_level
+            min_level = 1
         else:
-            max_level = 1
+            max_level = lv
             min_level = 1
         emotion_lower_bound = 0 if emotion == 0 else self.emotion_lower_bound
         scanner = ShipScanner(
