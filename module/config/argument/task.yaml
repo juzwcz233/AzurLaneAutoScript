@@ -173,6 +173,9 @@ EventDaily:
       - Emotion
       - HpControl
       - EnemyPriority
+    EventStory:
+      - Scheduler
+      - Campaign
     RaidDaily:
       - Scheduler
       - RaidDaily

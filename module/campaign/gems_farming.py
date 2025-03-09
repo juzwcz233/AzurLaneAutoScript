@@ -464,21 +464,12 @@ class GemsFarming(CampaignRun, GemsEquipmentHandler, Retirement):
             min_level = max(min_level, 49)
         emotion_lower_bound = 0 if emotion == 0 else self.emotion_lower_bound
         scanner = ShipScanner(level=(min_level, max_level), emotion=(emotion_lower_bound, 150),
-                              fleet=self.fleet_to_attack, status='free')
+                              fleet=[0, self.fleet_to_attack], status='free')
         scanner.disable('rarity')
-
-        ships = scanner.scan(self.device.image)
-        if ships:
-            # Don't need to change current
-            if self.config.GemsFarming_CommonDD != 'z20_or_z21' or \
-                    ships[0].emotion not in [24, 44, 54, 64, 84]:
-                return ships
-
-        scanner.set_limitation(fleet=0)
 
         if self.config.GemsFarming_CommonDD in ['any', 'favourite', 'z20_or_z21', 'DDG']:
             # Change to any ship
-            return scanner.scan(self.device.image, output=False)
+            return scanner.scan(self.device.image)
 
         candidates = self.find_candidates(self.get_templates(self.config.GemsFarming_CommonDD), scanner)
 

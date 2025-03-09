@@ -439,8 +439,11 @@ class OperationSiren(OSMap):
             if self.get_yellow_coins() < self.config.OpsiHazard1Leveling_OperationCoinsPreserve:
                 logger.info(f'Reach the limit of yellow coins, preserve={self.config.OpsiHazard1Leveling_OperationCoinsPreserve}')
                 with self.config.multi_set():
-                    self.config.task_delay(server_update=True)
+                    self.config.task_delay(minute=30, server_update=True)
                     if not self.is_in_opsi_explore():
+                        self.config.task_call('OpsiAbyssal', force_call=False)
+                        self.config.task_call('OpsiStronghold', force_call=False)
+                        self.config.task_call('OpsiObscure', force_call=False)
                         self.config.task_call('OpsiMeowfficerFarming')
                 self.config.task_stop()
 
@@ -474,7 +477,7 @@ class OperationSiren(OSMap):
         with self.config.multi_set():
             next_run = self.config.Scheduler_NextRun
             for task in ['OpsiObscure', 'OpsiAbyssal', 'OpsiArchive', 'OpsiStronghold', 'OpsiMeowfficerFarming',
-                         'OpsiMonthBoss', 'OpsiShop']:
+                         'OpsiMonthBoss', 'OpsiShop', 'OpsiHazard1Leveling']:
                 keys = f'{task}.Scheduler.NextRun'
                 current = self.config.cross_get(keys=keys, default=DEFAULT_TIME)
                 if current < next_run:
