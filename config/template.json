@@ -1975,6 +1975,14 @@
       "Storage": {}
     }
   },
+  "EventStory": {
+    "EventStory": {
+      "SkipBattle": true
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
   "Benchmark": {
     "Benchmark": {
       "DeviceType": "emulator",
