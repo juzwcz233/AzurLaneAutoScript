@@ -23,7 +23,6 @@ def get_available_func():
         'GameManager',
     )
 
-
 def get_available_mod():
     return set(MOD_DICT)
 

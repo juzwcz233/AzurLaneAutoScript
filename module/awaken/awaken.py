@@ -330,7 +330,7 @@ class Awaken(Dock):
         """
         logger.hr('Awaken run', level=1)
         self.ui_ensure(page_dock)
-        self.dock_favourite_set(wait_loading=False)
+        self.dock_favourite_set(enable=self.config.Awaken_Favourite, wait_loading=False)
         self.dock_sort_method_dsc_set(wait_loading=False)
         if use_array:
             extra = ['can_awaken_plus']
@@ -346,7 +346,7 @@ class Awaken(Dock):
                 break
 
             # page_dock -> SHIP_DETAIL_CHECK
-            self.ship_info_enter(
+            self.equip_enter(
                 CARD_GRIDS[(0, 0)], check_button=SHIP_DETAIL_CHECK, long_click=False)
 
             # is_in_awaken
@@ -382,6 +382,7 @@ class Awaken(Dock):
 
         # Reset dock filters
         logger.hr('Awaken run exit', level=1)
+        self.dock_favourite_set(wait_loading=False)
         self.dock_filter_set(wait_loading=False)
 
         # Scheduler

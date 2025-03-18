@@ -134,6 +134,8 @@ class OperationSiren(OSMap):
                 continue
 
         logger.hr('OpSi reset', level=3)
+        logger.info('Wait 1 minute in case the network gets stuck')
+        self.device.sleep(60)
 
         def false_func(*args, **kwargs):
             return False
@@ -208,7 +210,10 @@ class OperationSiren(OSMap):
             else:
                 break
 
-        logger.hr(f'OS meowfficer farming, hazard_level=3', level=1)
+        OpsiMeowfficerFarming_HazardLevel = self.config.cross_get('OpsiMeowfficerFarming'
+                                                                  '.OpsiMeowfficerFarming'
+                                                                  '.HazardLevel')
+        logger.hr(f'OS meowfficer farming, hazard_level={OpsiMeowfficerFarming_HazardLevel}', level=1)
         self.config.override(
             OpsiGeneral_DoRandomMapEvent=True,
             HOMO_EDGE_DETECT=True,
@@ -217,11 +222,11 @@ class OperationSiren(OSMap):
             OpsiFleet_Fleet=self.config.cross_get('OpsiMeowfficerFarming.OpsiFleet.Fleet'),
             OpsiFleet_Submarine=False,
             OpsiMeowfficerFarming_ActionPointPreserve=0,
-            OpsiMeowfficerFarming_HazardLevel=3,
+            OpsiMeowfficerFarming_HazardLevel=OpsiMeowfficerFarming_HazardLevel,
             OpsiMeowfficerFarming_TargetZone=0,
         )
         while True:
-            zones = self.zone_select(hazard_level=3) \
+            zones = self.zone_select(hazard_level=OpsiMeowfficerFarming_HazardLevel) \
                 .delete(SelectedGrids([self.zone])) \
                 .delete(SelectedGrids(self.zones.select(is_port=True))) \
                 .sort_by_clock_degree(center=(1252, 1012), start=self.zone.location)
@@ -240,6 +245,13 @@ class OperationSiren(OSMap):
         If not having enough yellow coins or purple coins, skip buying supplies in next port.
         """
         logger.hr('OS port daily', level=1)
+        today = datetime.now().day
+        limit = self.config.OpsiShop_DisableBeforeDate
+        if today <= limit:
+            logger.info(f'Delay Opsi shop, today\'s date {today} <= limit {limit}')
+            self.config.task_delay(server_update=True)
+            self.config.task_stop()
+
         if not self.zone.is_azur_port:
             self.globe_goto(self.zone_nearest_azur_port(self.zone))
 
@@ -319,7 +331,7 @@ class OperationSiren(OSMap):
         if self.is_cl1_enabled and self.config.OpsiMeowfficerFarming_ActionPointPreserve < 1000:
             logger.info('With CL1 leveling enabled, set action point preserve to 1000')
             self.config.OpsiMeowfficerFarming_ActionPointPreserve = 1000
-        preserve = min(self.get_action_point_limit(), self.config.OpsiMeowfficerFarming_ActionPointPreserve, 2000)
+        preserve = min(self.get_action_point_limit(), self.config.OpsiMeowfficerFarming_ActionPointPreserve)
         if preserve == 0:
             self.config.override(OpsiFleet_Submarine=False)
         if self.is_cl1_enabled:
@@ -359,7 +371,8 @@ class OperationSiren(OSMap):
                 check_rest_ap = True
                 if not self.is_cl1_enabled and self.config.OpsiGeneral_BuyActionPointLimit > 0:
                     keep_current_ap = False
-                if self.is_cl1_enabled and self.get_yellow_coins() >= self.config.OS_CL1_YELLOW_COINS_PRESERVE:
+                if self.is_cl1_enabled and self.get_yellow_coins() >= self.config.cross_get(
+                        keys='OpsiHazard1Leveling.OpsiHazard1Leveling.OperationCoinsPreserve'):
                     check_rest_ap = False
                     try:
                         self.action_point_set(cost=0, keep_current_ap=keep_current_ap, check_rest_ap=check_rest_ap)
@@ -423,11 +436,14 @@ class OperationSiren(OSMap):
                 self.config.OS_ACTION_POINT_PRESERVE = 0
             logger.attr('OS_ACTION_POINT_PRESERVE', self.config.OS_ACTION_POINT_PRESERVE)
 
-            if self.get_yellow_coins() < self.config.OS_CL1_YELLOW_COINS_PRESERVE:
-                logger.info(f'Reach the limit of yellow coins, preserve={self.config.OS_CL1_YELLOW_COINS_PRESERVE}')
+            if self.get_yellow_coins() < self.config.OpsiHazard1Leveling_OperationCoinsPreserve:
+                logger.info(f'Reach the limit of yellow coins, preserve={self.config.OpsiHazard1Leveling_OperationCoinsPreserve}')
                 with self.config.multi_set():
-                    self.config.task_delay(server_update=True)
+                    self.config.task_delay(minute=30, server_update=True)
                     if not self.is_in_opsi_explore():
+                        self.config.task_call('OpsiAbyssal', force_call=False)
+                        self.config.task_call('OpsiStronghold', force_call=False)
+                        self.config.task_call('OpsiObscure', force_call=False)
                         self.config.task_call('OpsiMeowfficerFarming')
                 self.config.task_stop()
 
@@ -439,12 +455,6 @@ class OperationSiren(OSMap):
             if self.config.OpsiGeneral_BuyActionPointLimit > 0:
                 keep_current_ap = False
             self.action_point_set(cost=70, keep_current_ap=keep_current_ap, check_rest_ap=True)
-            if self._action_point_total >= 3000:
-                with self.config.multi_set():
-                    self.config.task_delay(server_update=True)
-                    if not self.is_in_opsi_explore():
-                        self.config.task_call('OpsiMeowfficerFarming')
-                self.config.task_stop()
 
             if self.config.OpsiHazard1Leveling_TargetZone != 0:
                 zone = self.config.OpsiHazard1Leveling_TargetZone

@@ -14,7 +14,7 @@ from module.ocr.ocr import Digit
 from module.retire.assets import (TEMPLATE_FLEET_1, TEMPLATE_FLEET_2,
                                   TEMPLATE_FLEET_3, TEMPLATE_FLEET_4,
                                   TEMPLATE_FLEET_5, TEMPLATE_FLEET_6,
-                                  TEMPLATE_IN_BATTLE, TEMPLATE_IN_COMMISSION,
+                                  TEMPLATE_IN_BATTLE, TEMPLATE_IN_COMMISSION, TEMPLATE_IN_HARD,
                                   TEMPLATE_IN_EVENT_FLEET)
 from module.retire.dock import (CARD_EMOTION_GRIDS, CARD_GRIDS,
                                 CARD_LEVEL_GRIDS, CARD_RARITY_GRIDS)
@@ -50,9 +50,9 @@ class Ship:
     status: str = ''
     button: Any = None
 
-    def satisfy_limitation(self, limitaion) -> bool:
+    def satisfy_limitation(self, limitation) -> bool:
         for key in self.__dict__:
-            value = limitaion.get(key)
+            value = limitation.get(key)
             if self.__dict__[key] is not None and value is not None:
                 # str and int should be exactly equal to
                 if isinstance(value, (str, int)):
@@ -266,10 +266,17 @@ class StatusScanner(Scanner):
         super().__init__()
         self._results = []
         self.grids = CARD_GRIDS
-        self.value_list: List[str] = ['free', 'battle', 'commission']
+        self.value_list: List[str] = [
+            'free',
+            'battle',
+            'commission',
+            'in_hard_fleet',
+            'in_event_fleet',
+        ]
         self.templates = {
             TEMPLATE_IN_BATTLE: 'battle',
             TEMPLATE_IN_COMMISSION: 'commission',
+            TEMPLATE_IN_HARD: 'in_hard_fleet',
             TEMPLATE_IN_EVENT_FLEET: 'in_event_fleet',
         }
 
@@ -306,7 +313,13 @@ class ShipScanner(Scanner):
         level (tuple): (lower, upper). Will be limited in range [1, 125]
         emotion (tuple): (lower, upper). Will be limited in range [0, 150]
         fleet (int): 0 means not in any fleet. Will be limited in range [0, 6]
-        status (str, list): ['any', 'commission', 'battle']
+        status (str, list): [
+            'free',
+            'battle',
+            'commission',
+            'in_hard_fleet',
+            'in_event_fleet',
+            ]
     """
     def __init__(
         self,
@@ -319,7 +332,7 @@ class ShipScanner(Scanner):
         super().__init__()
         self._results = []
         self.grids = CARD_GRIDS
-        self.limitaion: Dict[str, Union[str, int, Tuple[int, int]]] = {
+        self.limitation: Dict[str, Union[str, int, Tuple[int, int]]] = {
             'level': (1, 125),
             'emotion': (0, 150),
             'rarity': 'any',
@@ -369,7 +382,7 @@ class ShipScanner(Scanner):
     def scan(self, image, cached=False, output=True) -> Union[List, None]:
         ships = super().scan(image, cached, output)
         if not cached:
-            return [ship for ship in ships if ship.satisfy_limitation(self.limitaion)]
+            return [ship for ship in ships if ship.satisfy_limitation(self.limitation)]
 
     def move(self, vector) -> None:
         """
@@ -382,16 +395,16 @@ class ShipScanner(Scanner):
 
     def limit_value(self, key, value) -> None:
         if value is None:
-            self.limitaion[key] = None
+            self.limitation[key] = None
         elif isinstance(value, tuple):
             lower, upper = value
             lower = self.sub_scanners[key].limit_value(lower)
             upper = self.sub_scanners[key].limit_value(upper)
-            self.limitaion[key] = (lower, upper)
+            self.limitation[key] = (lower, upper)
         elif isinstance(value, list):
-            self.limitaion[key] = [self.sub_scanners[key].limit_value(v) for v in value]
+            self.limitation[key] = [self.sub_scanners[key].limit_value(v) for v in value]
         else:
-            self.limitaion[key] = self.sub_scanners[key].limit_value(value)
+            self.limitation[key] = self.sub_scanners[key].limit_value(value)
 
     def enable(self, *args) -> None:
         """
@@ -422,13 +435,19 @@ class ShipScanner(Scanner):
             level (tuple): (lower, upper). Will be limited in range [1, 125]
             emotion (tuple): (lower, upper). Will be limited in range [0, 150]
             fleet (int): 0 means not in any fleet. Will be limited in range [0, 6]
-            status (str, list): ['any', 'commission', 'battle']
+            status (str, list): [
+                'free',
+                'battle',
+                'commission',
+                'in_hard_fleet',
+                'in_event_fleet',
+                ]
         """
-        for attr in self.limitaion.keys():
-            value = kwargs.get(attr, self.limitaion[attr])
+        for attr in self.limitation.keys():
+            value = kwargs.get(attr, self.limitation[attr])
             self.limit_value(key=attr, value=value)
 
-        logger.info(f'Limitaions set to {self.limitaion}')
+        logger.info(f'Limitations set to {self.limitation}')
 
 
 class DockScanner(ShipScanner):

@@ -404,7 +404,7 @@ class OSMap(OSFleet, Map, GlobeCamera, StrategicSearchHandler):
         remain = get_os_reset_remain()
         if remain <= 0:
             if self.config.is_task_enabled('OpsiCrossMonth'):
-                logger.info('Just less than 1 day to OpSi reset, OpsiCrossMonth is enabled'
+                logger.info('Just less than 1 day to OpSi reset, OpsiCrossMonth is enabled, '
                             'set OpsiMeowfficerFarming.ActionPointPreserve to 300 temporarily')
                 return 300
             else:
@@ -436,9 +436,12 @@ class OSMap(OSFleet, Map, GlobeCamera, StrategicSearchHandler):
         Keeping enough startup AP to run CL1.
         """
         if self.is_cl1_enabled and get_os_reset_remain() > 2 \
-                and self.get_yellow_coins() > self.config.OS_CL1_YELLOW_COINS_PRESERVE:
-            logger.info('Keep 1000 AP when CL1 available')
-            if not self.action_point_check(1000):
+                and self.get_yellow_coins() > self.config.cross_get(
+                    keys='OpsiHazard1Leveling.OpsiHazard1Leveling.OperationCoinsPreserve'):
+            OpsiMeowfficerFarming_ActionPointPreservse = self.config.cross_get(
+                    keys='OpsiMeowfficerFarming.OpsiMeowfficerFarming.ActionPointPreserve')
+            logger.info(f'Keep {OpsiMeowfficerFarming_ActionPointPreservse} AP when CL1 available')
+            if not self.action_point_check(OpsiMeowfficerFarming_ActionPointPreservse):
                 self.config.opsi_task_delay(cl1_preserve=True)
                 self.config.task_stop()
 
@@ -792,7 +795,9 @@ class OSMap(OSFleet, Map, GlobeCamera, StrategicSearchHandler):
         if 'is_scanning_device' not in self._solved_map_event and grids and grids[0].is_scanning_device:
             grid = grids[0]
             logger.info(f'Found scanning device on {grid}')
-            if self.is_in_task_cl1_leveling:
+            cl1_do_scanning_device = self.config.cross_get(
+                    keys="OpsiHazard1Leveling.OpsiHazard1Leveling.DoScanningDevice")
+            if self.is_in_task_cl1_leveling and not cl1_do_scanning_device:
                 logger.info('In CL1 leveling, mark scanning device as solved')
                 self._solved_map_event.add('is_scanning_device')
                 return True
@@ -800,7 +805,7 @@ class OSMap(OSFleet, Map, GlobeCamera, StrategicSearchHandler):
             self.device.click(grid)
             with self.config.temporary(STORY_ALLOW_SKIP=False):
                 result = self.wait_until_walk_stable(
-                    drop=drop, walk_out_of_step=False, confirm_timer=Timer(1.5, count=4))
+                    drop=drop, walk_out_of_step=False, confirm_timer=Timer(1.5, count=8))
             self.os_auto_search_run(drop=drop)
             if 'event' in result:
                 self._solved_map_event.add('is_scanning_device')
