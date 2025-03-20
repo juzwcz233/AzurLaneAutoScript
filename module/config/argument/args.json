@@ -6681,7 +6681,7 @@
         "display": "hide"
       },
       "Event": {
-        "type": "sselect",
+        "type": "select",
         "value": "campaign_main",
         "option": [
           "coalition_20230323",
