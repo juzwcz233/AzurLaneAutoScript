@@ -2509,6 +2509,16 @@
       "help": "OpsiMeowfficerFarming.TargetZone.help"
     }
   },
+  "HigherPriority": {
+    "_info": {
+      "name": "更高优先级",
+      "help": "开启后会将优先级调整到紧急委托前面"
+    },
+    "Enable": {
+      "name": "启用",
+      "help": ""
+    }
+  },
   "OpsiHazard1Leveling": {
     "_info": {
       "name": "OpsiHazard1Leveling._info.name",
