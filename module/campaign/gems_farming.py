@@ -304,7 +304,7 @@ class GemsFarming(CampaignRun, GemsEquipmentHandler, Retirement):
         self._dock_reset()
         self.dock_select_confirm(check_button=self.page_fleet_check_button)
 
-    def get_common_rarity_cv(self, lv=31, emotion=16):
+    def get_common_rarity_cv(self, lv=25, emotion=100):
         """
         Get a common rarity cv by config.GemsFarming_CommonCV
         If config.GemsFarming_CommonCV == 'any', return a common lv1 ~ lv33 cv
@@ -408,7 +408,7 @@ class GemsFarming(CampaignRun, GemsEquipmentHandler, Retirement):
 
             return candidates
 
-    def get_common_rarity_dd(self, emotion=16):
+    def get_common_rarity_dd(self, emotion=100):
         """
         Get a common rarity dd with level is 100 (70 for servers except CN) 
         and emotion >= self.emotion_lower_bound

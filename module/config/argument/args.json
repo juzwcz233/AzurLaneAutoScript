@@ -2120,7 +2120,7 @@
         "value": "12-4"
       },
       "Event": {
-        "type": "state",
+        "type": "select",
         "value": "campaign_main",
         "option": [
           "event_20200227_cn",
@@ -2586,7 +2586,7 @@
         "value": "12-4"
       },
       "Event": {
-        "type": "state",
+        "type": "select",
         "value": "campaign_main",
         "option": [
           "event_20200227_cn",
@@ -3069,7 +3069,7 @@
         "display": "hide"
       },
       "Event": {
-        "type": "state",
+        "type": "select",
         "value": "campaign_main",
         "option": [
           "raid_20200624",
@@ -3305,7 +3305,7 @@
         "display": "hide"
       },
       "Event": {
-        "type": "state",
+        "type": "select",
         "value": "campaign_main",
         "option": [
           "coalition_20230323",
@@ -4042,7 +4042,7 @@
         "display": "hide"
       },
       "Event": {
-        "type": "state",
+        "type": "select",
         "value": "campaign_main",
         "option": [
           "event_20200227_cn",
@@ -4525,7 +4525,7 @@
         "display": "hide"
       },
       "Event": {
-        "type": "state",
+        "type": "select",
         "value": "campaign_main",
         "option": [
           "event_20200227_cn",
@@ -5008,7 +5008,7 @@
         "display": "hide"
       },
       "Event": {
-        "type": "state",
+        "type": "select",
         "value": "campaign_main",
         "option": [
           "event_20200227_cn",
@@ -5491,7 +5491,7 @@
         "display": "hide"
       },
       "Event": {
-        "type": "state",
+        "type": "select",
         "value": "campaign_main",
         "option": [
           "event_20200227_cn",
@@ -5964,7 +5964,7 @@
         "display": "hide"
       },
       "Event": {
-        "type": "state",
+        "type": "select",
         "value": "campaign_main",
         "option": [
           "event_20200227_cn",
@@ -6444,7 +6444,7 @@
         "display": "hide"
       },
       "Event": {
-        "type": "state",
+        "type": "select",
         "value": "campaign_main",
         "option": [
           "raid_20200624",
@@ -6681,7 +6681,7 @@
         "display": "hide"
       },
       "Event": {
-        "type": "state",
+        "type": "sselect",
         "value": "campaign_main",
         "option": [
           "coalition_20230323",
@@ -9417,6 +9417,12 @@
         "type": "input",
         "value": "00:00, 12:00",
         "display": "hide"
+      }
+    },
+    "HigherPriority": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false
       }
     },
     "OpsiHazard1Leveling": {
