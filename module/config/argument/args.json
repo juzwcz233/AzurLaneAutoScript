@@ -9487,8 +9487,7 @@
       },
       "RestartEverytime": {
         "type": "checkbox",
-        "value": true,
-        "display": "disabled"
+        "value": true
       },
       "RepushLua": {
         "type": "checkbox",
