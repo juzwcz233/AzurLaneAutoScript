@@ -61,6 +61,7 @@ Farm:
       - Campaign
       - StopCondition
       - Fleet
+      - Emotion
 
 # ==================== Event ====================
 
@@ -312,6 +313,7 @@ Opsi:
       - OpsiFleet
     OpsiHazard1Leveling:
       - Scheduler
+      - HigherPriority
       - OpsiHazard1Leveling
       - OpsiFleet
     OpsiCrossMonth:

@@ -262,7 +262,22 @@ class FastForwardHandler(AutoSearchHandler):
 
         logger.info('Auto search setting')
         self.fleet_preparation_sidebar_ensure(3)
-        self.auto_search_setting_ensure(self.config.Fleet_FleetOrder)
+        if not self.auto_search_setting_ensure(self.config.Fleet_FleetOrder) \
+                and self.config.task.command == 'GemsFarming':
+            from module.notify import handle_notify
+            if not handle_notify(
+                self.config.Error_OnePushConfig,
+                title=f"Alas <{self.config.config_name}> crashed",
+                content=f"<{self.config.config_name}> RequestHumanTakeover\n"
+                        f"Task GemsFarming could not set auto search settings",
+                                    ):
+                from module.exception import AutoSearchSetError
+                raise AutoSearchSetError
+            self.config.modified['GemsFarming.Scheduler.Enable'] = False
+            self.config.update()
+            logger.critical('Auto search could not be ensured.')
+            logger.critical('Close Task: GemsFarming')
+            self.config.task_stop('Auto search could not be ensured.')
         if self.config.SUBMARINE:
             self.auto_search_setting_ensure(self.config.Submarine_AutoSearchMode)
         return True
@@ -295,7 +310,7 @@ class FastForwardHandler(AutoSearchHandler):
         self.auto_search_setting_ensure('sub_standby')
         return True
 
-    def handle_auto_search_continue(self):
+    def handle_auto_search_continue(self, drop=None):
         """
         Override AutoSearchHandler definition
         for 2x book handling if needed
@@ -303,6 +318,8 @@ class FastForwardHandler(AutoSearchHandler):
         if self.appear(AUTO_SEARCH_MENU_CONTINUE, offset=self._auto_search_menu_offset, interval=2):
             self.map_is_2x_book = self.config.Campaign_Use2xBook
             self.handle_2x_book_setting(mode='auto')
+            if drop:
+                drop.handle_add(main=self, before=4)
             if self.appear_then_click(AUTO_SEARCH_MENU_CONTINUE, offset=self._auto_search_menu_offset):
                 self.interval_reset(AUTO_SEARCH_MENU_CONTINUE)
             else:
