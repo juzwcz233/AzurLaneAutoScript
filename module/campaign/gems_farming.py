@@ -328,10 +328,10 @@ class GemsFarming(CampaignRun, GemsEquipmentHandler, Retirement):
 
         if self.config.GemsFarming_ALLowHighFlagshipLevel:
             if self.config.SERVER in ['cn']:
-                max_level = 100
+                max_level = 25
             else:
-                max_level = 70
-            min_level = max_level
+                max_level = 25
+            min_level = 1
         else:
             max_level = lv
             min_level = 1
