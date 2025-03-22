@@ -83,6 +83,7 @@ EmulatorInfo:
 Error:
   HandleError: true
   SaveError: true
+  StrictRestart: false
   OnePushConfig:
     type: textarea
     mode: yaml
@@ -222,6 +223,7 @@ Emotion:
     value: not_in_dormitory
     option: [ not_in_dormitory, dormitory_floor_1, dormitory_floor_2 ]
   Fleet1Oath: false
+  Fleet1Onsen: false
   Fleet2Value: 119
   Fleet2Record:
     value: 2020-01-01 00:00:00
@@ -233,6 +235,7 @@ Emotion:
     value: not_in_dormitory
     option: [ not_in_dormitory, dormitory_floor_1, dormitory_floor_2 ]
   Fleet2Oath: false
+  Fleet2Onsen: false
 HpControl:
   UseHpBalance: false
   UseEmergencyRepair: false
@@ -266,18 +269,32 @@ C124LargeLeveling:
     option: [ 3, 4, 5 ]
 GemsFarming:
   ChangeFlagship:
-    value: ship
+    value: ship_equip
     option: [ ship, ship_equip ]
   CommonCV:
     value: any
-    option: [ any, langley, bogue, ranger, hermes ]
+    option: [ any, eagle, langley, bogue, ranger, hermes ]
+  CommonCVFilter: |-
+    bogue > ranger > langley > hermes
   ChangeVanguard:
-    value: ship
+    value: ship_equip
     option: [ disabled, ship, ship_equip ]
   CommonDD:
     value: any
-    option: [ any, favourite, aulick_or_foote , cassin_or_downes, z20_or_z21 ]
-  CommissionLimit: true
+    option: [ any, favourite, aulick_or_foote , cassin_or_downes, z20_or_z21, DDG]
+  EquipmentCode:
+    type: textarea
+    mode: yaml
+    value: |-
+      DD: null
+      bogue: null
+      hermes: null
+      langley: null
+      ranger: null
+  ALLowHighFlagshipLevel: false
+  ALLowLowVanguardLevel: false
+  DelayTaskIFNoFlagship: false
+  CommissionLimit: false
 
 # ==================== Event ====================
 
@@ -447,11 +464,13 @@ Reward:
   CollectCoin: true
   CollectExp: true
   CollectMission: true
-  CollectWeeklyMission: true
+  CollectWeeklyMission: false
 Awaken:
   LevelCap:
     value: level120
     option: [ level120, level125 ]
+  Favourite:
+    value: false
 GeneralShop:
   UseGems: false
   Refresh: false
@@ -627,6 +646,9 @@ Hard:
     value: 1
     option: [ 1, 2 ]
 Exercise:
+  DelayUntilHoursBeforeNextUpdate:
+    value: 12
+    option: [ 1, 2, 3, 4, 5, 12]
   OpponentChooseMode:
     value: max_exp
     option: [ max_exp, easiest, leftmost, easiest_else_exp ]
@@ -691,6 +713,7 @@ OpsiShop:
     > GearDesignPlanT3 > PlateRandomT4 > DevelopmentMaterialT3 > GearDesignPlanT2 > GearPart
     > OrdnanceTestingReportT3 > OrdnanceTestingReportT2 > DevelopmentMaterialT2 > OrdnanceTestingReportT1
     > METARedBook > CrystallizedHeatResistantSteel > NanoceramicAlloy > NeuroplasticProstheticArm > SupercavitationGenerator
+  DisableBeforeDate: 0
 OpsiVoucher:
   Filter: |-
     LoggerAbyssal > LoggerObscure > Book > Coin > Fragment
@@ -720,6 +743,8 @@ OpsiHazard1Leveling:
   TargetZone:
     value: 0
     option: [ 0, 44, 22 ]
+  OperationCoinsPreserve: 100000
+  DoScanningDevice: false
 
 # ==================== Tools ====================
 
@@ -752,3 +777,80 @@ AzurLaneUncensored:
     display: disabled
 GameManager:
   AutoRestart: true
+
+# ==================== Dashboard ====================
+Oil:
+  Value: 0
+  Limit: 0
+  Color:
+    value: ^000000
+    display: hide
+  Record: 2020-01-01 00:00:00
+Coin:
+  Value: 0
+  Limit: 0
+  Color:
+    value: ^000000
+    display: hide
+  Record: 2020-01-01 00:00:00
+Gem:
+  Value: 0
+  Color:
+    value: ^000000
+    display: hide
+  Record: 2020-01-01 00:00:00
+Pt:
+  Value: 0
+  Color:
+    value: ^000000
+    display: hide
+  Record: 2020-01-01 00:00:00
+YellowCoin:
+  Value: 0
+  Color:
+    value: ^000000
+    display: hide
+  Record: 2020-01-01 00:00:00
+PurpleCoin:
+  Value: 0
+  Color:
+    value: ^000000
+    display: hide
+  Record: 2020-01-01 00:00:00
+ActionPoint:
+  Value: 0
+  Total: 0
+  Color:
+    value: ^000000
+    display: hide
+  Record: 2020-01-01 00:00:00
+Merit:
+  Value: 0
+  Color:
+    value: ^000000
+    display: hide
+  Record: 2020-01-01 00:00:00
+Cube:
+  Value: 0
+  Color:
+    value: ^000000
+    display: hide
+  Record: 2020-01-01 00:00:00
+Core:
+  Value: 0
+  Color:
+    value: ^000000
+    display: hide
+  Record: 2020-01-01 00:00:00
+Medal:
+  Value: 0
+  Color:
+    value: ^000000
+    display: hide
+  Record: 2020-01-01 00:00:00
+GuildCoin:
+  Value: 0
+  Color:
+    value: ^000000
+    display: hide
+  Record: 2020-01-01 00:00:00

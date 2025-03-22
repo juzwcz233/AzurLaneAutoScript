@@ -3,14 +3,16 @@ from module.campaign.campaign_status import CampaignStatus
 from module.combat.assets import *
 from module.combat.combat import Combat
 from module.exception import CampaignEnd
-from module.handler.assets import AUTO_SEARCH_MAP_OPTION_ON
+from module.handler.assets import AUTO_SEARCH_MAP_OPTION_ON, GET_MISSION
 from module.logger import logger
+from module.map.assets import WITHDRAW
 from module.map.map_operation import MapOperation
 
 
 class AutoSearchCombat(MapOperation, Combat, CampaignStatus):
     _auto_search_in_stage_timer = Timer(3, count=6)
     _auto_search_status_confirm = False
+    _withdraw = False
     auto_search_oil_limit_triggered = False
     auto_search_coin_limit_triggered = False
 
@@ -98,7 +100,7 @@ class AutoSearchCombat(MapOperation, Combat, CampaignStatus):
         This will set auto_search_oil_limit_triggered.
         """
         if not checked:
-            oil = self._get_oil()
+            oil = self.get_oil()
             if oil == 0:
                 logger.warning('Oil not found')
             else:
@@ -256,6 +258,8 @@ class AutoSearchCombat(MapOperation, Combat, CampaignStatus):
             self.emotion.reduce(fleet_index)
         auto = self.config.Fleet_Fleet1Mode if fleet_index == 1 else self.config.Fleet_Fleet2Mode
 
+        confirm_timer = Timer(10)
+        confirm_timer.start()
         while 1:
             self.device.screenshot()
 
@@ -280,11 +284,21 @@ class AutoSearchCombat(MapOperation, Combat, CampaignStatus):
                 self.device.screenshot_interval_set()
                 raise CampaignEnd
             if self.is_combat_executing():
+                confirm_timer.reset()
                 continue
             if self.handle_get_ship():
                 continue
+            if self.appear_then_click(OPTS_INFO_D, offset=(30, 30), interval=2):
+                self._withdraw = True
+                continue
+            if confirm_timer.reached():
+                self._withdraw = True
+                self.device.click(OPTS_INFO_D)
+                confirm_timer.reset()
+                continue
             if self.appear(BATTLE_STATUS_S) or self.appear(BATTLE_STATUS_A) or self.appear(BATTLE_STATUS_B) \
-                    or self.appear(EXP_INFO_S) or self.appear(EXP_INFO_A) or self.appear(EXP_INFO_B) \
+                    or self.appear(BATTLE_STATUS_C) or self.appear(EXP_INFO_S) or self.appear(EXP_INFO_A) \
+                    or self.appear(EXP_INFO_B) or self.appear(EXP_INFO_C) or self.appear(GET_MISSION) \
                     or self.is_auto_search_running():
                 self.device.screenshot_interval_set()
                 break
@@ -299,6 +313,7 @@ class AutoSearchCombat(MapOperation, Combat, CampaignStatus):
         self.device.stuck_record_clear()
         self.device.click_record_clear()
         exp_info = False  # This is for the white screen bug in game
+        get_urgent_commission = False
 
         while 1:
             if skip_first_screenshot:
@@ -313,15 +328,22 @@ class AutoSearchCombat(MapOperation, Combat, CampaignStatus):
             if self.is_in_auto_search_menu() or self._handle_auto_search_menu_missing():
                 raise CampaignEnd
 
+            # Withdraw
+            if self._withdraw and get_urgent_commission and self.appear(WITHDRAW, offset=(30, 30)):
+                self._withdraw = False
+                self.withdraw()
+                break
+
             # Combat status
             if self.handle_get_ship():
                 continue
             if self.handle_popup_confirm('AUTO_SEARCH_COMBAT_STATUS'):
                 continue
-            if self.handle_auto_search_map_option():
+            if not self._withdraw and self.handle_auto_search_map_option():
                 self._auto_search_status_confirm = False
                 continue
             if self.handle_urgent_commission():
+                get_urgent_commission = True
                 continue
             if self.handle_story_skip():
                 continue
