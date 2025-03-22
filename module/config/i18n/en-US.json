@@ -254,6 +254,10 @@
       "name": "OpSi Semi-auto",
       "help": ""
     },
+    "EventStory": {
+      "name": "Event Story",
+      "help": ""
+    },
     "Benchmark": {
       "name": "Performance Test",
       "help": ""
@@ -721,7 +725,7 @@
       "event_20220915_cn": "Violet Tempest Blooming Lycoris Rerun",
       "event_20221124_cn": "The Alchemist and the Archipelago of Secrets",
       "event_20221222_cn": "Parallel Superimposition Rerun",
-      "event_20230223_cn": "Revelations of Dust",
+      "event_20230223_cn": "Revelations of Dust Rerun",
       "event_20230525_cn": "Confluence of Nothingness",
       "event_20230803_cn": "Anthem of Remembrance",
       "event_20230817_cn": "The Fools Scales",
@@ -739,6 +743,7 @@
       "event_20241024_cn": "Tempesta and the Sleeping Sea",
       "event_20241121_cn": "Dangerous Inventions Incoming",
       "event_20241219_cn": "Substellar Crepuscule",
+      "event_20250227_cn": "Paradiso of Shackled Light",
       "raid_20200624": "Air Raid Drills with Essex Rerun",
       "raid_20210708": "Cross Wave rerun",
       "raid_20220127": "Mystery Investigation",
@@ -2487,6 +2492,18 @@
     "SelectEnemy": {
       "name": "Clear nearby enemies and resources",
       "help": "Clean nearby enemies and resources, and find new enemies or materials after cleaning, which usually clears the entire map. If some of them haven't been cleared, you need to solve them manually"
+    }
+  },
+  "EventStory": {
+    "_info": {
+      "name": "Event Story",
+      "help": "Complete the event story, only applicable to events aired on or after 20241219, please wait for about 3 minutes"
+    },
+    "SkipBattle": {
+      "name": "Kill game to skip battles",
+      "help": "",
+      "True": "Enabled",
+      "False": "False"
     }
   },
   "Benchmark": {
