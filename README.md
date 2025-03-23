@@ -1,11 +1,10 @@
-**| [English](README_en.md) | 简体中文 | [日本語](README_jp.md) |**
+相比于源库增加了仪表盘
 
-# AzurLaneAutoScript
+提供了一个较为实用的仪表盘，感谢@MengNianxiaoyao 作出的美观调整
 
-#### Discord [![](https://img.shields.io/discord/720789890354249748?logo=discord&logoColor=ffffff&color=4e4c97)](https://discord.gg/AQN6GeJ) QQ群  ![](https://img.shields.io/badge/QQ%20Group-1087735381-4e4c97)
-Azur Lane bot with GUI (Supports CN, EN, JP, TW, able to support other servers), designed for 24/7 running scenes, can take over almost all Azur Lane gameplay. Azur Lane, as a mobile game, has entered the late stage of its life cycle. During the period from now to the server down, please reduce the time spent on the Azur Lane and leave everything to Alas.
+![image](https://github.com/Zuosizhu/Alas-with-Dashboard/assets/60862861/ee2e3e8f-9a19-417e-8e5f-441ecdee1ae6)
 
-Alas is a free open source software, link: https://github.com/LmeSzinc/AzurLaneAutoScript
+![image](https://github.com/Zuosizhu/Alas-with-Dashboard/assets/60862861/55f95cb3-5234-45d3-a265-6b5e0ab5fc3e)
 
 Alas，一个带GUI的碧蓝航线脚本（支持国服, 国际服, 日服, 台服, 可以支持其他服务器），为 7x24 运行的场景而设计，能接管近乎全部的碧蓝航线玩法。碧蓝航线，作为一个手游，已经进入了生命周期的晚期。从现在到关服的这段时间里，请减少花费在碧蓝航线上的时间，把一切都交给 Alas。
 
@@ -178,3 +177,4 @@ Alas 仍在活跃开发中，我们会不定期发布未来的工作在 [Issues]
 - QQ 一群：[1087735381](https://jq.qq.com/?_wv=1027&k=I4NSqX7g) （有开发意向请加一群，入群需要提供你的Github用户名）
 - Bilibili 直播间：https://live.bilibili.com/22216705 ，偶尔直播写Alas，~~为了拯救Alas，Lme决定出道成为偶像~~
 
+![image](https://github.com/Zuosizhu/Alas-with-Dashboard/assets/60862861/6fafb159-2092-4423-9d58-3d6c1262e691)
