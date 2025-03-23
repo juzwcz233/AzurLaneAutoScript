@@ -172,7 +172,7 @@ class GGHandler:
         self.device.screenshot()
         OCR_CHECK = Digit(OCR_PRE_BATTLE_CHECK, letter=(255, 255, 255), threshold=128)
         ocr = OCR_CHECK.ocr(self.device.image)
-        from module.config.utils import deep_get
+        from module.config.deep import deep_get
         limit = deep_get(self.config.data, keys=f'GameManager.PowerLimit.{task}', default=17000)
         logger.attr('Power Limit', limit)
         if ocr >= limit:
