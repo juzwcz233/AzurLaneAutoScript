@@ -1,6 +1,6 @@
 from module.logger import logger
 from module.gg_handler.gg_data import GGData
-from module.config.config import deep_get
+from module.config.deep import deep_get
 from module.base.base import ModuleBase as Base
 import uiautomator2 as u2
 
