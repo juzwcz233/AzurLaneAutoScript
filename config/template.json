@@ -1762,6 +1762,7 @@
     },
     "OpsiFleet": {
       "Fleet": 1,
+      "FleetMode": "combat_auto",
       "Submarine": false
     },
     "Storage": {
@@ -1782,6 +1783,7 @@
     },
     "OpsiFleet": {
       "Fleet": 1,
+      "FleetMode": "combat_auto",
       "Submarine": false
     },
     "Storage": {
@@ -1803,6 +1805,11 @@
     "OpsiFleetFilter": {
       "Filter": "Fleet-4 > CallSubmarine > Fleet-2 > Fleet-3 > Fleet-1"
     },
+    "OpsiFleet": {
+      "Fleet": 1,
+      "FleetMode": "combat_auto",
+      "Submarine": true
+    },
     "Storage": {
       "Storage": {}
     }
@@ -1818,6 +1825,7 @@
     },
     "OpsiFleet": {
       "Fleet": 1,
+      "FleetMode": "combat_auto",
       "Submarine": false
     },
     "Storage": {
@@ -1838,6 +1846,11 @@
     },
     "OpsiFleetFilter": {
       "Filter": "Fleet-4 > CallSubmarine > Fleet-2 > Fleet-3 > Fleet-1"
+    },
+    "OpsiFleet": {
+      "Fleet": 1,
+      "FleetMode": "combat_auto",
+      "Submarine": true
     },
     "Storage": {
       "Storage": {}
@@ -1880,6 +1893,7 @@
     },
     "OpsiFleet": {
       "Fleet": 1,
+      "FleetMode": "combat_auto",
       "Submarine": false
     },
     "Storage": {
@@ -1900,6 +1914,7 @@
     },
     "OpsiFleet": {
       "Fleet": 1,
+      "FleetMode": "combat_auto",
       "Submarine": false
     },
     "Storage": {

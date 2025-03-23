@@ -8924,6 +8924,16 @@
           4
         ]
       },
+      "FleetMode": {
+        "type": "select",
+        "value": "combat_auto",
+        "option": [
+          "combat_auto",
+          "combat_manual",
+          "stand_still_in_the_middle",
+          "hide_in_bottom_left"
+        ]
+      },
       "Submarine": {
         "type": "checkbox",
         "value": false
@@ -8991,6 +9001,16 @@
           4
         ]
       },
+      "FleetMode": {
+        "type": "select",
+        "value": "combat_auto",
+        "option": [
+          "combat_auto",
+          "combat_manual",
+          "stand_still_in_the_middle",
+          "hide_in_bottom_left"
+        ]
+      },
       "Submarine": {
         "type": "checkbox",
         "value": false
@@ -9053,6 +9073,34 @@
         "value": "Fleet-4 > CallSubmarine > Fleet-2 > Fleet-3 > Fleet-1"
       }
     },
+    "OpsiFleet": {
+      "Fleet": {
+        "type": "select",
+        "value": 1,
+        "option": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "display": "hide"
+      },
+      "FleetMode": {
+        "type": "select",
+        "value": "combat_auto",
+        "option": [
+          "combat_auto",
+          "combat_manual",
+          "stand_still_in_the_middle",
+          "hide_in_bottom_left"
+        ]
+      },
+      "Submarine": {
+        "type": "checkbox",
+        "value": true,
+        "display": "hide"
+      }
+    },
     "Storage": {
       "Storage": {
         "type": "storage",
@@ -9107,6 +9155,16 @@
           2,
           3,
           4
+        ]
+      },
+      "FleetMode": {
+        "type": "select",
+        "value": "combat_auto",
+        "option": [
+          "combat_auto",
+          "combat_manual",
+          "stand_still_in_the_middle",
+          "hide_in_bottom_left"
         ]
       },
       "Submarine": {
@@ -9169,6 +9227,34 @@
       "Filter": {
         "type": "textarea",
         "value": "Fleet-4 > CallSubmarine > Fleet-2 > Fleet-3 > Fleet-1"
+      }
+    },
+    "OpsiFleet": {
+      "Fleet": {
+        "type": "select",
+        "value": 1,
+        "option": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "display": "hide"
+      },
+      "FleetMode": {
+        "type": "select",
+        "value": "combat_auto",
+        "option": [
+          "combat_auto",
+          "combat_manual",
+          "stand_still_in_the_middle",
+          "hide_in_bottom_left"
+        ]
+      },
+      "Submarine": {
+        "type": "checkbox",
+        "value": true,
+        "display": "hide"
       }
     },
     "Storage": {
@@ -9317,6 +9403,16 @@
           4
         ]
       },
+      "FleetMode": {
+        "type": "select",
+        "value": "combat_auto",
+        "option": [
+          "combat_auto",
+          "combat_manual",
+          "stand_still_in_the_middle",
+          "hide_in_bottom_left"
+        ]
+      },
       "Submarine": {
         "type": "checkbox",
         "value": false
@@ -9387,6 +9483,16 @@
           2,
           3,
           4
+        ]
+      },
+      "FleetMode": {
+        "type": "select",
+        "value": "combat_auto",
+        "option": [
+          "combat_auto",
+          "combat_manual",
+          "stand_still_in_the_middle",
+          "hide_in_bottom_left"
         ]
       },
       "Submarine": {
@@ -9589,8 +9695,7 @@
       },
       "RestartEverytime": {
         "type": "checkbox",
-        "value": true,
-        "display": "disabled"
+        "value": true
       },
       "RepushLua": {
         "type": "checkbox",
