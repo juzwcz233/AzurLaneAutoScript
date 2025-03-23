@@ -1708,6 +1708,7 @@
     },
     "OpsiFleet": {
       "Fleet": 1,
+      "FleetMode": "combat_auto",
       "Submarine": false
     },
     "Storage": {
