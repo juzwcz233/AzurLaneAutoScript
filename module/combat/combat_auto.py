@@ -23,6 +23,8 @@ class CombatAuto(ModuleBase):
             return True
         if self.appear(COMBAT_AUTO_Christmas, offset=(20, 20)):
             return True
+        if self.appear(COMBAT_AUTO_Christmas_error, offset=(20, 20)):
+            return True
         if self.appear(COMBAT_AUTO_Christmas_133, offset=(20, 20)):
             return True
         return False
