@@ -140,7 +140,7 @@ class ShipChange(CampaignRun, Dock, EquipmentChange, metaclass=ABCMeta):
         self._dock_reset()
         self.dock_select_confirm(check_button=self.page_fleet_check_button)
 
-    def get_common_rarity_cv(self, level=31, emotion=10):
+    def get_common_rarity_cv(self, level=25, emotion=100):
         """
         Get a common rarity cv by config.GemsFarming_CommonCV
         If config.GemsFarming_CommonCV == 'any', return a common lv1 ~ lv33 cv
@@ -201,7 +201,7 @@ class ShipChange(CampaignRun, Dock, EquipmentChange, metaclass=ABCMeta):
 
             return candidates
 
-    def get_common_rarity_dd(self, emotion=10):
+    def get_common_rarity_dd(self, emotion=100):
         """
         Get a common rarity dd with level is 100 (70 for servers except CN) and emotion > 10
 
