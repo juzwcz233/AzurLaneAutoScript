@@ -243,17 +243,22 @@ class RewardTacticalClass(Dock):
             book (Book):
             skip_first_screenshot (bool):
         """
+        logger.info(f'Book select {book}')
+        interval = Timer(2, count=6)
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
             else:
                 self.device.screenshot()
 
-            if not book.check_selected(self.device.image):
-                self.device.click(book.button)
-                self.device.sleep((0.3, 0.5))
-            else:
+            # End
+            if book.check_selected(self.device.image):
                 break
+
+            if interval.reached():
+                self.device.click(book.button)
+                interval.reset()
+                continue
 
     def _tactical_books_filter_exp(self):
         """
@@ -601,11 +606,11 @@ class RewardTacticalClass(Dock):
     def select_suitable_ship(self):
         logger.hr(f'Select suitable ship')
 
+        # Set if favorite from config
+        self.dock_favourite_set(enable=self.config.AddNewStudent_Favorite, wait_loading=False)
+
         # reset filter
         self.dock_filter_set()
-
-        # Set if favorite from config
-        self.dock_favourite_set(enable=self.config.AddNewStudent_Favorite)
 
         # No ship in dock
         if self.appear(DOCK_EMPTY, offset=(30, 30)):
