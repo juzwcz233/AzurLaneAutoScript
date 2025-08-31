@@ -37,21 +37,31 @@ OCR_DOCK_SELECTED = DigitCounter(DOCK_SELECTED, threshold=64, name='OCR_DOCK_SEL
 
 class Dock(Equipment):
     def handle_dock_cards_loading(self, skip_first_screenshot=True):
-        # Poor implementation
+        from module.retire.scanner import HashGenerator
+        scanner = HashGenerator()
+        old_result = None
+        if not skip_first_screenshot:
+            self.device.screenshot()
+            skip_first_screenshot = True
+        new_result = scanner.scan(self.device.image)
         # confirm_timer method cannot be used
         timeout = Timer(1.2, count=1).start()
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
             else:
+                old_result = new_result
                 self.device.screenshot()
-
+                new_result = scanner.scan(self.device.image)
             # Quick exit if dock is empty
             if self.appear(DOCK_EMPTY):
                 logger.info('Dock empty')
                 break
             # Otherwise we just wait 1.2s
             if timeout.reached():
+                break
+            # Dock loaded
+            if old_result == new_result:
                 break
 
     def dock_favourite_set(self, enable=False, wait_loading=True):
@@ -191,12 +201,12 @@ class Dock(Equipment):
                  'cv', 'repair', 'ss', 'others', 'not_available', 'not_available', 'not_available']
             faction (str, list):
                 ['all', 'eagle', 'royal', 'sakura', 'iron', 'dragon', 'sardegna',
-                 'northern', 'iris', 'vichya', 'other', 'not_available', 'not_available', 'not_available']
+                 'northern', 'iris', 'vichya', 'tulipa', 'meta', 'tempesta', 'other']
             rarity (str, list):
                 ['all', 'common', 'rare', 'elite', 'super_rare', 'ultra', 'not_available']
             extra (str, list):
                 ['no_limit', 'has_skin', 'can_retrofit', 'enhanceable', 'can_limit_break', 'not_level_max', 'can_awaken',
-                 'can_awaken_plus', 'special', 'oath_skin', 'unique_augment_module', 'not_available', 'not_available', 'not_available'],
+                 'can_awaken_plus', 'special', 'oath_skin', 'unique_augment_module', 'wear_skin', 'oathed', 'not_available'],
 
         Pages:
             in: page_dock
